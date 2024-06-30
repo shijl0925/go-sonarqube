@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
 	"github.com/shijl0925/go-sonarqube/sonarqube/webhooks"
@@ -10,11 +11,11 @@ import (
 
 type Webhooks service
 
-func (s *Webhooks) Create(r webhooks.CreateRequest) (*webhooks.CreateResponse, error) {
+func (s *Webhooks) Create(ctx context.Context, r webhooks.CreateRequest) (*webhooks.CreateResponse, error) {
 	u := fmt.Sprintf("%s/webhooks/create", API)
 	v := new(webhooks.CreateResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -22,10 +23,10 @@ func (s *Webhooks) Create(r webhooks.CreateRequest) (*webhooks.CreateResponse, e
 	return v, nil
 }
 
-func (s *Webhooks) Delete(r webhooks.DeleteRequest) error {
+func (s *Webhooks) Delete(ctx context.Context, r webhooks.DeleteRequest) error {
 	u := fmt.Sprintf("%s/webhooks/delete", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -33,11 +34,11 @@ func (s *Webhooks) Delete(r webhooks.DeleteRequest) error {
 	return nil
 }
 
-func (s *Webhooks) Deliveries(r webhooks.DeliveriesRequest, p paging.Params) (*webhooks.DeliveriesResponse, error) {
+func (s *Webhooks) Deliveries(ctx context.Context, r webhooks.DeliveriesRequest, p paging.Params) (*webhooks.DeliveriesResponse, error) {
 	u := fmt.Sprintf("%s/webhooks/deliveries", API)
 	v := new(webhooks.DeliveriesResponse)
 
-	_, err := s.client.Call("GET", u, v, r, p)
+	_, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
 		return nil, err
 	}
@@ -45,14 +46,14 @@ func (s *Webhooks) Deliveries(r webhooks.DeliveriesRequest, p paging.Params) (*w
 	return v, nil
 }
 
-func (s *Webhooks) DeliveriesAll(r webhooks.DeliveriesRequest) (*webhooks.DeliveriesResponseAll, error) {
+func (s *Webhooks) DeliveriesAll(ctx context.Context, r webhooks.DeliveriesRequest) (*webhooks.DeliveriesResponseAll, error) {
 	p := paging.Params{
 		P:  1,
 		Ps: 100,
 	}
 	response := &webhooks.DeliveriesResponseAll{}
 	for {
-		res, err := s.Deliveries(r, p)
+		res, err := s.Deliveries(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to webhooks.Deliveries: %+v", err)
 		}
@@ -66,11 +67,11 @@ func (s *Webhooks) DeliveriesAll(r webhooks.DeliveriesRequest) (*webhooks.Delive
 	return response, nil
 }
 
-func (s *Webhooks) Delivery(r webhooks.DeliveryRequest) (*webhooks.DeliveryResponse, error) {
+func (s *Webhooks) Delivery(ctx context.Context, r webhooks.DeliveryRequest) (*webhooks.DeliveryResponse, error) {
 	u := fmt.Sprintf("%s/webhooks/delivery", API)
 	v := new(webhooks.DeliveryResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -78,11 +79,11 @@ func (s *Webhooks) Delivery(r webhooks.DeliveryRequest) (*webhooks.DeliveryRespo
 	return v, nil
 }
 
-func (s *Webhooks) List(r webhooks.ListRequest) (*webhooks.ListResponse, error) {
+func (s *Webhooks) List(ctx context.Context, r webhooks.ListRequest) (*webhooks.ListResponse, error) {
 	u := fmt.Sprintf("%s/webhooks/list", API)
 	v := new(webhooks.ListResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -90,10 +91,10 @@ func (s *Webhooks) List(r webhooks.ListRequest) (*webhooks.ListResponse, error) 
 	return v, nil
 }
 
-func (s *Webhooks) Update(r webhooks.UpdateRequest) error {
+func (s *Webhooks) Update(ctx context.Context, r webhooks.UpdateRequest) error {
 	u := fmt.Sprintf("%s/webhooks/update", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}

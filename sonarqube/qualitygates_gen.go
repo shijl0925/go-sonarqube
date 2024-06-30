@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
 	"github.com/shijl0925/go-sonarqube/sonarqube/qualitygates"
@@ -10,10 +11,10 @@ import (
 
 type Qualitygates service
 
-func (s *Qualitygates) AddGroup(r qualitygates.AddGroupRequest) error {
+func (s *Qualitygates) AddGroup(ctx context.Context, r qualitygates.AddGroupRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/add_group", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -21,10 +22,10 @@ func (s *Qualitygates) AddGroup(r qualitygates.AddGroupRequest) error {
 	return nil
 }
 
-func (s *Qualitygates) AddUser(r qualitygates.AddUserRequest) error {
+func (s *Qualitygates) AddUser(ctx context.Context, r qualitygates.AddUserRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/add_user", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -32,10 +33,10 @@ func (s *Qualitygates) AddUser(r qualitygates.AddUserRequest) error {
 	return nil
 }
 
-func (s *Qualitygates) Copy(r qualitygates.CopyRequest) error {
+func (s *Qualitygates) Copy(ctx context.Context, r qualitygates.CopyRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/copy", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -43,11 +44,11 @@ func (s *Qualitygates) Copy(r qualitygates.CopyRequest) error {
 	return nil
 }
 
-func (s *Qualitygates) Create(r qualitygates.CreateRequest) (*qualitygates.CreateResponse, error) {
+func (s *Qualitygates) Create(ctx context.Context, r qualitygates.CreateRequest) (*qualitygates.CreateResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/create", API)
 	v := new(qualitygates.CreateResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -55,11 +56,11 @@ func (s *Qualitygates) Create(r qualitygates.CreateRequest) (*qualitygates.Creat
 	return v, nil
 }
 
-func (s *Qualitygates) CreateCondition(r qualitygates.CreateConditionRequest) (*qualitygates.CreateConditionResponse, error) {
+func (s *Qualitygates) CreateCondition(ctx context.Context, r qualitygates.CreateConditionRequest) (*qualitygates.CreateConditionResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/create_condition", API)
 	v := new(qualitygates.CreateConditionResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -67,10 +68,10 @@ func (s *Qualitygates) CreateCondition(r qualitygates.CreateConditionRequest) (*
 	return v, nil
 }
 
-func (s *Qualitygates) DeleteCondition(r qualitygates.DeleteConditionRequest) error {
+func (s *Qualitygates) DeleteCondition(ctx context.Context, r qualitygates.DeleteConditionRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/delete_condition", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -78,10 +79,10 @@ func (s *Qualitygates) DeleteCondition(r qualitygates.DeleteConditionRequest) er
 	return nil
 }
 
-func (s *Qualitygates) Deselect(r qualitygates.DeselectRequest) error {
+func (s *Qualitygates) Deselect(ctx context.Context, r qualitygates.DeselectRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/deselect", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -89,10 +90,10 @@ func (s *Qualitygates) Deselect(r qualitygates.DeselectRequest) error {
 	return nil
 }
 
-func (s *Qualitygates) Destroy(r qualitygates.DestroyRequest) error {
+func (s *Qualitygates) Destroy(ctx context.Context, r qualitygates.DestroyRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/destroy", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -100,11 +101,11 @@ func (s *Qualitygates) Destroy(r qualitygates.DestroyRequest) error {
 	return nil
 }
 
-func (s *Qualitygates) GetByProject(r qualitygates.GetByProjectRequest) (*qualitygates.GetByProjectResponse, error) {
+func (s *Qualitygates) GetByProject(ctx context.Context, r qualitygates.GetByProjectRequest) (*qualitygates.GetByProjectResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/get_by_project", API)
 	v := new(qualitygates.GetByProjectResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -112,11 +113,11 @@ func (s *Qualitygates) GetByProject(r qualitygates.GetByProjectRequest) (*qualit
 	return v, nil
 }
 
-func (s *Qualitygates) List(r qualitygates.ListRequest) (*qualitygates.ListResponse, error) {
+func (s *Qualitygates) List(ctx context.Context, r qualitygates.ListRequest) (*qualitygates.ListResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/list", API)
 	v := new(qualitygates.ListResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -124,11 +125,11 @@ func (s *Qualitygates) List(r qualitygates.ListRequest) (*qualitygates.ListRespo
 	return v, nil
 }
 
-func (s *Qualitygates) ProjectStatus(r qualitygates.ProjectStatusRequest) (*qualitygates.ProjectStatusResponse, error) {
+func (s *Qualitygates) ProjectStatus(ctx context.Context, r qualitygates.ProjectStatusRequest) (*qualitygates.ProjectStatusResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/project_status", API)
 	v := new(qualitygates.ProjectStatusResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -136,10 +137,10 @@ func (s *Qualitygates) ProjectStatus(r qualitygates.ProjectStatusRequest) (*qual
 	return v, nil
 }
 
-func (s *Qualitygates) RemoveGroup(r qualitygates.RemoveGroupRequest) error {
+func (s *Qualitygates) RemoveGroup(ctx context.Context, r qualitygates.RemoveGroupRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/remove_group", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -147,10 +148,10 @@ func (s *Qualitygates) RemoveGroup(r qualitygates.RemoveGroupRequest) error {
 	return nil
 }
 
-func (s *Qualitygates) RemoveUser(r qualitygates.RemoveUserRequest) error {
+func (s *Qualitygates) RemoveUser(ctx context.Context, r qualitygates.RemoveUserRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/remove_user", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -158,10 +159,10 @@ func (s *Qualitygates) RemoveUser(r qualitygates.RemoveUserRequest) error {
 	return nil
 }
 
-func (s *Qualitygates) Rename(r qualitygates.RenameRequest) error {
+func (s *Qualitygates) Rename(ctx context.Context, r qualitygates.RenameRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/rename", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -169,11 +170,11 @@ func (s *Qualitygates) Rename(r qualitygates.RenameRequest) error {
 	return nil
 }
 
-func (s *Qualitygates) Search(r qualitygates.SearchRequest) (*qualitygates.SearchResponse, error) {
+func (s *Qualitygates) Search(ctx context.Context, r qualitygates.SearchRequest) (*qualitygates.SearchResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/search", API)
 	v := new(qualitygates.SearchResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -181,11 +182,11 @@ func (s *Qualitygates) Search(r qualitygates.SearchRequest) (*qualitygates.Searc
 	return v, nil
 }
 
-func (s *Qualitygates) SearchGroups(r qualitygates.SearchGroupsRequest, p paging.Params) (*qualitygates.SearchGroupsResponse, error) {
+func (s *Qualitygates) SearchGroups(ctx context.Context, r qualitygates.SearchGroupsRequest, p paging.Params) (*qualitygates.SearchGroupsResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/search_groups", API)
 	v := new(qualitygates.SearchGroupsResponse)
 
-	_, err := s.client.Call("GET", u, v, r, p)
+	_, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
 		return nil, err
 	}
@@ -193,14 +194,14 @@ func (s *Qualitygates) SearchGroups(r qualitygates.SearchGroupsRequest, p paging
 	return v, nil
 }
 
-func (s *Qualitygates) SearchGroupsAll(r qualitygates.SearchGroupsRequest) (*qualitygates.SearchGroupsResponseAll, error) {
+func (s *Qualitygates) SearchGroupsAll(ctx context.Context, r qualitygates.SearchGroupsRequest) (*qualitygates.SearchGroupsResponseAll, error) {
 	p := paging.Params{
 		P:  1,
 		Ps: 100,
 	}
 	response := &qualitygates.SearchGroupsResponseAll{}
 	for {
-		res, err := s.SearchGroups(r, p)
+		res, err := s.SearchGroups(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to qualitygates.SearchGroups: %+v", err)
 		}
@@ -214,11 +215,11 @@ func (s *Qualitygates) SearchGroupsAll(r qualitygates.SearchGroupsRequest) (*qua
 	return response, nil
 }
 
-func (s *Qualitygates) SearchUsers(r qualitygates.SearchUsersRequest, p paging.Params) (*qualitygates.SearchUsersResponse, error) {
+func (s *Qualitygates) SearchUsers(ctx context.Context, r qualitygates.SearchUsersRequest, p paging.Params) (*qualitygates.SearchUsersResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/search_users", API)
 	v := new(qualitygates.SearchUsersResponse)
 
-	_, err := s.client.Call("GET", u, v, r, p)
+	_, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
 		return nil, err
 	}
@@ -226,14 +227,14 @@ func (s *Qualitygates) SearchUsers(r qualitygates.SearchUsersRequest, p paging.P
 	return v, nil
 }
 
-func (s *Qualitygates) SearchUsersAll(r qualitygates.SearchUsersRequest) (*qualitygates.SearchUsersResponseAll, error) {
+func (s *Qualitygates) SearchUsersAll(ctx context.Context, r qualitygates.SearchUsersRequest) (*qualitygates.SearchUsersResponseAll, error) {
 	p := paging.Params{
 		P:  1,
 		Ps: 100,
 	}
 	response := &qualitygates.SearchUsersResponseAll{}
 	for {
-		res, err := s.SearchUsers(r, p)
+		res, err := s.SearchUsers(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to qualitygates.SearchUsers: %+v", err)
 		}
@@ -247,10 +248,10 @@ func (s *Qualitygates) SearchUsersAll(r qualitygates.SearchUsersRequest) (*quali
 	return response, nil
 }
 
-func (s *Qualitygates) Select(r qualitygates.SelectRequest) error {
+func (s *Qualitygates) Select(ctx context.Context, r qualitygates.SelectRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/select", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -258,10 +259,10 @@ func (s *Qualitygates) Select(r qualitygates.SelectRequest) error {
 	return nil
 }
 
-func (s *Qualitygates) SetAsDefault(r qualitygates.SetAsDefaultRequest) error {
+func (s *Qualitygates) SetAsDefault(ctx context.Context, r qualitygates.SetAsDefaultRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/set_as_default", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -269,11 +270,11 @@ func (s *Qualitygates) SetAsDefault(r qualitygates.SetAsDefaultRequest) error {
 	return nil
 }
 
-func (s *Qualitygates) Show(r qualitygates.ShowRequest) (*qualitygates.ShowResponse, error) {
+func (s *Qualitygates) Show(ctx context.Context, r qualitygates.ShowRequest) (*qualitygates.ShowResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/show", API)
 	v := new(qualitygates.ShowResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -281,10 +282,10 @@ func (s *Qualitygates) Show(r qualitygates.ShowRequest) (*qualitygates.ShowRespo
 	return v, nil
 }
 
-func (s *Qualitygates) UpdateCondition(r qualitygates.UpdateConditionRequest) error {
+func (s *Qualitygates) UpdateCondition(ctx context.Context, r qualitygates.UpdateConditionRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/update_condition", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}

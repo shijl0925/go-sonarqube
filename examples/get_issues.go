@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube"
 	"github.com/shijl0925/go-sonarqube/sonarqube/issues"
@@ -9,6 +10,7 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
 	baseUrl := "https://next.sonarqube.com/sonarqube/api"
 	client := sonarqube.NewClient(baseUrl, "", "", nil)
 
@@ -18,7 +20,7 @@ func main() {
 		P:  1,
 	}
 
-	res, err := client.Issues.Search(req, p)
+	res, err := client.Issues.Search(ctx, req, p)
 	if err != nil {
 		log.Fatalf("could not search issues: %+v", err)
 	}

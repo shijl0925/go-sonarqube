@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/favorites"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
@@ -10,10 +11,10 @@ import (
 
 type Favorites service
 
-func (s *Favorites) Add(r favorites.AddRequest) error {
+func (s *Favorites) Add(ctx context.Context, r favorites.AddRequest) error {
 	u := fmt.Sprintf("%s/favorites/add", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -21,10 +22,10 @@ func (s *Favorites) Add(r favorites.AddRequest) error {
 	return nil
 }
 
-func (s *Favorites) Remove(r favorites.RemoveRequest) error {
+func (s *Favorites) Remove(ctx context.Context, r favorites.RemoveRequest) error {
 	u := fmt.Sprintf("%s/favorites/remove", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -32,11 +33,11 @@ func (s *Favorites) Remove(r favorites.RemoveRequest) error {
 	return nil
 }
 
-func (s *Favorites) Search(r favorites.SearchRequest, p paging.Params) (*favorites.SearchResponse, error) {
+func (s *Favorites) Search(ctx context.Context, r favorites.SearchRequest, p paging.Params) (*favorites.SearchResponse, error) {
 	u := fmt.Sprintf("%s/favorites/search", API)
 	v := new(favorites.SearchResponse)
 
-	_, err := s.client.Call("GET", u, v, r, p)
+	_, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
 		return nil, err
 	}
@@ -44,14 +45,14 @@ func (s *Favorites) Search(r favorites.SearchRequest, p paging.Params) (*favorit
 	return v, nil
 }
 
-func (s *Favorites) SearchAll(r favorites.SearchRequest) (*favorites.SearchResponseAll, error) {
+func (s *Favorites) SearchAll(ctx context.Context, r favorites.SearchRequest) (*favorites.SearchResponseAll, error) {
 	p := paging.Params{
 		P:  1,
 		Ps: 100,
 	}
 	response := &favorites.SearchResponseAll{}
 	for {
-		res, err := s.Search(r, p)
+		res, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to favorites.Search: %+v", err)
 		}

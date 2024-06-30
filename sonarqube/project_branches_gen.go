@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/project_branches"
 )
@@ -9,10 +10,10 @@ import (
 
 type ProjectBranches service
 
-func (s *ProjectBranches) Delete(r project_branches.DeleteRequest) error {
+func (s *ProjectBranches) Delete(ctx context.Context, r project_branches.DeleteRequest) error {
 	u := fmt.Sprintf("%s/project_branches/delete", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -20,11 +21,11 @@ func (s *ProjectBranches) Delete(r project_branches.DeleteRequest) error {
 	return nil
 }
 
-func (s *ProjectBranches) List(r project_branches.ListRequest) (*project_branches.ListResponse, error) {
+func (s *ProjectBranches) List(ctx context.Context, r project_branches.ListRequest) (*project_branches.ListResponse, error) {
 	u := fmt.Sprintf("%s/project_branches/list", API)
 	v := new(project_branches.ListResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -32,10 +33,10 @@ func (s *ProjectBranches) List(r project_branches.ListRequest) (*project_branche
 	return v, nil
 }
 
-func (s *ProjectBranches) Rename(r project_branches.RenameRequest) error {
+func (s *ProjectBranches) Rename(ctx context.Context, r project_branches.RenameRequest) error {
 	u := fmt.Sprintf("%s/project_branches/rename", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -43,10 +44,10 @@ func (s *ProjectBranches) Rename(r project_branches.RenameRequest) error {
 	return nil
 }
 
-func (s *ProjectBranches) SetAutomaticDeletionProtection(r project_branches.SetAutomaticDeletionProtectionRequest) error {
+func (s *ProjectBranches) SetAutomaticDeletionProtection(ctx context.Context, r project_branches.SetAutomaticDeletionProtectionRequest) error {
 	u := fmt.Sprintf("%s/project_branches/set_automatic_deletion_protection", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -54,10 +55,10 @@ func (s *ProjectBranches) SetAutomaticDeletionProtection(r project_branches.SetA
 	return nil
 }
 
-func (s *ProjectBranches) SetMain(r project_branches.SetMainRequest) error {
+func (s *ProjectBranches) SetMain(ctx context.Context, r project_branches.SetMainRequest) error {
 	u := fmt.Sprintf("%s/project_branches/set_main", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}

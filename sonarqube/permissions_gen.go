@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/permissions"
 )
@@ -9,10 +10,10 @@ import (
 
 type Permissions service
 
-func (s *Permissions) AddGroup(r permissions.AddGroupRequest) error {
+func (s *Permissions) AddGroup(ctx context.Context, r permissions.AddGroupRequest) error {
 	u := fmt.Sprintf("%s/permissions/add_group", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -20,10 +21,10 @@ func (s *Permissions) AddGroup(r permissions.AddGroupRequest) error {
 	return nil
 }
 
-func (s *Permissions) AddGroupToTemplate(r permissions.AddGroupToTemplateRequest) error {
+func (s *Permissions) AddGroupToTemplate(ctx context.Context, r permissions.AddGroupToTemplateRequest) error {
 	u := fmt.Sprintf("%s/permissions/add_group_to_template", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -31,10 +32,10 @@ func (s *Permissions) AddGroupToTemplate(r permissions.AddGroupToTemplateRequest
 	return nil
 }
 
-func (s *Permissions) AddProjectCreatorToTemplate(r permissions.AddProjectCreatorToTemplateRequest) error {
+func (s *Permissions) AddProjectCreatorToTemplate(ctx context.Context, r permissions.AddProjectCreatorToTemplateRequest) error {
 	u := fmt.Sprintf("%s/permissions/add_project_creator_to_template", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -42,10 +43,10 @@ func (s *Permissions) AddProjectCreatorToTemplate(r permissions.AddProjectCreato
 	return nil
 }
 
-func (s *Permissions) AddUser(r permissions.AddUserRequest) error {
+func (s *Permissions) AddUser(ctx context.Context, r permissions.AddUserRequest) error {
 	u := fmt.Sprintf("%s/permissions/add_user", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -53,10 +54,10 @@ func (s *Permissions) AddUser(r permissions.AddUserRequest) error {
 	return nil
 }
 
-func (s *Permissions) AddUserToTemplate(r permissions.AddUserToTemplateRequest) error {
+func (s *Permissions) AddUserToTemplate(ctx context.Context, r permissions.AddUserToTemplateRequest) error {
 	u := fmt.Sprintf("%s/permissions/add_user_to_template", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -64,10 +65,10 @@ func (s *Permissions) AddUserToTemplate(r permissions.AddUserToTemplateRequest) 
 	return nil
 }
 
-func (s *Permissions) ApplyTemplate(r permissions.ApplyTemplateRequest) error {
+func (s *Permissions) ApplyTemplate(ctx context.Context, r permissions.ApplyTemplateRequest) error {
 	u := fmt.Sprintf("%s/permissions/apply_template", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -75,10 +76,10 @@ func (s *Permissions) ApplyTemplate(r permissions.ApplyTemplateRequest) error {
 	return nil
 }
 
-func (s *Permissions) BulkApplyTemplate(r permissions.BulkApplyTemplateRequest) error {
+func (s *Permissions) BulkApplyTemplate(ctx context.Context, r permissions.BulkApplyTemplateRequest) error {
 	u := fmt.Sprintf("%s/permissions/bulk_apply_template", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -86,11 +87,11 @@ func (s *Permissions) BulkApplyTemplate(r permissions.BulkApplyTemplateRequest) 
 	return nil
 }
 
-func (s *Permissions) CreateTemplate(r permissions.CreateTemplateRequest) (*permissions.CreateTemplateResponse, error) {
+func (s *Permissions) CreateTemplate(ctx context.Context, r permissions.CreateTemplateRequest) (*permissions.CreateTemplateResponse, error) {
 	u := fmt.Sprintf("%s/permissions/create_template", API)
 	v := new(permissions.CreateTemplateResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -98,10 +99,10 @@ func (s *Permissions) CreateTemplate(r permissions.CreateTemplateRequest) (*perm
 	return v, nil
 }
 
-func (s *Permissions) DeleteTemplate(r permissions.DeleteTemplateRequest) error {
+func (s *Permissions) DeleteTemplate(ctx context.Context, r permissions.DeleteTemplateRequest) error {
 	u := fmt.Sprintf("%s/permissions/delete_template", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -109,10 +110,10 @@ func (s *Permissions) DeleteTemplate(r permissions.DeleteTemplateRequest) error 
 	return nil
 }
 
-func (s *Permissions) RemoveGroup(r permissions.RemoveGroupRequest) error {
+func (s *Permissions) RemoveGroup(ctx context.Context, r permissions.RemoveGroupRequest) error {
 	u := fmt.Sprintf("%s/permissions/remove_group", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -120,10 +121,10 @@ func (s *Permissions) RemoveGroup(r permissions.RemoveGroupRequest) error {
 	return nil
 }
 
-func (s *Permissions) RemoveGroupFromTemplate(r permissions.RemoveGroupFromTemplateRequest) error {
+func (s *Permissions) RemoveGroupFromTemplate(ctx context.Context, r permissions.RemoveGroupFromTemplateRequest) error {
 	u := fmt.Sprintf("%s/permissions/remove_group_from_template", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -131,10 +132,10 @@ func (s *Permissions) RemoveGroupFromTemplate(r permissions.RemoveGroupFromTempl
 	return nil
 }
 
-func (s *Permissions) RemoveProjectCreatorFromTemplate(r permissions.RemoveProjectCreatorFromTemplateRequest) error {
+func (s *Permissions) RemoveProjectCreatorFromTemplate(ctx context.Context, r permissions.RemoveProjectCreatorFromTemplateRequest) error {
 	u := fmt.Sprintf("%s/permissions/remove_project_creator_from_template", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -142,10 +143,10 @@ func (s *Permissions) RemoveProjectCreatorFromTemplate(r permissions.RemoveProje
 	return nil
 }
 
-func (s *Permissions) RemoveUser(r permissions.RemoveUserRequest) error {
+func (s *Permissions) RemoveUser(ctx context.Context, r permissions.RemoveUserRequest) error {
 	u := fmt.Sprintf("%s/permissions/remove_user", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -153,10 +154,10 @@ func (s *Permissions) RemoveUser(r permissions.RemoveUserRequest) error {
 	return nil
 }
 
-func (s *Permissions) RemoveUserFromTemplate(r permissions.RemoveUserFromTemplateRequest) error {
+func (s *Permissions) RemoveUserFromTemplate(ctx context.Context, r permissions.RemoveUserFromTemplateRequest) error {
 	u := fmt.Sprintf("%s/permissions/remove_user_from_template", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -164,11 +165,11 @@ func (s *Permissions) RemoveUserFromTemplate(r permissions.RemoveUserFromTemplat
 	return nil
 }
 
-func (s *Permissions) SearchTemplates(r permissions.SearchTemplatesRequest) (*permissions.SearchTemplatesResponse, error) {
+func (s *Permissions) SearchTemplates(ctx context.Context, r permissions.SearchTemplatesRequest) (*permissions.SearchTemplatesResponse, error) {
 	u := fmt.Sprintf("%s/permissions/search_templates", API)
 	v := new(permissions.SearchTemplatesResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -176,10 +177,10 @@ func (s *Permissions) SearchTemplates(r permissions.SearchTemplatesRequest) (*pe
 	return v, nil
 }
 
-func (s *Permissions) SetDefaultTemplate(r permissions.SetDefaultTemplateRequest) error {
+func (s *Permissions) SetDefaultTemplate(ctx context.Context, r permissions.SetDefaultTemplateRequest) error {
 	u := fmt.Sprintf("%s/permissions/set_default_template", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -187,11 +188,11 @@ func (s *Permissions) SetDefaultTemplate(r permissions.SetDefaultTemplateRequest
 	return nil
 }
 
-func (s *Permissions) UpdateTemplate(r permissions.UpdateTemplateRequest) (*permissions.UpdateTemplateResponse, error) {
+func (s *Permissions) UpdateTemplate(ctx context.Context, r permissions.UpdateTemplateRequest) (*permissions.UpdateTemplateResponse, error) {
 	u := fmt.Sprintf("%s/permissions/update_template", API)
 	v := new(permissions.UpdateTemplateResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}

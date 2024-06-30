@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
 	"github.com/shijl0925/go-sonarqube/sonarqube/project_analyses"
@@ -10,11 +11,11 @@ import (
 
 type ProjectAnalyses service
 
-func (s *ProjectAnalyses) CreateEvent(r project_analyses.CreateEventRequest) (*project_analyses.CreateEventResponse, error) {
+func (s *ProjectAnalyses) CreateEvent(ctx context.Context, r project_analyses.CreateEventRequest) (*project_analyses.CreateEventResponse, error) {
 	u := fmt.Sprintf("%s/project_analyses/create_event", API)
 	v := new(project_analyses.CreateEventResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -22,10 +23,10 @@ func (s *ProjectAnalyses) CreateEvent(r project_analyses.CreateEventRequest) (*p
 	return v, nil
 }
 
-func (s *ProjectAnalyses) Delete(r project_analyses.DeleteRequest) error {
+func (s *ProjectAnalyses) Delete(ctx context.Context, r project_analyses.DeleteRequest) error {
 	u := fmt.Sprintf("%s/project_analyses/delete", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -33,10 +34,10 @@ func (s *ProjectAnalyses) Delete(r project_analyses.DeleteRequest) error {
 	return nil
 }
 
-func (s *ProjectAnalyses) DeleteEvent(r project_analyses.DeleteEventRequest) error {
+func (s *ProjectAnalyses) DeleteEvent(ctx context.Context, r project_analyses.DeleteEventRequest) error {
 	u := fmt.Sprintf("%s/project_analyses/delete_event", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -44,11 +45,11 @@ func (s *ProjectAnalyses) DeleteEvent(r project_analyses.DeleteEventRequest) err
 	return nil
 }
 
-func (s *ProjectAnalyses) Search(r project_analyses.SearchRequest, p paging.Params) (*project_analyses.SearchResponse, error) {
+func (s *ProjectAnalyses) Search(ctx context.Context, r project_analyses.SearchRequest, p paging.Params) (*project_analyses.SearchResponse, error) {
 	u := fmt.Sprintf("%s/project_analyses/search", API)
 	v := new(project_analyses.SearchResponse)
 
-	_, err := s.client.Call("GET", u, v, r, p)
+	_, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
 		return nil, err
 	}
@@ -56,14 +57,14 @@ func (s *ProjectAnalyses) Search(r project_analyses.SearchRequest, p paging.Para
 	return v, nil
 }
 
-func (s *ProjectAnalyses) SearchAll(r project_analyses.SearchRequest) (*project_analyses.SearchResponseAll, error) {
+func (s *ProjectAnalyses) SearchAll(ctx context.Context, r project_analyses.SearchRequest) (*project_analyses.SearchResponseAll, error) {
 	p := paging.Params{
 		P:  1,
 		Ps: 100,
 	}
 	response := &project_analyses.SearchResponseAll{}
 	for {
-		res, err := s.Search(r, p)
+		res, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to project_analyses.Search: %+v", err)
 		}
@@ -77,11 +78,11 @@ func (s *ProjectAnalyses) SearchAll(r project_analyses.SearchRequest) (*project_
 	return response, nil
 }
 
-func (s *ProjectAnalyses) UpdateEvent(r project_analyses.UpdateEventRequest) (*project_analyses.UpdateEventResponse, error) {
+func (s *ProjectAnalyses) UpdateEvent(ctx context.Context, r project_analyses.UpdateEventRequest) (*project_analyses.UpdateEventResponse, error) {
 	u := fmt.Sprintf("%s/project_analyses/update_event", API)
 	v := new(project_analyses.UpdateEventResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}

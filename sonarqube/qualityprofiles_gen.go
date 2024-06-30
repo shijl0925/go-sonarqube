@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
 	"github.com/shijl0925/go-sonarqube/sonarqube/qualityprofiles"
@@ -10,10 +11,10 @@ import (
 
 type Qualityprofiles service
 
-func (s *Qualityprofiles) ActivateRule(r qualityprofiles.ActivateRuleRequest) error {
+func (s *Qualityprofiles) ActivateRule(ctx context.Context, r qualityprofiles.ActivateRuleRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/activate_rule", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -21,10 +22,10 @@ func (s *Qualityprofiles) ActivateRule(r qualityprofiles.ActivateRuleRequest) er
 	return nil
 }
 
-func (s *Qualityprofiles) ActivateRules(r qualityprofiles.ActivateRulesRequest) error {
+func (s *Qualityprofiles) ActivateRules(ctx context.Context, r qualityprofiles.ActivateRulesRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/activate_rules", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -32,10 +33,10 @@ func (s *Qualityprofiles) ActivateRules(r qualityprofiles.ActivateRulesRequest) 
 	return nil
 }
 
-func (s *Qualityprofiles) AddProject(r qualityprofiles.AddProjectRequest) error {
+func (s *Qualityprofiles) AddProject(ctx context.Context, r qualityprofiles.AddProjectRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/add_project", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -43,11 +44,11 @@ func (s *Qualityprofiles) AddProject(r qualityprofiles.AddProjectRequest) error 
 	return nil
 }
 
-func (s *Qualityprofiles) Backup(r qualityprofiles.BackupRequest) (*qualityprofiles.BackupResponse, error) {
+func (s *Qualityprofiles) Backup(ctx context.Context, r qualityprofiles.BackupRequest) (*qualityprofiles.BackupResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/backup", API)
 	v := new(qualityprofiles.BackupResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -55,10 +56,10 @@ func (s *Qualityprofiles) Backup(r qualityprofiles.BackupRequest) (*qualityprofi
 	return v, nil
 }
 
-func (s *Qualityprofiles) ChangeParent(r qualityprofiles.ChangeParentRequest) error {
+func (s *Qualityprofiles) ChangeParent(ctx context.Context, r qualityprofiles.ChangeParentRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/change_parent", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -66,11 +67,11 @@ func (s *Qualityprofiles) ChangeParent(r qualityprofiles.ChangeParentRequest) er
 	return nil
 }
 
-func (s *Qualityprofiles) Changelog(r qualityprofiles.ChangelogRequest, p paging.Params) (*qualityprofiles.ChangelogResponse, error) {
+func (s *Qualityprofiles) Changelog(ctx context.Context, r qualityprofiles.ChangelogRequest, p paging.Params) (*qualityprofiles.ChangelogResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/changelog", API)
 	v := new(qualityprofiles.ChangelogResponse)
 
-	_, err := s.client.Call("GET", u, v, r, p)
+	_, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
 		return nil, err
 	}
@@ -78,14 +79,14 @@ func (s *Qualityprofiles) Changelog(r qualityprofiles.ChangelogRequest, p paging
 	return v, nil
 }
 
-func (s *Qualityprofiles) ChangelogAll(r qualityprofiles.ChangelogRequest) (*qualityprofiles.ChangelogResponseAll, error) {
+func (s *Qualityprofiles) ChangelogAll(ctx context.Context, r qualityprofiles.ChangelogRequest) (*qualityprofiles.ChangelogResponseAll, error) {
 	p := paging.Params{
 		P:  1,
 		Ps: 100,
 	}
 	response := &qualityprofiles.ChangelogResponseAll{}
 	for {
-		res, err := s.Changelog(r, p)
+		res, err := s.Changelog(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to qualityprofiles.Changelog: %+v", err)
 		}
@@ -99,11 +100,11 @@ func (s *Qualityprofiles) ChangelogAll(r qualityprofiles.ChangelogRequest) (*qua
 	return response, nil
 }
 
-func (s *Qualityprofiles) Copy(r qualityprofiles.CopyRequest) (*qualityprofiles.CopyResponse, error) {
+func (s *Qualityprofiles) Copy(ctx context.Context, r qualityprofiles.CopyRequest) (*qualityprofiles.CopyResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/copy", API)
 	v := new(qualityprofiles.CopyResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -111,11 +112,11 @@ func (s *Qualityprofiles) Copy(r qualityprofiles.CopyRequest) (*qualityprofiles.
 	return v, nil
 }
 
-func (s *Qualityprofiles) Create(r qualityprofiles.CreateRequest) (*qualityprofiles.CreateResponse, error) {
+func (s *Qualityprofiles) Create(ctx context.Context, r qualityprofiles.CreateRequest) (*qualityprofiles.CreateResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/create", API)
 	v := new(qualityprofiles.CreateResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -123,10 +124,10 @@ func (s *Qualityprofiles) Create(r qualityprofiles.CreateRequest) (*qualityprofi
 	return v, nil
 }
 
-func (s *Qualityprofiles) DeactivateRule(r qualityprofiles.DeactivateRuleRequest) error {
+func (s *Qualityprofiles) DeactivateRule(ctx context.Context, r qualityprofiles.DeactivateRuleRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/deactivate_rule", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -134,10 +135,10 @@ func (s *Qualityprofiles) DeactivateRule(r qualityprofiles.DeactivateRuleRequest
 	return nil
 }
 
-func (s *Qualityprofiles) DeactivateRules(r qualityprofiles.DeactivateRulesRequest) error {
+func (s *Qualityprofiles) DeactivateRules(ctx context.Context, r qualityprofiles.DeactivateRulesRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/deactivate_rules", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -145,10 +146,10 @@ func (s *Qualityprofiles) DeactivateRules(r qualityprofiles.DeactivateRulesReque
 	return nil
 }
 
-func (s *Qualityprofiles) Delete(r qualityprofiles.DeleteRequest) error {
+func (s *Qualityprofiles) Delete(ctx context.Context, r qualityprofiles.DeleteRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/delete", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -156,11 +157,11 @@ func (s *Qualityprofiles) Delete(r qualityprofiles.DeleteRequest) error {
 	return nil
 }
 
-func (s *Qualityprofiles) Export(r qualityprofiles.ExportRequest) (*qualityprofiles.ExportResponse, error) {
+func (s *Qualityprofiles) Export(ctx context.Context, r qualityprofiles.ExportRequest) (*qualityprofiles.ExportResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/export", API)
 	v := new(qualityprofiles.ExportResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -168,11 +169,11 @@ func (s *Qualityprofiles) Export(r qualityprofiles.ExportRequest) (*qualityprofi
 	return v, nil
 }
 
-func (s *Qualityprofiles) Exporters(r qualityprofiles.ExportersRequest) (*qualityprofiles.ExportersResponse, error) {
+func (s *Qualityprofiles) Exporters(ctx context.Context, r qualityprofiles.ExportersRequest) (*qualityprofiles.ExportersResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/exporters", API)
 	v := new(qualityprofiles.ExportersResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -180,11 +181,11 @@ func (s *Qualityprofiles) Exporters(r qualityprofiles.ExportersRequest) (*qualit
 	return v, nil
 }
 
-func (s *Qualityprofiles) Importers(r qualityprofiles.ImportersRequest) (*qualityprofiles.ImportersResponse, error) {
+func (s *Qualityprofiles) Importers(ctx context.Context, r qualityprofiles.ImportersRequest) (*qualityprofiles.ImportersResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/importers", API)
 	v := new(qualityprofiles.ImportersResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -192,11 +193,11 @@ func (s *Qualityprofiles) Importers(r qualityprofiles.ImportersRequest) (*qualit
 	return v, nil
 }
 
-func (s *Qualityprofiles) Inheritance(r qualityprofiles.InheritanceRequest) (*qualityprofiles.InheritanceResponse, error) {
+func (s *Qualityprofiles) Inheritance(ctx context.Context, r qualityprofiles.InheritanceRequest) (*qualityprofiles.InheritanceResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/inheritance", API)
 	v := new(qualityprofiles.InheritanceResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -204,11 +205,11 @@ func (s *Qualityprofiles) Inheritance(r qualityprofiles.InheritanceRequest) (*qu
 	return v, nil
 }
 
-func (s *Qualityprofiles) Projects(r qualityprofiles.ProjectsRequest, p paging.Params) (*qualityprofiles.ProjectsResponse, error) {
+func (s *Qualityprofiles) Projects(ctx context.Context, r qualityprofiles.ProjectsRequest, p paging.Params) (*qualityprofiles.ProjectsResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/projects", API)
 	v := new(qualityprofiles.ProjectsResponse)
 
-	_, err := s.client.Call("GET", u, v, r, p)
+	_, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
 		return nil, err
 	}
@@ -216,14 +217,14 @@ func (s *Qualityprofiles) Projects(r qualityprofiles.ProjectsRequest, p paging.P
 	return v, nil
 }
 
-func (s *Qualityprofiles) ProjectsAll(r qualityprofiles.ProjectsRequest) (*qualityprofiles.ProjectsResponseAll, error) {
+func (s *Qualityprofiles) ProjectsAll(ctx context.Context, r qualityprofiles.ProjectsRequest) (*qualityprofiles.ProjectsResponseAll, error) {
 	p := paging.Params{
 		P:  1,
 		Ps: 100,
 	}
 	response := &qualityprofiles.ProjectsResponseAll{}
 	for {
-		res, err := s.Projects(r, p)
+		res, err := s.Projects(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to qualityprofiles.Projects: %+v", err)
 		}
@@ -237,10 +238,10 @@ func (s *Qualityprofiles) ProjectsAll(r qualityprofiles.ProjectsRequest) (*quali
 	return response, nil
 }
 
-func (s *Qualityprofiles) RemoveProject(r qualityprofiles.RemoveProjectRequest) error {
+func (s *Qualityprofiles) RemoveProject(ctx context.Context, r qualityprofiles.RemoveProjectRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/remove_project", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -248,10 +249,10 @@ func (s *Qualityprofiles) RemoveProject(r qualityprofiles.RemoveProjectRequest) 
 	return nil
 }
 
-func (s *Qualityprofiles) Rename(r qualityprofiles.RenameRequest) error {
+func (s *Qualityprofiles) Rename(ctx context.Context, r qualityprofiles.RenameRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/rename", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -259,10 +260,10 @@ func (s *Qualityprofiles) Rename(r qualityprofiles.RenameRequest) error {
 	return nil
 }
 
-func (s *Qualityprofiles) Restore(r qualityprofiles.RestoreRequest) error {
+func (s *Qualityprofiles) Restore(ctx context.Context, r qualityprofiles.RestoreRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/restore", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -270,11 +271,11 @@ func (s *Qualityprofiles) Restore(r qualityprofiles.RestoreRequest) error {
 	return nil
 }
 
-func (s *Qualityprofiles) Search(r qualityprofiles.SearchRequest) (*qualityprofiles.SearchResponse, error) {
+func (s *Qualityprofiles) Search(ctx context.Context, r qualityprofiles.SearchRequest) (*qualityprofiles.SearchResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/search", API)
 	v := new(qualityprofiles.SearchResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -282,10 +283,10 @@ func (s *Qualityprofiles) Search(r qualityprofiles.SearchRequest) (*qualityprofi
 	return v, nil
 }
 
-func (s *Qualityprofiles) SetDefault(r qualityprofiles.SetDefaultRequest) error {
+func (s *Qualityprofiles) SetDefault(ctx context.Context, r qualityprofiles.SetDefaultRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/set_default", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}

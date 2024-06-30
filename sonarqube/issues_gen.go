@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/issues"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
@@ -10,11 +11,11 @@ import (
 
 type Issues service
 
-func (s *Issues) AddComment(r issues.AddCommentRequest) (*issues.AddCommentResponse, error) {
+func (s *Issues) AddComment(ctx context.Context, r issues.AddCommentRequest) (*issues.AddCommentResponse, error) {
 	u := fmt.Sprintf("%s/issues/add_comment", API)
 	v := new(issues.AddCommentResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -22,11 +23,11 @@ func (s *Issues) AddComment(r issues.AddCommentRequest) (*issues.AddCommentRespo
 	return v, nil
 }
 
-func (s *Issues) Assign(r issues.AssignRequest) (*issues.AssignResponse, error) {
+func (s *Issues) Assign(ctx context.Context, r issues.AssignRequest) (*issues.AssignResponse, error) {
 	u := fmt.Sprintf("%s/issues/assign", API)
 	v := new(issues.AssignResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -34,11 +35,11 @@ func (s *Issues) Assign(r issues.AssignRequest) (*issues.AssignResponse, error) 
 	return v, nil
 }
 
-func (s *Issues) Authors(r issues.AuthorsRequest) (*issues.AuthorsResponse, error) {
+func (s *Issues) Authors(ctx context.Context, r issues.AuthorsRequest) (*issues.AuthorsResponse, error) {
 	u := fmt.Sprintf("%s/issues/authors", API)
 	v := new(issues.AuthorsResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -46,11 +47,11 @@ func (s *Issues) Authors(r issues.AuthorsRequest) (*issues.AuthorsResponse, erro
 	return v, nil
 }
 
-func (s *Issues) BulkChange(r issues.BulkChangeRequest) (*issues.BulkChangeResponse, error) {
+func (s *Issues) BulkChange(ctx context.Context, r issues.BulkChangeRequest) (*issues.BulkChangeResponse, error) {
 	u := fmt.Sprintf("%s/issues/bulk_change", API)
 	v := new(issues.BulkChangeResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -58,11 +59,11 @@ func (s *Issues) BulkChange(r issues.BulkChangeRequest) (*issues.BulkChangeRespo
 	return v, nil
 }
 
-func (s *Issues) Changelog(r issues.ChangelogRequest) (*issues.ChangelogResponse, error) {
+func (s *Issues) Changelog(ctx context.Context, r issues.ChangelogRequest) (*issues.ChangelogResponse, error) {
 	u := fmt.Sprintf("%s/issues/changelog", API)
 	v := new(issues.ChangelogResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -70,11 +71,11 @@ func (s *Issues) Changelog(r issues.ChangelogRequest) (*issues.ChangelogResponse
 	return v, nil
 }
 
-func (s *Issues) DeleteComment(r issues.DeleteCommentRequest) (*issues.DeleteCommentResponse, error) {
+func (s *Issues) DeleteComment(ctx context.Context, r issues.DeleteCommentRequest) (*issues.DeleteCommentResponse, error) {
 	u := fmt.Sprintf("%s/issues/delete_comment", API)
 	v := new(issues.DeleteCommentResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -82,11 +83,11 @@ func (s *Issues) DeleteComment(r issues.DeleteCommentRequest) (*issues.DeleteCom
 	return v, nil
 }
 
-func (s *Issues) DoTransition(r issues.DoTransitionRequest) (*issues.DoTransitionResponse, error) {
+func (s *Issues) DoTransition(ctx context.Context, r issues.DoTransitionRequest) (*issues.DoTransitionResponse, error) {
 	u := fmt.Sprintf("%s/issues/do_transition", API)
 	v := new(issues.DoTransitionResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -94,11 +95,11 @@ func (s *Issues) DoTransition(r issues.DoTransitionRequest) (*issues.DoTransitio
 	return v, nil
 }
 
-func (s *Issues) EditComment(r issues.EditCommentRequest) (*issues.EditCommentResponse, error) {
+func (s *Issues) EditComment(ctx context.Context, r issues.EditCommentRequest) (*issues.EditCommentResponse, error) {
 	u := fmt.Sprintf("%s/issues/edit_comment", API)
 	v := new(issues.EditCommentResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -106,11 +107,11 @@ func (s *Issues) EditComment(r issues.EditCommentRequest) (*issues.EditCommentRe
 	return v, nil
 }
 
-func (s *Issues) GitlabSastExport(r issues.GitlabSastExportRequest) (*issues.GitlabSastExportResponse, error) {
+func (s *Issues) GitlabSastExport(ctx context.Context, r issues.GitlabSastExportRequest) (*issues.GitlabSastExportResponse, error) {
 	u := fmt.Sprintf("%s/issues/gitlab_sast_export", API)
 	v := new(issues.GitlabSastExportResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -118,10 +119,10 @@ func (s *Issues) GitlabSastExport(r issues.GitlabSastExportRequest) (*issues.Git
 	return v, nil
 }
 
-func (s *Issues) Reindex(r issues.ReindexRequest) error {
+func (s *Issues) Reindex(ctx context.Context, r issues.ReindexRequest) error {
 	u := fmt.Sprintf("%s/issues/reindex", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -129,11 +130,11 @@ func (s *Issues) Reindex(r issues.ReindexRequest) error {
 	return nil
 }
 
-func (s *Issues) Search(r issues.SearchRequest, p paging.Params) (*issues.SearchResponse, error) {
+func (s *Issues) Search(ctx context.Context, r issues.SearchRequest, p paging.Params) (*issues.SearchResponse, error) {
 	u := fmt.Sprintf("%s/issues/search", API)
 	v := new(issues.SearchResponse)
 
-	_, err := s.client.Call("GET", u, v, r, p)
+	_, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
 		return nil, err
 	}
@@ -141,14 +142,14 @@ func (s *Issues) Search(r issues.SearchRequest, p paging.Params) (*issues.Search
 	return v, nil
 }
 
-func (s *Issues) SearchAll(r issues.SearchRequest) (*issues.SearchResponseAll, error) {
+func (s *Issues) SearchAll(ctx context.Context, r issues.SearchRequest) (*issues.SearchResponseAll, error) {
 	p := paging.Params{
 		P:  1,
 		Ps: 100,
 	}
 	response := &issues.SearchResponseAll{}
 	for {
-		res, err := s.Search(r, p)
+		res, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to issues.Search: %+v", err)
 		}
@@ -166,11 +167,11 @@ func (s *Issues) SearchAll(r issues.SearchRequest) (*issues.SearchResponseAll, e
 	return response, nil
 }
 
-func (s *Issues) SetSeverity(r issues.SetSeverityRequest) (*issues.SetSeverityResponse, error) {
+func (s *Issues) SetSeverity(ctx context.Context, r issues.SetSeverityRequest) (*issues.SetSeverityResponse, error) {
 	u := fmt.Sprintf("%s/issues/set_severity", API)
 	v := new(issues.SetSeverityResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -178,11 +179,11 @@ func (s *Issues) SetSeverity(r issues.SetSeverityRequest) (*issues.SetSeverityRe
 	return v, nil
 }
 
-func (s *Issues) SetTags(r issues.SetTagsRequest) (*issues.SetTagsResponse, error) {
+func (s *Issues) SetTags(ctx context.Context, r issues.SetTagsRequest) (*issues.SetTagsResponse, error) {
 	u := fmt.Sprintf("%s/issues/set_tags", API)
 	v := new(issues.SetTagsResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -190,11 +191,11 @@ func (s *Issues) SetTags(r issues.SetTagsRequest) (*issues.SetTagsResponse, erro
 	return v, nil
 }
 
-func (s *Issues) SetType(r issues.SetTypeRequest) (*issues.SetTypeResponse, error) {
+func (s *Issues) SetType(ctx context.Context, r issues.SetTypeRequest) (*issues.SetTypeResponse, error) {
 	u := fmt.Sprintf("%s/issues/set_type", API)
 	v := new(issues.SetTypeResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -202,11 +203,11 @@ func (s *Issues) SetType(r issues.SetTypeRequest) (*issues.SetTypeResponse, erro
 	return v, nil
 }
 
-func (s *Issues) Tags(r issues.TagsRequest) (*issues.TagsResponse, error) {
+func (s *Issues) Tags(ctx context.Context, r issues.TagsRequest) (*issues.TagsResponse, error) {
 	u := fmt.Sprintf("%s/issues/tags", API)
 	v := new(issues.TagsResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}

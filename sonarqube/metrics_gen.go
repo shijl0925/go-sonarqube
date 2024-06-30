@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/metrics"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
@@ -10,11 +11,11 @@ import (
 
 type Metrics service
 
-func (s *Metrics) Search(r metrics.SearchRequest, p paging.Params) (*metrics.SearchResponse, error) {
+func (s *Metrics) Search(ctx context.Context, r metrics.SearchRequest, p paging.Params) (*metrics.SearchResponse, error) {
 	u := fmt.Sprintf("%s/metrics/search", API)
 	v := new(metrics.SearchResponse)
 
-	_, err := s.client.Call("GET", u, v, r, p)
+	_, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
 		return nil, err
 	}
@@ -22,14 +23,14 @@ func (s *Metrics) Search(r metrics.SearchRequest, p paging.Params) (*metrics.Sea
 	return v, nil
 }
 
-func (s *Metrics) SearchAll(r metrics.SearchRequest) (*metrics.SearchResponseAll, error) {
+func (s *Metrics) SearchAll(ctx context.Context, r metrics.SearchRequest) (*metrics.SearchResponseAll, error) {
 	p := paging.Params{
 		P:  1,
 		Ps: 100,
 	}
 	response := &metrics.SearchResponseAll{}
 	for {
-		res, err := s.Search(r, p)
+		res, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to metrics.Search: %+v", err)
 		}
@@ -43,11 +44,11 @@ func (s *Metrics) SearchAll(r metrics.SearchRequest) (*metrics.SearchResponseAll
 	return response, nil
 }
 
-func (s *Metrics) Types(r metrics.TypesRequest) (*metrics.TypesResponse, error) {
+func (s *Metrics) Types(ctx context.Context, r metrics.TypesRequest) (*metrics.TypesResponse, error) {
 	u := fmt.Sprintf("%s/metrics/types", API)
 	v := new(metrics.TypesResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}

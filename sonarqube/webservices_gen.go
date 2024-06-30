@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/webservices"
 )
@@ -9,11 +10,11 @@ import (
 
 type Webservices service
 
-func (s *Webservices) List(r webservices.ListRequest) (*webservices.ListResponse, error) {
+func (s *Webservices) List(ctx context.Context, r webservices.ListRequest) (*webservices.ListResponse, error) {
 	u := fmt.Sprintf("%s/webservices/list", API)
 	v := new(webservices.ListResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -21,11 +22,11 @@ func (s *Webservices) List(r webservices.ListRequest) (*webservices.ListResponse
 	return v, nil
 }
 
-func (s *Webservices) ResponseExample(r webservices.ResponseExampleRequest) (*webservices.ResponseExampleResponse, error) {
+func (s *Webservices) ResponseExample(ctx context.Context, r webservices.ResponseExampleRequest) (*webservices.ResponseExampleResponse, error) {
 	u := fmt.Sprintf("%s/webservices/response_example", API)
 	v := new(webservices.ResponseExampleResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}

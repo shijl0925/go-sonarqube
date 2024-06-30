@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube"
 	"github.com/shijl0925/go-sonarqube/sonarqube/components"
@@ -9,6 +10,7 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
 	baseUrl := "https://next.sonarqube.com/sonarqube/api"
 	client := sonarqube.NewClient(baseUrl, "", "", nil)
 	req := components.SearchRequest{
@@ -18,7 +20,7 @@ func main() {
 		Ps: 100,
 		P:  1,
 	}
-	res, err := client.Components.Search(req, p)
+	res, err := client.Components.Search(ctx, req, p)
 
 	//res, err := client.Components.SearchAll(req)
 	if err != nil {

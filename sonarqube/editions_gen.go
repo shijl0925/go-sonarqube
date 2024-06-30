@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/editions"
 )
@@ -9,10 +10,10 @@ import (
 
 type Editions service
 
-func (s *Editions) ActivateGracePeriod(r editions.ActivateGracePeriodRequest) error {
+func (s *Editions) ActivateGracePeriod(ctx context.Context, r editions.ActivateGracePeriodRequest) error {
 	u := fmt.Sprintf("%s/editions/activate_grace_period", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -20,10 +21,10 @@ func (s *Editions) ActivateGracePeriod(r editions.ActivateGracePeriodRequest) er
 	return nil
 }
 
-func (s *Editions) SetLicense(r editions.SetLicenseRequest) error {
+func (s *Editions) SetLicense(ctx context.Context, r editions.SetLicenseRequest) error {
 	u := fmt.Sprintf("%s/editions/set_license", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}

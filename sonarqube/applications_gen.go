@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/applications"
 )
@@ -9,10 +10,10 @@ import (
 
 type Applications service
 
-func (s *Applications) AddProject(r applications.AddProjectRequest) error {
+func (s *Applications) AddProject(ctx context.Context, r applications.AddProjectRequest) error {
 	u := fmt.Sprintf("%s/applications/add_project", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -20,11 +21,11 @@ func (s *Applications) AddProject(r applications.AddProjectRequest) error {
 	return nil
 }
 
-func (s *Applications) Create(r applications.CreateRequest) (*applications.CreateResponse, error) {
+func (s *Applications) Create(ctx context.Context, r applications.CreateRequest) (*applications.CreateResponse, error) {
 	u := fmt.Sprintf("%s/applications/create", API)
 	v := new(applications.CreateResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -32,10 +33,10 @@ func (s *Applications) Create(r applications.CreateRequest) (*applications.Creat
 	return v, nil
 }
 
-func (s *Applications) CreateBranch(r applications.CreateBranchRequest) error {
+func (s *Applications) CreateBranch(ctx context.Context, r applications.CreateBranchRequest) error {
 	u := fmt.Sprintf("%s/applications/create_branch", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -43,10 +44,10 @@ func (s *Applications) CreateBranch(r applications.CreateBranchRequest) error {
 	return nil
 }
 
-func (s *Applications) Delete(r applications.DeleteRequest) error {
+func (s *Applications) Delete(ctx context.Context, r applications.DeleteRequest) error {
 	u := fmt.Sprintf("%s/applications/delete", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -54,10 +55,10 @@ func (s *Applications) Delete(r applications.DeleteRequest) error {
 	return nil
 }
 
-func (s *Applications) DeleteBranch(r applications.DeleteBranchRequest) error {
+func (s *Applications) DeleteBranch(ctx context.Context, r applications.DeleteBranchRequest) error {
 	u := fmt.Sprintf("%s/applications/delete_branch", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -65,10 +66,10 @@ func (s *Applications) DeleteBranch(r applications.DeleteBranchRequest) error {
 	return nil
 }
 
-func (s *Applications) RemoveProject(r applications.RemoveProjectRequest) error {
+func (s *Applications) RemoveProject(ctx context.Context, r applications.RemoveProjectRequest) error {
 	u := fmt.Sprintf("%s/applications/remove_project", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -76,10 +77,10 @@ func (s *Applications) RemoveProject(r applications.RemoveProjectRequest) error 
 	return nil
 }
 
-func (s *Applications) SetTags(r applications.SetTagsRequest) error {
+func (s *Applications) SetTags(ctx context.Context, r applications.SetTagsRequest) error {
 	u := fmt.Sprintf("%s/applications/set_tags", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -87,11 +88,11 @@ func (s *Applications) SetTags(r applications.SetTagsRequest) error {
 	return nil
 }
 
-func (s *Applications) Show(r applications.ShowRequest) (*applications.ShowResponse, error) {
+func (s *Applications) Show(ctx context.Context, r applications.ShowRequest) (*applications.ShowResponse, error) {
 	u := fmt.Sprintf("%s/applications/show", API)
 	v := new(applications.ShowResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -99,10 +100,10 @@ func (s *Applications) Show(r applications.ShowRequest) (*applications.ShowRespo
 	return v, nil
 }
 
-func (s *Applications) Update(r applications.UpdateRequest) error {
+func (s *Applications) Update(ctx context.Context, r applications.UpdateRequest) error {
 	u := fmt.Sprintf("%s/applications/update", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -110,10 +111,10 @@ func (s *Applications) Update(r applications.UpdateRequest) error {
 	return nil
 }
 
-func (s *Applications) UpdateBranch(r applications.UpdateBranchRequest) error {
+func (s *Applications) UpdateBranch(ctx context.Context, r applications.UpdateBranchRequest) error {
 	u := fmt.Sprintf("%s/applications/update_branch", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}

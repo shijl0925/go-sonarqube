@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/notifications"
 )
@@ -9,10 +10,10 @@ import (
 
 type Notifications service
 
-func (s *Notifications) Add(r notifications.AddRequest) error {
+func (s *Notifications) Add(ctx context.Context, r notifications.AddRequest) error {
 	u := fmt.Sprintf("%s/notifications/add", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -20,11 +21,11 @@ func (s *Notifications) Add(r notifications.AddRequest) error {
 	return nil
 }
 
-func (s *Notifications) List(r notifications.ListRequest) (*notifications.ListResponse, error) {
+func (s *Notifications) List(ctx context.Context, r notifications.ListRequest) (*notifications.ListResponse, error) {
 	u := fmt.Sprintf("%s/notifications/list", API)
 	v := new(notifications.ListResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -32,10 +33,10 @@ func (s *Notifications) List(r notifications.ListRequest) (*notifications.ListRe
 	return v, nil
 }
 
-func (s *Notifications) Remove(r notifications.RemoveRequest) error {
+func (s *Notifications) Remove(ctx context.Context, r notifications.RemoveRequest) error {
 	u := fmt.Sprintf("%s/notifications/remove", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}

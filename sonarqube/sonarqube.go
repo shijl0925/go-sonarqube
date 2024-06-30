@@ -7,6 +7,7 @@
 package sonarqube
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"github.com/go-playground/form/v4"
@@ -161,8 +162,8 @@ func NewClientByToken(sonarURL string, token string, client *http.Client) *Clien
 	return c
 }
 
-func (c *Client) PostRequest(url string, body io.Reader) (*http.Request, error) {
-	req, err := http.NewRequest("POST", url, body)
+func (c *Client) PostRequest(ctx context.Context, url string, body io.Reader) (*http.Request, error) {
+	req, err := http.NewRequestWithContext(ctx, "POST", url, body)
 	if err != nil {
 		return nil, err
 	}
@@ -182,12 +183,12 @@ func (c *Client) PostRequest(url string, body io.Reader) (*http.Request, error) 
 	return req, nil
 }
 
-func (c *Client) GetRequest(url string, params ...string) (*http.Request, error) {
+func (c *Client) GetRequest(ctx context.Context, url string, params ...string) (*http.Request, error) {
 	if l := len(params); l%2 != 0 {
 		return nil, fmt.Errorf("params must be an even number, %d given", l)
 	}
 
-	req, err := http.NewRequest("GET", url, nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -215,15 +216,28 @@ func (c *Client) GetRequest(url string, params ...string) (*http.Request, error)
 }
 
 func (c *Client) Do(req *http.Request) (*http.Response, error) {
-	return c.client.Do(req)
+	resp, err := c.client.Do(req)
+
+	if err != nil {
+		return nil, fmt.Errorf("error trying to execute request: %+v", err)
+	}
+
+	if resp.StatusCode >= 300 {
+		if errorResponse, err := ErrorResponseFrom(resp); err != nil {
+			return nil, fmt.Errorf("received non 2xx status code (%d), but could not decode error response: %+v", resp.StatusCode, err)
+		} else {
+			return nil, errorResponse
+		}
+	}
+	return resp, nil
 }
 
-func (c *Client) Call(method string, u string, v interface{}, opt ...interface{}) (*http.Response, error) {
+func (c *Client) Call(ctx context.Context, method string, u string, v interface{}, opt ...interface{}) (*http.Response, error) {
 	var req *http.Request
 	var err error
 	if method == http.MethodGet {
 		params := paramsFrom(opt...)
-		req, err = c.GetRequest(u, params...)
+		req, err = c.GetRequest(ctx, u, params...)
 		if err != nil {
 			return nil, fmt.Errorf("could not create request: %+v", err)
 		}
@@ -233,7 +247,7 @@ func (c *Client) Call(method string, u string, v interface{}, opt ...interface{}
 		if err != nil {
 			return nil, fmt.Errorf("could not encode form values: %+v", err)
 		}
-		req, err = c.PostRequest(u, strings.NewReader(values.Encode()))
+		req, err = c.PostRequest(ctx, u, strings.NewReader(values.Encode()))
 		if err != nil {
 			return nil, fmt.Errorf("could not create request: %+v", err)
 		}
@@ -251,17 +265,7 @@ func (c *Client) Call(method string, u string, v interface{}, opt ...interface{}
 	}
 
 	resp, err := c.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error trying to execute request: %+v", err)
-	}
 
-	if resp.StatusCode >= 300 {
-		if errorResponse, err := ErrorResponseFrom(resp); err != nil {
-			return nil, fmt.Errorf("received non 2xx status code (%d), but could not decode error response: %+v", resp.StatusCode, err)
-		} else {
-			return nil, errorResponse
-		}
-	}
 	if v != nil {
 		defer resp.Body.Close()
 

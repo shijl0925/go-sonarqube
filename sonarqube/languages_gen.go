@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/languages"
 )
@@ -9,11 +10,11 @@ import (
 
 type Languages service
 
-func (s *Languages) List(r languages.ListRequest) (*languages.ListResponse, error) {
+func (s *Languages) List(ctx context.Context, r languages.ListRequest) (*languages.ListResponse, error) {
 	u := fmt.Sprintf("%s/languages/list", API)
 	v := new(languages.ListResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}

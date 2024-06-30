@@ -1,6 +1,7 @@
 package sonarqube
 
 import (
+	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/project_links"
 )
@@ -9,11 +10,11 @@ import (
 
 type ProjectLinks service
 
-func (s *ProjectLinks) Create(r project_links.CreateRequest) (*project_links.CreateResponse, error) {
+func (s *ProjectLinks) Create(ctx context.Context, r project_links.CreateRequest) (*project_links.CreateResponse, error) {
 	u := fmt.Sprintf("%s/project_links/create", API)
 	v := new(project_links.CreateResponse)
 
-	_, err := s.client.Call("POST", u, v, r)
+	_, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
 		return nil, err
 	}
@@ -21,10 +22,10 @@ func (s *ProjectLinks) Create(r project_links.CreateRequest) (*project_links.Cre
 	return v, nil
 }
 
-func (s *ProjectLinks) Delete(r project_links.DeleteRequest) error {
+func (s *ProjectLinks) Delete(ctx context.Context, r project_links.DeleteRequest) error {
 	u := fmt.Sprintf("%s/project_links/delete", API)
 
-	_, err := s.client.Call("POST", u, nil, r)
+	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
 		return err
 	}
@@ -32,11 +33,11 @@ func (s *ProjectLinks) Delete(r project_links.DeleteRequest) error {
 	return nil
 }
 
-func (s *ProjectLinks) Search(r project_links.SearchRequest) (*project_links.SearchResponse, error) {
+func (s *ProjectLinks) Search(ctx context.Context, r project_links.SearchRequest) (*project_links.SearchResponse, error) {
 	u := fmt.Sprintf("%s/project_links/search", API)
 	v := new(project_links.SearchResponse)
 
-	_, err := s.client.Call("GET", u, v, r)
+	_, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
 		return nil, err
 	}
