@@ -30,13 +30,12 @@ const (
 )
 
 type Client struct {
-	client   *http.Client
-	API      string
-	username string
-	password string
-	token    string
-	authType int
-
+	client              *http.Client
+	API                 string
+	username            string
+	password            string
+	token               string
+	authType            int
 	AlmIntegrations     *AlmIntegrations
 	AlmSettings         *AlmSettings
 	AnalysisCache       *AnalysisCache
@@ -45,6 +44,7 @@ type Client struct {
 	Authentication      *Authentication
 	Ce                  *Ce
 	Components          *Components
+	//Duplications        *Duplications
 	Editions            *Editions
 	Favorites           *Favorites
 	Hotspots            *Hotspots
@@ -71,6 +71,7 @@ type Client struct {
 	Server              *Server
 	Settings            *Settings
 	Sources             *Sources
+	System              *System
 	UserGroups          *UserGroups
 	UserTokens          *UserTokens
 	Users               *Users
@@ -103,7 +104,6 @@ func NewClient(sonarURL string, username string, password string, client *http.C
 	}
 
 	API = sonarURL
-
 	c.AlmIntegrations = &AlmIntegrations{client: c}
 	c.AlmSettings = &AlmSettings{client: c}
 	c.AnalysisCache = &AnalysisCache{client: c}
@@ -112,6 +112,7 @@ func NewClient(sonarURL string, username string, password string, client *http.C
 	c.Authentication = &Authentication{client: c}
 	c.Ce = &Ce{client: c}
 	c.Components = &Components{client: c}
+	//c.Duplications = &Duplications{client: c}
 	c.Editions = &Editions{client: c}
 	c.Favorites = &Favorites{client: c}
 	c.Hotspots = &Hotspots{client: c}
@@ -138,6 +139,7 @@ func NewClient(sonarURL string, username string, password string, client *http.C
 	c.Server = &Server{client: c}
 	c.Settings = &Settings{client: c}
 	c.Sources = &Sources{client: c}
+	c.System = &System{client: c}
 	c.UserGroups = &UserGroups{client: c}
 	c.UserTokens = &UserTokens{client: c}
 	c.Users = &Users{client: c}
