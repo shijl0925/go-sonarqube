@@ -22,7 +22,7 @@ func main() {
 	}
 	res, err := client.Components.Search(ctx, req, p)
 
-	//res, err := client.Components.SearchAll(req)
+	//res, err := client.Components.SearchAll(ctx, req)
 	if err != nil {
 		log.Fatalf("could not search components: %+v", err)
 	}

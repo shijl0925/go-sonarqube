@@ -277,7 +277,6 @@ func (c *Client) Call(ctx context.Context, method string, u string, v interface{
 			w := val.Elem()
 			w.SetString(string(body))
 		} else {
-
 			err = json.NewDecoder(resp.Body).Decode(v)
 			if err != nil {
 				return nil, fmt.Errorf("could not decode response: %+v", err)
