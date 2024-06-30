@@ -6,9 +6,9 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // CreateEventRequest Create a project analysis event.<br>Only event of category 'VERSION' and 'OTHER' can be created.<br>Requires one of the following permissions:<ul>  <li>'Administer System'</li>  <li>'Administer' rights on the specified project</li></ul>
 type CreateEventRequest struct {
-	Analysis string `form:"analysis,omitempty"` // Analysis key
-	Category string `form:"category,omitempty"` // Category
-	Name     string `form:"name,omitempty"`     // Name
+	Analysis string `json:"analysis"`           // Analysis key
+	Category string `json:"category,omitempty"` // Category
+	Name     string `json:"name"`               // Name
 }
 
 // CreateEventResponse is the response for CreateEventRequest
@@ -23,20 +23,20 @@ type CreateEventResponse struct {
 
 // DeleteRequest Delete a project analysis.<br>Requires one of the following permissions:<ul>  <li>'Administer System'</li>  <li>'Administer' rights on the project of the specified analysis</li></ul>
 type DeleteRequest struct {
-	Analysis string `form:"analysis,omitempty"` // Analysis key
+	Analysis string `json:"analysis"` // Analysis key
 }
 
 // DeleteEventRequest Delete a project analysis event.<br>Only event of category 'VERSION' and 'OTHER' can be deleted.<br>Requires one of the following permissions:<ul>  <li>'Administer System'</li>  <li>'Administer' rights on the specified project</li></ul>
 type DeleteEventRequest struct {
-	Event string `form:"event,omitempty"` // Event key
+	Event string `json:"event"` // Event key
 }
 
 // SearchRequest Search a project analyses and attached events.<br>Requires the following permission: 'Browse' on the specified project. <br>For applications, it also requires 'Browse' permission on its child projects.
 type SearchRequest struct {
-	Category string `form:"category,omitempty"` // Event category. Filter analyses that have at least one event of the category specified.
-	From     string `form:"from,omitempty"`     // Filter analyses created after the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided
-	Project  string `form:"project,omitempty"`  // Project key
-	To       string `form:"to,omitempty"`       // Filter analyses created before the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided
+	Category string `url:"category,omitempty"` // Event category. Filter analyses that have at least one event of the category specified.
+	From     string `url:"from,omitempty"`     // Since 6.5;Filter analyses created after the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided
+	Project  string `url:"project"`            // Project key
+	To       string `url:"to,omitempty"`       // Since 6.5;Filter analyses created before the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided
 }
 
 // SearchResponse is the response for SearchRequest
@@ -93,8 +93,8 @@ type SearchResponseAll struct {
 
 // UpdateEventRequest Update a project analysis event.<br>Only events of category 'VERSION' and 'OTHER' can be updated.<br>Requires one of the following permissions:<ul>  <li>'Administer System'</li>  <li>'Administer' rights on the specified project</li></ul>
 type UpdateEventRequest struct {
-	Event string `form:"event,omitempty"` // Event key
-	Name  string `form:"name,omitempty"`  // New name
+	Event string `json:"event"` // Event key
+	Name  string `json:"name"`  // New name
 }
 
 // UpdateEventResponse is the response for UpdateEventRequest

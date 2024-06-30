@@ -10,6 +10,10 @@ import (
 
 type ProjectBranches service
 
+// Delete - Delete a non-main branch of a project or application.
+// Requires 'Administer' rights on the specified project or application.
+// Since 6.6
+// Changelog:
 func (s *ProjectBranches) Delete(ctx context.Context, r project_branches.DeleteRequest) error {
 	u := fmt.Sprintf("%s/project_branches/delete", API)
 
@@ -21,6 +25,8 @@ func (s *ProjectBranches) Delete(ctx context.Context, r project_branches.DeleteR
 	return nil
 }
 
+// List - List the branches of a project or application.
+// Requires 'Browse' or 'Execute analysis' rights on the specified project or application.
 func (s *ProjectBranches) List(ctx context.Context, r project_branches.ListRequest) (*project_branches.ListResponse, error) {
 	u := fmt.Sprintf("%s/project_branches/list", API)
 	v := new(project_branches.ListResponse)
@@ -33,6 +39,10 @@ func (s *ProjectBranches) List(ctx context.Context, r project_branches.ListReque
 	return v, nil
 }
 
+// Rename - Rename the main branch of a project or application.
+// Requires 'Administer' permission on the specified project or application.
+// Since 6.6
+// Changelog:
 func (s *ProjectBranches) Rename(ctx context.Context, r project_branches.RenameRequest) error {
 	u := fmt.Sprintf("%s/project_branches/rename", API)
 
@@ -44,6 +54,10 @@ func (s *ProjectBranches) Rename(ctx context.Context, r project_branches.RenameR
 	return nil
 }
 
+// SetAutomaticDeletionProtection - Protect a specific branch from automatic deletion. Protection can't be disabled for the main branch.
+// Requires 'Administer' permission on the specified project or application.
+// Since 8.1
+// Changelog:
 func (s *ProjectBranches) SetAutomaticDeletionProtection(ctx context.Context, r project_branches.SetAutomaticDeletionProtectionRequest) error {
 	u := fmt.Sprintf("%s/project_branches/set_automatic_deletion_protection", API)
 
@@ -55,6 +69,11 @@ func (s *ProjectBranches) SetAutomaticDeletionProtection(ctx context.Context, r 
 	return nil
 }
 
+// SetMain - Allow to set a new main branch.
+// . Caution, only applicable on projects.
+// Requires 'Administer' rights on the specified project or application.
+// Since 10.2
+// Changelog:
 func (s *ProjectBranches) SetMain(ctx context.Context, r project_branches.SetMainRequest) error {
 	u := fmt.Sprintf("%s/project_branches/set_main", API)
 

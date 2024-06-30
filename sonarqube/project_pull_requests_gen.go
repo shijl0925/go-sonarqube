@@ -10,6 +10,10 @@ import (
 
 type ProjectPullRequests service
 
+// Delete - Delete a pull request.
+// Requires 'Administer' rights on the specified project.
+// Since 7.1
+// Changelog:
 func (s *ProjectPullRequests) Delete(ctx context.Context, r project_pull_requests.DeleteRequest) error {
 	u := fmt.Sprintf("%s/project_pull_requests/delete", API)
 
@@ -21,6 +25,11 @@ func (s *ProjectPullRequests) Delete(ctx context.Context, r project_pull_request
 	return nil
 }
 
+// List - List the pull requests of a project.
+// One of the following permissions is required:
+//  * 'Browse' rights on the specified project
+//  * 'Execute Analysis' rights on the specified project
+//
 func (s *ProjectPullRequests) List(ctx context.Context, r project_pull_requests.ListRequest) (*project_pull_requests.ListResponse, error) {
 	u := fmt.Sprintf("%s/project_pull_requests/list", API)
 	v := new(project_pull_requests.ListResponse)

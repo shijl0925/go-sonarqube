@@ -6,12 +6,12 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // AddRequest Add a component (project, portfolio, etc.) as favorite for the authenticated user.<br>Only 100 components by qualifier can be added as favorite.<br>Requires authentication and the following permission: 'Browse' on the component.
 type AddRequest struct {
-	Component string `form:"component,omitempty"` // Component key. Only components with qualifiers TRK, VW, SVW, APP are supported
+	Component string `json:"component"` // Component key. Only components with qualifiers TRK, VW, SVW, APP are supported
 }
 
 // RemoveRequest Remove a component (project, portfolio, application etc.) as favorite for the authenticated user.<br>Requires authentication.
 type RemoveRequest struct {
-	Component string `form:"component,omitempty"` // Component key
+	Component string `json:"component"` // Component key
 }
 
 // SearchRequest Search for the authenticated user favorites.<br>Requires authentication.

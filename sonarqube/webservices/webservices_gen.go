@@ -4,7 +4,7 @@ package webservices
 
 // ListRequest List web services
 type ListRequest struct {
-	IncludeInternals string `form:"include_internals,omitempty"` // Include web services that are implemented for internal use only. Their forward-compatibility is not assured
+	IncludeInternals string `url:"include_internals,omitempty"` // Include web services that are implemented for internal use only. Their forward-compatibility is not assured
 }
 
 // ListResponse is the response for ListRequest
@@ -47,8 +47,8 @@ type ListResponse struct {
 
 // ResponseExampleRequest Display web service response example
 type ResponseExampleRequest struct {
-	Action     string `form:"action,omitempty"`     // Action of the web service
-	Controller string `form:"controller,omitempty"` // Controller of the web service
+	Action     string `url:"action"`     // Action of the web service
+	Controller string `url:"controller"` // Controller of the web service
 }
 
 // ResponseExampleResponse is the response for ResponseExampleRequest

@@ -4,8 +4,8 @@ package audit_logs
 
 // DownloadRequest Returns security related audits of this SonarQube instance. Logs are returned in JSON format.<br/>Requires the system administration permission<br/>
 type DownloadRequest struct {
-	From string `form:"from,omitempty"` // Date in ISO 8601 datetime format (YYYY-MM-DDThh:mm:ss±hh:mm) from which the logs will be returned. Inclusive.
-	To   string `form:"to,omitempty"`   // Date in ISO 8601 datetime format (YYYY-MM-DDThh:mm:ss±hh:mm) until which the logs will be returned. Inclusive.
+	From string `url:"from"` // Date in ISO 8601 datetime format (YYYY-MM-DDThh:mm:ss±hh:mm) from which the logs will be returned. Inclusive.
+	To   string `url:"to"`   // Date in ISO 8601 datetime format (YYYY-MM-DDThh:mm:ss±hh:mm) until which the logs will be returned. Inclusive.
 }
 
 // DownloadResponse is the response for DownloadRequest

@@ -11,6 +11,7 @@ import (
 
 type ProjectTags service
 
+// Search - Search tags
 func (s *ProjectTags) Search(ctx context.Context, r project_tags.SearchRequest, p paging.Params) (*project_tags.SearchResponse, error) {
 	u := fmt.Sprintf("%s/project_tags/search", API)
 	v := new(project_tags.SearchResponse)
@@ -44,6 +45,10 @@ func (s *ProjectTags) SearchAll(ctx context.Context, r project_tags.SearchReques
 	return response, nil
 }
 
+// Set - Set tags on a project.
+// Requires the following permission: 'Administer' rights on the specified project
+// Since 6.4
+// Changelog:
 func (s *ProjectTags) Set(ctx context.Context, r project_tags.SetRequest) error {
 	u := fmt.Sprintf("%s/project_tags/set", API)
 

@@ -11,6 +11,13 @@ import (
 
 type Qualitygates service
 
+// AddGroup - Allow a group of users to edit a Quality Gate.
+// Requires one of the following permissions:
+//    * 'Administer Quality Gates'
+//    * Edit right on the specified quality gate
+//
+// Since 9.2
+// Changelog:
 func (s *Qualitygates) AddGroup(ctx context.Context, r qualitygates.AddGroupRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/add_group", API)
 
@@ -22,6 +29,13 @@ func (s *Qualitygates) AddGroup(ctx context.Context, r qualitygates.AddGroupRequ
 	return nil
 }
 
+// AddUser - Allow a user to edit a Quality Gate.
+// Requires one of the following permissions:
+//    * 'Administer Quality Gates'
+//    * Edit right on the specified quality gate
+//
+// Since 9.2
+// Changelog:
 func (s *Qualitygates) AddUser(ctx context.Context, r qualitygates.AddUserRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/add_user", API)
 
@@ -33,6 +47,14 @@ func (s *Qualitygates) AddUser(ctx context.Context, r qualitygates.AddUserReques
 	return nil
 }
 
+// Copy - Copy a Quality Gate.
+// 'sourceName' must be provided. Requires the 'Administer Quality Gates' permission.
+// Since 4.3
+// Changelog:
+//   10.0: Field 'id' in the response is deprecated
+//   10.0: Parameter 'id' is removed. Use 'sourceName' instead.
+//   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'sourceName' instead.
+//   8.4: Parameter 'sourceName' added
 func (s *Qualitygates) Copy(ctx context.Context, r qualitygates.CopyRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/copy", API)
 
@@ -44,6 +66,12 @@ func (s *Qualitygates) Copy(ctx context.Context, r qualitygates.CopyRequest) err
 	return nil
 }
 
+// Create - Create a Quality Gate.
+// Requires the 'Administer Quality Gates' permission.
+// Since 4.3
+// Changelog:
+//   10.0: Field 'id' in the response is removed.
+//   8.4: Field 'id' in the response is deprecated. Format changes from integer to string.
 func (s *Qualitygates) Create(ctx context.Context, r qualitygates.CreateRequest) (*qualitygates.CreateResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/create", API)
 	v := new(qualitygates.CreateResponse)
@@ -56,6 +84,16 @@ func (s *Qualitygates) Create(ctx context.Context, r qualitygates.CreateRequest)
 	return v, nil
 }
 
+// CreateCondition - Add a new condition to a quality gate.
+// Parameter 'gateName' must be provided. Requires the 'Administer Quality Gates' permission.
+// Since 4.3
+// Changelog:
+//   10.0: Parameter 'gateId' is removed. Use 'gateName' instead.
+//   8.4: Parameter 'gateName' added
+//   8.4: Parameter 'gateId' is deprecated. Use 'gateName' instead.
+//   7.6: Removed optional 'warning' and 'period' parameters
+//   7.6: Made 'error' parameter mandatory
+//   7.6: Reduced the possible values of 'op' parameter to LT and GT
 func (s *Qualitygates) CreateCondition(ctx context.Context, r qualitygates.CreateConditionRequest) (*qualitygates.CreateConditionResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/create_condition", API)
 	v := new(qualitygates.CreateConditionResponse)
@@ -68,6 +106,10 @@ func (s *Qualitygates) CreateCondition(ctx context.Context, r qualitygates.Creat
 	return v, nil
 }
 
+// DeleteCondition - Delete a condition from a quality gate.
+// Requires the 'Administer Quality Gates' permission.
+// Since 4.3
+// Changelog:
 func (s *Qualitygates) DeleteCondition(ctx context.Context, r qualitygates.DeleteConditionRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/delete_condition", API)
 
@@ -79,6 +121,15 @@ func (s *Qualitygates) DeleteCondition(ctx context.Context, r qualitygates.Delet
 	return nil
 }
 
+// Deselect - Remove the association of a project from a quality gate.
+// Requires one of the following permissions:
+//  * 'Administer Quality Gates'
+//  * 'Administer' rights on the project
+//
+// Since 4.3
+// Changelog:
+//   8.3: The parameter 'projectId' was removed
+//   6.6: The parameter 'gateId' was removed
 func (s *Qualitygates) Deselect(ctx context.Context, r qualitygates.DeselectRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/deselect", API)
 
@@ -90,6 +141,13 @@ func (s *Qualitygates) Deselect(ctx context.Context, r qualitygates.DeselectRequ
 	return nil
 }
 
+// Destroy - Delete a Quality Gate.
+// Parameter 'name' must be specified. Requires the 'Administer Quality Gates' permission.
+// Since 4.3
+// Changelog:
+//   10.0: Parameter 'id' is removed. Use 'name' instead.
+//   8.4: Parameter 'name' added
+//   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *Qualitygates) Destroy(ctx context.Context, r qualitygates.DestroyRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/destroy", API)
 
@@ -101,6 +159,12 @@ func (s *Qualitygates) Destroy(ctx context.Context, r qualitygates.DestroyReques
 	return nil
 }
 
+// GetByProject - Get the quality gate of a project.
+// Requires one of the following permissions:
+//  * 'Administer System'
+//  * 'Administer' rights on the specified project
+//  * 'Browse' on the specified project
+//
 func (s *Qualitygates) GetByProject(ctx context.Context, r qualitygates.GetByProjectRequest) (*qualitygates.GetByProjectResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/get_by_project", API)
 	v := new(qualitygates.GetByProjectResponse)
@@ -113,6 +177,7 @@ func (s *Qualitygates) GetByProject(ctx context.Context, r qualitygates.GetByPro
 	return v, nil
 }
 
+// List - Get a list of quality gates
 func (s *Qualitygates) List(ctx context.Context, r qualitygates.ListRequest) (*qualitygates.ListResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/list", API)
 	v := new(qualitygates.ListResponse)
@@ -125,6 +190,16 @@ func (s *Qualitygates) List(ctx context.Context, r qualitygates.ListRequest) (*q
 	return v, nil
 }
 
+// ProjectStatus - Get the quality gate status of a project or a Compute Engine task.
+// Either 'analysisId', 'projectId' or 'projectKey' must be provided
+// The different statuses returned are: OK, WARN, ERROR, NONE. The NONE status is returned when there is no quality gate associated with the analysis.
+// Returns an HTTP code 404 if the analysis associated with the task is not found or does not exist.
+// Requires one of the following permissions:
+//  * 'Administer System'
+//  * 'Administer' rights on the specified project
+//  * 'Browse' on the specified project
+//  * 'Execute Analysis' on the specified project
+//
 func (s *Qualitygates) ProjectStatus(ctx context.Context, r qualitygates.ProjectStatusRequest) (*qualitygates.ProjectStatusResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/project_status", API)
 	v := new(qualitygates.ProjectStatusResponse)
@@ -137,6 +212,13 @@ func (s *Qualitygates) ProjectStatus(ctx context.Context, r qualitygates.Project
 	return v, nil
 }
 
+// RemoveGroup - Remove the ability from a group to edit a Quality Gate.
+// Requires one of the following permissions:
+//    * 'Administer Quality Gates'
+//    * Edit right on the specified quality gate
+//
+// Since 9.2
+// Changelog:
 func (s *Qualitygates) RemoveGroup(ctx context.Context, r qualitygates.RemoveGroupRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/remove_group", API)
 
@@ -148,6 +230,13 @@ func (s *Qualitygates) RemoveGroup(ctx context.Context, r qualitygates.RemoveGro
 	return nil
 }
 
+// RemoveUser - Remove the ability from an user to edit a Quality Gate.
+// Requires one of the following permissions:
+//    * 'Administer Quality Gates'
+//    * Edit right on the specified quality gate
+//
+// Since 9.2
+// Changelog:
 func (s *Qualitygates) RemoveUser(ctx context.Context, r qualitygates.RemoveUserRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/remove_user", API)
 
@@ -159,6 +248,14 @@ func (s *Qualitygates) RemoveUser(ctx context.Context, r qualitygates.RemoveUser
 	return nil
 }
 
+// Rename - Rename a Quality Gate.
+// 'currentName' must be specified. Requires the 'Administer Quality Gates' permission.
+// Since 4.3
+// Changelog:
+//   10.0: Field 'id' in the response is deprecated
+//   10.0: Parameter 'id' is removed. Use 'currentName' instead.
+//   8.4: Parameter 'currentName' added
+//   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'currentName' instead.
 func (s *Qualitygates) Rename(ctx context.Context, r qualitygates.RenameRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/rename", API)
 
@@ -170,6 +267,8 @@ func (s *Qualitygates) Rename(ctx context.Context, r qualitygates.RenameRequest)
 	return nil
 }
 
+// Search - Search for projects associated (or not) to a quality gate.
+// Only authorized projects for the current user will be returned.
 func (s *Qualitygates) Search(ctx context.Context, r qualitygates.SearchRequest) (*qualitygates.SearchResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/search", API)
 	v := new(qualitygates.SearchResponse)
@@ -182,6 +281,11 @@ func (s *Qualitygates) Search(ctx context.Context, r qualitygates.SearchRequest)
 	return v, nil
 }
 
+// SearchGroups - List the groups that are allowed to edit a Quality Gate.
+// Requires one of the following permissions:
+//    * 'Administer Quality Gates'
+//    * Edit right on the specified quality gate
+//
 func (s *Qualitygates) SearchGroups(ctx context.Context, r qualitygates.SearchGroupsRequest, p paging.Params) (*qualitygates.SearchGroupsResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/search_groups", API)
 	v := new(qualitygates.SearchGroupsResponse)
@@ -215,6 +319,11 @@ func (s *Qualitygates) SearchGroupsAll(ctx context.Context, r qualitygates.Searc
 	return response, nil
 }
 
+// SearchUsers - List the users that are allowed to edit a Quality Gate.
+// Requires one of the following permissions:
+//    * 'Administer Quality Gates'
+//    * Edit right on the specified quality gate
+//
 func (s *Qualitygates) SearchUsers(ctx context.Context, r qualitygates.SearchUsersRequest, p paging.Params) (*qualitygates.SearchUsersResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/search_users", API)
 	v := new(qualitygates.SearchUsersResponse)
@@ -248,6 +357,17 @@ func (s *Qualitygates) SearchUsersAll(ctx context.Context, r qualitygates.Search
 	return response, nil
 }
 
+// Select - Associate a project to a quality gate.
+// Requires one of the following permissions:
+//    * 'Administer Quality Gates'
+//    * 'Administer' right on the specified project
+//
+// Since 4.3
+// Changelog:
+//   10.0: Parameter 'gateId' is removed. Use 'gateName' instead.
+//   8.4: Parameter 'gateName' added
+//   8.4: Parameter 'gateId' is deprecated. Format changes from integer to string. Use 'gateName' instead.
+//   8.3: The parameter 'projectId' was removed
 func (s *Qualitygates) Select(ctx context.Context, r qualitygates.SelectRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/select", API)
 
@@ -259,6 +379,13 @@ func (s *Qualitygates) Select(ctx context.Context, r qualitygates.SelectRequest)
 	return nil
 }
 
+// SetAsDefault - Set a quality gate as the default quality gate.
+// Parameter 'name' must be specified. Requires the 'Administer Quality Gates' permission.
+// Since 4.3
+// Changelog:
+//   10.0: Parameter 'id' is removed. Use 'name' instead.
+//   8.4: Parameter 'name' added
+//   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *Qualitygates) SetAsDefault(ctx context.Context, r qualitygates.SetAsDefaultRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/set_as_default", API)
 
@@ -270,6 +397,7 @@ func (s *Qualitygates) SetAsDefault(ctx context.Context, r qualitygates.SetAsDef
 	return nil
 }
 
+// Show - Display the details of a quality gate
 func (s *Qualitygates) Show(ctx context.Context, r qualitygates.ShowRequest) (*qualitygates.ShowResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/show", API)
 	v := new(qualitygates.ShowResponse)
@@ -282,6 +410,14 @@ func (s *Qualitygates) Show(ctx context.Context, r qualitygates.ShowRequest) (*q
 	return v, nil
 }
 
+// UpdateCondition - Update a condition attached to a quality gate.
+// Requires the 'Administer Quality Gates' permission.
+// Since 4.3
+// Changelog:
+//   8.4: Parameter 'id' format changes from integer to string.
+//   7.6: Removed optional 'warning' and 'period' parameters
+//   7.6: Made 'error' parameter mandatory
+//   7.6: Reduced the possible values of 'op' parameter to LT and GT
 func (s *Qualitygates) UpdateCondition(ctx context.Context, r qualitygates.UpdateConditionRequest) error {
 	u := fmt.Sprintf("%s/qualitygates/update_condition", API)
 

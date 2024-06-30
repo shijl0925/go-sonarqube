@@ -10,6 +10,7 @@ import (
 
 type Languages service
 
+// List - List supported programming languages
 func (s *Languages) List(ctx context.Context, r languages.ListRequest) (*languages.ListResponse, error) {
 	u := fmt.Sprintf("%s/languages/list", API)
 	v := new(languages.ListResponse)

@@ -7,5 +7,5 @@ type ActivateGracePeriodRequest struct{}
 
 // SetLicenseRequest Set the license for enabling features of commercial editions. Require 'Administer System' permission.
 type SetLicenseRequest struct {
-	License string `form:"license,omitempty"` //
+	License string `json:"license"` //
 }

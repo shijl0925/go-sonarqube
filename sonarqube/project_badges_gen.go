@@ -10,6 +10,8 @@ import (
 
 type ProjectBadges service
 
+// Measure - Generate badge for project's measure as an SVG.
+// Requires 'Browse' permission on the specified project.
 func (s *ProjectBadges) Measure(ctx context.Context, r project_badges.MeasureRequest) (*project_badges.MeasureResponse, error) {
 	u := fmt.Sprintf("%s/project_badges/measure", API)
 	v := new(project_badges.MeasureResponse)
@@ -22,6 +24,8 @@ func (s *ProjectBadges) Measure(ctx context.Context, r project_badges.MeasureReq
 	return v, nil
 }
 
+// QualityGate - Generate badge for project's quality gate as an SVG.
+// Requires 'Browse' permission on the specified project.
 func (s *ProjectBadges) QualityGate(ctx context.Context, r project_badges.QualityGateRequest) (*project_badges.QualityGateResponse, error) {
 	u := fmt.Sprintf("%s/project_badges/quality_gate", API)
 	v := new(project_badges.QualityGateResponse)
@@ -34,6 +38,12 @@ func (s *ProjectBadges) QualityGate(ctx context.Context, r project_badges.Qualit
 	return v, nil
 }
 
+// RenewToken - Creates new token replacing any existing token for project or application badge access for private projects and applications.
+// This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.
+// Requires 'Administer' permission on the specified project or application.
+// Since 9.2
+// Changelog:
+//   10.1: Application key can be used for project parameter.
 func (s *ProjectBadges) RenewToken(ctx context.Context, r project_badges.RenewTokenRequest) error {
 	u := fmt.Sprintf("%s/project_badges/renew_token", API)
 
@@ -45,6 +55,9 @@ func (s *ProjectBadges) RenewToken(ctx context.Context, r project_badges.RenewTo
 	return nil
 }
 
+// Token - Retrieve a token to use for project or application badge access for private projects or applications.
+// This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.
+// Requires 'Browse' permission on the specified project or application.
 func (s *ProjectBadges) Token(ctx context.Context, r project_badges.TokenRequest) (*project_badges.TokenResponse, error) {
 	u := fmt.Sprintf("%s/project_badges/token", API)
 	v := new(project_badges.TokenResponse)

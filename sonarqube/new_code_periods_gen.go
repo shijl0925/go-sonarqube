@@ -10,6 +10,8 @@ import (
 
 type NewCodePeriods service
 
+// List - Lists the <a href="https://sonar-documentations-preview.netlify.app/sonarqube/10.7/project-administration/clean-as-you-code-settings/defining-new-code/" target="_blank" rel="noopener noreferrer">new code definition</a> for all branches in a project.
+// Requires the permission to browse the project
 func (s *NewCodePeriods) List(ctx context.Context, r new_code_periods.ListRequest) (*new_code_periods.ListResponse, error) {
 	u := fmt.Sprintf("%s/new_code_periods/list", API)
 	v := new(new_code_periods.ListResponse)
@@ -22,6 +24,17 @@ func (s *NewCodePeriods) List(ctx context.Context, r new_code_periods.ListReques
 	return v, nil
 }
 
+// Set - Updates the <a href="https://sonar-documentations-preview.netlify.app/sonarqube/10.7/project-administration/clean-as-you-code-settings/defining-new-code/" target="_blank" rel="noopener noreferrer">new code definition</a> on different levels:
+//
+//  * Not providing a project key and a branch key will update the default value at global level. Existing projects or branches having a specific new code definition will not be impacted
+//  * Project key must be provided to update the value for a project
+//  * Both project and branch keys must be provided to update the value for a branch
+// Requires one of the following permissions:
+//  * 'Administer System' to change the global setting
+//  * 'Administer' rights on the specified project to change the project setting
+//
+// Since 8.0
+// Changelog:
 func (s *NewCodePeriods) Set(ctx context.Context, r new_code_periods.SetRequest) error {
 	u := fmt.Sprintf("%s/new_code_periods/set", API)
 
@@ -33,6 +46,11 @@ func (s *NewCodePeriods) Set(ctx context.Context, r new_code_periods.SetRequest)
 	return nil
 }
 
+// Show - Shows the <a href="https://sonar-documentations-preview.netlify.app/sonarqube/10.7/project-administration/clean-as-you-code-settings/defining-new-code/" target="_blank" rel="noopener noreferrer">new code definition</a>.
+// If the component requested doesn't exist or if no new code definition is set for it, a value is inherited from the project or from the global setting.Requires one of the following permissions if a component is specified:
+//  * 'Administer' rights on the specified component
+//  * 'Execute analysis' rights on the specified component
+//
 func (s *NewCodePeriods) Show(ctx context.Context, r new_code_periods.ShowRequest) (*new_code_periods.ShowResponse, error) {
 	u := fmt.Sprintf("%s/new_code_periods/show", API)
 	v := new(new_code_periods.ShowResponse)
@@ -45,6 +63,12 @@ func (s *NewCodePeriods) Show(ctx context.Context, r new_code_periods.ShowReques
 	return v, nil
 }
 
+// Unset - Unsets the <a href="https://sonar-documentations-preview.netlify.app/sonarqube/10.7/project-administration/clean-as-you-code-settings/defining-new-code/" target="_blank" rel="noopener noreferrer">new code definition</a> for a branch, project or global. It requires the inherited New Code Definition to be compatible with the Clean as You Code methodology, and one of the following permissions:
+//  * 'Administer System' to change the global setting
+//  * 'Administer' rights for a specified component
+//
+// Since 8.0
+// Changelog:
 func (s *NewCodePeriods) Unset(ctx context.Context, r new_code_periods.UnsetRequest) error {
 	u := fmt.Sprintf("%s/new_code_periods/unset", API)
 

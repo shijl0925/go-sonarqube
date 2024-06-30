@@ -10,6 +10,9 @@ import (
 
 type AuditLogs service
 
+// Download - Returns security related audits of this SonarQube instance. Logs are returned in JSON format.
+// Requires the system administration permission
+//
 func (s *AuditLogs) Download(ctx context.Context, r audit_logs.DownloadRequest) (*audit_logs.DownloadResponse, error) {
 	u := fmt.Sprintf("%s/audit_logs/download", API)
 	v := new(audit_logs.DownloadResponse)

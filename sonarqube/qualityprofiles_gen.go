@@ -11,6 +11,15 @@ import (
 
 type Qualityprofiles service
 
+// ActivateRule - Activate a rule on a Quality Profile.
+// Requires one of the following permissions:
+//    * 'Administer Quality Profiles'
+//    * Edit right on the specified quality profile
+//
+// Since 4.4
+// Changelog:
+//   10.6: Add parameter 'prioritizedRule'.
+//   10.2: Parameter 'severity' is now deprecated.
 func (s *Qualityprofiles) ActivateRule(ctx context.Context, r qualityprofiles.ActivateRuleRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/activate_rule", API)
 
@@ -22,6 +31,16 @@ func (s *Qualityprofiles) ActivateRule(ctx context.Context, r qualityprofiles.Ac
 	return nil
 }
 
+// ActivateRules - Bulk-activate rules on one quality profile.
+// Requires one of the following permissions:
+//    * 'Administer Quality Profiles'
+//    * Edit right on the specified quality profile
+//
+// Since 4.4
+// Changelog:
+//   10.6: Add parameter 'prioritizedRule'.
+//   10.2: Parameters 'severities', 'targetSeverity', 'active_severities', and 'types' are now deprecated.
+//   10.0: Parameter 'sansTop25' is deprecated
 func (s *Qualityprofiles) ActivateRules(ctx context.Context, r qualityprofiles.ActivateRulesRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/activate_rules", API)
 
@@ -33,6 +52,13 @@ func (s *Qualityprofiles) ActivateRules(ctx context.Context, r qualityprofiles.A
 	return nil
 }
 
+// AddProject - Associate a project with a quality profile.
+// Requires one of the following permissions:
+//    * 'Administer Quality Profiles'
+//    * Administer right on the specified project
+//
+// Since 5.2
+// Changelog:
 func (s *Qualityprofiles) AddProject(ctx context.Context, r qualityprofiles.AddProjectRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/add_project", API)
 
@@ -44,6 +70,7 @@ func (s *Qualityprofiles) AddProject(ctx context.Context, r qualityprofiles.AddP
 	return nil
 }
 
+// Backup - Backup a quality profile in XML form. The exported profile can be restored through api/qualityprofiles/restore.
 func (s *Qualityprofiles) Backup(ctx context.Context, r qualityprofiles.BackupRequest) (*qualityprofiles.BackupResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/backup", API)
 	v := new(qualityprofiles.BackupResponse)
@@ -56,6 +83,13 @@ func (s *Qualityprofiles) Backup(ctx context.Context, r qualityprofiles.BackupRe
 	return v, nil
 }
 
+// ChangeParent - Change a quality profile's parent.
+// Requires one of the following permissions:
+//    * 'Administer Quality Profiles'
+//    * Edit right on the specified quality profile
+//
+// Since 5.2
+// Changelog:
 func (s *Qualityprofiles) ChangeParent(ctx context.Context, r qualityprofiles.ChangeParentRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/change_parent", API)
 
@@ -67,6 +101,7 @@ func (s *Qualityprofiles) ChangeParent(ctx context.Context, r qualityprofiles.Ch
 	return nil
 }
 
+// Changelog - Get the history of changes on a quality profile: rule activation/deactivation, change in parameters/severity. Events are ordered by date in descending order (most recent first).
 func (s *Qualityprofiles) Changelog(ctx context.Context, r qualityprofiles.ChangelogRequest, p paging.Params) (*qualityprofiles.ChangelogResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/changelog", API)
 	v := new(qualityprofiles.ChangelogResponse)
@@ -100,6 +135,10 @@ func (s *Qualityprofiles) ChangelogAll(ctx context.Context, r qualityprofiles.Ch
 	return response, nil
 }
 
+// Copy - Copy a quality profile.
+// Requires to be logged in and the 'Administer Quality Profiles' permission.
+// Since 5.2
+// Changelog:
 func (s *Qualityprofiles) Copy(ctx context.Context, r qualityprofiles.CopyRequest) (*qualityprofiles.CopyResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/copy", API)
 	v := new(qualityprofiles.CopyResponse)
@@ -112,6 +151,10 @@ func (s *Qualityprofiles) Copy(ctx context.Context, r qualityprofiles.CopyReques
 	return v, nil
 }
 
+// Create - Create a quality profile.
+// Requires to be logged in and the 'Administer Quality Profiles' permission.
+// Since 5.2
+// Changelog:
 func (s *Qualityprofiles) Create(ctx context.Context, r qualityprofiles.CreateRequest) (*qualityprofiles.CreateResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/create", API)
 	v := new(qualityprofiles.CreateResponse)
@@ -124,6 +167,14 @@ func (s *Qualityprofiles) Create(ctx context.Context, r qualityprofiles.CreateRe
 	return v, nil
 }
 
+// DeactivateRule - Deactivate a rule on a quality profile.
+// Requires one of the following permissions:
+//    * 'Administer Quality Profiles'
+//    * Edit right on the specified quality profile
+//
+// Since 4.4
+// Changelog:
+//   10.3: Inherited rules can be deactivated (if the global admin setting is enabled)
 func (s *Qualityprofiles) DeactivateRule(ctx context.Context, r qualityprofiles.DeactivateRuleRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/deactivate_rule", API)
 
@@ -135,6 +186,16 @@ func (s *Qualityprofiles) DeactivateRule(ctx context.Context, r qualityprofiles.
 	return nil
 }
 
+// DeactivateRules - Bulk deactivate rules on Quality profiles.
+// Requires one of the following permissions:
+//    * 'Administer Quality Profiles'
+//    * Edit right on the specified quality profile
+//
+// Since 4.4
+// Changelog:
+//   10.3: Inherited rules can be deactivated (if the global admin setting is enabled)
+//   10.2: Parameters 'severities', 'active_severities', and 'types' are now deprecated.
+//   10.0: Parameter 'sansTop25' is deprecated
 func (s *Qualityprofiles) DeactivateRules(ctx context.Context, r qualityprofiles.DeactivateRulesRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/deactivate_rules", API)
 
@@ -146,6 +207,13 @@ func (s *Qualityprofiles) DeactivateRules(ctx context.Context, r qualityprofiles
 	return nil
 }
 
+// Delete - Delete a quality profile and all its descendants. The default quality profile cannot be deleted.
+// Requires one of the following permissions:
+//    * 'Administer Quality Profiles'
+//    * Edit right on the specified quality profile
+//
+// Since 5.2
+// Changelog:
 func (s *Qualityprofiles) Delete(ctx context.Context, r qualityprofiles.DeleteRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/delete", API)
 
@@ -157,6 +225,7 @@ func (s *Qualityprofiles) Delete(ctx context.Context, r qualityprofiles.DeleteRe
 	return nil
 }
 
+// Export - Export a quality profile.
 func (s *Qualityprofiles) Export(ctx context.Context, r qualityprofiles.ExportRequest) (*qualityprofiles.ExportResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/export", API)
 	v := new(qualityprofiles.ExportResponse)
@@ -169,6 +238,7 @@ func (s *Qualityprofiles) Export(ctx context.Context, r qualityprofiles.ExportRe
 	return v, nil
 }
 
+// Exporters - Lists available profile export formats.
 func (s *Qualityprofiles) Exporters(ctx context.Context, r qualityprofiles.ExportersRequest) (*qualityprofiles.ExportersResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/exporters", API)
 	v := new(qualityprofiles.ExportersResponse)
@@ -181,6 +251,7 @@ func (s *Qualityprofiles) Exporters(ctx context.Context, r qualityprofiles.Expor
 	return v, nil
 }
 
+// Importers - List supported importers.
 func (s *Qualityprofiles) Importers(ctx context.Context, r qualityprofiles.ImportersRequest) (*qualityprofiles.ImportersResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/importers", API)
 	v := new(qualityprofiles.ImportersResponse)
@@ -193,6 +264,7 @@ func (s *Qualityprofiles) Importers(ctx context.Context, r qualityprofiles.Impor
 	return v, nil
 }
 
+// Inheritance - Show a quality profile's ancestors and children.
 func (s *Qualityprofiles) Inheritance(ctx context.Context, r qualityprofiles.InheritanceRequest) (*qualityprofiles.InheritanceResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/inheritance", API)
 	v := new(qualityprofiles.InheritanceResponse)
@@ -205,6 +277,9 @@ func (s *Qualityprofiles) Inheritance(ctx context.Context, r qualityprofiles.Inh
 	return v, nil
 }
 
+// Projects - List projects with their association status regarding a quality profile.
+// Only projects explicitly bound to the profile are returned, those associated with the profile because it is the default one are not.
+// See api/qualityprofiles/search in order to get the Quality Profile Key.
 func (s *Qualityprofiles) Projects(ctx context.Context, r qualityprofiles.ProjectsRequest, p paging.Params) (*qualityprofiles.ProjectsResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/projects", API)
 	v := new(qualityprofiles.ProjectsResponse)
@@ -238,6 +313,14 @@ func (s *Qualityprofiles) ProjectsAll(ctx context.Context, r qualityprofiles.Pro
 	return response, nil
 }
 
+// RemoveProject - Remove a project's association with a quality profile.
+// Requires one of the following permissions:
+//    * 'Administer Quality Profiles'
+//    * Edit right on the specified quality profile
+//    * Administer right on the specified project
+//
+// Since 5.2
+// Changelog:
 func (s *Qualityprofiles) RemoveProject(ctx context.Context, r qualityprofiles.RemoveProjectRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/remove_project", API)
 
@@ -249,6 +332,13 @@ func (s *Qualityprofiles) RemoveProject(ctx context.Context, r qualityprofiles.R
 	return nil
 }
 
+// Rename - Rename a quality profile.
+// Requires one of the following permissions:
+//    * 'Administer Quality Profiles'
+//    * Edit right on the specified quality profile
+//
+// Since 5.2
+// Changelog:
 func (s *Qualityprofiles) Rename(ctx context.Context, r qualityprofiles.RenameRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/rename", API)
 
@@ -260,6 +350,11 @@ func (s *Qualityprofiles) Rename(ctx context.Context, r qualityprofiles.RenameRe
 	return nil
 }
 
+// Restore - Restore a quality profile using an XML file. The restored profile name is taken from the backup file, so if a profile with the same name and language already exists, it will be overwritten.
+// Requires to be logged in and the 'Administer Quality Profiles' permission.
+// Since 5.2
+// Changelog:
+//   10.3: The 'priority' and 'type' fields of the rule XML object are deprecated.
 func (s *Qualityprofiles) Restore(ctx context.Context, r qualityprofiles.RestoreRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/restore", API)
 
@@ -271,6 +366,7 @@ func (s *Qualityprofiles) Restore(ctx context.Context, r qualityprofiles.Restore
 	return nil
 }
 
+// Search - Search quality profiles
 func (s *Qualityprofiles) Search(ctx context.Context, r qualityprofiles.SearchRequest) (*qualityprofiles.SearchResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/search", API)
 	v := new(qualityprofiles.SearchResponse)
@@ -283,6 +379,10 @@ func (s *Qualityprofiles) Search(ctx context.Context, r qualityprofiles.SearchRe
 	return v, nil
 }
 
+// SetDefault - Select the default profile for a given language.
+// Requires to be logged in and the 'Administer Quality Profiles' permission.
+// Since 5.2
+// Changelog:
 func (s *Qualityprofiles) SetDefault(ctx context.Context, r qualityprofiles.SetDefaultRequest) error {
 	u := fmt.Sprintf("%s/qualityprofiles/set_default", API)
 

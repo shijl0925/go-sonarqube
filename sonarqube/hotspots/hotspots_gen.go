@@ -6,32 +6,32 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // ChangeStatusRequest Change the status of a Security Hotpot.<br/>Requires the 'Administer Security Hotspot' permission.
 type ChangeStatusRequest struct {
-	Comment    string `form:"comment,omitempty"`    // Comment text.
-	Hotspot    string `form:"hotspot,omitempty"`    // Key of the Security Hotspot
-	Resolution string `form:"resolution,omitempty"` // Resolution of the Security Hotspot when new status is REVIEWED, otherwise must not be set.
-	Status     string `form:"status,omitempty"`     // New status of the Security Hotspot.
+	Comment    string `json:"comment,omitempty"`    // Comment text.
+	Hotspot    string `json:"hotspot"`              // Key of the Security Hotspot
+	Resolution string `json:"resolution,omitempty"` // Resolution of the Security Hotspot when new status is REVIEWED, otherwise must not be set.
+	Status     string `json:"status"`               // New status of the Security Hotspot.
 }
 
 // SearchRequest Search for Security Hotpots. <br>Requires the 'Browse' permission on the specified project(s). <br>For applications, it also requires 'Browse' permission on its child projects. <br>When issue indexing is in progress returns 503 service unavailable HTTP code.
 type SearchRequest struct {
-	Branch              string `form:"branch,omitempty"`              // Branch key. Not available in the community edition.
-	Cwe                 string `form:"cwe,omitempty"`                 // Comma-separated list of CWE numbers
-	Files               string `form:"files,omitempty"`               // Comma-separated list of files. Returns only hotspots found in those files
-	Hotspots            string `form:"hotspots,omitempty"`            // Comma-separated list of Security Hotspot keys. This parameter is required unless project is provided.
-	InNewCodePeriod     string `form:"inNewCodePeriod,omitempty"`     // If 'inNewCodePeriod' is provided, only Security Hotspots created in the new code period are returned.
-	OnlyMine            string `form:"onlyMine,omitempty"`            // If 'projectKey' is provided, returns only Security Hotspots assigned to the current user
-	OwaspAsvs40         string `form:"owaspAsvs-4.0,omitempty"`       // Comma-separated list of OWASP ASVS v4.0 categories or rules.
-	OwaspAsvsLevel      string `form:"owaspAsvsLevel,omitempty"`      // Filters hotspots with lower or equal OWASP ASVS level to the parameter value. Should be used in combination with the 'owaspAsvs-4.0' parameter.
-	OwaspTop10          string `form:"owaspTop10,omitempty"`          // Comma-separated list of OWASP 2017 Top 10 lowercase categories.
-	OwaspTop102021      string `form:"owaspTop10-2021,omitempty"`     // Comma-separated list of OWASP 2021 Top 10 lowercase categories.
-	PciDss32            string `form:"pciDss-3.2,omitempty"`          // Comma-separated list of PCI DSS v3.2 categories.
-	PciDss40            string `form:"pciDss-4.0,omitempty"`          // Comma-separated list of PCI DSS v4.0 categories.
-	Project             string `form:"project,omitempty"`             // Key of the project or application. This parameter is required unless hotspots is provided.
-	PullRequest         string `form:"pullRequest,omitempty"`         // Pull request id. Not available in the community edition.
-	Resolution          string `form:"resolution,omitempty"`          // If 'project' is provided and if status is 'REVIEWED', only Security Hotspots with the specified resolution are returned.
-	SansTop25           string `form:"sansTop25,omitempty"`           // Comma-separated list of SANS Top 25 categories.
-	SonarsourceSecurity string `form:"sonarsourceSecurity,omitempty"` // Comma-separated list of SonarSource security categories. Use 'others' to select issues not associated with any category
-	Status              string `form:"status,omitempty"`              // If 'project' is provided, only Security Hotspots with the specified status are returned.
+	Branch              string `url:"branch,omitempty"`              // Branch key. Not available in the community edition.
+	Cwe                 string `url:"cwe,omitempty"`                 // Since 8.8;Comma-separated list of CWE numbers
+	Files               string `url:"files,omitempty"`               // Since 9.0;Comma-separated list of files. Returns only hotspots found in those files
+	Hotspots            string `url:"hotspots,omitempty"`            // Comma-separated list of Security Hotspot keys. This parameter is required unless project is provided.
+	InNewCodePeriod     string `url:"inNewCodePeriod,omitempty"`     // Since 9.5;If 'inNewCodePeriod' is provided, only Security Hotspots created in the new code period are returned.
+	OnlyMine            string `url:"onlyMine,omitempty"`            // If 'projectKey' is provided, returns only Security Hotspots assigned to the current user
+	OwaspAsvs40         string `url:"owaspAsvs-4.0,omitempty"`       // Since 9.7;Comma-separated list of OWASP ASVS v4.0 categories or rules.
+	OwaspAsvsLevel      string `url:"owaspAsvsLevel,omitempty"`      // Since 9.7;Filters hotspots with lower or equal OWASP ASVS level to the parameter value. Should be used in combination with the 'owaspAsvs-4.0' parameter.
+	OwaspTop10          string `url:"owaspTop10,omitempty"`          // Since 8.6;Comma-separated list of OWASP 2017 Top 10 lowercase categories.
+	OwaspTop102021      string `url:"owaspTop10-2021,omitempty"`     // Since 9.4;Comma-separated list of OWASP 2021 Top 10 lowercase categories.
+	PciDss32            string `url:"pciDss-3.2,omitempty"`          // Since 9.6;Comma-separated list of PCI DSS v3.2 categories.
+	PciDss40            string `url:"pciDss-4.0,omitempty"`          // Since 9.6;Comma-separated list of PCI DSS v4.0 categories.
+	Project             string `url:"project,omitempty"`             // Key of the project or application. This parameter is required unless hotspots is provided.
+	PullRequest         string `url:"pullRequest,omitempty"`         // Pull request id. Not available in the community edition.
+	Resolution          string `url:"resolution,omitempty"`          // If 'project' is provided and if status is 'REVIEWED', only Security Hotspots with the specified resolution are returned.
+	SansTop25           string `url:"sansTop25,omitempty"`           // Since 8.6;Deprecated since 10.0;Comma-separated list of SANS Top 25 categories.
+	SonarsourceSecurity string `url:"sonarsourceSecurity,omitempty"` // Since 8.6;Comma-separated list of SonarSource security categories. Use 'others' to select issues not associated with any category
+	Status              string `url:"status,omitempty"`              // If 'project' is provided, only Security Hotspots with the specified status are returned.
 }
 
 // SearchResponse is the response for SearchRequest
@@ -98,7 +98,7 @@ type SearchResponseAll struct {
 
 // ShowRequest Provides the details of a Security Hotspot.
 type ShowRequest struct {
-	Hotspot string `form:"hotspot,omitempty"` // Key of the Security Hotspot
+	Hotspot string `url:"hotspot"` // Key of the Security Hotspot
 }
 
 // ShowResponse is the response for ShowRequest

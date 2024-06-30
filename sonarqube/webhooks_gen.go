@@ -11,6 +11,11 @@ import (
 
 type Webhooks service
 
+// Create - Create a Webhook.
+// Requires 'Administer' permission on the specified project, or global 'Administer' permission.
+// Since 7.1
+// Changelog:
+//   10.6: The minimum length of parameter 'secret' increased to 16.
 func (s *Webhooks) Create(ctx context.Context, r webhooks.CreateRequest) (*webhooks.CreateResponse, error) {
 	u := fmt.Sprintf("%s/webhooks/create", API)
 	v := new(webhooks.CreateResponse)
@@ -23,6 +28,10 @@ func (s *Webhooks) Create(ctx context.Context, r webhooks.CreateRequest) (*webho
 	return v, nil
 }
 
+// Delete - Delete a Webhook.
+// Requires 'Administer' permission on the specified project, or global 'Administer' permission.
+// Since 7.1
+// Changelog:
 func (s *Webhooks) Delete(ctx context.Context, r webhooks.DeleteRequest) error {
 	u := fmt.Sprintf("%s/webhooks/delete", API)
 
@@ -34,6 +43,9 @@ func (s *Webhooks) Delete(ctx context.Context, r webhooks.DeleteRequest) error {
 	return nil
 }
 
+// Deliveries - Get the recent deliveries for a specified project or Compute Engine task.
+// Require 'Administer' permission on the related project.
+// Note that additional information are returned by api/webhooks/delivery.
 func (s *Webhooks) Deliveries(ctx context.Context, r webhooks.DeliveriesRequest, p paging.Params) (*webhooks.DeliveriesResponse, error) {
 	u := fmt.Sprintf("%s/webhooks/deliveries", API)
 	v := new(webhooks.DeliveriesResponse)
@@ -67,6 +79,9 @@ func (s *Webhooks) DeliveriesAll(ctx context.Context, r webhooks.DeliveriesReque
 	return response, nil
 }
 
+// Delivery - Get a webhook delivery by its id.
+// Require 'Administer System' permission.
+// Note that additional information are returned by api/webhooks/delivery.
 func (s *Webhooks) Delivery(ctx context.Context, r webhooks.DeliveryRequest) (*webhooks.DeliveryResponse, error) {
 	u := fmt.Sprintf("%s/webhooks/delivery", API)
 	v := new(webhooks.DeliveryResponse)
@@ -79,6 +94,8 @@ func (s *Webhooks) Delivery(ctx context.Context, r webhooks.DeliveryRequest) (*w
 	return v, nil
 }
 
+// List - Search for global webhooks or project webhooks. Webhooks are ordered by name.
+// Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 func (s *Webhooks) List(ctx context.Context, r webhooks.ListRequest) (*webhooks.ListResponse, error) {
 	u := fmt.Sprintf("%s/webhooks/list", API)
 	v := new(webhooks.ListResponse)
@@ -91,6 +108,10 @@ func (s *Webhooks) List(ctx context.Context, r webhooks.ListRequest) (*webhooks.
 	return v, nil
 }
 
+// Update - Update a Webhook.
+// Requires 'Administer' permission on the specified project, or global 'Administer' permission.
+// Since 7.1
+// Changelog:
 func (s *Webhooks) Update(ctx context.Context, r webhooks.UpdateRequest) error {
 	u := fmt.Sprintf("%s/webhooks/update", API)
 

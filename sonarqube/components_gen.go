@@ -11,6 +11,7 @@ import (
 
 type Components service
 
+// Search - Search for components
 func (s *Components) Search(ctx context.Context, r components.SearchRequest, p paging.Params) (*components.SearchResponse, error) {
 	u := fmt.Sprintf("%s/components/search", API)
 	v := new(components.SearchResponse)
@@ -44,6 +45,7 @@ func (s *Components) SearchAll(ctx context.Context, r components.SearchRequest) 
 	return response, nil
 }
 
+// Show - Returns a component (file, directory, project, portfolio…) and its ancestors. The ancestors are ordered from the parent to the root project. Requires the following permission: 'Browse' on the project of the specified component.
 func (s *Components) Show(ctx context.Context, r components.ShowRequest) (*components.ShowResponse, error) {
 	u := fmt.Sprintf("%s/components/show", API)
 	v := new(components.ShowResponse)
@@ -56,6 +58,9 @@ func (s *Components) Show(ctx context.Context, r components.ShowRequest) (*compo
 	return v, nil
 }
 
+// Tree - Navigate through components based on the chosen strategy.
+// Requires the following permission: 'Browse' on the specified project.
+// When limiting search with the q parameter, directories are not returned.
 func (s *Components) Tree(ctx context.Context, r components.TreeRequest, p paging.Params) (*components.TreeResponse, error) {
 	u := fmt.Sprintf("%s/components/tree", API)
 	v := new(components.TreeResponse)

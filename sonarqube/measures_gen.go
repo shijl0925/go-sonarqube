@@ -11,6 +11,8 @@ import (
 
 type Measures service
 
+// Component - Return component with specified measures.
+// Requires the following permission: 'Browse' on the project of specified component.
 func (s *Measures) Component(ctx context.Context, r measures.ComponentRequest) (*measures.ComponentResponse, error) {
 	u := fmt.Sprintf("%s/measures/component", API)
 	v := new(measures.ComponentResponse)
@@ -23,6 +25,10 @@ func (s *Measures) Component(ctx context.Context, r measures.ComponentRequest) (
 	return v, nil
 }
 
+// ComponentTree - Navigate through components based on the chosen strategy with specified measures.
+// Requires the following permission: 'Browse' on the specified project.
+// For applications, it also requires 'Browse' permission on its child projects.
+// When limiting search with the q parameter, directories are not returned.
 func (s *Measures) ComponentTree(ctx context.Context, r measures.ComponentTreeRequest, p paging.Params) (*measures.ComponentTreeResponse, error) {
 	u := fmt.Sprintf("%s/measures/component_tree", API)
 	v := new(measures.ComponentTreeResponse)
@@ -57,6 +63,11 @@ func (s *Measures) ComponentTreeAll(ctx context.Context, r measures.ComponentTre
 	return response, nil
 }
 
+// SearchHistory - Search measures history of a component.
+// Measures are ordered chronologically.
+// Pagination applies to the number of measures for each metric.
+// Requires the following permission: 'Browse' on the specified component.
+// For applications, it also requires 'Browse' permission on its child projects.
 func (s *Measures) SearchHistory(ctx context.Context, r measures.SearchHistoryRequest, p paging.Params) (*measures.SearchHistoryResponse, error) {
 	u := fmt.Sprintf("%s/measures/search_history", API)
 	v := new(measures.SearchHistoryResponse)

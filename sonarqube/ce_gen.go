@@ -11,6 +11,8 @@ import (
 
 type Ce service
 
+// Activity - Search for tasks.
+// Requires the system administration permission, or project administration permission if component is set.
 func (s *Ce) Activity(ctx context.Context, r ce.ActivityRequest, p paging.Params) (*ce.ActivityResponse, error) {
 	u := fmt.Sprintf("%s/ce/activity", API)
 	v := new(ce.ActivityResponse)
@@ -44,6 +46,8 @@ func (s *Ce) ActivityAll(ctx context.Context, r ce.ActivityRequest) (*ce.Activit
 	return response, nil
 }
 
+// ActivityStatus - Returns CE activity related metrics.
+// Requires 'Administer System' permission or 'Administer' rights on the specified project.
 func (s *Ce) ActivityStatus(ctx context.Context, r ce.ActivityStatusRequest) (*ce.ActivityStatusResponse, error) {
 	u := fmt.Sprintf("%s/ce/activity_status", API)
 	v := new(ce.ActivityStatusResponse)
@@ -56,6 +60,8 @@ func (s *Ce) ActivityStatus(ctx context.Context, r ce.ActivityStatusRequest) (*c
 	return v, nil
 }
 
+// Component - Get the pending tasks, in-progress tasks and the last executed task of a given component (usually a project).
+// Requires the following permission: 'Browse' on the specified component.
 func (s *Ce) Component(ctx context.Context, r ce.ComponentRequest) (*ce.ComponentResponse, error) {
 	u := fmt.Sprintf("%s/ce/component", API)
 	v := new(ce.ComponentResponse)
@@ -68,6 +74,11 @@ func (s *Ce) Component(ctx context.Context, r ce.ComponentRequest) (*ce.Componen
 	return v, nil
 }
 
+// Task - Give Compute Engine task details such as type, status, duration and associated component.
+// Requires one of the following permissions:
+//  * 'Administer' at global or project level
+//  * 'Execute Analysis' at global or project level
+// Since 6.1, field "logs" is deprecated and its value is always false.
 func (s *Ce) Task(ctx context.Context, r ce.TaskRequest) (*ce.TaskResponse, error) {
 	u := fmt.Sprintf("%s/ce/task", API)
 	v := new(ce.TaskResponse)

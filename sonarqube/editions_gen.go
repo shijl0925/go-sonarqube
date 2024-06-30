@@ -10,6 +10,9 @@ import (
 
 type Editions service
 
+// ActivateGracePeriod - Enable a license 7-days grace period if the Server ID is invalid. Require 'Administer System' permission.
+// Since 10.3
+// Changelog:
 func (s *Editions) ActivateGracePeriod(ctx context.Context, r editions.ActivateGracePeriodRequest) error {
 	u := fmt.Sprintf("%s/editions/activate_grace_period", API)
 
@@ -21,6 +24,9 @@ func (s *Editions) ActivateGracePeriod(ctx context.Context, r editions.ActivateG
 	return nil
 }
 
+// SetLicense - Set the license for enabling features of commercial editions. Require 'Administer System' permission.
+// Since 7.2
+// Changelog:
 func (s *Editions) SetLicense(ctx context.Context, r editions.SetLicenseRequest) error {
 	u := fmt.Sprintf("%s/editions/set_license", API)
 

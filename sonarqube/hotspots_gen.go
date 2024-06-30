@@ -11,6 +11,11 @@ import (
 
 type Hotspots service
 
+// ChangeStatus - Change the status of a Security Hotpot.
+// Requires the 'Administer Security Hotspot' permission.
+// Since 8.1
+// Changelog:
+//   10.1: Endpoint visibility change from internal to public
 func (s *Hotspots) ChangeStatus(ctx context.Context, r hotspots.ChangeStatusRequest) error {
 	u := fmt.Sprintf("%s/hotspots/change_status", API)
 
@@ -22,6 +27,10 @@ func (s *Hotspots) ChangeStatus(ctx context.Context, r hotspots.ChangeStatusRequ
 	return nil
 }
 
+// Search - Search for Security Hotpots.
+// Requires the 'Browse' permission on the specified project(s).
+// For applications, it also requires 'Browse' permission on its child projects.
+// When issue indexing is in progress returns 503 service unavailable HTTP code.
 func (s *Hotspots) Search(ctx context.Context, r hotspots.SearchRequest, p paging.Params) (*hotspots.SearchResponse, error) {
 	u := fmt.Sprintf("%s/hotspots/search", API)
 	v := new(hotspots.SearchResponse)
@@ -56,6 +65,7 @@ func (s *Hotspots) SearchAll(ctx context.Context, r hotspots.SearchRequest) (*ho
 	return response, nil
 }
 
+// Show - Provides the details of a Security Hotspot.
 func (s *Hotspots) Show(ctx context.Context, r hotspots.ShowRequest) (*hotspots.ShowResponse, error) {
 	u := fmt.Sprintf("%s/hotspots/show", API)
 	v := new(hotspots.ShowResponse)

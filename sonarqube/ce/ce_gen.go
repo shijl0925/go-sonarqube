@@ -6,13 +6,13 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // ActivityRequest Search for tasks.<br> Requires the system administration permission, or project administration permission if component is set.
 type ActivityRequest struct {
-	Component      string `form:"component,omitempty"`      // Key of the component (project) to filter on
-	MaxExecutedAt  string `form:"maxExecutedAt,omitempty"`  // Maximum date of end of task processing (inclusive)
-	MinSubmittedAt string `form:"minSubmittedAt,omitempty"` // Minimum date of task submission (inclusive)
-	OnlyCurrents   string `form:"onlyCurrents,omitempty"`   // Filter on the last tasks (only the most recent finished task by project)
-	Q              string `form:"q,omitempty"`              // Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that are exactly the same as the supplied string</li><li>task ids that are exactly the same as the supplied string</li></ul>
-	Status         string `form:"status,omitempty"`         // Comma separated list of task statuses
-	Type           string `form:"type,omitempty"`           // Task type
+	Component      string `url:"component,omitempty"`      // Since 8.0;Key of the component (project) to filter on
+	MaxExecutedAt  string `url:"maxExecutedAt,omitempty"`  // Maximum date of end of task processing (inclusive)
+	MinSubmittedAt string `url:"minSubmittedAt,omitempty"` // Minimum date of task submission (inclusive)
+	OnlyCurrents   string `url:"onlyCurrents,omitempty"`   // Filter on the last tasks (only the most recent finished task by project)
+	Q              string `url:"q,omitempty"`              // Since 5.5;Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that are exactly the same as the supplied string</li><li>task ids that are exactly the same as the supplied string</li></ul>
+	Status         string `url:"status,omitempty"`         // Comma separated list of task statuses
+	Type           string `url:"type,omitempty"`           // Task type
 }
 
 // ActivityResponse is the response for ActivityRequest
@@ -69,7 +69,7 @@ type ActivityResponseAll struct {
 
 // ActivityStatusRequest Returns CE activity related metrics.<br>Requires 'Administer System' permission or 'Administer' rights on the specified project.
 type ActivityStatusRequest struct {
-	Component string `form:"component,omitempty"` // Key of the component (project) to filter on
+	Component string `url:"component,omitempty"` // Key of the component (project) to filter on
 }
 
 // ActivityStatusResponse is the response for ActivityStatusRequest
@@ -82,7 +82,7 @@ type ActivityStatusResponse struct {
 
 // ComponentRequest Get the pending tasks, in-progress tasks and the last executed task of a given component (usually a project).<br>Requires the following permission: 'Browse' on the specified component.
 type ComponentRequest struct {
-	Component string `form:"component,omitempty"` //
+	Component string `url:"component"` //
 }
 
 // ComponentResponse is the response for ComponentRequest
@@ -121,8 +121,8 @@ type ComponentResponse struct {
 
 // TaskRequest Give Compute Engine task details such as type, status, duration and associated component.<br/>Requires one of the following permissions: <ul><li>'Administer' at global or project level</li><li>'Execute Analysis' at global or project level</li></ul>Since 6.1, field "logs" is deprecated and its value is always false.
 type TaskRequest struct {
-	AdditionalFields string `form:"additionalFields,omitempty"` // Comma-separated list of the optional fields to be returned in response.
-	Id               string `form:"id,omitempty"`               // Id of task
+	AdditionalFields string `url:"additionalFields,omitempty"` // Since 6.1;Comma-separated list of the optional fields to be returned in response.
+	Id               string `url:"id"`                         // Id of task
 }
 
 // TaskResponse is the response for TaskRequest

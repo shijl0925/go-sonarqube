@@ -6,7 +6,7 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // SearchRequest Search tags
 type SearchRequest struct {
-	Q string `form:"q,omitempty"` // Limit search to tags that contain the supplied string.
+	Q string `url:"q,omitempty"` // Limit search to tags that contain the supplied string.
 }
 
 // SearchResponse is the response for SearchRequest
@@ -26,6 +26,6 @@ type SearchResponseAll struct {
 
 // SetRequest Set tags on a project.<br>Requires the following permission: 'Administer' rights on the specified project
 type SetRequest struct {
-	Project string `form:"project,omitempty"` // Project key
-	Tags    string `form:"tags,omitempty"`    // Comma-separated list of tags
+	Project string `json:"project"` // Project key
+	Tags    string `json:"tags"`    // Comma-separated list of tags
 }

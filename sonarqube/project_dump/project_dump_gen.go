@@ -4,7 +4,7 @@ package project_dump
 
 // ExportRequest Triggers project dump so that the project can be imported to another SonarQube server (see api/project_dump/import, available in Enterprise Edition). Requires the 'Administer' permission.
 type ExportRequest struct {
-	Key string `form:"key,omitempty"` //
+	Key string `json:"key"` //
 }
 
 // ExportResponse is the response for ExportRequest
@@ -17,7 +17,7 @@ type ExportResponse struct {
 
 // ImportRequest Triggers the import of a project dump. Permission 'Administer' is required. This feature is provided by the Governance plugin.
 type ImportRequest struct {
-	Key string `form:"key,omitempty"` //
+	Key string `json:"key"` //
 }
 
 // ImportResponse is the response for ImportRequest

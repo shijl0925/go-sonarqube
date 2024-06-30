@@ -6,10 +6,10 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // CreateRequest Create a Webhook.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 type CreateRequest struct {
-	Name    string `form:"name,omitempty"`    // Name displayed in the administration console of webhooks
-	Project string `form:"project,omitempty"` // The key of the project that will own the webhook
-	Secret  string `form:"secret,omitempty"`  // If provided, secret will be used as the key to generate the HMAC hex (lowercase) digest value in the 'X-Sonar-Webhook-HMAC-SHA256' header
-	Url     string `form:"url,omitempty"`     // Server endpoint that will receive the webhook payload, for example 'http://my_server/foo'. If HTTP Basic authentication is used, HTTPS is recommended to avoid man in the middle attacks. Example: 'https://myLogin:myPassword@my_server/foo'
+	Name    string `json:"name"`              // Name displayed in the administration console of webhooks
+	Project string `json:"project,omitempty"` // The key of the project that will own the webhook
+	Secret  string `json:"secret,omitempty"`  // Since 7.8;If provided, secret will be used as the key to generate the HMAC hex (lowercase) digest value in the 'X-Sonar-Webhook-HMAC-SHA256' header
+	Url     string `json:"url"`               // Server endpoint that will receive the webhook payload, for example 'http://my_server/foo'. If HTTP Basic authentication is used, HTTPS is recommended to avoid man in the middle attacks. Example: 'https://myLogin:myPassword@my_server/foo'
 }
 
 // CreateResponse is the response for CreateRequest
@@ -24,14 +24,14 @@ type CreateResponse struct {
 
 // DeleteRequest Delete a Webhook.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 type DeleteRequest struct {
-	Webhook string `form:"webhook,omitempty"` // The key of the webhook to be deleted, auto-generated value can be obtained through api/webhooks/create or api/webhooks/list
+	Webhook string `json:"webhook"` // The key of the webhook to be deleted, auto-generated value can be obtained through api/webhooks/create or api/webhooks/list
 }
 
 // DeliveriesRequest Get the recent deliveries for a specified project or Compute Engine task.<br/>Require 'Administer' permission on the related project.<br/>Note that additional information are returned by api/webhooks/delivery.
 type DeliveriesRequest struct {
-	CeTaskId     string `form:"ceTaskId,omitempty"`     // Id of the Compute Engine task
-	ComponentKey string `form:"componentKey,omitempty"` // Key of the project
-	Webhook      string `form:"webhook,omitempty"`      // Key of the webhook that triggered those deliveries, auto-generated value that can be obtained through api/webhooks/create or api/webhooks/list
+	CeTaskId     string `url:"ceTaskId,omitempty"`     // Id of the Compute Engine task
+	ComponentKey string `url:"componentKey,omitempty"` // Key of the project
+	Webhook      string `url:"webhook,omitempty"`      // Since 7.1;Key of the webhook that triggered those deliveries, auto-generated value that can be obtained through api/webhooks/create or api/webhooks/list
 }
 
 // DeliveriesResponse is the response for DeliveriesRequest
@@ -72,7 +72,7 @@ type DeliveriesResponseAll struct {
 
 // DeliveryRequest Get a webhook delivery by its id.<br/>Require 'Administer System' permission.<br/>Note that additional information are returned by api/webhooks/delivery.
 type DeliveryRequest struct {
-	DeliveryId string `form:"deliveryId,omitempty"` // Id of delivery
+	DeliveryId string `url:"deliveryId"` // Id of delivery
 }
 
 // DeliveryResponse is the response for DeliveryRequest
@@ -93,7 +93,7 @@ type DeliveryResponse struct {
 
 // ListRequest Search for global webhooks or project webhooks. Webhooks are ordered by name.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 type ListRequest struct {
-	Project string `form:"project,omitempty"` // Project key
+	Project string `url:"project,omitempty"` // Project key
 }
 
 // ListResponse is the response for ListRequest
@@ -108,8 +108,8 @@ type ListResponse struct {
 
 // UpdateRequest Update a Webhook.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 type UpdateRequest struct {
-	Name    string `form:"name,omitempty"`    // new name of the webhook
-	Secret  string `form:"secret,omitempty"`  // If provided, secret will be used as the key to generate the HMAC hex (lowercase) digest value in the 'X-Sonar-Webhook-HMAC-SHA256' header. If blank, any secret previously configured will be removed. If not set, the secret will remain unchanged.
-	Url     string `form:"url,omitempty"`     // new url to be called by the webhook
-	Webhook string `form:"webhook,omitempty"` // The key of the webhook to be updated, auto-generated value can be obtained through api/webhooks/create or api/webhooks/list
+	Name    string `json:"name"`             // new name of the webhook
+	Secret  string `json:"secret,omitempty"` // Since 7.8;If provided, secret will be used as the key to generate the HMAC hex (lowercase) digest value in the 'X-Sonar-Webhook-HMAC-SHA256' header. If blank, any secret previously configured will be removed. If not set, the secret will remain unchanged.
+	Url     string `json:"url"`              // new url to be called by the webhook
+	Webhook string `json:"webhook"`          // The key of the webhook to be updated, auto-generated value can be obtained through api/webhooks/create or api/webhooks/list
 }

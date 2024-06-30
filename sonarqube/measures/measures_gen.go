@@ -6,11 +6,11 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // ComponentRequest Return component with specified measures.<br>Requires the following permission: 'Browse' on the project of specified component.
 type ComponentRequest struct {
-	AdditionalFields string `form:"additionalFields,omitempty"` // Comma-separated list of additional fields that can be returned in the response.
-	Branch           string `form:"branch,omitempty"`           // Branch key. Not available in the community edition.
-	Component        string `form:"component,omitempty"`        // Component key
-	MetricKeys       string `form:"metricKeys,omitempty"`       // Comma-separated list of metric keys
-	PullRequest      string `form:"pullRequest,omitempty"`      // Pull request id. Not available in the community edition.
+	AdditionalFields string `url:"additionalFields,omitempty"` // Comma-separated list of additional fields that can be returned in the response.
+	Branch           string `url:"branch,omitempty"`           // Since 6.6;Branch key. Not available in the community edition.
+	Component        string `url:"component"`                  // Component key
+	MetricKeys       string `url:"metricKeys"`                 // Comma-separated list of metric keys
+	PullRequest      string `url:"pullRequest,omitempty"`      // Since 7.1;Pull request id. Not available in the community edition.
 }
 
 // ComponentResponse is the response for ComponentRequest
@@ -49,19 +49,19 @@ type ComponentResponse struct {
 
 // ComponentTreeRequest Navigate through components based on the chosen strategy with specified measures.<br>Requires the following permission: 'Browse' on the specified project.<br>For applications, it also requires 'Browse' permission on its child projects. <br>When limiting search with the q parameter, directories are not returned.
 type ComponentTreeRequest struct {
-	AdditionalFields string `form:"additionalFields,omitempty"` // Comma-separated list of additional fields that can be returned in the response.
-	Asc              string `form:"asc,omitempty"`              // Ascending sort
-	Branch           string `form:"branch,omitempty"`           // Branch key. Not available in the community edition.
-	Component        string `form:"component,omitempty"`        // Component key. The search is based on this component.
-	MetricKeys       string `form:"metricKeys,omitempty"`       // Comma-separated list of metric keys. Types DISTRIB are not allowed. For type DATA only reliability_issues, new_maintainability_issues, new_security_issues, new_reliability_issues, security_issues, maintainability_issues metrics are supported
-	MetricPeriodSort string `form:"metricPeriodSort,omitempty"` // Sort measures by leak period or not ?. The 's' parameter must contain the 'metricPeriod' value.
-	MetricSort       string `form:"metricSort,omitempty"`       // Metric key to sort by. The 's' parameter must contain the 'metric' or 'metricPeriod' value. It must be part of the 'metricKeys' parameter
-	MetricSortFilter string `form:"metricSortFilter,omitempty"` // Filter components. Sort must be on a metric. Possible values are: <ul><li>all: return all components</li><li>withMeasuresOnly: filter out components that do not have a measure on the sorted metric</li></ul>
-	PullRequest      string `form:"pullRequest,omitempty"`      // Pull request id. Not available in the community edition.
-	Q                string `form:"q,omitempty"`                // Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that are exactly the same as the supplied string</li></ul>
-	Qualifiers       string `form:"qualifiers,omitempty"`       // Comma-separated list of component qualifiers. Filter the results with the specified qualifiers. Possible values are:<ul><li>APP - Applications</li><li>VW - Portfolios</li><li>SVW - Portfolios</li><li>UTS - Test Files</li><li>FIL - Files</li><li>DIR - Directories</li><li>TRK - Projects</li></ul>
-	S                string `form:"s,omitempty"`                // Comma-separated list of sort fields
-	Strategy         string `form:"strategy,omitempty"`         // Strategy to search for base component descendants:<ul><li>children: return the children components of the base component. Grandchildren components are not returned</li><li>all: return all the descendants components of the base component. Grandchildren are returned.</li><li>leaves: return all the descendant components (files, in general) which don't have other children. They are the leaves of the component tree.</li></ul>
+	AdditionalFields string `url:"additionalFields,omitempty"` // Comma-separated list of additional fields that can be returned in the response.
+	Asc              string `url:"asc,omitempty"`              // Ascending sort
+	Branch           string `url:"branch,omitempty"`           // Since 6.6;Branch key. Not available in the community edition.
+	Component        string `url:"component"`                  // Component key. The search is based on this component.
+	MetricKeys       string `url:"metricKeys"`                 // Comma-separated list of metric keys. Types DISTRIB are not allowed. For type DATA only reliability_issues, new_maintainability_issues, new_security_issues, new_reliability_issues, security_issues, maintainability_issues metrics are supported
+	MetricPeriodSort string `url:"metricPeriodSort,omitempty"` // Since 5.5;Sort measures by leak period or not ?. The 's' parameter must contain the 'metricPeriod' value.
+	MetricSort       string `url:"metricSort,omitempty"`       // Metric key to sort by. The 's' parameter must contain the 'metric' or 'metricPeriod' value. It must be part of the 'metricKeys' parameter
+	MetricSortFilter string `url:"metricSortFilter,omitempty"` // Filter components. Sort must be on a metric. Possible values are: <ul><li>all: return all components</li><li>withMeasuresOnly: filter out components that do not have a measure on the sorted metric</li></ul>
+	PullRequest      string `url:"pullRequest,omitempty"`      // Since 7.1;Pull request id. Not available in the community edition.
+	Q                string `url:"q,omitempty"`                // Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that are exactly the same as the supplied string</li></ul>
+	Qualifiers       string `url:"qualifiers,omitempty"`       // Comma-separated list of component qualifiers. Filter the results with the specified qualifiers. Possible values are:<ul><li>APP - Applications</li><li>VW - Portfolios</li><li>SVW - Portfolios</li><li>UTS - Test Files</li><li>FIL - Files</li><li>DIR - Directories</li><li>TRK - Projects</li></ul>
+	S                string `url:"s,omitempty"`                // Comma-separated list of sort fields
+	Strategy         string `url:"strategy,omitempty"`         // Strategy to search for base component descendants:<ul><li>children: return the children components of the base component. Grandchildren components are not returned</li><li>all: return all the descendants components of the base component. Grandchildren are returned.</li><li>leaves: return all the descendant components (files, in general) which don't have other children. They are the leaves of the component tree.</li></ul>
 }
 
 // ComponentTreeResponse is the response for ComponentTreeRequest
@@ -164,12 +164,12 @@ type ComponentTreeResponseAll struct {
 
 // SearchHistoryRequest Search measures history of a component.<br>Measures are ordered chronologically.<br>Pagination applies to the number of measures for each metric.<br>Requires the following permission: 'Browse' on the specified component. <br>For applications, it also requires 'Browse' permission on its child projects.
 type SearchHistoryRequest struct {
-	Branch      string `form:"branch,omitempty"`      // Branch key. Not available in the community edition.
-	Component   string `form:"component,omitempty"`   // Component key
-	From        string `form:"from,omitempty"`        // Filter measures created after the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided
-	Metrics     string `form:"metrics,omitempty"`     // Comma-separated list of metric keys
-	PullRequest string `form:"pullRequest,omitempty"` // Pull request id. Not available in the community edition.
-	To          string `form:"to,omitempty"`          // Filter measures created before the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided
+	Branch      string `url:"branch,omitempty"`      // Since 6.6;Branch key. Not available in the community edition.
+	Component   string `url:"component"`             // Component key
+	From        string `url:"from,omitempty"`        // Filter measures created after the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided
+	Metrics     string `url:"metrics"`               // Comma-separated list of metric keys
+	PullRequest string `url:"pullRequest,omitempty"` // Since 7.1;Pull request id. Not available in the community edition.
+	To          string `url:"to,omitempty"`          // Filter measures created before the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided
 }
 
 // SearchHistoryResponse is the response for SearchHistoryRequest

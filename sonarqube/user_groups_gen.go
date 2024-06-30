@@ -11,6 +11,15 @@ import (
 
 type UserGroups service
 
+// AddUser - Add a user to a group.
+// 'name' must be provided.
+// Requires the following permission: 'Administer System'.
+// Since 5.2
+// Deprecated since 10.4
+// Changelog:
+//   10.4: Deprecated. Use POST /api/v2/authorizations/group-memberships instead
+//   10.0: Parameter 'id' is removed. Use 'name' instead.
+//   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *UserGroups) AddUser(ctx context.Context, r user_groups.AddUserRequest) error {
 	u := fmt.Sprintf("%s/user_groups/add_user", API)
 
@@ -22,6 +31,13 @@ func (s *UserGroups) AddUser(ctx context.Context, r user_groups.AddUserRequest) 
 	return nil
 }
 
+// Create - Create a group.
+// Requires the following permission: 'Administer System'.
+// Since 5.2
+// Deprecated since 10.4
+// Changelog:
+//   10.4: Deprecated. Use POST /api/v2/authorizations/groups instead
+//   8.4: Field 'id' format in the response changes from integer to string.
 func (s *UserGroups) Create(ctx context.Context, r user_groups.CreateRequest) (*user_groups.CreateResponse, error) {
 	u := fmt.Sprintf("%s/user_groups/create", API)
 	v := new(user_groups.CreateResponse)
@@ -34,6 +50,15 @@ func (s *UserGroups) Create(ctx context.Context, r user_groups.CreateRequest) (*
 	return v, nil
 }
 
+// Delete - Delete a group. The default groups cannot be deleted.
+// 'name' must be provided.
+// Requires the following permission: 'Administer System'.
+// Since 5.2
+// Deprecated since 10.4
+// Changelog:
+//   10.4: Deprecated. Use DELETE /api/v2/authorizations/groups instead
+//   10.0: Parameter 'id' is removed. Use 'name' instead.
+//   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *UserGroups) Delete(ctx context.Context, r user_groups.DeleteRequest) error {
 	u := fmt.Sprintf("%s/user_groups/delete", API)
 
@@ -45,6 +70,15 @@ func (s *UserGroups) Delete(ctx context.Context, r user_groups.DeleteRequest) er
 	return nil
 }
 
+// RemoveUser - Remove a user from a group.
+// 'name' must be provided.
+// Requires the following permission: 'Administer System'.
+// Since 5.2
+// Deprecated since 10.4
+// Changelog:
+//   10.4: Deprecated. Use DELETE /api/v2/authorizations/group-memberships instead
+//   10.0: Parameter 'id' is removed. Use 'name' instead.
+//   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *UserGroups) RemoveUser(ctx context.Context, r user_groups.RemoveUserRequest) error {
 	u := fmt.Sprintf("%s/user_groups/remove_user", API)
 
@@ -56,6 +90,8 @@ func (s *UserGroups) RemoveUser(ctx context.Context, r user_groups.RemoveUserReq
 	return nil
 }
 
+// Search - Search for user groups.
+// Requires the following permission: 'Administer System'.
 func (s *UserGroups) Search(ctx context.Context, r user_groups.SearchRequest, p paging.Params) (*user_groups.SearchResponse, error) {
 	u := fmt.Sprintf("%s/user_groups/search", API)
 	v := new(user_groups.SearchResponse)
@@ -89,6 +125,16 @@ func (s *UserGroups) SearchAll(ctx context.Context, r user_groups.SearchRequest)
 	return response, nil
 }
 
+// Update - Update a group.
+// Requires the following permission: 'Administer System'.
+// Since 5.2
+// Deprecated since 10.4
+// Changelog:
+//   10.4: Deprecated. Use PATCH /api/v2/authorizations/groups instead
+//   10.0: Parameter 'id' is removed in favor of 'currentName'
+//   8.5: Parameter 'id' deprecated in favor of 'currentName'
+//   8.4: Parameter 'id' format changes from integer to string
+//   6.4: The default group is no longer editable
 func (s *UserGroups) Update(ctx context.Context, r user_groups.UpdateRequest) error {
 	u := fmt.Sprintf("%s/user_groups/update", API)
 
@@ -100,6 +146,8 @@ func (s *UserGroups) Update(ctx context.Context, r user_groups.UpdateRequest) er
 	return nil
 }
 
+// Users - Search for users with membership information with respect to a group.
+// Requires the following permission: 'Administer System'.
 func (s *UserGroups) Users(ctx context.Context, r user_groups.UsersRequest, p paging.Params) (*user_groups.UsersResponse, error) {
 	u := fmt.Sprintf("%s/user_groups/users", API)
 	v := new(user_groups.UsersResponse)

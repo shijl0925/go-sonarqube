@@ -34,12 +34,12 @@ type CancelAllRequest struct{}
 
 // InstallRequest Installs the latest version of a plugin specified by its key.<br/>Plugin information is retrieved from Update Center.<br/>Fails if used on commercial editions or plugin risk consent has not been accepted.<br/>Requires user to be authenticated with Administer System permissions
 type InstallRequest struct {
-	Key string `form:"key,omitempty"` // The key identifying the plugin to install
+	Key string `json:"key"` // The key identifying the plugin to install
 }
 
 // InstalledRequest Get the list of all the plugins installed on the SonarQube instance, sorted by plugin name.<br/>Requires authentication.
 type InstalledRequest struct {
-	F string `form:"f,omitempty"` // Comma-separated list of the additional fields to be returned in response. No additional field is returned by default. Possible values are:<ul><li>category - category as defined in the Update Center. A connection to the Update Center is needed</li></ul>
+	F string `url:"f,omitempty"` // Since 5.6;Comma-separated list of the additional fields to be returned in response. No additional field is returned by default. Possible values are:<ul><li>category - category as defined in the Update Center. A connection to the Update Center is needed</li></ul>
 }
 
 // InstalledResponse is the response for InstalledRequest
@@ -115,12 +115,12 @@ type PendingResponse struct {
 
 // UninstallRequest Uninstalls the plugin specified by its key.<br/>Requires user to be authenticated with Administer System permissions.
 type UninstallRequest struct {
-	Key string `form:"key,omitempty"` // The key identifying the plugin to uninstall
+	Key string `json:"key"` // The key identifying the plugin to uninstall
 }
 
 // UpdateRequest Updates a plugin specified by its key to the latest version compatible with the SonarQube instance.<br/>Plugin information is retrieved from Update Center.<br/>Requires user to be authenticated with Administer System permissions
 type UpdateRequest struct {
-	Key string `form:"key,omitempty"` // The key identifying the plugin to update
+	Key string `json:"key"` // The key identifying the plugin to update
 }
 
 // UpdatesRequest Lists plugins installed on the SonarQube instance for which at least one newer version is available, sorted by plugin name.<br/>Each newer version is listed, ordered from the oldest to the newest, with its own update/compatibility status.<br/>Plugin information is retrieved from Update Center. Date and time at which Update Center was last refreshed is provided in the response.<br/>Update status values are: [COMPATIBLE, INCOMPATIBLE, REQUIRES_UPGRADE, DEPS_REQUIRE_UPGRADE].<br/>Require 'Administer System' permission.

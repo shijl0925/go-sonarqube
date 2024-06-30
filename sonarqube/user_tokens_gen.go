@@ -10,6 +10,12 @@ import (
 
 type UserTokens service
 
+// Generate - Generate a user access token.
+// Please keep your tokens secret. They enable to authenticate and analyze projects.
+// It requires administration permissions to specify a 'login' and generate a token for another user. Otherwise, a token is generated for the current user.
+// Since 5.3
+// Changelog:
+//   9.6: Response field 'expirationDate' added
 func (s *UserTokens) Generate(ctx context.Context, r user_tokens.GenerateRequest) (*user_tokens.GenerateResponse, error) {
 	u := fmt.Sprintf("%s/user_tokens/generate", API)
 	v := new(user_tokens.GenerateResponse)
@@ -22,6 +28,10 @@ func (s *UserTokens) Generate(ctx context.Context, r user_tokens.GenerateRequest
 	return v, nil
 }
 
+// Revoke - Revoke a user access token.
+// It requires administration permissions to specify a 'login' and revoke a token for another user. Otherwise, the token for the current user is revoked.
+// Since 5.3
+// Changelog:
 func (s *UserTokens) Revoke(ctx context.Context, r user_tokens.RevokeRequest) error {
 	u := fmt.Sprintf("%s/user_tokens/revoke", API)
 
@@ -33,6 +43,11 @@ func (s *UserTokens) Revoke(ctx context.Context, r user_tokens.RevokeRequest) er
 	return nil
 }
 
+// Search - List the access tokens of a user.
+// The login must exist and active.
+// Field 'lastConnectionDate' is only updated every hour, so it may not be accurate, for instance when a user is using a token many times in less than one hour.
+// It requires administration permissions to specify a 'login' and list the tokens of another user. Otherwise, tokens for the current user are listed.
+// Authentication is required for this API endpoint
 func (s *UserTokens) Search(ctx context.Context, r user_tokens.SearchRequest) (*user_tokens.SearchResponse, error) {
 	u := fmt.Sprintf("%s/user_tokens/search", API)
 	v := new(user_tokens.SearchResponse)

@@ -4,7 +4,7 @@ package languages
 
 // ListRequest List supported programming languages
 type ListRequest struct {
-	Q string `form:"q,omitempty"` // A pattern to match language keys/names against
+	Q string `url:"q,omitempty"` // A pattern to match language keys/names against
 }
 
 // ListResponse is the response for ListRequest

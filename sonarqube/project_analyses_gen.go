@@ -11,6 +11,14 @@ import (
 
 type ProjectAnalyses service
 
+// CreateEvent - Create a project analysis event.
+// Only event of category 'VERSION' and 'OTHER' can be created.
+// Requires one of the following permissions:
+//    * 'Administer System'
+//    * 'Administer' rights on the specified project
+//
+// Since 6.3
+// Changelog:
 func (s *ProjectAnalyses) CreateEvent(ctx context.Context, r project_analyses.CreateEventRequest) (*project_analyses.CreateEventResponse, error) {
 	u := fmt.Sprintf("%s/project_analyses/create_event", API)
 	v := new(project_analyses.CreateEventResponse)
@@ -23,6 +31,13 @@ func (s *ProjectAnalyses) CreateEvent(ctx context.Context, r project_analyses.Cr
 	return v, nil
 }
 
+// Delete - Delete a project analysis.
+// Requires one of the following permissions:
+//    * 'Administer System'
+//    * 'Administer' rights on the project of the specified analysis
+//
+// Since 6.3
+// Changelog:
 func (s *ProjectAnalyses) Delete(ctx context.Context, r project_analyses.DeleteRequest) error {
 	u := fmt.Sprintf("%s/project_analyses/delete", API)
 
@@ -34,6 +49,14 @@ func (s *ProjectAnalyses) Delete(ctx context.Context, r project_analyses.DeleteR
 	return nil
 }
 
+// DeleteEvent - Delete a project analysis event.
+// Only event of category 'VERSION' and 'OTHER' can be deleted.
+// Requires one of the following permissions:
+//    * 'Administer System'
+//    * 'Administer' rights on the specified project
+//
+// Since 6.3
+// Changelog:
 func (s *ProjectAnalyses) DeleteEvent(ctx context.Context, r project_analyses.DeleteEventRequest) error {
 	u := fmt.Sprintf("%s/project_analyses/delete_event", API)
 
@@ -45,6 +68,9 @@ func (s *ProjectAnalyses) DeleteEvent(ctx context.Context, r project_analyses.De
 	return nil
 }
 
+// Search - Search a project analyses and attached events.
+// Requires the following permission: 'Browse' on the specified project.
+// For applications, it also requires 'Browse' permission on its child projects.
 func (s *ProjectAnalyses) Search(ctx context.Context, r project_analyses.SearchRequest, p paging.Params) (*project_analyses.SearchResponse, error) {
 	u := fmt.Sprintf("%s/project_analyses/search", API)
 	v := new(project_analyses.SearchResponse)
@@ -78,6 +104,14 @@ func (s *ProjectAnalyses) SearchAll(ctx context.Context, r project_analyses.Sear
 	return response, nil
 }
 
+// UpdateEvent - Update a project analysis event.
+// Only events of category 'VERSION' and 'OTHER' can be updated.
+// Requires one of the following permissions:
+//    * 'Administer System'
+//    * 'Administer' rights on the specified project
+//
+// Since 6.3
+// Changelog:
 func (s *ProjectAnalyses) UpdateEvent(ctx context.Context, r project_analyses.UpdateEventRequest) (*project_analyses.UpdateEventResponse, error) {
 	u := fmt.Sprintf("%s/project_analyses/update_event", API)
 	v := new(project_analyses.UpdateEventResponse)

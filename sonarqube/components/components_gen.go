@@ -6,8 +6,8 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // SearchRequest Search for components
 type SearchRequest struct {
-	Q          string `form:"q,omitempty"`          // Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that are exactly the same as the supplied string</li></ul><br>The value length of the param must be between 2 and 15 (inclusive) characters. In case longer value is provided it will be truncated.
-	Qualifiers string `form:"qualifiers,omitempty"` // Comma-separated list of component qualifiers. Filter the results with the specified qualifiers. Possible values are:<ul><li>APP - Applications</li><li>VW - Portfolios</li><li>SVW - Portfolios</li><li>TRK - Projects</li></ul>
+	Q          string `url:"q,omitempty"` // Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that are exactly the same as the supplied string</li></ul><br>The value length of the param must be between 2 and 15 (inclusive) characters. In case longer value is provided it will be truncated.
+	Qualifiers string `url:"qualifiers"`  // Comma-separated list of component qualifiers. Filter the results with the specified qualifiers. Possible values are:<ul><li>APP - Applications</li><li>VW - Portfolios</li><li>SVW - Portfolios</li><li>TRK - Projects</li></ul>
 }
 
 // SearchResponse is the response for SearchRequest
@@ -38,9 +38,9 @@ type SearchResponseAll struct {
 
 // ShowRequest Returns a component (file, directory, project, portfolio…) and its ancestors. The ancestors are ordered from the parent to the root project. Requires the following permission: 'Browse' on the project of the specified component.
 type ShowRequest struct {
-	Branch      string `form:"branch,omitempty"`      // Branch key. Not available in the community edition.
-	Component   string `form:"component,omitempty"`   // Component key
-	PullRequest string `form:"pullRequest,omitempty"` // Pull request id. Not available in the community edition.
+	Branch      string `url:"branch,omitempty"`      // Since 6.6;Branch key. Not available in the community edition.
+	Component   string `url:"component"`             // Component key
+	PullRequest string `url:"pullRequest,omitempty"` // Since 7.1;Pull request id. Not available in the community edition.
 }
 
 // ShowResponse is the response for ShowRequest
@@ -70,14 +70,14 @@ type ShowResponse struct {
 
 // TreeRequest Navigate through components based on the chosen strategy.<br>Requires the following permission: 'Browse' on the specified project.<br>When limiting search with the q parameter, directories are not returned.
 type TreeRequest struct {
-	Asc         string `form:"asc,omitempty"`         // Ascending sort
-	Branch      string `form:"branch,omitempty"`      // Branch key. Not available in the community edition.
-	Component   string `form:"component,omitempty"`   // Base component key. The search is based on this component.
-	PullRequest string `form:"pullRequest,omitempty"` // Pull request id. Not available in the community edition.
-	Q           string `form:"q,omitempty"`           // Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that are exactly the same as the supplied string</li></ul>
-	Qualifiers  string `form:"qualifiers,omitempty"`  // Comma-separated list of component qualifiers. Filter the results with the specified qualifiers. Possible values are:<ul><li>APP - Applications</li><li>VW - Portfolios</li><li>SVW - Portfolios</li><li>UTS - Test Files</li><li>FIL - Files</li><li>DIR - Directories</li><li>TRK - Projects</li></ul>
-	S           string `form:"s,omitempty"`           // Comma-separated list of sort fields
-	Strategy    string `form:"strategy,omitempty"`    // Strategy to search for base component descendants:<ul><li>children: return the children components of the base component. Grandchildren components are not returned</li><li>all: return all the descendants components of the base component. Grandchildren are returned.</li><li>leaves: return all the descendant components (files, in general) which don't have other children. They are the leaves of the component tree.</li></ul>
+	Asc         string `url:"asc,omitempty"`         // Ascending sort
+	Branch      string `url:"branch,omitempty"`      // Since 6.6;Branch key. Not available in the community edition.
+	Component   string `url:"component"`             // Base component key. The search is based on this component.
+	PullRequest string `url:"pullRequest,omitempty"` // Since 7.1;Pull request id. Not available in the community edition.
+	Q           string `url:"q,omitempty"`           // Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that are exactly the same as the supplied string</li></ul>
+	Qualifiers  string `url:"qualifiers,omitempty"`  // Comma-separated list of component qualifiers. Filter the results with the specified qualifiers. Possible values are:<ul><li>APP - Applications</li><li>VW - Portfolios</li><li>SVW - Portfolios</li><li>UTS - Test Files</li><li>FIL - Files</li><li>DIR - Directories</li><li>TRK - Projects</li></ul>
+	S           string `url:"s,omitempty"`           // Comma-separated list of sort fields
+	Strategy    string `url:"strategy,omitempty"`    // Strategy to search for base component descendants:<ul><li>children: return the children components of the base component. Grandchildren components are not returned</li><li>all: return all the descendants components of the base component. Grandchildren are returned.</li><li>leaves: return all the descendant components (files, in general) which don't have other children. They are the leaves of the component tree.</li></ul>
 }
 
 // TreeResponse is the response for TreeRequest

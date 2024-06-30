@@ -6,17 +6,17 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // CreateRequest Create a custom rule.<br>Requires the 'Administer Quality Profiles' permission
 type CreateRequest struct {
-	CleanCodeAttribute  string `form:"cleanCodeAttribute,omitempty"`  // Clean code attribute
-	CustomKey           string `form:"customKey,omitempty"`           // Key of the custom rule
-	Impacts             string `form:"impacts,omitempty"`             // Impacts as semi-colon list of &lt;software_quality&gt;=&lt;severity&gt;
-	MarkdownDescription string `form:"markdownDescription,omitempty"` // Rule description in <a href='/formatting/help'>markdown format</a>
-	Name                string `form:"name,omitempty"`                // Rule name
-	Params              string `form:"params,omitempty"`              // Parameters as semi-colon list of &lt;key&gt;=&lt;value&gt;
-	PreventReactivation string `form:"preventReactivation,omitempty"` // If set to true and if the rule has been deactivated (status 'REMOVED'), a status 409 will be returned
-	Severity            string `form:"severity,omitempty"`            // Rule severity
-	Status              string `form:"status,omitempty"`              // Rule status
-	TemplateKey         string `form:"templateKey,omitempty"`         // Key of the template rule in order to create a custom rule
-	Type                string `form:"type,omitempty"`                // Rule type
+	CleanCodeAttribute  string `json:"cleanCodeAttribute,omitempty"`  // Since 10.4;Clean code attribute
+	CustomKey           string `json:"customKey"`                     // Key of the custom rule
+	Impacts             string `json:"impacts,omitempty"`             // Since 10.4;Impacts as semi-colon list of &lt;software_quality&gt;=&lt;severity&gt;
+	MarkdownDescription string `json:"markdownDescription"`           // Rule description in <a href='/formatting/help'>markdown format</a>
+	Name                string `json:"name"`                          // Rule name
+	Params              string `json:"params,omitempty"`              // Parameters as semi-colon list of &lt;key&gt;=&lt;value&gt;
+	PreventReactivation string `json:"preventReactivation,omitempty"` // Deprecated since 10.4;If set to true and if the rule has been deactivated (status 'REMOVED'), a status 409 will be returned
+	Severity            string `json:"severity,omitempty"`            // Deprecated since 10.4;Rule severity
+	Status              string `json:"status,omitempty"`              // Rule status
+	TemplateKey         string `json:"templateKey"`                   // Key of the template rule in order to create a custom rule
+	Type                string `json:"type,omitempty"`                // Since 6.7;Deprecated since 10.4;Rule type
 }
 
 // CreateResponse is the response for CreateRequest
@@ -55,13 +55,13 @@ type CreateResponse struct {
 
 // DeleteRequest Delete custom rule.<br/>Requires the 'Administer Quality Profiles' permission
 type DeleteRequest struct {
-	Key string `form:"key,omitempty"` // Rule key
+	Key string `json:"key"` // Rule key
 }
 
 // RepositoriesRequest List available rule repositories
 type RepositoriesRequest struct {
-	Language string `form:"language,omitempty"` // A language key; if provided, only repositories for the given language will be returned
-	Q        string `form:"q,omitempty"`        // A pattern to match repository keys/names against
+	Language string `url:"language,omitempty"` // A language key; if provided, only repositories for the given language will be returned
+	Q        string `url:"q,omitempty"`        // A pattern to match repository keys/names against
 }
 
 // RepositoriesResponse is the response for RepositoriesRequest
@@ -75,35 +75,35 @@ type RepositoriesResponse struct {
 
 // SearchRequest Search for a collection of relevant rules matching a specified query.<br/>
 type SearchRequest struct {
-	Activation                   string `form:"activation,omitempty"`                   // Filter rules that are activated or deactivated on the selected Quality profile. Ignored if the parameter 'qprofile' is not set.
-	ActiveSeverities             string `form:"active_severities,omitempty"`            // Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.
-	Asc                          string `form:"asc,omitempty"`                          // Ascending sort
-	AvailableSince               string `form:"available_since,omitempty"`              // Filters rules added since date. Format is yyyy-MM-dd
-	CleanCodeAttributeCategories string `form:"cleanCodeAttributeCategories,omitempty"` // Comma-separated list of Clean Code Attribute Categories
-	Cwe                          string `form:"cwe,omitempty"`                          // Comma-separated list of CWE identifiers. Use 'unknown' to select rules not associated to any CWE.
-	F                            string `form:"f,omitempty"`                            // Comma-separated list of additional fields to be returned in the response. All the fields are returned by default, except actives.
-	Facets                       string `form:"facets,omitempty"`                       // Comma-separated list of the facets to be computed. No facet is computed by default.
-	ImpactSeverities             string `form:"impactSeverities,omitempty"`             // Comma-separated list of Software Quality Severities
-	ImpactSoftwareQualities      string `form:"impactSoftwareQualities,omitempty"`      // Comma-separated list of Software Qualities
-	IncludeExternal              string `form:"include_external,omitempty"`             // Include external engine rules in the results
-	Inheritance                  string `form:"inheritance,omitempty"`                  // Comma-separated list of values of inheritance for a rule within a quality profile. Used only if the parameter 'activation' is set.
-	IsTemplate                   string `form:"is_template,omitempty"`                  // Filter template rules
-	Languages                    string `form:"languages,omitempty"`                    // Comma-separated list of languages
-	OwaspTop10                   string `form:"owaspTop10,omitempty"`                   // Comma-separated list of OWASP Top 10 2017 lowercase categories.
-	OwaspTop102021               string `form:"owaspTop10-2021,omitempty"`              // Comma-separated list of OWASP Top 10 2021 lowercase categories.
-	PrioritizedRule              string `form:"prioritizedRule,omitempty"`              // Filter on prioritized rules. Ignored if the parameter 'qprofile' is not set.
-	Q                            string `form:"q,omitempty"`                            // UTF-8 search query
-	Qprofile                     string `form:"qprofile,omitempty"`                     // Quality profile key to filter on. Used only if the parameter 'activation' is set.
-	Repositories                 string `form:"repositories,omitempty"`                 // Comma-separated list of repositories
-	RuleKey                      string `form:"rule_key,omitempty"`                     // Key of rule to search for
-	S                            string `form:"s,omitempty"`                            // Sort field
-	SansTop25                    string `form:"sansTop25,omitempty"`                    // Comma-separated list of SANS Top 25 categories.
-	Severities                   string `form:"severities,omitempty"`                   // Comma-separated list of default severities. Not the same than severity of rules in Quality profiles.
-	SonarsourceSecurity          string `form:"sonarsourceSecurity,omitempty"`          // Comma-separated list of SonarSource security categories. Use 'others' to select rules not associated with any category
-	Statuses                     string `form:"statuses,omitempty"`                     // Comma-separated list of status codes
-	Tags                         string `form:"tags,omitempty"`                         // Comma-separated list of tags. Returned rules match any of the tags (OR operator)
-	TemplateKey                  string `form:"template_key,omitempty"`                 // Key of the template rule to filter on. Used to search for the custom rules based on this template.
-	Types                        string `form:"types,omitempty"`                        // Comma-separated list of types. Returned rules match any of the tags (OR operator)
+	Activation                   string `url:"activation,omitempty"`                   // Filter rules that are activated or deactivated on the selected Quality profile. Ignored if the parameter 'qprofile' is not set.
+	ActiveSeverities             string `url:"active_severities,omitempty"`            // Deprecated since 10.2;Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.
+	Asc                          string `url:"asc,omitempty"`                          // Ascending sort
+	AvailableSince               string `url:"available_since,omitempty"`              // Filters rules added since date. Format is yyyy-MM-dd
+	CleanCodeAttributeCategories string `url:"cleanCodeAttributeCategories,omitempty"` // Since 10.2;Comma-separated list of Clean Code Attribute Categories
+	Cwe                          string `url:"cwe,omitempty"`                          // Comma-separated list of CWE identifiers. Use 'unknown' to select rules not associated to any CWE.
+	F                            string `url:"f,omitempty"`                            // Comma-separated list of additional fields to be returned in the response. All the fields are returned by default, except actives.
+	Facets                       string `url:"facets,omitempty"`                       // Comma-separated list of the facets to be computed. No facet is computed by default.
+	ImpactSeverities             string `url:"impactSeverities,omitempty"`             // Since 10.2;Comma-separated list of Software Quality Severities
+	ImpactSoftwareQualities      string `url:"impactSoftwareQualities,omitempty"`      // Since 10.2;Comma-separated list of Software Qualities
+	IncludeExternal              string `url:"include_external,omitempty"`             // Since 7.2;Include external engine rules in the results
+	Inheritance                  string `url:"inheritance,omitempty"`                  // Comma-separated list of values of inheritance for a rule within a quality profile. Used only if the parameter 'activation' is set.
+	IsTemplate                   string `url:"is_template,omitempty"`                  // Filter template rules
+	Languages                    string `url:"languages,omitempty"`                    // Comma-separated list of languages
+	OwaspTop10                   string `url:"owaspTop10,omitempty"`                   // Since 7.3;Comma-separated list of OWASP Top 10 2017 lowercase categories.
+	OwaspTop102021               string `url:"owaspTop10-2021,omitempty"`              // Since 9.4;Comma-separated list of OWASP Top 10 2021 lowercase categories.
+	PrioritizedRule              string `url:"prioritizedRule,omitempty"`              // Since 10.6;Filter on prioritized rules. Ignored if the parameter 'qprofile' is not set.
+	Q                            string `url:"q,omitempty"`                            // UTF-8 search query
+	Qprofile                     string `url:"qprofile,omitempty"`                     // Quality profile key to filter on. Used only if the parameter 'activation' is set.
+	Repositories                 string `url:"repositories,omitempty"`                 // Comma-separated list of repositories
+	RuleKey                      string `url:"rule_key,omitempty"`                     // Key of rule to search for
+	S                            string `url:"s,omitempty"`                            // Sort field
+	SansTop25                    string `url:"sansTop25,omitempty"`                    // Since 7.3;Deprecated since 10.0;Comma-separated list of SANS Top 25 categories.
+	Severities                   string `url:"severities,omitempty"`                   // Deprecated since 10.2;Comma-separated list of default severities. Not the same than severity of rules in Quality profiles.
+	SonarsourceSecurity          string `url:"sonarsourceSecurity,omitempty"`          // Since 7.8;Comma-separated list of SonarSource security categories. Use 'others' to select rules not associated with any category
+	Statuses                     string `url:"statuses,omitempty"`                     // Comma-separated list of status codes
+	Tags                         string `url:"tags,omitempty"`                         // Comma-separated list of tags. Returned rules match any of the tags (OR operator)
+	TemplateKey                  string `url:"template_key,omitempty"`                 // Key of the template rule to filter on. Used to search for the custom rules based on this template.
+	Types                        string `url:"types,omitempty"`                        // Since 5.5;Deprecated since 10.2;Comma-separated list of types. Returned rules match any of the tags (OR operator)
 }
 
 // SearchResponse is the response for SearchRequest
@@ -278,8 +278,8 @@ type SearchResponseAll struct {
 
 // ShowRequest Get detailed information about a rule<br>
 type ShowRequest struct {
-	Actives string `form:"actives,omitempty"` // Show rule's activations for all profiles ("active rules")
-	Key     string `form:"key,omitempty"`     // Rule key
+	Actives string `url:"actives,omitempty"` // Show rule's activations for all profiles ("active rules")
+	Key     string `url:"key"`               // Rule key
 }
 
 // ShowResponse is the response for ShowRequest
@@ -342,7 +342,7 @@ type ShowResponse struct {
 
 // TagsRequest List rule tags
 type TagsRequest struct {
-	Q string `form:"q,omitempty"` // Limit search to tags that contain the supplied string.
+	Q string `url:"q,omitempty"` // Limit search to tags that contain the supplied string.
 }
 
 // TagsResponse is the response for TagsRequest
@@ -352,17 +352,17 @@ type TagsResponse struct {
 
 // UpdateRequest Update an existing rule.<br>Requires the 'Administer Quality Profiles' permission
 type UpdateRequest struct {
-	Key                        string `form:"key,omitempty"`                           // Key of the rule to update
-	MarkdownDescription        string `form:"markdownDescription,omitempty"`           // Rule description (mandatory for custom rule and manual rule) in <a href='/formatting/help'>markdown format</a>
-	MarkdownNote               string `form:"markdown_note,omitempty"`                 // Optional note in <a href='/formatting/help'>markdown format</a>. Use empty value to remove current note. Note is not changed if the parameter is not set.
-	Name                       string `form:"name,omitempty"`                          // Rule name (mandatory for custom rule)
-	Params                     string `form:"params,omitempty"`                        // Parameters as semi-colon list of <key>=<value>, for example 'params=key1=v1;key2=v2' (Only when updating a custom rule)
-	RemediationFnBaseEffort    string `form:"remediation_fn_base_effort,omitempty"`    // Base effort of the remediation function of the rule
-	RemediationFnType          string `form:"remediation_fn_type,omitempty"`           // Type of the remediation function of the rule
-	RemediationFyGapMultiplier string `form:"remediation_fy_gap_multiplier,omitempty"` // Gap multiplier of the remediation function of the rule
-	Severity                   string `form:"severity,omitempty"`                      // Rule severity (Only when updating a custom rule)
-	Status                     string `form:"status,omitempty"`                        // Rule status (Only when updating a custom rule)
-	Tags                       string `form:"tags,omitempty"`                          // Optional comma-separated list of tags to set. Use blank value to remove current tags. Tags are not changed if the parameter is not set.
+	Key                        string `json:"key"`                                     // Key of the rule to update
+	MarkdownDescription        string `json:"markdownDescription,omitempty"`           // Rule description (mandatory for custom rule and manual rule) in <a href='/formatting/help'>markdown format</a>
+	MarkdownNote               string `json:"markdown_note,omitempty"`                 // Optional note in <a href='/formatting/help'>markdown format</a>. Use empty value to remove current note. Note is not changed if the parameter is not set.
+	Name                       string `json:"name,omitempty"`                          // Rule name (mandatory for custom rule)
+	Params                     string `json:"params,omitempty"`                        // Parameters as semi-colon list of <key>=<value>, for example 'params=key1=v1;key2=v2' (Only when updating a custom rule)
+	RemediationFnBaseEffort    string `json:"remediation_fn_base_effort,omitempty"`    // Since 5.5;Base effort of the remediation function of the rule
+	RemediationFnType          string `json:"remediation_fn_type,omitempty"`           // Since 5.5;Type of the remediation function of the rule
+	RemediationFyGapMultiplier string `json:"remediation_fy_gap_multiplier,omitempty"` // Since 5.5;Gap multiplier of the remediation function of the rule
+	Severity                   string `json:"severity,omitempty"`                      // Deprecated since 10.4;Rule severity (Only when updating a custom rule)
+	Status                     string `json:"status,omitempty"`                        // Rule status (Only when updating a custom rule)
+	Tags                       string `json:"tags,omitempty"`                          // Optional comma-separated list of tags to set. Use blank value to remove current tags. Tags are not changed if the parameter is not set.
 }
 
 // UpdateResponse is the response for UpdateRequest

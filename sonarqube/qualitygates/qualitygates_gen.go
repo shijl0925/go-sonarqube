@@ -6,25 +6,25 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // AddGroupRequest Allow a group of users to edit a Quality Gate.<br>Requires one of the following permissions:<ul>  <li>'Administer Quality Gates'</li>  <li>Edit right on the specified quality gate</li></ul>
 type AddGroupRequest struct {
-	GateName  string `form:"gateName,omitempty"`  // Quality Gate name
-	GroupName string `form:"groupName,omitempty"` // Group name or 'anyone' (case insensitive)
+	GateName  string `json:"gateName"`  // Quality Gate name
+	GroupName string `json:"groupName"` // Group name or 'anyone' (case insensitive)
 }
 
 // AddUserRequest Allow a user to edit a Quality Gate.<br>Requires one of the following permissions:<ul>  <li>'Administer Quality Gates'</li>  <li>Edit right on the specified quality gate</li></ul>
 type AddUserRequest struct {
-	GateName string `form:"gateName,omitempty"` // Quality Gate name
-	Login    string `form:"login,omitempty"`    // User login
+	GateName string `json:"gateName"` // Quality Gate name
+	Login    string `json:"login"`    // User login
 }
 
 // CopyRequest Copy a Quality Gate.<br>'sourceName' must be provided. Requires the 'Administer Quality Gates' permission.
 type CopyRequest struct {
-	Name       string `form:"name,omitempty"`       // The name of the quality gate to create
-	SourceName string `form:"sourceName,omitempty"` // The name of the quality gate to copy
+	Name       string `json:"name"`       // The name of the quality gate to create
+	SourceName string `json:"sourceName"` // Since 8.4;The name of the quality gate to copy
 }
 
 // CreateRequest Create a Quality Gate.<br>Requires the 'Administer Quality Gates' permission.
 type CreateRequest struct {
-	Name string `form:"name,omitempty"` // The name of the quality gate to create
+	Name string `json:"name"` // The name of the quality gate to create
 }
 
 // CreateResponse is the response for CreateRequest
@@ -35,10 +35,10 @@ type CreateResponse struct {
 
 // CreateConditionRequest Add a new condition to a quality gate.<br>Parameter 'gateName' must be provided. Requires the 'Administer Quality Gates' permission.
 type CreateConditionRequest struct {
-	Error    string `form:"error,omitempty"`    // Condition error threshold
-	GateName string `form:"gateName,omitempty"` // Name of the quality gate
-	Metric   string `form:"metric,omitempty"`   // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>security_hotspots</li><li>new_security_hotspots</li><li>alert_status</li></ul>
-	Op       string `form:"op,omitempty"`       // Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul>
+	Error    string `json:"error"`        // Condition error threshold
+	GateName string `json:"gateName"`     // Name of the quality gate
+	Metric   string `json:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>security_hotspots</li><li>new_security_hotspots</li><li>alert_status</li></ul>
+	Op       string `json:"op,omitempty"` // Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul>
 }
 
 // CreateConditionResponse is the response for CreateConditionRequest
@@ -52,22 +52,22 @@ type CreateConditionResponse struct {
 
 // DeleteConditionRequest Delete a condition from a quality gate.<br>Requires the 'Administer Quality Gates' permission.
 type DeleteConditionRequest struct {
-	Id string `form:"id,omitempty"` // Condition UUID
+	Id string `json:"id"` // Condition UUID
 }
 
 // DeselectRequest Remove the association of a project from a quality gate.<br>Requires one of the following permissions:<ul><li>'Administer Quality Gates'</li><li>'Administer' rights on the project</li></ul>
 type DeselectRequest struct {
-	ProjectKey string `form:"projectKey,omitempty"` // Project key
+	ProjectKey string `json:"projectKey"` // Since 6.1;Project key
 }
 
 // DestroyRequest Delete a Quality Gate.<br>Parameter 'name' must be specified. Requires the 'Administer Quality Gates' permission.
 type DestroyRequest struct {
-	Name string `form:"name,omitempty"` // Name of the quality gate to delete
+	Name string `json:"name"` // Since 8.4;Name of the quality gate to delete
 }
 
 // GetByProjectRequest Get the quality gate of a project.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li><li>'Browse' on the specified project</li></ul>
 type GetByProjectRequest struct {
-	Project string `form:"project,omitempty"` // Project key
+	Project string `url:"project"` // Project key
 }
 
 // GetByProjectResponse is the response for GetByProjectRequest
@@ -105,11 +105,11 @@ type ListResponse struct {
 
 // ProjectStatusRequest Get the quality gate status of a project or a Compute Engine task.<br />Either 'analysisId', 'projectId' or 'projectKey' must be provided <br />The different statuses returned are: OK, WARN, ERROR, NONE. The NONE status is returned when there is no quality gate associated with the analysis.<br />Returns an HTTP code 404 if the analysis associated with the task is not found or does not exist.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li><li>'Browse' on the specified project</li><li>'Execute Analysis' on the specified project</li></ul>
 type ProjectStatusRequest struct {
-	AnalysisId  string `form:"analysisId,omitempty"`  // Analysis id
-	Branch      string `form:"branch,omitempty"`      // Branch key
-	ProjectId   string `form:"projectId,omitempty"`   // Project UUID. Doesn't work with branches or pull requests
-	ProjectKey  string `form:"projectKey,omitempty"`  // Project key
-	PullRequest string `form:"pullRequest,omitempty"` // Pull request id
+	AnalysisId  string `url:"analysisId,omitempty"`  // Analysis id
+	Branch      string `url:"branch,omitempty"`      // Since 7.7;Branch key
+	ProjectId   string `url:"projectId,omitempty"`   // Since 5.4;Project UUID. Doesn't work with branches or pull requests
+	ProjectKey  string `url:"projectKey,omitempty"`  // Since 5.4;Project key
+	PullRequest string `url:"pullRequest,omitempty"` // Since 7.7;Pull request id
 }
 
 // ProjectStatusResponse is the response for ProjectStatusRequest
@@ -135,29 +135,29 @@ type ProjectStatusResponse struct {
 
 // RemoveGroupRequest Remove the ability from a group to edit a Quality Gate.<br>Requires one of the following permissions:<ul>  <li>'Administer Quality Gates'</li>  <li>Edit right on the specified quality gate</li></ul>
 type RemoveGroupRequest struct {
-	GateName  string `form:"gateName,omitempty"`  // Quality Gate name
-	GroupName string `form:"groupName,omitempty"` // Group name or 'anyone' (case insensitive)
+	GateName  string `json:"gateName"`  // Quality Gate name
+	GroupName string `json:"groupName"` // Group name or 'anyone' (case insensitive)
 }
 
 // RemoveUserRequest Remove the ability from an user to edit a Quality Gate.<br>Requires one of the following permissions:<ul>  <li>'Administer Quality Gates'</li>  <li>Edit right on the specified quality gate</li></ul>
 type RemoveUserRequest struct {
-	GateName string `form:"gateName,omitempty"` // Quality Gate name
-	Login    string `form:"login,omitempty"`    // User login
+	GateName string `json:"gateName"` // Quality Gate name
+	Login    string `json:"login"`    // User login
 }
 
 // RenameRequest Rename a Quality Gate.<br>'currentName' must be specified. Requires the 'Administer Quality Gates' permission.
 type RenameRequest struct {
-	CurrentName string `form:"currentName,omitempty"` // Current name of the quality gate
-	Name        string `form:"name,omitempty"`        // New name of the quality gate
+	CurrentName string `json:"currentName"` // Since 8.4;Current name of the quality gate
+	Name        string `json:"name"`        // New name of the quality gate
 }
 
 // SearchRequest Search for projects associated (or not) to a quality gate.<br/>Only authorized projects for the current user will be returned.
 type SearchRequest struct {
-	GateName string `form:"gateName,omitempty"` // Quality Gate name
-	Page     string `form:"page,omitempty"`     // Page number
-	PageSize string `form:"pageSize,omitempty"` // Page size
-	Query    string `form:"query,omitempty"`    // To search for projects containing this string. If this parameter is set, "selected" is set to "all".
-	Selected string `form:"selected,omitempty"` // Depending on the value, show only selected items (selected=selected), deselected items (selected=deselected), or all items with their selection status (selected=all).
+	GateName string `url:"gateName"`           // Since 8.4;Quality Gate name
+	Page     string `url:"page,omitempty"`     // Page number
+	PageSize string `url:"pageSize,omitempty"` // Page size
+	Query    string `url:"query,omitempty"`    // To search for projects containing this string. If this parameter is set, "selected" is set to "all".
+	Selected string `url:"selected,omitempty"` // Depending on the value, show only selected items (selected=selected), deselected items (selected=deselected), or all items with their selection status (selected=all).
 }
 
 // SearchResponse is the response for SearchRequest
@@ -176,9 +176,9 @@ type SearchResponse struct {
 
 // SearchGroupsRequest List the groups that are allowed to edit a Quality Gate.<br>Requires one of the following permissions:<ul>  <li>'Administer Quality Gates'</li>  <li>Edit right on the specified quality gate</li></ul>
 type SearchGroupsRequest struct {
-	GateName string `form:"gateName,omitempty"` // Quality Gate name
-	Q        string `form:"q,omitempty"`        // Limit search to group names that contain the supplied string.
-	Selected string `form:"selected,omitempty"` // Depending on the value, show only selected items (selected=selected), deselected items (selected=deselected), or all items with their selection status (selected=all).
+	GateName string `url:"gateName"`           // Quality Gate name
+	Q        string `url:"q,omitempty"`        // Limit search to group names that contain the supplied string.
+	Selected string `url:"selected,omitempty"` // Depending on the value, show only selected items (selected=selected), deselected items (selected=deselected), or all items with their selection status (selected=all).
 }
 
 // SearchGroupsResponse is the response for SearchGroupsRequest
@@ -207,9 +207,9 @@ type SearchGroupsResponseAll struct {
 
 // SearchUsersRequest List the users that are allowed to edit a Quality Gate.<br>Requires one of the following permissions:<ul>  <li>'Administer Quality Gates'</li>  <li>Edit right on the specified quality gate</li></ul>
 type SearchUsersRequest struct {
-	GateName string `form:"gateName,omitempty"` // Quality Gate name
-	Q        string `form:"q,omitempty"`        // Limit search to names or logins that contain the supplied string.
-	Selected string `form:"selected,omitempty"` // Depending on the value, show only selected items (selected=selected), deselected items (selected=deselected), or all items with their selection status (selected=all).
+	GateName string `url:"gateName"`           // Quality Gate name
+	Q        string `url:"q,omitempty"`        // Limit search to names or logins that contain the supplied string.
+	Selected string `url:"selected,omitempty"` // Depending on the value, show only selected items (selected=selected), deselected items (selected=deselected), or all items with their selection status (selected=all).
 }
 
 // SearchUsersResponse is the response for SearchUsersRequest
@@ -240,18 +240,18 @@ type SearchUsersResponseAll struct {
 
 // SelectRequest Associate a project to a quality gate.<br>Requires one of the following permissions:<ul>  <li>'Administer Quality Gates'</li>  <li>'Administer' right on the specified project</li></ul>
 type SelectRequest struct {
-	GateName   string `form:"gateName,omitempty"`   // Name of the quality gate
-	ProjectKey string `form:"projectKey,omitempty"` // Project key
+	GateName   string `json:"gateName"`   // Since 8.4;Name of the quality gate
+	ProjectKey string `json:"projectKey"` // Since 6.1;Project key
 }
 
 // SetAsDefaultRequest Set a quality gate as the default quality gate.<br>Parameter 'name' must be specified. Requires the 'Administer Quality Gates' permission.
 type SetAsDefaultRequest struct {
-	Name string `form:"name,omitempty"` // Name of the quality gate to set as default
+	Name string `json:"name"` // Since 8.4;Name of the quality gate to set as default
 }
 
 // ShowRequest Display the details of a quality gate
 type ShowRequest struct {
-	Name string `form:"name,omitempty"` // Name of the quality gate. Either id or name must be set
+	Name string `url:"name"` // Name of the quality gate. Either id or name must be set
 }
 
 // ShowResponse is the response for ShowRequest
@@ -279,8 +279,8 @@ type ShowResponse struct {
 
 // UpdateConditionRequest Update a condition attached to a quality gate.<br>Requires the 'Administer Quality Gates' permission.
 type UpdateConditionRequest struct {
-	Error  string `form:"error,omitempty"`  // Condition error threshold
-	Id     string `form:"id,omitempty"`     // Condition ID
-	Metric string `form:"metric,omitempty"` // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>security_hotspots</li><li>new_security_hotspots</li><li>alert_status</li></ul>
-	Op     string `form:"op,omitempty"`     // Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul>
+	Error  string `json:"error"`        // Condition error threshold
+	Id     string `json:"id"`           // Condition ID
+	Metric string `json:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>security_hotspots</li><li>new_security_hotspots</li><li>alert_status</li></ul>
+	Op     string `json:"op,omitempty"` // Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul>
 }

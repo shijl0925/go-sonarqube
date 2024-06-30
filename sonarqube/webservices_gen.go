@@ -10,6 +10,7 @@ import (
 
 type Webservices service
 
+// List - List web services
 func (s *Webservices) List(ctx context.Context, r webservices.ListRequest) (*webservices.ListResponse, error) {
 	u := fmt.Sprintf("%s/webservices/list", API)
 	v := new(webservices.ListResponse)
@@ -22,6 +23,7 @@ func (s *Webservices) List(ctx context.Context, r webservices.ListRequest) (*web
 	return v, nil
 }
 
+// ResponseExample - Display web service response example
 func (s *Webservices) ResponseExample(ctx context.Context, r webservices.ResponseExampleRequest) (*webservices.ResponseExampleResponse, error) {
 	u := fmt.Sprintf("%s/webservices/response_example", API)
 	v := new(webservices.ResponseExampleResponse)
