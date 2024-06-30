@@ -71,6 +71,9 @@ func (s *Qualityprofiles) AddProject(ctx context.Context, r qualityprofiles.AddP
 }
 
 // Backup - Backup a quality profile in XML form. The exported profile can be restored through api/qualityprofiles/restore.
+// Since 5.2
+// Changelog:
+//   10.3: The 'priority' and 'type' fields of the rule XML object are deprecated.
 func (s *Qualityprofiles) Backup(ctx context.Context, r qualityprofiles.BackupRequest) (*qualityprofiles.BackupResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/backup", API)
 	v := new(qualityprofiles.BackupResponse)
@@ -102,6 +105,13 @@ func (s *Qualityprofiles) ChangeParent(ctx context.Context, r qualityprofiles.Ch
 }
 
 // Changelog - Get the history of changes on a quality profile: rule activation/deactivation, change in parameters/severity. Events are ordered by date in descending order (most recent first).
+// Since 5.2
+// Changelog:
+//   10.3: Added fields 'cleanCodeAttributeCategory', 'impacts' to response
+//   10.3: Added fields 'oldCleanCodeAttribute', 'newCleanCodeAttribute', 'oldCleanCodeAttributeCategory', 'newCleanCodeAttributeCategory' and 'impactChanges' to 'params' section of response
+//   10.3: Added field 'sonarQubeVersion' to 'params' section of response
+//   9.8: response fields 'total', 's', 'ps' have been deprecated, please use 'paging' object instead
+//   9.8: The field 'paging' has been added to the response
 func (s *Qualityprofiles) Changelog(ctx context.Context, r qualityprofiles.ChangelogRequest, p paging.Params) (*qualityprofiles.ChangelogResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/changelog", API)
 	v := new(qualityprofiles.ChangelogResponse)
@@ -226,6 +236,8 @@ func (s *Qualityprofiles) Delete(ctx context.Context, r qualityprofiles.DeleteRe
 }
 
 // Export - Export a quality profile.
+// Since 5.2
+// Changelog:
 func (s *Qualityprofiles) Export(ctx context.Context, r qualityprofiles.ExportRequest) (*qualityprofiles.ExportResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/export", API)
 	v := new(qualityprofiles.ExportResponse)
@@ -239,6 +251,8 @@ func (s *Qualityprofiles) Export(ctx context.Context, r qualityprofiles.ExportRe
 }
 
 // Exporters - Lists available profile export formats.
+// Since 5.2
+// Changelog:
 func (s *Qualityprofiles) Exporters(ctx context.Context, r qualityprofiles.ExportersRequest) (*qualityprofiles.ExportersResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/exporters", API)
 	v := new(qualityprofiles.ExportersResponse)
@@ -252,6 +266,8 @@ func (s *Qualityprofiles) Exporters(ctx context.Context, r qualityprofiles.Expor
 }
 
 // Importers - List supported importers.
+// Since 5.2
+// Changelog:
 func (s *Qualityprofiles) Importers(ctx context.Context, r qualityprofiles.ImportersRequest) (*qualityprofiles.ImportersResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/importers", API)
 	v := new(qualityprofiles.ImportersResponse)
@@ -265,6 +281,9 @@ func (s *Qualityprofiles) Importers(ctx context.Context, r qualityprofiles.Impor
 }
 
 // Inheritance - Show a quality profile's ancestors and children.
+// Since 5.2
+// Changelog:
+//   10.3: Field 'inactiveRuleCount' added to the response
 func (s *Qualityprofiles) Inheritance(ctx context.Context, r qualityprofiles.InheritanceRequest) (*qualityprofiles.InheritanceResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/inheritance", API)
 	v := new(qualityprofiles.InheritanceResponse)
@@ -280,6 +299,15 @@ func (s *Qualityprofiles) Inheritance(ctx context.Context, r qualityprofiles.Inh
 // Projects - List projects with their association status regarding a quality profile.
 // Only projects explicitly bound to the profile are returned, those associated with the profile because it is the default one are not.
 // See api/qualityprofiles/search in order to get the Quality Profile Key.
+// Since 5.2
+// Changelog:
+//   10.0: deprecated 'more' response field has been removed
+//   8.8: deprecated 'id' response field has been removed
+//   8.8: deprecated 'uuid' response field has been removed
+//   7.2: 'more' response field is deprecated
+//   6.5: 'id' response field is deprecated
+//   6.0: 'uuid' response field is deprecated and replaced by 'id'
+//   6.0: 'key' response field has been added to return the project key
 func (s *Qualityprofiles) Projects(ctx context.Context, r qualityprofiles.ProjectsRequest, p paging.Params) (*qualityprofiles.ProjectsResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/projects", API)
 	v := new(qualityprofiles.ProjectsResponse)
@@ -367,6 +395,12 @@ func (s *Qualityprofiles) Restore(ctx context.Context, r qualityprofiles.Restore
 }
 
 // Search - Search quality profiles
+// Since 5.2
+// Changelog:
+//   10.0: Remove deprecated parameter 'project_key'. Please use 'project' instead.
+//   7.0: Add available actions 'delete' and 'associateProjects'
+//   6.6: Add available actions 'edit', 'copy' and 'setAsDefault' and global action 'create'
+//   6.5: The parameters 'defaults', 'project' and 'language' can be combined without any constraint
 func (s *Qualityprofiles) Search(ctx context.Context, r qualityprofiles.SearchRequest) (*qualityprofiles.SearchResponse, error) {
 	u := fmt.Sprintf("%s/qualityprofiles/search", API)
 	v := new(qualityprofiles.SearchResponse)

@@ -12,6 +12,12 @@ import (
 type Components service
 
 // Search - Search for components
+// Since 6.3
+// Changelog:
+//   8.4: Param 'language' has been removed
+//   8.4: The use of 'DIR','FIL','UTS' and 'BRC' as values for parameter 'qualifiers' is no longer supported
+//   8.0: Field 'id' from response has been removed
+//   7.6: The use of 'BRC' as value for parameter 'qualifiers' is deprecated
 func (s *Components) Search(ctx context.Context, r components.SearchRequest, p paging.Params) (*components.SearchResponse, error) {
 	u := fmt.Sprintf("%s/components/search", API)
 	v := new(components.SearchResponse)
@@ -46,6 +52,10 @@ func (s *Components) SearchAll(ctx context.Context, r components.SearchRequest) 
 }
 
 // Show - Returns a component (file, directory, project, portfolio…) and its ancestors. The ancestors are ordered from the parent to the root project. Requires the following permission: 'Browse' on the project of the specified component.
+// Since 5.4
+// Changelog:
+//   10.1: The use of module keys in parameter 'component' is removed
+//   7.6: The use of module keys in parameter 'component' is deprecated
 func (s *Components) Show(ctx context.Context, r components.ShowRequest) (*components.ShowResponse, error) {
 	u := fmt.Sprintf("%s/components/show", API)
 	v := new(components.ShowResponse)
@@ -61,6 +71,12 @@ func (s *Components) Show(ctx context.Context, r components.ShowRequest) (*compo
 // Tree - Navigate through components based on the chosen strategy.
 // Requires the following permission: 'Browse' on the specified project.
 // When limiting search with the q parameter, directories are not returned.
+// Since 5.4
+// Changelog:
+//   10.1: The use of module keys in parameter 'component' is removed
+//   10.1: The use of 'BRC' as value for parameter 'qualifiers' is removed
+//   7.6: The use of 'BRC' as value for parameter 'qualifiers' is deprecated
+//   7.6: The use of module keys in parameter 'component' is deprecated
 func (s *Components) Tree(ctx context.Context, r components.TreeRequest, p paging.Params) (*components.TreeResponse, error) {
 	u := fmt.Sprintf("%s/components/tree", API)
 	v := new(components.TreeResponse)

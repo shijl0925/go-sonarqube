@@ -51,6 +51,8 @@ func (s *Favorites) Remove(ctx context.Context, r favorites.RemoveRequest) error
 
 // Search - Search for the authenticated user favorites.
 // Requires authentication.
+// Since 6.3
+// Changelog:
 func (s *Favorites) Search(ctx context.Context, r favorites.SearchRequest, p paging.Params) (*favorites.SearchResponse, error) {
 	u := fmt.Sprintf("%s/favorites/search", API)
 	v := new(favorites.SearchResponse)

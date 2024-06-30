@@ -30,6 +30,10 @@ func (s *ProjectPullRequests) Delete(ctx context.Context, r project_pull_request
 //  * 'Browse' rights on the specified project
 //  * 'Execute Analysis' rights on the specified project
 //
+// Since 7.1
+// Changelog:
+//   9.8: Response fields: 'bugs', 'vulnerabilities', 'codeSmells' has been dropped.
+//   8.4: Response fields: 'bugs', 'vulnerabilities', 'codeSmells' are deprecated.
 func (s *ProjectPullRequests) List(ctx context.Context, r project_pull_requests.ListRequest) (*project_pull_requests.ListResponse, error) {
 	u := fmt.Sprintf("%s/project_pull_requests/list", API)
 	v := new(project_pull_requests.ListResponse)

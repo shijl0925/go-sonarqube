@@ -66,6 +66,16 @@ func (s *Projects) Delete(ctx context.Context, r projects.DeleteRequest) error {
 
 // ExportFindings - Export all findings (issues and hotspots) of a specific project branch.
 // Requires 'Administer System' permission. Keep in mind that this endpoint will return all findings, issues and hotspots (no filter), which can take time and use a lot of resources on the SonarQube server side and put pressure on the database until completion. This endpoint can be used to feed third party systems. Either the branch key or the pull request key should be specified, and not both at the same time.
+// Since 9.1
+// Changelog:
+//   10.4: 'status' and 'resolution' fields are now deprecated for issues. Use 'issueStatus' instead. Note that both fields remain available for 'type=SECURITY_HOTSPOT'.
+//   10.4: Add 'issueStatus' field to the response
+//   10.4: 'type' and 'severity' fields are now deprecated for issues. Use 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields instead. Note that 'type' remains available for 'type=SECURITY_HOTSPOT'.
+//   10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
+//   9.3: ruleReference field now contain 'repository_key:rule_key' instead of only the rule key
+//   9.3: add field 'branch' and 'pullRequest' in the payload. mutually exclusive, depending on the request
+//   9.3: createdAt and updatedAt now return effective issue creation and update date, instead of the database operation date
+//   9.3: projectKey field now return correctly the projectKey, instead of <projectKey>:PULL_REQUEST:<pullRequestKey>
 func (s *Projects) ExportFindings(ctx context.Context, r projects.ExportFindingsRequest) (*projects.ExportFindingsResponse, error) {
 	u := fmt.Sprintf("%s/projects/export_findings", API)
 	v := new(projects.ExportFindingsResponse)
@@ -80,6 +90,9 @@ func (s *Projects) ExportFindings(ctx context.Context, r projects.ExportFindings
 
 // LicenseUsage - Help admins to understand how much each project affects the total number of lines of code. Returns the list of projects together with information about their usage, sorted by lines of code descending.
 // Requires Administer System permission.
+// Since 9.4
+// Changelog:
+//   9.5: Response format changed from CSV to Json
 func (s *Projects) LicenseUsage(ctx context.Context, r projects.LicenseUsageRequest) (*projects.LicenseUsageResponse, error) {
 	u := fmt.Sprintf("%s/projects/license_usage", API)
 	v := new(projects.LicenseUsageResponse)
@@ -101,6 +114,10 @@ func (s *Projects) LicenseUsage(ctx context.Context, r projects.LicenseUsageRequ
 //
 //
 // Requires 'Administer System' permission
+// Since 6.3
+// Changelog:
+//   10.2: Response includes 'managed' field.
+//   9.1: The parameter 'analyzedBefore' and the field 'lastAnalysisDate' of the returned projects take into account the analysis of all branches and pull requests, not only the main branch.
 func (s *Projects) Search(ctx context.Context, r projects.SearchRequest, p paging.Params) (*projects.SearchResponse, error) {
 	u := fmt.Sprintf("%s/projects/search", API)
 	v := new(projects.SearchResponse)

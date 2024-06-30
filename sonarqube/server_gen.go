@@ -11,6 +11,8 @@ import (
 type Server service
 
 // Version - Version of SonarQube in plain text
+// Since 2.10
+// Changelog:
 func (s *Server) Version(ctx context.Context, r server.VersionRequest) (*server.VersionResponse, error) {
 	u := fmt.Sprintf("%s/server/version", API)
 	v := new(server.VersionResponse)

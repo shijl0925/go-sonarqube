@@ -12,6 +12,8 @@ type NewCodePeriods service
 
 // List - Lists the <a href="https://sonar-documentations-preview.netlify.app/sonarqube/10.7/project-administration/clean-as-you-code-settings/defining-new-code/" target="_blank" rel="noopener noreferrer">new code definition</a> for all branches in a project.
 // Requires the permission to browse the project
+// Since 8.0
+// Changelog:
 func (s *NewCodePeriods) List(ctx context.Context, r new_code_periods.ListRequest) (*new_code_periods.ListResponse, error) {
 	u := fmt.Sprintf("%s/new_code_periods/list", API)
 	v := new(new_code_periods.ListResponse)
@@ -51,6 +53,8 @@ func (s *NewCodePeriods) Set(ctx context.Context, r new_code_periods.SetRequest)
 //  * 'Administer' rights on the specified component
 //  * 'Execute analysis' rights on the specified component
 //
+// Since 8.0
+// Changelog:
 func (s *NewCodePeriods) Show(ctx context.Context, r new_code_periods.ShowRequest) (*new_code_periods.ShowResponse, error) {
 	u := fmt.Sprintf("%s/new_code_periods/show", API)
 	v := new(new_code_periods.ShowResponse)

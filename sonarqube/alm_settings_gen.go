@@ -12,6 +12,8 @@ type AlmSettings service
 
 // CountBinding - Count number of project bound to an DevOps Platform setting.
 // Requires the 'Administer System' permission
+// Since 8.1
+// Changelog:
 func (s *AlmSettings) CountBinding(ctx context.Context, r alm_settings.CountBindingRequest) (*alm_settings.CountBindingResponse, error) {
 	u := fmt.Sprintf("%s/alm_settings/count_binding", API)
 	v := new(alm_settings.CountBindingResponse)
@@ -134,6 +136,11 @@ func (s *AlmSettings) DeleteBinding(ctx context.Context, r alm_settings.DeleteBi
 
 // GetBinding - Get DevOps Platform binding of a given project.
 // Requires the 'Browse' permission on the project
+// Since 8.1
+// Changelog:
+//   10.1: Permission needed changed from 'Administer' to 'Browse'
+//   8.7: Azure binding now contains a monorepo flag for monorepo feature in Enterprise Edition and above
+//   8.6: Azure binding now contains the project and repository names
 func (s *AlmSettings) GetBinding(ctx context.Context, r alm_settings.GetBindingRequest) (*alm_settings.GetBindingResponse, error) {
 	u := fmt.Sprintf("%s/alm_settings/get_binding", API)
 	v := new(alm_settings.GetBindingResponse)
@@ -148,6 +155,11 @@ func (s *AlmSettings) GetBinding(ctx context.Context, r alm_settings.GetBindingR
 
 // List - List DevOps Platform setting available for a given project, sorted by DevOps Platform key
 // Requires the 'Administer project' permission if the 'project' parameter is provided, requires the 'Create Projects' permission otherwise.
+// Since 8.1
+// Changelog:
+//   8.6: Field 'URL' added for Azure definitions
+//   8.3: Permission needed changed to 'Administer project' or 'Create Projects'
+//   8.2: Permission needed changed from 'Administer project' to 'Create Projects'
 func (s *AlmSettings) List(ctx context.Context, r alm_settings.ListRequest) (*alm_settings.ListResponse, error) {
 	u := fmt.Sprintf("%s/alm_settings/list", API)
 	v := new(alm_settings.ListResponse)
@@ -162,6 +174,11 @@ func (s *AlmSettings) List(ctx context.Context, r alm_settings.ListRequest) (*al
 
 // ListDefinitions - List DevOps Platform Settings, sorted by created date.
 // Requires the 'Administer System' permission
+// Since 8.1
+// Changelog:
+//   8.7: Fields 'personalAccessToken', 'privateKey', and 'clientSecret' are no longer returned
+//   8.6: Field 'URL' added for Azure definitions
+//   8.2: Field 'URL' added for GitLab definitions
 func (s *AlmSettings) ListDefinitions(ctx context.Context, r alm_settings.ListDefinitionsRequest) (*alm_settings.ListDefinitionsResponse, error) {
 	u := fmt.Sprintf("%s/alm_settings/list_definitions", API)
 	v := new(alm_settings.ListDefinitionsResponse)
@@ -336,6 +353,8 @@ func (s *AlmSettings) UpdateGitlab(ctx context.Context, r alm_settings.UpdateGit
 
 // Validate - Validate an DevOps Platform Setting by checking connectivity and permissions
 // Requires the 'Administer System' permission
+// Since 8.6
+// Changelog:
 func (s *AlmSettings) Validate(ctx context.Context, r alm_settings.ValidateRequest) (*alm_settings.ValidateResponse, error) {
 	u := fmt.Sprintf("%s/alm_settings/validate", API)
 	v := new(alm_settings.ValidateResponse)

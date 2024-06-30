@@ -18,6 +18,10 @@ type Settings service
 //  * 'Administer System'
 //  * 'Administer' rights on the specified component
 //
+// Since 6.3
+// Changelog:
+//   10.1: The use of module keys in parameter 'component' is removed
+//   7.6: The use of module keys in parameter 'component' is deprecated
 func (s *Settings) ListDefinitions(ctx context.Context, r settings.ListDefinitionsRequest) (*settings.ListDefinitionsResponse, error) {
 	u := fmt.Sprintf("%s/settings/list_definitions", API)
 	v := new(settings.ListDefinitionsResponse)
@@ -85,6 +89,12 @@ func (s *Settings) Set(ctx context.Context, r settings.SetRequest) error {
 // Requires 'Browse' or 'Execute Analysis' permission when a component is specified.
 // Secured settings values are not returned by the endpoint.
 //
+// Since 6.3
+// Changelog:
+//   10.1: The use of module keys in parameter 'component' is removed
+//   9.1: The secured settings values are no longer returned. Secured settings keys that have a value are now returned in setSecuredSettings array.
+//   7.6: The use of module keys in parameter 'component' is deprecated
+//   7.1: The settings from conf/sonar.properties are excluded from results.
 func (s *Settings) Values(ctx context.Context, r settings.ValuesRequest) (*settings.ValuesResponse, error) {
 	u := fmt.Sprintf("%s/settings/values", API)
 	v := new(settings.ValuesResponse)

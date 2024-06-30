@@ -46,6 +46,8 @@ func (s *Webhooks) Delete(ctx context.Context, r webhooks.DeleteRequest) error {
 // Deliveries - Get the recent deliveries for a specified project or Compute Engine task.
 // Require 'Administer' permission on the related project.
 // Note that additional information are returned by api/webhooks/delivery.
+// Since 6.2
+// Changelog:
 func (s *Webhooks) Deliveries(ctx context.Context, r webhooks.DeliveriesRequest, p paging.Params) (*webhooks.DeliveriesResponse, error) {
 	u := fmt.Sprintf("%s/webhooks/deliveries", API)
 	v := new(webhooks.DeliveriesResponse)
@@ -82,6 +84,8 @@ func (s *Webhooks) DeliveriesAll(ctx context.Context, r webhooks.DeliveriesReque
 // Delivery - Get a webhook delivery by its id.
 // Require 'Administer System' permission.
 // Note that additional information are returned by api/webhooks/delivery.
+// Since 6.2
+// Changelog:
 func (s *Webhooks) Delivery(ctx context.Context, r webhooks.DeliveryRequest) (*webhooks.DeliveryResponse, error) {
 	u := fmt.Sprintf("%s/webhooks/delivery", API)
 	v := new(webhooks.DeliveryResponse)
@@ -96,6 +100,10 @@ func (s *Webhooks) Delivery(ctx context.Context, r webhooks.DeliveryRequest) (*w
 
 // List - Search for global webhooks or project webhooks. Webhooks are ordered by name.
 // Requires 'Administer' permission on the specified project, or global 'Administer' permission.
+// Since 7.1
+// Changelog:
+//   10.1: Field 'secret' replaced by flag 'hasSecret' in response
+//   7.8: Field 'secret' added to response
 func (s *Webhooks) List(ctx context.Context, r webhooks.ListRequest) (*webhooks.ListResponse, error) {
 	u := fmt.Sprintf("%s/webhooks/list", API)
 	v := new(webhooks.ListResponse)

@@ -92,6 +92,16 @@ func (s *UserGroups) RemoveUser(ctx context.Context, r user_groups.RemoveUserReq
 
 // Search - Search for user groups.
 // Requires the following permission: 'Administer System'.
+// Since 5.2
+// Deprecated since 10.4
+// Changelog:
+//   10.4: Deprecated. Use GET /api/v2/authorizations/groups instead
+//   10.0: Field 'id' in the response has been removed
+//   10.0: New parameter 'managed' to optionally search by managed status
+//   10.0: Response includes 'managed' field.
+//   8.4: Field 'id' in the response is deprecated. Format changes from integer to string.
+//   6.4: Paging response fields moved to a Paging object
+//   6.4: 'default' response field has been added
 func (s *UserGroups) Search(ctx context.Context, r user_groups.SearchRequest, p paging.Params) (*user_groups.SearchResponse, error) {
 	u := fmt.Sprintf("%s/user_groups/search", API)
 	v := new(user_groups.SearchResponse)
@@ -148,6 +158,15 @@ func (s *UserGroups) Update(ctx context.Context, r user_groups.UpdateRequest) er
 
 // Users - Search for users with membership information with respect to a group.
 // Requires the following permission: 'Administer System'.
+// Since 5.2
+// Deprecated since 10.4
+// Changelog:
+//   10.4: Deprecated. Use GET /api/v2/authorizations/group-memberships instead
+//   10.0: Field 'managed' added to the payload.
+//   10.0: Parameter 'id' is removed. Use 'name' instead.
+//   9.8: response fields 'total', 's', 'ps' have been deprecated, please use 'paging' object instead.
+//   9.8: The field 'paging' has been added to the response.
+//   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *UserGroups) Users(ctx context.Context, r user_groups.UsersRequest, p paging.Params) (*user_groups.UsersResponse, error) {
 	u := fmt.Sprintf("%s/user_groups/users", API)
 	v := new(user_groups.UsersResponse)

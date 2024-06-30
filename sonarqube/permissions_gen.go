@@ -255,6 +255,8 @@ func (s *Permissions) RemoveUserFromTemplate(ctx context.Context, r permissions.
 
 // SearchTemplates - List permission templates.
 // Requires the following permission: 'Administer System'.
+// Since 5.2
+// Changelog:
 func (s *Permissions) SearchTemplates(ctx context.Context, r permissions.SearchTemplatesRequest) (*permissions.SearchTemplatesResponse, error) {
 	u := fmt.Sprintf("%s/permissions/search_templates", API)
 	v := new(permissions.SearchTemplatesResponse)

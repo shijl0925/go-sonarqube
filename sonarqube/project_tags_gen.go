@@ -12,6 +12,9 @@ import (
 type ProjectTags service
 
 // Search - Search tags
+// Since 6.4
+// Changelog:
+//   9.2: Parameter 'page' added
 func (s *ProjectTags) Search(ctx context.Context, r project_tags.SearchRequest, p paging.Params) (*project_tags.SearchResponse, error) {
 	u := fmt.Sprintf("%s/project_tags/search", API)
 	v := new(project_tags.SearchResponse)

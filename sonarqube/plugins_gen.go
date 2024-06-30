@@ -18,6 +18,8 @@ type Plugins service
 //  * REQUIRES_SYSTEM_UPGRADE: plugin requires SonarQube to be upgraded before being installed.
 //  * DEPS_REQUIRE_SYSTEM_UPGRADE: at least one plugin on which the plugin is dependent requires SonarQube to be upgraded.
 // Require 'Administer System' permission.
+// Since 5.2
+// Changelog:
 func (s *Plugins) Available(ctx context.Context, r plugins.AvailableRequest) (*plugins.AvailableResponse, error) {
 	u := fmt.Sprintf("%s/plugins/available", API)
 	v := new(plugins.AvailableResponse)
@@ -64,6 +66,17 @@ func (s *Plugins) Install(ctx context.Context, r plugins.InstallRequest) error {
 
 // Installed - Get the list of all the plugins installed on the SonarQube instance, sorted by plugin name.
 // Requires authentication.
+// Since 5.2
+// Changelog:
+//   10.4: The response field 'requiredForLanguages' is added for plugins that support it
+//   9.8: The 'documentationPath' field is deprecated
+//   9.7: Authentication check added
+//   8.0: The 'documentationPath' field is added
+//   7.0: The fields 'compressedHash' and 'compressedFilename' are added
+//   6.6: The 'filename' field is added
+//   6.6: The 'fileHash' field is added
+//   6.6: The 'sonarLintSupported' field is added
+//   6.6: The 'updatedAt' field is added
 func (s *Plugins) Installed(ctx context.Context, r plugins.InstalledRequest) (*plugins.InstalledResponse, error) {
 	u := fmt.Sprintf("%s/plugins/installed", API)
 	v := new(plugins.InstalledResponse)
@@ -78,6 +91,10 @@ func (s *Plugins) Installed(ctx context.Context, r plugins.InstalledRequest) (*p
 
 // Pending - Get the list of plugins which will either be installed or removed at the next startup of the SonarQube instance, sorted by plugin name.
 // Require 'Administer System' permission.
+// Since 5.2
+// Changelog:
+//   9.8: The 'documentationPath' field is deprecated
+//   8.0: The 'documentationPath' field is added
 func (s *Plugins) Pending(ctx context.Context, r plugins.PendingRequest) (*plugins.PendingResponse, error) {
 	u := fmt.Sprintf("%s/plugins/pending", API)
 	v := new(plugins.PendingResponse)
@@ -126,6 +143,8 @@ func (s *Plugins) Update(ctx context.Context, r plugins.UpdateRequest) error {
 // Plugin information is retrieved from Update Center. Date and time at which Update Center was last refreshed is provided in the response.
 // Update status values are: [COMPATIBLE, INCOMPATIBLE, REQUIRES_UPGRADE, DEPS_REQUIRE_UPGRADE].
 // Require 'Administer System' permission.
+// Since 5.2
+// Changelog:
 func (s *Plugins) Updates(ctx context.Context, r plugins.UpdatesRequest) (*plugins.UpdatesResponse, error) {
 	u := fmt.Sprintf("%s/plugins/updates", API)
 	v := new(plugins.UpdatesResponse)

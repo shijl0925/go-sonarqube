@@ -48,6 +48,10 @@ func (s *UserTokens) Revoke(ctx context.Context, r user_tokens.RevokeRequest) er
 // Field 'lastConnectionDate' is only updated every hour, so it may not be accurate, for instance when a user is using a token many times in less than one hour.
 // It requires administration permissions to specify a 'login' and list the tokens of another user. Otherwise, tokens for the current user are listed.
 // Authentication is required for this API endpoint
+// Since 5.3
+// Changelog:
+//   9.6: New field 'expirationDate' is added to response
+//   7.7: New field 'lastConnectionDate' is added to response
 func (s *UserTokens) Search(ctx context.Context, r user_tokens.SearchRequest) (*user_tokens.SearchResponse, error) {
 	u := fmt.Sprintf("%s/user_tokens/search", API)
 	v := new(user_tokens.SearchResponse)

@@ -119,6 +119,9 @@ func (s *Applications) SetTags(ctx context.Context, r applications.SetTagsReques
 
 // Show - Returns an application and its associated projects.
 // Requires the 'Browse' permission on the application and on its child projects.
+// Since 7.3
+// Changelog:
+//   8.3: Change required permission from 'Admin' to 'Browse'
 func (s *Applications) Show(ctx context.Context, r applications.ShowRequest) (*applications.ShowResponse, error) {
 	u := fmt.Sprintf("%s/applications/show", API)
 	v := new(applications.ShowResponse)

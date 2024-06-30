@@ -48,6 +48,8 @@ func (s *ProjectLinks) Delete(ctx context.Context, r project_links.DeleteRequest
 //  * 'Administer' rights on the specified project
 //  * 'Browse' on the specified project
 //
+// Since 6.1
+// Changelog:
 func (s *ProjectLinks) Search(ctx context.Context, r project_links.SearchRequest) (*project_links.SearchResponse, error) {
 	u := fmt.Sprintf("%s/project_links/search", API)
 	v := new(project_links.SearchResponse)

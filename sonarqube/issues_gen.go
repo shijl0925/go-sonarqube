@@ -62,6 +62,9 @@ func (s *Issues) Assign(ctx context.Context, r issues.AssignRequest) (*issues.As
 // Authors - Search SCM accounts which match a given query.
 // Requires authentication.
 // When issue indexing is in progress returns 503 service unavailable HTTP code.
+// Since 5.1
+// Changelog:
+//   7.4: The maximum size of 'ps' is set to 100
 func (s *Issues) Authors(ctx context.Context, r issues.AuthorsRequest) (*issues.AuthorsResponse, error) {
 	u := fmt.Sprintf("%s/issues/authors", API)
 	v := new(issues.AuthorsResponse)
@@ -98,6 +101,12 @@ func (s *Issues) BulkChange(ctx context.Context, r issues.BulkChangeRequest) (*i
 
 // Changelog - Display changelog of an issue.
 // Requires the 'Browse' permission on the project of the specified issue.
+// Since 4.1
+// Changelog:
+//   10.4: 'issueStatus' key is added in the differences
+//   10.4: 'status', 'resolution', 'severity' and 'type' keys are now deprecated in the differences
+//   9.7: 'externalUser' and 'webhookSource' information added to the answer
+//   6.3: changes on effort is expressed with the raw value in minutes (instead of the duration previously)
 func (s *Issues) Changelog(ctx context.Context, r issues.ChangelogRequest) (*issues.ChangelogResponse, error) {
 	u := fmt.Sprintf("%s/issues/changelog", API)
 	v := new(issues.ChangelogResponse)
@@ -197,6 +206,8 @@ func (s *Issues) EditComment(ctx context.Context, r issues.EditCommentRequest) (
 
 // GitlabSastExport - Return a list of vulnerabilities according to the Gitlab SAST JSON format.
 // The JSON produced can be used in GitLab for generating the Vulnerability Report.Requires the 'Browse' or 'Scan' permission on the specified project.
+// Since 10.2
+// Changelog:
 func (s *Issues) GitlabSastExport(ctx context.Context, r issues.GitlabSastExportRequest) (*issues.GitlabSastExportResponse, error) {
 	u := fmt.Sprintf("%s/issues/gitlab_sast_export", API)
 	v := new(issues.GitlabSastExportResponse)
@@ -228,6 +239,70 @@ func (s *Issues) Reindex(ctx context.Context, r issues.ReindexRequest) error {
 // Requires the 'Browse' permission on the specified project(s).
 // For applications, it also requires 'Browse' permission on its child projects.
 // When issue indexing is in progress returns 503 service unavailable HTTP code.
+// Since 3.6
+// Changelog:
+//   10.6: Facet 'prioritizedRule' has been added
+//   10.6: Param 'prioritizedRule' has been added
+//   10.4: Added new param 'fixedInPullRequest'
+//   10.4: Value 'wontfix' for 'transition' response field is deprecated, use 'accept' instead
+//   10.4: Possible value 'accept' for 'transition' response field has been added
+//   10.4: Param 'issueStatuses' has been added
+//   10.4: Parameters 'resolutions' and 'statuses' are deprecated in favor of 'issueStatuses'.
+//   10.4: Parameters 'severities' and 'types' are deprecated, use 'impactSeverities' and 'impactSoftwareQualities' instead.
+//   10.4: Facet 'issueStatuses' has been added
+//   10.4: Facets 'resolutions' and 'statuses' are deprecated in favor of 'issueStatuses'
+//   10.4: Response fields 'severity' and 'type' are deprecated, use 'impacts' instead.
+//   10.4: Response field 'issueStatus' added
+//   10.4: Response fields 'status' and 'resolutions' are deprecated, in favor of 'issueStatus'
+//   10.4: Possible value 'CONFIRMED' for 'issueStatus' field is deprecated.
+//   10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
+//   10.2: Param 'impactSoftwareQualities' has been added
+//   10.2: Param 'impactSeverities' has been added
+//   10.2: Param 'cleanCodeAttributeCategories' has been added
+//   10.2: Facet 'impactSoftwareQualities' has been added
+//   10.2: Facet 'impactSeverities' has been added
+//   10.2: Facet 'cleanCodeAttributeCategories' has been added
+//   10.2: Parameter 'componentKeys' renamed to 'components'
+//   10.1: Add the 'codeVariants' parameter, facet and response field
+//   10.0: Parameter 'sansTop25' is deprecated
+//   10.0: The value 'sansTop25' for the parameter 'facets' has been deprecated
+//   10.0: Deprecated value 'ASSIGNEE' in parameter 's' is dropped
+//   10.0: Parameter 'sinceLeakPeriod' is removed, please use 'inNewCodePeriod' instead
+//   9.8: Add message formatting to issue and locations response
+//   9.8: response fields 'total', 's', 'ps' have been deprecated, please use 'paging' object instead
+//   9.7: Issues flows in the response may contain a description and a type
+//   9.6: Response field 'fromHotspot' dropped.
+//   9.6: Added facets 'pciDss-3.2' and 'pciDss-4.0
+//   9.6: Added parameters 'pciDss-3.2' and 'pciDss-4.0
+//   9.6: Response field 'ruleDescriptionContextKey' added
+//   9.6: New possible value for 'additionalFields' parameter: 'ruleDescriptionContextKey'
+//   9.6: Facet 'moduleUuids' is dropped.
+//   9.4: Parameter 'sinceLeakPeriod' is deprecated, please use 'inNewCodePeriod' instead
+//   9.2: Response field 'quickFixAvailable' added
+//   9.1: Deprecated parameters 'authors', 'facetMode' and 'moduleUuids' were dropped
+//   8.6: Parameter 'timeZone' added
+//   8.5: Facet 'fileUuids' is dropped in favour of the new facet 'files'Note that they are not strictly identical, the latter returns the file paths.
+//   8.5: Internal parameter 'fileUuids' has been dropped
+//   8.4: parameters 'componentUuids', 'projectKeys' has been dropped.
+//   8.2: 'REVIEWED', 'TO_REVIEW' status param values are no longer supported
+//   8.2: Security hotspots are no longer returned as type 'SECURITY_HOTSPOT' is not supported anymore, use dedicated api/hotspots
+//   8.2: response field 'fromHotspot' has been deprecated and is no more populated
+//   8.2: Status 'IN_REVIEW' for Security Hotspots has been deprecated
+//   7.8: added new Security Hotspots statuses : TO_REVIEW, IN_REVIEW and REVIEWED
+//   7.8: Security hotspots are returned by default
+//   7.7: Value 'authors' in parameter 'facets' is deprecated, please use 'author' instead
+//   7.6: The use of module keys in parameter 'componentKeys' is deprecated
+//   7.4: The facet 'projectUuids' is dropped in favour of the new facet 'projects'. Note that they are not strictly identical, the latter returns the project keys.
+//   7.4: Parameter 'facetMode' does not accept anymore deprecated value 'debt'
+//   7.3: response field 'fromHotspot' added to issues that are security hotspots
+//   7.3: added facets 'sansTop25', 'owaspTop10' and 'cwe'
+//   7.2: response field 'externalRuleEngine' added to issues that have been imported from an external rule engine
+//   7.2: value 'ASSIGNEE' in parameter 's' is deprecated, it won't have any effect
+//   6.5: parameters 'projects', 'projectUuids', 'moduleUuids', 'directories', 'fileUuids' are marked as internal
+//   6.3: response field 'email' is renamed 'avatar'
+//   5.5: response fields 'reporter' and 'actionPlan' are removed (drop of action plan and manual issue features)
+//   5.5: parameters 'reporters', 'actionPlans' and 'planned' are dropped and therefore ignored (drop of action plan and manual issue features)
+//   5.5: response field 'debt' is renamed 'effort'
 func (s *Issues) Search(ctx context.Context, r issues.SearchRequest, p paging.Params) (*issues.SearchResponse, error) {
 	u := fmt.Sprintf("%s/issues/search", API)
 	v := new(issues.SearchResponse)
@@ -349,6 +424,10 @@ func (s *Issues) SetType(ctx context.Context, r issues.SetTypeRequest) (*issues.
 }
 
 // Tags - List tags matching a given query
+// Since 5.1
+// Changelog:
+//   9.4: Max page size increased to 500
+//   7.4: Result doesn't include rules tags anymore
 func (s *Issues) Tags(ctx context.Context, r issues.TagsRequest) (*issues.TagsResponse, error) {
 	u := fmt.Sprintf("%s/issues/tags", API)
 	v := new(issues.TagsResponse)

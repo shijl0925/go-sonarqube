@@ -71,6 +71,11 @@ func (s *ProjectAnalyses) DeleteEvent(ctx context.Context, r project_analyses.De
 // Search - Search a project analyses and attached events.
 // Requires the following permission: 'Browse' on the specified project.
 // For applications, it also requires 'Browse' permission on its child projects.
+// Since 6.3
+// Changelog:
+//   10.3: Add response field 'qualityProfile' for events related to quality profile changes
+//   9.0: Add response field 'detectedCI'
+//   7.5: Add QualityGate information on Applications
 func (s *ProjectAnalyses) Search(ctx context.Context, r project_analyses.SearchRequest, p paging.Params) (*project_analyses.SearchResponse, error) {
 	u := fmt.Sprintf("%s/project_analyses/search", API)
 	v := new(project_analyses.SearchResponse)

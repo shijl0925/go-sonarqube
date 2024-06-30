@@ -112,6 +112,8 @@ func (s *AlmIntegrations) ImportGitlabProject(ctx context.Context, r alm_integra
 
 // ListAzureProjects - List Azure projects
 // Requires the 'Create Projects' permission
+// Since 8.6
+// Changelog:
 func (s *AlmIntegrations) ListAzureProjects(ctx context.Context, r alm_integrations.ListAzureProjectsRequest) (*alm_integrations.ListAzureProjectsResponse, error) {
 	u := fmt.Sprintf("%s/alm_integrations/list_azure_projects", API)
 	v := new(alm_integrations.ListAzureProjectsResponse)
@@ -126,6 +128,8 @@ func (s *AlmIntegrations) ListAzureProjects(ctx context.Context, r alm_integrati
 
 // ListBitbucketserverProjects - List the Bitbucket Server projects
 // Requires the 'Create Projects' permission
+// Since 8.2
+// Changelog:
 func (s *AlmIntegrations) ListBitbucketserverProjects(ctx context.Context, r alm_integrations.ListBitbucketserverProjectsRequest) (*alm_integrations.ListBitbucketserverProjectsResponse, error) {
 	u := fmt.Sprintf("%s/alm_integrations/list_bitbucketserver_projects", API)
 	v := new(alm_integrations.ListBitbucketserverProjectsResponse)
@@ -140,6 +144,8 @@ func (s *AlmIntegrations) ListBitbucketserverProjects(ctx context.Context, r alm
 
 // SearchAzureRepos - Search the Azure repositories
 // Requires the 'Create Projects' permission
+// Since 8.6
+// Changelog:
 func (s *AlmIntegrations) SearchAzureRepos(ctx context.Context, r alm_integrations.SearchAzureReposRequest) (*alm_integrations.SearchAzureReposResponse, error) {
 	u := fmt.Sprintf("%s/alm_integrations/search_azure_repos", API)
 	v := new(alm_integrations.SearchAzureReposResponse)
@@ -154,6 +160,8 @@ func (s *AlmIntegrations) SearchAzureRepos(ctx context.Context, r alm_integratio
 
 // SearchBitbucketcloudRepos - Search the Bitbucket Cloud repositories
 // Requires the 'Create Projects' permission
+// Since 9.0
+// Changelog:
 func (s *AlmIntegrations) SearchBitbucketcloudRepos(ctx context.Context, r alm_integrations.SearchBitbucketcloudReposRequest, p paging.Params) (*alm_integrations.SearchBitbucketcloudReposResponse, error) {
 	u := fmt.Sprintf("%s/alm_integrations/search_bitbucketcloud_repos", API)
 	v := new(alm_integrations.SearchBitbucketcloudReposResponse)
@@ -189,6 +197,8 @@ func (s *AlmIntegrations) SearchBitbucketcloudReposAll(ctx context.Context, r al
 
 // SearchBitbucketserverRepos - Search the Bitbucket Server repositories with REPO_ADMIN access
 // Requires the 'Create Projects' permission
+// Since 8.2
+// Changelog:
 func (s *AlmIntegrations) SearchBitbucketserverRepos(ctx context.Context, r alm_integrations.SearchBitbucketserverReposRequest) (*alm_integrations.SearchBitbucketserverReposResponse, error) {
 	u := fmt.Sprintf("%s/alm_integrations/search_bitbucketserver_repos", API)
 	v := new(alm_integrations.SearchBitbucketserverReposResponse)
@@ -203,6 +213,8 @@ func (s *AlmIntegrations) SearchBitbucketserverRepos(ctx context.Context, r alm_
 
 // SearchGitlabRepos - Search the GitLab projects.
 // Requires the 'Create Projects' permission
+// Since 8.5
+// Changelog:
 func (s *AlmIntegrations) SearchGitlabRepos(ctx context.Context, r alm_integrations.SearchGitlabReposRequest, p paging.Params) (*alm_integrations.SearchGitlabReposResponse, error) {
 	u := fmt.Sprintf("%s/alm_integrations/search_gitlab_repos", API)
 	v := new(alm_integrations.SearchGitlabReposResponse)

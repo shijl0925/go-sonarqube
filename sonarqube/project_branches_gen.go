@@ -27,6 +27,10 @@ func (s *ProjectBranches) Delete(ctx context.Context, r project_branches.DeleteR
 
 // List - List the branches of a project or application.
 // Requires 'Browse' or 'Execute analysis' rights on the specified project or application.
+// Since 6.6
+// Changelog:
+//   10.6: Field 'branchId' added to the response
+//   7.2: Application can be used on this web service
 func (s *ProjectBranches) List(ctx context.Context, r project_branches.ListRequest) (*project_branches.ListResponse, error) {
 	u := fmt.Sprintf("%s/project_branches/list", API)
 	v := new(project_branches.ListResponse)

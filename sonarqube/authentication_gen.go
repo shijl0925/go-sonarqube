@@ -39,6 +39,8 @@ func (s *Authentication) Logout(ctx context.Context, r authentication.LogoutRequ
 }
 
 // Validate - Check credentials.
+// Since 3.3
+// Changelog:
 func (s *Authentication) Validate(ctx context.Context, r authentication.ValidateRequest) (*authentication.ValidateResponse, error) {
 	u := fmt.Sprintf("%s/authentication/validate", API)
 	v := new(authentication.ValidateResponse)

@@ -33,6 +33,8 @@ func (s *Notifications) Add(ctx context.Context, r notifications.AddRequest) err
 //    * Authentication if no login is provided
 //    * System administration if a login is provided
 //
+// Since 6.3
+// Changelog:
 func (s *Notifications) List(ctx context.Context, r notifications.ListRequest) (*notifications.ListResponse, error) {
 	u := fmt.Sprintf("%s/notifications/list", API)
 	v := new(notifications.ListResponse)

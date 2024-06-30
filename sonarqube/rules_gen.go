@@ -50,6 +50,8 @@ func (s *Rules) Delete(ctx context.Context, r rules.DeleteRequest) error {
 }
 
 // Repositories - List available rule repositories
+// Since 4.5
+// Changelog:
 func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (*rules.RepositoriesResponse, error) {
 	u := fmt.Sprintf("%s/rules/repositories", API)
 	v := new(rules.RepositoriesResponse)
@@ -64,6 +66,46 @@ func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (
 
 // Search - Search for a collection of relevant rules matching a specified query.
 //
+// Since 4.4
+// Changelog:
+//   10.6: Parameter 'prioritizedRule has been added
+//   10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
+//   10.2: The fields 'type' and 'severity' are deprecated in the response. Use 'impacts' instead.
+//   10.2: The field 'cleanCodeAttribute' has been added to the 'f' parameter.
+//   10.2: The value 'severity' for the 'f' parameter has been deprecated.
+//   10.2: The values 'cleanCodeAttributeCategories', 'impactSoftwareQualities' and 'impactSeverities' have been added to the 'facets' parameter.
+//   10.2: The values 'severity' and 'types' for the 'facets' parameter have been deprecated. Use 'impactSeverities' and 'impactSoftwareQualities' instead.
+//   10.2: Parameters 'severities', 'types', and 'active_severities' are now deprecated. Use 'impactSoftwareQualities' and 'impactSeverities' instead.
+//   10.0: The deprecated field 'effortToFixDescription' has been removed, use 'gapDescription' instead.
+//   10.0: The deprecated field 'debtRemFnCoeff' has been removed, use 'remFnGapMultiplier' instead.
+//   10.0: The deprecated field 'defaultDebtRemFnCoeff' has been removed, use 'defaultRemFnGapMultiplier' instead.
+//   10.0: The deprecated field 'debtRemFnOffset' has been removed, use 'remFnBaseEffort' instead.
+//   10.0: The deprecated field 'defaultDebtRemFnOffset' has been removed, use 'defaultRemFnBaseEffort' instead.
+//   10.0: The deprecated field 'debtOverloaded' has been removed, use 'remFnOverloaded' instead.
+//   10.0: The field 'defaultDebtRemFnType' has been deprecated, use 'defaultRemFnType' instead
+//   10.0: The field 'debtRemFnType' has been deprecated, use 'remFnType' instead
+//   10.0: The value 'debtRemFn' for the 'f' parameter has been deprecated, use 'remFn' instead
+//   10.0: The value 'defaultDebtRemFn' for the 'f' parameter has been deprecated, use 'defaultRemFn' instead
+//   10.0: The value 'sansTop25' for the parameter 'facets' has been deprecated
+//   10.0: Parameter 'sansTop25' is deprecated
+//   9.8: response fields 'total', 's', 'ps' have been deprecated, please use 'paging' object instead
+//   9.8: The field 'paging' has been added to the response
+//   9.6: 'descriptionSections' can optionally embed a context field
+//   9.6: The field 'educationPrinciples' has been added to the 'f' parameter
+//   9.5: The field 'htmlDesc' has been deprecated, use 'descriptionSections' instead
+//   9.5: The field 'descriptionSections' has been added to the payload
+//   9.5: The field 'descriptionSections' has been added to the 'f' parameter
+//   7.5: The field 'updatedAt' has been added to the 'f' parameter
+//   7.2: The field 'isExternal' has been added to the response
+//   7.2: The field 'includeExternal' has been added to the 'f' parameter
+//   7.1: The field 'scope' has been added to the response
+//   7.1: The field 'scope' has been added to the 'f' parameter
+//   5.5: The field 'effortToFixDescription' has been deprecated, use 'gapDescription' instead
+//   5.5: The field 'debtRemFnCoeff' has been deprecated, use 'remFnGapMultiplier' instead
+//   5.5: The field 'defaultDebtRemFnCoeff' has been deprecated, use 'defaultRemFnGapMultiplier' instead
+//   5.5: The field 'debtRemFnOffset' has been deprecated, use 'remFnBaseEffort' instead
+//   5.5: The field 'defaultDebtRemFnOffset' has been deprecated, use 'defaultRemFnBaseEffort' instead
+//   5.5: The field 'debtOverloaded' has been deprecated, use 'remFnOverloaded' instead
 func (s *Rules) Search(ctx context.Context, r rules.SearchRequest, p paging.Params) (*rules.SearchResponse, error) {
 	u := fmt.Sprintf("%s/rules/search", API)
 	v := new(rules.SearchResponse)
@@ -100,6 +142,29 @@ func (s *Rules) SearchAll(ctx context.Context, r rules.SearchRequest) (*rules.Se
 
 // Show - Get detailed information about a rule
 //
+// Since 4.2
+// Changelog:
+//   10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
+//   10.2: The field 'severity' and 'type' in the response have been deprecated, use 'impacts' instead.
+//   10.0: The deprecated field 'effortToFixDescription' has been removed, use 'gapDescription' instead.
+//   10.0: The deprecated field 'debtRemFnCoeff' has been removed, use 'remFnGapMultiplier' instead.
+//   10.0: The deprecated field 'defaultDebtRemFnCoeff' has been removed, use 'defaultRemFnGapMultiplier' instead.
+//   10.0: The deprecated field 'debtRemFnOffset' has been removed, use 'remFnBaseEffort' instead.
+//   10.0: The deprecated field 'defaultDebtRemFnOffset' has been removed, use 'defaultRemFnBaseEffort' instead.
+//   10.0: The deprecated field 'debtOverloaded' has been removed, use 'remFnOverloaded' instead.
+//   10.0: The field 'defaultDebtRemFnType' has been deprecated, use 'defaultRemFnType' instead
+//   10.0: The field 'debtRemFnType' has been deprecated, use 'remFnType' instead
+//   9.6: 'descriptionSections' can optionally embed a context field.
+//   9.6: 'educationPrinciples' has been added.
+//   9.5: The field 'htmlDesc' in the response has been deprecated, it becomes 'descriptionSections'.
+//   9.5: The field 'descriptionSections' has been added to the payload.
+//   7.1: The field 'scope' has been added.
+//   5.5: The field 'effortToFixDescription' in the response has been deprecated, it becomes 'gapDescription'.
+//   5.5: The field 'debtRemFnCoeff' in the response has been deprecated, it becomes 'remFnGapMultiplier'.
+//   5.5: The field 'defaultDebtRemFnCoeff' in the response has been deprecated, it becomes 'defaultRemFnGapMultiplier'.
+//   5.5: The field 'debtRemFnOffset' in the response has been deprecated, it becomes 'remFnBaseEffort'.
+//   5.5: The field 'defaultDebtRemFnOffset' in the response has been deprecated, it becomes 'defaultRemFnBaseEffort'.
+//   5.5: The field 'debtOverloaded' in the response has been deprecated, it becomes 'remFnOverloaded'.
 func (s *Rules) Show(ctx context.Context, r rules.ShowRequest) (*rules.ShowResponse, error) {
 	u := fmt.Sprintf("%s/rules/show", API)
 	v := new(rules.ShowResponse)
@@ -113,6 +178,9 @@ func (s *Rules) Show(ctx context.Context, r rules.ShowRequest) (*rules.ShowRespo
 }
 
 // Tags - List rule tags
+// Since 4.4
+// Changelog:
+//   9.4: Max page size increased to 500
 func (s *Rules) Tags(ctx context.Context, r rules.TagsRequest) (*rules.TagsResponse, error) {
 	u := fmt.Sprintf("%s/rules/tags", API)
 	v := new(rules.TagsResponse)

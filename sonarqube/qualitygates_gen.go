@@ -165,6 +165,13 @@ func (s *Qualitygates) Destroy(ctx context.Context, r qualitygates.DestroyReques
 //  * 'Administer' rights on the specified project
 //  * 'Browse' on the specified project
 //
+// Since 6.1
+// Changelog:
+//   10.0: Field 'id' in the response has been removed
+//   8.4: Field 'id' in the response is deprecated. Format changes from integer to string.
+//   6.6: The parameter 'projectId' has been removed
+//   6.6: The parameter 'projectKey' has been renamed to 'project'
+//   6.6: This webservice is now part of the public API
 func (s *Qualitygates) GetByProject(ctx context.Context, r qualitygates.GetByProjectRequest) (*qualitygates.GetByProjectResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/get_by_project", API)
 	v := new(qualitygates.GetByProjectResponse)
@@ -178,6 +185,16 @@ func (s *Qualitygates) GetByProject(ctx context.Context, r qualitygates.GetByPro
 }
 
 // List - Get a list of quality gates
+// Since 4.3
+// Changelog:
+//   10.0: Field 'default' in the response has been removed
+//   10.0: Field 'id' in the response has been removed
+//   9.9: 'caycStatus' field is added on quality gate
+//   8.4: Field 'id' in the response is deprecated. Format changes from integer to string.
+//   7.0: 'isDefault' field is added on quality gate
+//   7.0: 'default' field on root level is deprecated
+//   7.0: 'isBuiltIn' field is added in the response
+//   7.0: 'actions' fields are added in the response
 func (s *Qualitygates) List(ctx context.Context, r qualitygates.ListRequest) (*qualitygates.ListResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/list", API)
 	v := new(qualitygates.ListResponse)
@@ -200,6 +217,15 @@ func (s *Qualitygates) List(ctx context.Context, r qualitygates.ListRequest) (*q
 //  * 'Browse' on the specified project
 //  * 'Execute Analysis' on the specified project
 //
+// Since 5.3
+// Changelog:
+//   10.0: The fields 'periods' and 'periodIndex' in the response are removed
+//   9.9: 'caycStatus' field is added to the response
+//   9.5: The 'Execute Analysis' permission also allows to access the endpoint
+//   8.5: The field 'periods' in the response is deprecated. Use 'period' instead
+//   7.7: The parameters 'branch' and 'pullRequest' were added
+//   7.6: The field 'warning' in the response is deprecated
+//   6.4: The field 'ignoredConditions' is added to the response
 func (s *Qualitygates) ProjectStatus(ctx context.Context, r qualitygates.ProjectStatusRequest) (*qualitygates.ProjectStatusResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/project_status", API)
 	v := new(qualitygates.ProjectStatusResponse)
@@ -269,6 +295,15 @@ func (s *Qualitygates) Rename(ctx context.Context, r qualitygates.RenameRequest)
 
 // Search - Search for projects associated (or not) to a quality gate.
 // Only authorized projects for the current user will be returned.
+// Since 4.3
+// Changelog:
+//   10.0: deprecated 'more' response field has been removed
+//   10.0: Parameter 'gateId' is removed. Use 'gateName' instead.
+//   8.4: Parameter 'gateName' added
+//   8.4: Parameter 'gateId' is deprecated. Format changes from integer to string. Use 'gateName' instead.
+//   7.9: New field 'paging' in response
+//   7.9: New field 'key' returning the project key in 'results' response
+//   7.9: Field 'more' is deprecated in the response
 func (s *Qualitygates) Search(ctx context.Context, r qualitygates.SearchRequest) (*qualitygates.SearchResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/search", API)
 	v := new(qualitygates.SearchResponse)
@@ -286,6 +321,8 @@ func (s *Qualitygates) Search(ctx context.Context, r qualitygates.SearchRequest)
 //    * 'Administer Quality Gates'
 //    * Edit right on the specified quality gate
 //
+// Since 9.2
+// Changelog:
 func (s *Qualitygates) SearchGroups(ctx context.Context, r qualitygates.SearchGroupsRequest, p paging.Params) (*qualitygates.SearchGroupsResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/search_groups", API)
 	v := new(qualitygates.SearchGroupsResponse)
@@ -324,6 +361,8 @@ func (s *Qualitygates) SearchGroupsAll(ctx context.Context, r qualitygates.Searc
 //    * 'Administer Quality Gates'
 //    * Edit right on the specified quality gate
 //
+// Since 9.2
+// Changelog:
 func (s *Qualitygates) SearchUsers(ctx context.Context, r qualitygates.SearchUsersRequest, p paging.Params) (*qualitygates.SearchUsersResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/search_users", API)
 	v := new(qualitygates.SearchUsersResponse)
@@ -398,6 +437,17 @@ func (s *Qualitygates) SetAsDefault(ctx context.Context, r qualitygates.SetAsDef
 }
 
 // Show - Display the details of a quality gate
+// Since 4.3
+// Changelog:
+//   10.3: 'isDefault' field is added to the response
+//   10.0: Field 'id' in the response has been removed
+//   10.0: Parameter 'id' is removed. Use 'name' instead.
+//   9.9: 'caycStatus' field is added to the response
+//   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
+//   8.4: Field 'id' in the response is deprecated.
+//   7.6: 'period' and 'warning' fields of conditions are removed from the response
+//   7.0: 'isBuiltIn' field is added to the response
+//   7.0: 'actions' field is added in the response
 func (s *Qualitygates) Show(ctx context.Context, r qualitygates.ShowRequest) (*qualitygates.ShowResponse, error) {
 	u := fmt.Sprintf("%s/qualitygates/show", API)
 	v := new(qualitygates.ShowResponse)

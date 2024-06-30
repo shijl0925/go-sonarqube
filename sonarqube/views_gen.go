@@ -89,6 +89,8 @@ func (s *Views) AddProjectBranch(ctx context.Context, r views.AddProjectBranchRe
 
 // Applications - List applications which the user has access to that can be added to a portfolio.
 // Authentication is required for this API endpoint
+// Since 9.3
+// Changelog:
 func (s *Views) Applications(ctx context.Context, r views.ApplicationsRequest) (*views.ApplicationsResponse, error) {
 	u := fmt.Sprintf("%s/views/applications", API)
 	v := new(views.ApplicationsResponse)
@@ -142,6 +144,12 @@ func (s *Views) Delete(ctx context.Context, r views.DeleteRequest) error {
 
 // List - List root portfolios.
 // Requires authentication. Only portfolios with the admin permission are returned.
+// Since 1.0
+// Changelog:
+//   10.0: The applications are removed from the response
+//   9.3: Returning applications is now deprecated
+//   2.0: Qualifier field is returned in the response
+//   2.0: Visibility field is returned in the response
 func (s *Views) List(ctx context.Context, r views.ListRequest) (*views.ListResponse, error) {
 	u := fmt.Sprintf("%s/views/list", API)
 	v := new(views.ListResponse)
@@ -171,6 +179,8 @@ func (s *Views) Move(ctx context.Context, r views.MoveRequest) error {
 
 // MoveOptions - List possible portfolio destinations.
 // Authentication is required for this API endpoint.
+// Since 1.0
+// Changelog:
 func (s *Views) MoveOptions(ctx context.Context, r views.MoveOptionsRequest) (*views.MoveOptionsResponse, error) {
 	u := fmt.Sprintf("%s/views/move_options", API)
 	v := new(views.MoveOptionsResponse)
@@ -185,6 +195,8 @@ func (s *Views) MoveOptions(ctx context.Context, r views.MoveOptionsRequest) (*v
 
 // Portfolios - List portfolios that can be referenced.
 // Authentication is required for this API endpoint.
+// Since 9.3
+// Changelog:
 func (s *Views) Portfolios(ctx context.Context, r views.PortfoliosRequest) (*views.PortfoliosResponse, error) {
 	u := fmt.Sprintf("%s/views/portfolios", API)
 	v := new(views.PortfoliosResponse)
@@ -357,6 +369,14 @@ func (s *Views) SetTagsMode(ctx context.Context, r views.SetTagsModeRequest) err
 
 // Show - Show the details of a portfolio, including its hierarchy and project selection mode.
 // Authentication is required for this API endpoint.
+// Since 1.0
+// Changelog:
+//   10.1: The deprecated response field 'projects' has been removed. Use 'selectedProjects' instead
+//   10.0: This web service no longer shows applications. Use 'api/applications/show' instead
+//   9.3: Use of the web service for application is deprecated. api/applications/show should be used
+//   9.2: The response field 'projects' for each portfolio is deprecated in favor of the new field 'selectedProjects'
+//   7.3: Deleted field of projects is deprecated in the response, replaced by enabled
+//   2.0: Qualifier field is returned in the response
 func (s *Views) Show(ctx context.Context, r views.ShowRequest) (*views.ShowResponse, error) {
 	u := fmt.Sprintf("%s/views/show", API)
 	v := new(views.ShowResponse)

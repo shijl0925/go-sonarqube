@@ -82,6 +82,12 @@ func (s *Users) Deactivate(ctx context.Context, r users.DeactivateRequest) (*use
 
 // Groups - Lists the groups a user belongs to.
 // Requires Administer System permission.
+// Since 5.2
+// Deprecated since 10.4
+// Changelog:
+//   10.4: Deprecated. Use GET api/v2/authorizations/groups-memberships?userId={} instead
+//   6.4: Paging response fields moved to a Paging object
+//   6.4: 'default' response field has been added
 func (s *Users) Groups(ctx context.Context, r users.GroupsRequest, p paging.Params) (*users.GroupsResponse, error) {
 	u := fmt.Sprintf("%s/users/groups", API)
 	v := new(users.GroupsResponse)
@@ -125,6 +131,23 @@ func (s *Users) GroupsAll(ctx context.Context, r users.GroupsRequest) (*users.Gr
 //     * 'sonarLintLastConnectionDate'
 //     * 'tokensCount'
 // Field 'lastConnectionDate' is only updated every hour, so it may not be accurate, for instance when a user authenticates many times in less than one hour.
+// Since 3.6
+// Deprecated since 10.4
+// Changelog:
+//   10.4: Deprecated. Use GET api/v2/users-management/users instead
+//   10.3: New optional parameters externalIdentity to find a user by its IdP login
+//   10.1: New optional parameters slLastConnectedAfter and slLastConnectedBefore to filter users by SonarLint last connection date. Only available with Administer System permission.
+//   10.1: New optional parameters lastConnectedAfter and lastConnectedBefore to filter users by SonarQube last connection date. Only available with Administer System permission.
+//   10.1: New field 'sonarLintLastConnectionDate' is added to response
+//   10.0: 'q' parameter values is now always performing a case insensitive match
+//   10.0: New parameter 'managed' to optionally search by managed status
+//   10.0: Response includes 'managed' field.
+//   9.7: New parameter 'deactivated' to optionally search for deactivated users
+//   7.7: New field 'lastConnectionDate' is added to response
+//   7.4: External identity is only returned to system administrators
+//   6.4: Paging response fields moved to a Paging object
+//   6.4: Avatar has been added to the response
+//   6.4: Email is only returned when user has Administer System permission
 func (s *Users) Search(ctx context.Context, r users.SearchRequest, p paging.Params) (*users.SearchResponse, error) {
 	u := fmt.Sprintf("%s/users/search", API)
 	v := new(users.SearchResponse)
