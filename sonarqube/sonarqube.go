@@ -1,9 +1,3 @@
-// Copyright 2013 The go-github AUTHORS. All rights reserved.
-// Copyright 2021 Reinoud Kruithof
-//
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
 package sonarqube
 
 import (
@@ -12,7 +6,6 @@ import (
 	"fmt"
 	"github.com/go-playground/form/v4"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"reflect"
 	"strconv"
@@ -26,7 +19,7 @@ var API string
 const (
 	basicAuth int = iota
 	privateToken
-	Anonymous int = iota
+	Anonymous
 )
 
 type Client struct {
@@ -164,12 +157,8 @@ func NewClientByToken(sonarURL string, token string, client *http.Client) *Clien
 	return c
 }
 
-func (c *Client) PostRequest(ctx context.Context, url string, body io.Reader) (*http.Request, error) {
-	req, err := http.NewRequestWithContext(ctx, "POST", url, body)
-	if err != nil {
-		return nil, err
-	}
-
+// 封装认证处理
+func (c *Client) handleAuth(req *http.Request) {
 	switch c.authType {
 	case basicAuth:
 		req.SetBasicAuth(c.username, c.password)
@@ -178,39 +167,29 @@ func (c *Client) PostRequest(ctx context.Context, url string, body io.Reader) (*
 	default:
 		// do nothing
 	}
-
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	req.Header.Set("Accept", "application/json")
-
-	return req, nil
 }
 
-func (c *Client) GetRequest(ctx context.Context, url string, params ...string) (*http.Request, error) {
-	if l := len(params); l%2 != 0 {
-		return nil, fmt.Errorf("params must be an even number, %d given", l)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+func (c *Client) NewRequest(ctx context.Context, method, url string, body io.Reader, params ...string) (*http.Request, error) {
+	req, err := http.NewRequestWithContext(ctx, method, url, body)
 	if err != nil {
 		return nil, err
 	}
-	q := req.URL.Query()
 
-	for i := 0; i < len(params); i++ {
-		q.Add(params[i], params[i+1])
-		i++
-	}
-	req.URL.RawQuery = q.Encode()
+	// 认证处理
+	c.handleAuth(req)
 
-	switch c.authType {
-	case basicAuth:
-		req.SetBasicAuth(c.username, c.password)
-	case privateToken:
-		req.SetBasicAuth(c.token, "")
-	default:
-		// do nothing
+	// 如果是GET请求且有参数，设置参数
+	if method == "GET" && len(params) > 0 {
+		q := req.URL.Query()
+
+		for i := 0; i < len(params); i++ {
+			q.Add(params[i], params[i+1])
+			i++
+		}
+		req.URL.RawQuery = q.Encode()
 	}
 
+	// 设置通用请求头
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Set("Accept", "application/json")
 
@@ -239,19 +218,19 @@ func (c *Client) Call(ctx context.Context, method string, u string, v interface{
 	var err error
 	if method == http.MethodGet {
 		params := paramsFrom(opt...)
-		req, err = c.GetRequest(ctx, u, params...)
+		req, err = c.NewRequest(ctx, "GET", u, nil, params...)
 		if err != nil {
-			return nil, fmt.Errorf("could not create request: %+v", err)
+			return nil, fmt.Errorf("could not create request: %v", err)
 		}
 	} else {
 		encoder := form.NewEncoder()
 		values, err := encoder.Encode(opt)
 		if err != nil {
-			return nil, fmt.Errorf("could not encode form values: %+v", err)
+			return nil, fmt.Errorf("could not encode form values: %v", err)
 		}
-		req, err = c.PostRequest(ctx, u, strings.NewReader(values.Encode()))
+		req, err = c.NewRequest(ctx, "POST", u, strings.NewReader(values.Encode()))
 		if err != nil {
-			return nil, fmt.Errorf("could not create request: %+v", err)
+			return nil, fmt.Errorf("could not create request: %v", err)
 		}
 	}
 
@@ -267,21 +246,24 @@ func (c *Client) Call(ctx context.Context, method string, u string, v interface{
 	}
 
 	resp, err := c.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error trying to execute request: %+v", err)
+	}
 
 	if v != nil {
 		defer resp.Body.Close()
 
 		if isText {
-			body, err := ioutil.ReadAll(resp.Body)
+			buf := new(strings.Builder)
+			_, err := io.Copy(buf, resp.Body)
 			if err != nil {
-				return resp, err
+				return resp, fmt.Errorf("could not read response body: %v", err)
 			}
 			w := val.Elem()
-			w.SetString(string(body))
+			w.SetString(buf.String())
 		} else {
-			err = json.NewDecoder(resp.Body).Decode(v)
-			if err != nil {
-				return nil, fmt.Errorf("could not decode response: %+v", err)
+			if err := json.NewDecoder(resp.Body).Decode(v); err != nil {
+				return nil, fmt.Errorf("could not decode response: %v", err)
 			}
 		}
 	}
