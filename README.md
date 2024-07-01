@@ -36,9 +36,9 @@ import (
 )
 
 func main() {
-	ctx := context.Background()
-	baseUrl := "https://next.sonarqube.com/sonarqube/api"
-	client := sonarqube.NewClient(baseUrl, "", "", nil)
+    ctx := context.Background()
+    baseUrl := "https://next.sonarqube.com/sonarqube/api"
+    client := sonarqube.NewClient(baseUrl, "", "", nil)
     req := projects.SearchRequest{}
 
     res, err := client.Projects.SearchAll(ctx, req)
