@@ -38,7 +38,7 @@ type Measures service
 //   6.6: the response field 'id' is deprecated. Use 'key' instead.
 //   6.6: the response field 'refId' is deprecated. Use 'refKey' instead.
 func (s *Measures) Component(ctx context.Context, r measures.ComponentRequest) (*measures.ComponentResponse, error) {
-	u := fmt.Sprintf("%s/measures/component", API)
+	u := fmt.Sprintf("%s/component", s.path)
 	v := new(measures.ComponentResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -82,7 +82,7 @@ func (s *Measures) Component(ctx context.Context, r measures.ComponentRequest) (
 //   6.6: the response field 'refId' is deprecated. Use 'refKey' instead.
 //   6.3: Number of metric keys is limited to 15
 func (s *Measures) ComponentTree(ctx context.Context, r measures.ComponentTreeRequest, p paging.Params) (*measures.ComponentTreeResponse, error) {
-	u := fmt.Sprintf("%s/measures/component_tree", API)
+	u := fmt.Sprintf("%s/component_tree", s.path)
 	v := new(measures.ComponentTreeResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -134,7 +134,7 @@ func (s *Measures) ComponentTreeAll(ctx context.Context, r measures.ComponentTre
 //   9.3: The use of the following metrics in 'metrics' parameter is deprecated: 'releasability_effort', 'security_rating_effort', 'reliability_rating_effort', 'security_review_rating_effort', 'maintainability_rating_effort', 'last_change_on_maintainability_rating', 'last_change_on_releasability_rating', 'last_change_on_reliability_rating', 'last_change_on_security_rating', 'last_change_on_security_review_rating'
 //   7.6: The use of module keys in parameter 'component' is deprecated
 func (s *Measures) SearchHistory(ctx context.Context, r measures.SearchHistoryRequest, p paging.Params) (*measures.SearchHistoryResponse, error) {
-	u := fmt.Sprintf("%s/measures/search_history", API)
+	u := fmt.Sprintf("%s/search_history", s.path)
 	v := new(measures.SearchHistoryResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)

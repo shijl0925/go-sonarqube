@@ -19,7 +19,7 @@ type Qualitygates service
 // Since 9.2
 // Changelog:
 func (s *Qualitygates) AddGroup(ctx context.Context, r qualitygates.AddGroupRequest) error {
-	u := fmt.Sprintf("%s/qualitygates/add_group", API)
+	u := fmt.Sprintf("%s/add_group", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -37,7 +37,7 @@ func (s *Qualitygates) AddGroup(ctx context.Context, r qualitygates.AddGroupRequ
 // Since 9.2
 // Changelog:
 func (s *Qualitygates) AddUser(ctx context.Context, r qualitygates.AddUserRequest) error {
-	u := fmt.Sprintf("%s/qualitygates/add_user", API)
+	u := fmt.Sprintf("%s/add_user", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -56,7 +56,7 @@ func (s *Qualitygates) AddUser(ctx context.Context, r qualitygates.AddUserReques
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'sourceName' instead.
 //   8.4: Parameter 'sourceName' added
 func (s *Qualitygates) Copy(ctx context.Context, r qualitygates.CopyRequest) error {
-	u := fmt.Sprintf("%s/qualitygates/copy", API)
+	u := fmt.Sprintf("%s/copy", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -73,7 +73,7 @@ func (s *Qualitygates) Copy(ctx context.Context, r qualitygates.CopyRequest) err
 //   10.0: Field 'id' in the response is removed.
 //   8.4: Field 'id' in the response is deprecated. Format changes from integer to string.
 func (s *Qualitygates) Create(ctx context.Context, r qualitygates.CreateRequest) (*qualitygates.CreateResponse, error) {
-	u := fmt.Sprintf("%s/qualitygates/create", API)
+	u := fmt.Sprintf("%s/create", s.path)
 	v := new(qualitygates.CreateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -95,7 +95,7 @@ func (s *Qualitygates) Create(ctx context.Context, r qualitygates.CreateRequest)
 //   7.6: Made 'error' parameter mandatory
 //   7.6: Reduced the possible values of 'op' parameter to LT and GT
 func (s *Qualitygates) CreateCondition(ctx context.Context, r qualitygates.CreateConditionRequest) (*qualitygates.CreateConditionResponse, error) {
-	u := fmt.Sprintf("%s/qualitygates/create_condition", API)
+	u := fmt.Sprintf("%s/create_condition", s.path)
 	v := new(qualitygates.CreateConditionResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -111,7 +111,7 @@ func (s *Qualitygates) CreateCondition(ctx context.Context, r qualitygates.Creat
 // Since 4.3
 // Changelog:
 func (s *Qualitygates) DeleteCondition(ctx context.Context, r qualitygates.DeleteConditionRequest) error {
-	u := fmt.Sprintf("%s/qualitygates/delete_condition", API)
+	u := fmt.Sprintf("%s/delete_condition", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -131,7 +131,7 @@ func (s *Qualitygates) DeleteCondition(ctx context.Context, r qualitygates.Delet
 //   8.3: The parameter 'projectId' was removed
 //   6.6: The parameter 'gateId' was removed
 func (s *Qualitygates) Deselect(ctx context.Context, r qualitygates.DeselectRequest) error {
-	u := fmt.Sprintf("%s/qualitygates/deselect", API)
+	u := fmt.Sprintf("%s/deselect", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -149,7 +149,7 @@ func (s *Qualitygates) Deselect(ctx context.Context, r qualitygates.DeselectRequ
 //   8.4: Parameter 'name' added
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *Qualitygates) Destroy(ctx context.Context, r qualitygates.DestroyRequest) error {
-	u := fmt.Sprintf("%s/qualitygates/destroy", API)
+	u := fmt.Sprintf("%s/destroy", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -173,7 +173,7 @@ func (s *Qualitygates) Destroy(ctx context.Context, r qualitygates.DestroyReques
 //   6.6: The parameter 'projectKey' has been renamed to 'project'
 //   6.6: This webservice is now part of the public API
 func (s *Qualitygates) GetByProject(ctx context.Context, r qualitygates.GetByProjectRequest) (*qualitygates.GetByProjectResponse, error) {
-	u := fmt.Sprintf("%s/qualitygates/get_by_project", API)
+	u := fmt.Sprintf("%s/get_by_project", s.path)
 	v := new(qualitygates.GetByProjectResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -196,7 +196,7 @@ func (s *Qualitygates) GetByProject(ctx context.Context, r qualitygates.GetByPro
 //   7.0: 'isBuiltIn' field is added in the response
 //   7.0: 'actions' fields are added in the response
 func (s *Qualitygates) List(ctx context.Context, r qualitygates.ListRequest) (*qualitygates.ListResponse, error) {
-	u := fmt.Sprintf("%s/qualitygates/list", API)
+	u := fmt.Sprintf("%s/list", s.path)
 	v := new(qualitygates.ListResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -227,7 +227,7 @@ func (s *Qualitygates) List(ctx context.Context, r qualitygates.ListRequest) (*q
 //   7.6: The field 'warning' in the response is deprecated
 //   6.4: The field 'ignoredConditions' is added to the response
 func (s *Qualitygates) ProjectStatus(ctx context.Context, r qualitygates.ProjectStatusRequest) (*qualitygates.ProjectStatusResponse, error) {
-	u := fmt.Sprintf("%s/qualitygates/project_status", API)
+	u := fmt.Sprintf("%s/project_status", s.path)
 	v := new(qualitygates.ProjectStatusResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -246,7 +246,7 @@ func (s *Qualitygates) ProjectStatus(ctx context.Context, r qualitygates.Project
 // Since 9.2
 // Changelog:
 func (s *Qualitygates) RemoveGroup(ctx context.Context, r qualitygates.RemoveGroupRequest) error {
-	u := fmt.Sprintf("%s/qualitygates/remove_group", API)
+	u := fmt.Sprintf("%s/remove_group", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -264,7 +264,7 @@ func (s *Qualitygates) RemoveGroup(ctx context.Context, r qualitygates.RemoveGro
 // Since 9.2
 // Changelog:
 func (s *Qualitygates) RemoveUser(ctx context.Context, r qualitygates.RemoveUserRequest) error {
-	u := fmt.Sprintf("%s/qualitygates/remove_user", API)
+	u := fmt.Sprintf("%s/remove_user", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -283,7 +283,7 @@ func (s *Qualitygates) RemoveUser(ctx context.Context, r qualitygates.RemoveUser
 //   8.4: Parameter 'currentName' added
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'currentName' instead.
 func (s *Qualitygates) Rename(ctx context.Context, r qualitygates.RenameRequest) error {
-	u := fmt.Sprintf("%s/qualitygates/rename", API)
+	u := fmt.Sprintf("%s/rename", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -305,7 +305,7 @@ func (s *Qualitygates) Rename(ctx context.Context, r qualitygates.RenameRequest)
 //   7.9: New field 'key' returning the project key in 'results' response
 //   7.9: Field 'more' is deprecated in the response
 func (s *Qualitygates) Search(ctx context.Context, r qualitygates.SearchRequest) (*qualitygates.SearchResponse, error) {
-	u := fmt.Sprintf("%s/qualitygates/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(qualitygates.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -324,7 +324,7 @@ func (s *Qualitygates) Search(ctx context.Context, r qualitygates.SearchRequest)
 // Since 9.2
 // Changelog:
 func (s *Qualitygates) SearchGroups(ctx context.Context, r qualitygates.SearchGroupsRequest, p paging.Params) (*qualitygates.SearchGroupsResponse, error) {
-	u := fmt.Sprintf("%s/qualitygates/search_groups", API)
+	u := fmt.Sprintf("%s/search_groups", s.path)
 	v := new(qualitygates.SearchGroupsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -364,7 +364,7 @@ func (s *Qualitygates) SearchGroupsAll(ctx context.Context, r qualitygates.Searc
 // Since 9.2
 // Changelog:
 func (s *Qualitygates) SearchUsers(ctx context.Context, r qualitygates.SearchUsersRequest, p paging.Params) (*qualitygates.SearchUsersResponse, error) {
-	u := fmt.Sprintf("%s/qualitygates/search_users", API)
+	u := fmt.Sprintf("%s/search_users", s.path)
 	v := new(qualitygates.SearchUsersResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -408,7 +408,7 @@ func (s *Qualitygates) SearchUsersAll(ctx context.Context, r qualitygates.Search
 //   8.4: Parameter 'gateId' is deprecated. Format changes from integer to string. Use 'gateName' instead.
 //   8.3: The parameter 'projectId' was removed
 func (s *Qualitygates) Select(ctx context.Context, r qualitygates.SelectRequest) error {
-	u := fmt.Sprintf("%s/qualitygates/select", API)
+	u := fmt.Sprintf("%s/select", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -426,7 +426,7 @@ func (s *Qualitygates) Select(ctx context.Context, r qualitygates.SelectRequest)
 //   8.4: Parameter 'name' added
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *Qualitygates) SetAsDefault(ctx context.Context, r qualitygates.SetAsDefaultRequest) error {
-	u := fmt.Sprintf("%s/qualitygates/set_as_default", API)
+	u := fmt.Sprintf("%s/set_as_default", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -449,7 +449,7 @@ func (s *Qualitygates) SetAsDefault(ctx context.Context, r qualitygates.SetAsDef
 //   7.0: 'isBuiltIn' field is added to the response
 //   7.0: 'actions' field is added in the response
 func (s *Qualitygates) Show(ctx context.Context, r qualitygates.ShowRequest) (*qualitygates.ShowResponse, error) {
-	u := fmt.Sprintf("%s/qualitygates/show", API)
+	u := fmt.Sprintf("%s/show", s.path)
 	v := new(qualitygates.ShowResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -469,7 +469,7 @@ func (s *Qualitygates) Show(ctx context.Context, r qualitygates.ShowRequest) (*q
 //   7.6: Made 'error' parameter mandatory
 //   7.6: Reduced the possible values of 'op' parameter to LT and GT
 func (s *Qualitygates) UpdateCondition(ctx context.Context, r qualitygates.UpdateConditionRequest) error {
-	u := fmt.Sprintf("%s/qualitygates/update_condition", API)
+	u := fmt.Sprintf("%s/update_condition", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {

@@ -21,7 +21,7 @@ type AlmIntegrations service
 //   10.3: Parameter almSetting becomes optional if you have only one configuration for Azure
 //   10.3: Endpoint visibility change from internal to public
 func (s *AlmIntegrations) ImportAzureProject(ctx context.Context, r alm_integrations.ImportAzureProjectRequest) error {
-	u := fmt.Sprintf("%s/alm_integrations/import_azure_project", API)
+	u := fmt.Sprintf("%s/import_azure_project", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -41,7 +41,7 @@ func (s *AlmIntegrations) ImportAzureProject(ctx context.Context, r alm_integrat
 //   10.3: Parameter almSetting becomes optional if you have only one configuration for BitBucket Cloud
 //   10.3: Endpoint visibility change from internal to public
 func (s *AlmIntegrations) ImportBitbucketcloudRepo(ctx context.Context, r alm_integrations.ImportBitbucketcloudRepoRequest) error {
-	u := fmt.Sprintf("%s/alm_integrations/import_bitbucketcloud_repo", API)
+	u := fmt.Sprintf("%s/import_bitbucketcloud_repo", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -61,7 +61,7 @@ func (s *AlmIntegrations) ImportBitbucketcloudRepo(ctx context.Context, r alm_in
 //   10.3: Parameter almSetting becomes optional if you have only one configuration for BitBucket Server
 //   10.3: Endpoint visibility change from internal to public
 func (s *AlmIntegrations) ImportBitbucketserverProject(ctx context.Context, r alm_integrations.ImportBitbucketserverProjectRequest) error {
-	u := fmt.Sprintf("%s/alm_integrations/import_bitbucketserver_project", API)
+	u := fmt.Sprintf("%s/import_bitbucketserver_project", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -82,7 +82,7 @@ func (s *AlmIntegrations) ImportBitbucketserverProject(ctx context.Context, r al
 //   10.3: Parameter almSetting becomes optional if you have only one configuration for GitHub
 //   10.3: Endpoint visibility change from internal to public
 func (s *AlmIntegrations) ImportGithubProject(ctx context.Context, r alm_integrations.ImportGithubProjectRequest) error {
-	u := fmt.Sprintf("%s/alm_integrations/import_github_project", API)
+	u := fmt.Sprintf("%s/import_github_project", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -100,7 +100,7 @@ func (s *AlmIntegrations) ImportGithubProject(ctx context.Context, r alm_integra
 //   10.5: This endpoint is deprecated, please use its API v2 version /api/v2/dop-translation/bound-projects
 //   10.3: Parameter almSetting becomes optional if you have only one configuration for GitLab
 func (s *AlmIntegrations) ImportGitlabProject(ctx context.Context, r alm_integrations.ImportGitlabProjectRequest) error {
-	u := fmt.Sprintf("%s/alm_integrations/import_gitlab_project", API)
+	u := fmt.Sprintf("%s/import_gitlab_project", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -115,7 +115,7 @@ func (s *AlmIntegrations) ImportGitlabProject(ctx context.Context, r alm_integra
 // Since 8.6
 // Changelog:
 func (s *AlmIntegrations) ListAzureProjects(ctx context.Context, r alm_integrations.ListAzureProjectsRequest) (*alm_integrations.ListAzureProjectsResponse, error) {
-	u := fmt.Sprintf("%s/alm_integrations/list_azure_projects", API)
+	u := fmt.Sprintf("%s/list_azure_projects", s.path)
 	v := new(alm_integrations.ListAzureProjectsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -131,7 +131,7 @@ func (s *AlmIntegrations) ListAzureProjects(ctx context.Context, r alm_integrati
 // Since 8.2
 // Changelog:
 func (s *AlmIntegrations) ListBitbucketserverProjects(ctx context.Context, r alm_integrations.ListBitbucketserverProjectsRequest) (*alm_integrations.ListBitbucketserverProjectsResponse, error) {
-	u := fmt.Sprintf("%s/alm_integrations/list_bitbucketserver_projects", API)
+	u := fmt.Sprintf("%s/list_bitbucketserver_projects", s.path)
 	v := new(alm_integrations.ListBitbucketserverProjectsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -147,7 +147,7 @@ func (s *AlmIntegrations) ListBitbucketserverProjects(ctx context.Context, r alm
 // Since 8.6
 // Changelog:
 func (s *AlmIntegrations) SearchAzureRepos(ctx context.Context, r alm_integrations.SearchAzureReposRequest) (*alm_integrations.SearchAzureReposResponse, error) {
-	u := fmt.Sprintf("%s/alm_integrations/search_azure_repos", API)
+	u := fmt.Sprintf("%s/search_azure_repos", s.path)
 	v := new(alm_integrations.SearchAzureReposResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -163,7 +163,7 @@ func (s *AlmIntegrations) SearchAzureRepos(ctx context.Context, r alm_integratio
 // Since 9.0
 // Changelog:
 func (s *AlmIntegrations) SearchBitbucketcloudRepos(ctx context.Context, r alm_integrations.SearchBitbucketcloudReposRequest, p paging.Params) (*alm_integrations.SearchBitbucketcloudReposResponse, error) {
-	u := fmt.Sprintf("%s/alm_integrations/search_bitbucketcloud_repos", API)
+	u := fmt.Sprintf("%s/search_bitbucketcloud_repos", s.path)
 	v := new(alm_integrations.SearchBitbucketcloudReposResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -200,7 +200,7 @@ func (s *AlmIntegrations) SearchBitbucketcloudReposAll(ctx context.Context, r al
 // Since 8.2
 // Changelog:
 func (s *AlmIntegrations) SearchBitbucketserverRepos(ctx context.Context, r alm_integrations.SearchBitbucketserverReposRequest) (*alm_integrations.SearchBitbucketserverReposResponse, error) {
-	u := fmt.Sprintf("%s/alm_integrations/search_bitbucketserver_repos", API)
+	u := fmt.Sprintf("%s/search_bitbucketserver_repos", s.path)
 	v := new(alm_integrations.SearchBitbucketserverReposResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -216,7 +216,7 @@ func (s *AlmIntegrations) SearchBitbucketserverRepos(ctx context.Context, r alm_
 // Since 8.5
 // Changelog:
 func (s *AlmIntegrations) SearchGitlabRepos(ctx context.Context, r alm_integrations.SearchGitlabReposRequest, p paging.Params) (*alm_integrations.SearchGitlabReposResponse, error) {
-	u := fmt.Sprintf("%s/alm_integrations/search_gitlab_repos", API)
+	u := fmt.Sprintf("%s/search_gitlab_repos", s.path)
 	v := new(alm_integrations.SearchGitlabReposResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -256,7 +256,7 @@ func (s *AlmIntegrations) SearchGitlabReposAll(ctx context.Context, r alm_integr
 //   10.3: Parameter almSetting becomes optional if you have only one DevOps Platform configuration
 //   9.0: Bitbucket Cloud support and optional Username parameter were added
 func (s *AlmIntegrations) SetPat(ctx context.Context, r alm_integrations.SetPatRequest) error {
-	u := fmt.Sprintf("%s/alm_integrations/set_pat", API)
+	u := fmt.Sprintf("%s/set_pat", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {

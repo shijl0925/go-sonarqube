@@ -17,7 +17,7 @@ type Webhooks service
 // Changelog:
 //   10.6: The minimum length of parameter 'secret' increased to 16.
 func (s *Webhooks) Create(ctx context.Context, r webhooks.CreateRequest) (*webhooks.CreateResponse, error) {
-	u := fmt.Sprintf("%s/webhooks/create", API)
+	u := fmt.Sprintf("%s/create", s.path)
 	v := new(webhooks.CreateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -33,7 +33,7 @@ func (s *Webhooks) Create(ctx context.Context, r webhooks.CreateRequest) (*webho
 // Since 7.1
 // Changelog:
 func (s *Webhooks) Delete(ctx context.Context, r webhooks.DeleteRequest) error {
-	u := fmt.Sprintf("%s/webhooks/delete", API)
+	u := fmt.Sprintf("%s/delete", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -49,7 +49,7 @@ func (s *Webhooks) Delete(ctx context.Context, r webhooks.DeleteRequest) error {
 // Since 6.2
 // Changelog:
 func (s *Webhooks) Deliveries(ctx context.Context, r webhooks.DeliveriesRequest, p paging.Params) (*webhooks.DeliveriesResponse, error) {
-	u := fmt.Sprintf("%s/webhooks/deliveries", API)
+	u := fmt.Sprintf("%s/deliveries", s.path)
 	v := new(webhooks.DeliveriesResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -87,7 +87,7 @@ func (s *Webhooks) DeliveriesAll(ctx context.Context, r webhooks.DeliveriesReque
 // Since 6.2
 // Changelog:
 func (s *Webhooks) Delivery(ctx context.Context, r webhooks.DeliveryRequest) (*webhooks.DeliveryResponse, error) {
-	u := fmt.Sprintf("%s/webhooks/delivery", API)
+	u := fmt.Sprintf("%s/delivery", s.path)
 	v := new(webhooks.DeliveryResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -105,7 +105,7 @@ func (s *Webhooks) Delivery(ctx context.Context, r webhooks.DeliveryRequest) (*w
 //   10.1: Field 'secret' replaced by flag 'hasSecret' in response
 //   7.8: Field 'secret' added to response
 func (s *Webhooks) List(ctx context.Context, r webhooks.ListRequest) (*webhooks.ListResponse, error) {
-	u := fmt.Sprintf("%s/webhooks/list", API)
+	u := fmt.Sprintf("%s/list", s.path)
 	v := new(webhooks.ListResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -121,7 +121,7 @@ func (s *Webhooks) List(ctx context.Context, r webhooks.ListRequest) (*webhooks.
 // Since 7.1
 // Changelog:
 func (s *Webhooks) Update(ctx context.Context, r webhooks.UpdateRequest) error {
-	u := fmt.Sprintf("%s/webhooks/update", API)
+	u := fmt.Sprintf("%s/update", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {

@@ -20,7 +20,7 @@ type AuditLogs service
 // now deprecated.
 //   9.5: Field 'userTriggered' added to the response payload.
 func (s *AuditLogs) Download(ctx context.Context, r audit_logs.DownloadRequest) (*audit_logs.DownloadResponse, error) {
-	u := fmt.Sprintf("%s/audit_logs/download", API)
+	u := fmt.Sprintf("%s/download", s.path)
 	v := new(audit_logs.DownloadResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

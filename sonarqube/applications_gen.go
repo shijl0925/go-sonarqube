@@ -15,7 +15,7 @@ type Applications service
 // Since 7.3
 // Changelog:
 func (s *Applications) AddProject(ctx context.Context, r applications.AddProjectRequest) error {
-	u := fmt.Sprintf("%s/applications/add_project", API)
+	u := fmt.Sprintf("%s/add_project", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -31,7 +31,7 @@ func (s *Applications) AddProject(ctx context.Context, r applications.AddProject
 // Changelog:
 //   7.4: This web service is using the 'Create Applications' permission
 func (s *Applications) Create(ctx context.Context, r applications.CreateRequest) (*applications.CreateResponse, error) {
-	u := fmt.Sprintf("%s/applications/create", API)
+	u := fmt.Sprintf("%s/create", s.path)
 	v := new(applications.CreateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -47,7 +47,7 @@ func (s *Applications) Create(ctx context.Context, r applications.CreateRequest)
 // Since 7.3
 // Changelog:
 func (s *Applications) CreateBranch(ctx context.Context, r applications.CreateBranchRequest) error {
-	u := fmt.Sprintf("%s/applications/create_branch", API)
+	u := fmt.Sprintf("%s/create_branch", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -62,7 +62,7 @@ func (s *Applications) CreateBranch(ctx context.Context, r applications.CreateBr
 // Since 7.3
 // Changelog:
 func (s *Applications) Delete(ctx context.Context, r applications.DeleteRequest) error {
-	u := fmt.Sprintf("%s/applications/delete", API)
+	u := fmt.Sprintf("%s/delete", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -77,7 +77,7 @@ func (s *Applications) Delete(ctx context.Context, r applications.DeleteRequest)
 // Since 7.3
 // Changelog:
 func (s *Applications) DeleteBranch(ctx context.Context, r applications.DeleteBranchRequest) error {
-	u := fmt.Sprintf("%s/applications/delete_branch", API)
+	u := fmt.Sprintf("%s/delete_branch", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *Applications) DeleteBranch(ctx context.Context, r applications.DeleteBr
 // Since 7.3
 // Changelog:
 func (s *Applications) RemoveProject(ctx context.Context, r applications.RemoveProjectRequest) error {
-	u := fmt.Sprintf("%s/applications/remove_project", API)
+	u := fmt.Sprintf("%s/remove_project", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -107,7 +107,7 @@ func (s *Applications) RemoveProject(ctx context.Context, r applications.RemoveP
 // Since 8.3
 // Changelog:
 func (s *Applications) SetTags(ctx context.Context, r applications.SetTagsRequest) error {
-	u := fmt.Sprintf("%s/applications/set_tags", API)
+	u := fmt.Sprintf("%s/set_tags", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -123,7 +123,7 @@ func (s *Applications) SetTags(ctx context.Context, r applications.SetTagsReques
 // Changelog:
 //   8.3: Change required permission from 'Admin' to 'Browse'
 func (s *Applications) Show(ctx context.Context, r applications.ShowRequest) (*applications.ShowResponse, error) {
-	u := fmt.Sprintf("%s/applications/show", API)
+	u := fmt.Sprintf("%s/show", s.path)
 	v := new(applications.ShowResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -139,7 +139,7 @@ func (s *Applications) Show(ctx context.Context, r applications.ShowRequest) (*a
 // Since 7.3
 // Changelog:
 func (s *Applications) Update(ctx context.Context, r applications.UpdateRequest) error {
-	u := fmt.Sprintf("%s/applications/update", API)
+	u := fmt.Sprintf("%s/update", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -154,7 +154,7 @@ func (s *Applications) Update(ctx context.Context, r applications.UpdateRequest)
 // Since 7.3
 // Changelog:
 func (s *Applications) UpdateBranch(ctx context.Context, r applications.UpdateBranchRequest) error {
-	u := fmt.Sprintf("%s/applications/update_branch", API)
+	u := fmt.Sprintf("%s/update_branch", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {

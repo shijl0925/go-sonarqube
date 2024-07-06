@@ -4,10 +4,10 @@ package project_links
 
 // CreateRequest Create a new project link.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 type CreateRequest struct {
-	Name       string `json:"name"`                 // Link name
-	ProjectId  string `json:"projectId,omitempty"`  // Project id
-	ProjectKey string `json:"projectKey,omitempty"` // Project key
-	Url        string `json:"url"`                  // Link url
+	Name       string `form:"name"`                 // Link name
+	ProjectId  string `form:"projectId,omitempty"`  // Project id
+	ProjectKey string `form:"projectKey,omitempty"` // Project key
+	Url        string `form:"url"`                  // Link url
 }
 
 // CreateResponse is the response for CreateRequest
@@ -21,7 +21,7 @@ type CreateResponse struct {
 
 // DeleteRequest Delete existing project link.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 type DeleteRequest struct {
-	Id string `json:"id"` // Link id
+	Id string `form:"id"` // Link id
 }
 
 // SearchRequest List links of a project.<br>The 'projectId' or 'projectKey' must be provided.<br>Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li><li>'Browse' on the specified project</li></ul>

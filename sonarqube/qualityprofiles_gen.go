@@ -21,7 +21,7 @@ type Qualityprofiles service
 //   10.6: Add parameter 'prioritizedRule'.
 //   10.2: Parameter 'severity' is now deprecated.
 func (s *Qualityprofiles) ActivateRule(ctx context.Context, r qualityprofiles.ActivateRuleRequest) error {
-	u := fmt.Sprintf("%s/qualityprofiles/activate_rule", API)
+	u := fmt.Sprintf("%s/activate_rule", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -42,7 +42,7 @@ func (s *Qualityprofiles) ActivateRule(ctx context.Context, r qualityprofiles.Ac
 //   10.2: Parameters 'severities', 'targetSeverity', 'active_severities', and 'types' are now deprecated.
 //   10.0: Parameter 'sansTop25' is deprecated
 func (s *Qualityprofiles) ActivateRules(ctx context.Context, r qualityprofiles.ActivateRulesRequest) error {
-	u := fmt.Sprintf("%s/qualityprofiles/activate_rules", API)
+	u := fmt.Sprintf("%s/activate_rules", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -60,7 +60,7 @@ func (s *Qualityprofiles) ActivateRules(ctx context.Context, r qualityprofiles.A
 // Since 5.2
 // Changelog:
 func (s *Qualityprofiles) AddProject(ctx context.Context, r qualityprofiles.AddProjectRequest) error {
-	u := fmt.Sprintf("%s/qualityprofiles/add_project", API)
+	u := fmt.Sprintf("%s/add_project", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -75,7 +75,7 @@ func (s *Qualityprofiles) AddProject(ctx context.Context, r qualityprofiles.AddP
 // Changelog:
 //   10.3: The 'priority' and 'type' fields of the rule XML object are deprecated.
 func (s *Qualityprofiles) Backup(ctx context.Context, r qualityprofiles.BackupRequest) (*qualityprofiles.BackupResponse, error) {
-	u := fmt.Sprintf("%s/qualityprofiles/backup", API)
+	u := fmt.Sprintf("%s/backup", s.path)
 	v := new(qualityprofiles.BackupResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -94,7 +94,7 @@ func (s *Qualityprofiles) Backup(ctx context.Context, r qualityprofiles.BackupRe
 // Since 5.2
 // Changelog:
 func (s *Qualityprofiles) ChangeParent(ctx context.Context, r qualityprofiles.ChangeParentRequest) error {
-	u := fmt.Sprintf("%s/qualityprofiles/change_parent", API)
+	u := fmt.Sprintf("%s/change_parent", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -113,7 +113,7 @@ func (s *Qualityprofiles) ChangeParent(ctx context.Context, r qualityprofiles.Ch
 //   9.8: response fields 'total', 's', 'ps' have been deprecated, please use 'paging' object instead
 //   9.8: The field 'paging' has been added to the response
 func (s *Qualityprofiles) Changelog(ctx context.Context, r qualityprofiles.ChangelogRequest, p paging.Params) (*qualityprofiles.ChangelogResponse, error) {
-	u := fmt.Sprintf("%s/qualityprofiles/changelog", API)
+	u := fmt.Sprintf("%s/changelog", s.path)
 	v := new(qualityprofiles.ChangelogResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -150,7 +150,7 @@ func (s *Qualityprofiles) ChangelogAll(ctx context.Context, r qualityprofiles.Ch
 // Since 5.2
 // Changelog:
 func (s *Qualityprofiles) Copy(ctx context.Context, r qualityprofiles.CopyRequest) (*qualityprofiles.CopyResponse, error) {
-	u := fmt.Sprintf("%s/qualityprofiles/copy", API)
+	u := fmt.Sprintf("%s/copy", s.path)
 	v := new(qualityprofiles.CopyResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -166,7 +166,7 @@ func (s *Qualityprofiles) Copy(ctx context.Context, r qualityprofiles.CopyReques
 // Since 5.2
 // Changelog:
 func (s *Qualityprofiles) Create(ctx context.Context, r qualityprofiles.CreateRequest) (*qualityprofiles.CreateResponse, error) {
-	u := fmt.Sprintf("%s/qualityprofiles/create", API)
+	u := fmt.Sprintf("%s/create", s.path)
 	v := new(qualityprofiles.CreateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -186,7 +186,7 @@ func (s *Qualityprofiles) Create(ctx context.Context, r qualityprofiles.CreateRe
 // Changelog:
 //   10.3: Inherited rules can be deactivated (if the global admin setting is enabled)
 func (s *Qualityprofiles) DeactivateRule(ctx context.Context, r qualityprofiles.DeactivateRuleRequest) error {
-	u := fmt.Sprintf("%s/qualityprofiles/deactivate_rule", API)
+	u := fmt.Sprintf("%s/deactivate_rule", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -207,7 +207,7 @@ func (s *Qualityprofiles) DeactivateRule(ctx context.Context, r qualityprofiles.
 //   10.2: Parameters 'severities', 'active_severities', and 'types' are now deprecated.
 //   10.0: Parameter 'sansTop25' is deprecated
 func (s *Qualityprofiles) DeactivateRules(ctx context.Context, r qualityprofiles.DeactivateRulesRequest) error {
-	u := fmt.Sprintf("%s/qualityprofiles/deactivate_rules", API)
+	u := fmt.Sprintf("%s/deactivate_rules", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -225,7 +225,7 @@ func (s *Qualityprofiles) DeactivateRules(ctx context.Context, r qualityprofiles
 // Since 5.2
 // Changelog:
 func (s *Qualityprofiles) Delete(ctx context.Context, r qualityprofiles.DeleteRequest) error {
-	u := fmt.Sprintf("%s/qualityprofiles/delete", API)
+	u := fmt.Sprintf("%s/delete", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -239,7 +239,7 @@ func (s *Qualityprofiles) Delete(ctx context.Context, r qualityprofiles.DeleteRe
 // Since 5.2
 // Changelog:
 func (s *Qualityprofiles) Export(ctx context.Context, r qualityprofiles.ExportRequest) (*qualityprofiles.ExportResponse, error) {
-	u := fmt.Sprintf("%s/qualityprofiles/export", API)
+	u := fmt.Sprintf("%s/export", s.path)
 	v := new(qualityprofiles.ExportResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -254,7 +254,7 @@ func (s *Qualityprofiles) Export(ctx context.Context, r qualityprofiles.ExportRe
 // Since 5.2
 // Changelog:
 func (s *Qualityprofiles) Exporters(ctx context.Context, r qualityprofiles.ExportersRequest) (*qualityprofiles.ExportersResponse, error) {
-	u := fmt.Sprintf("%s/qualityprofiles/exporters", API)
+	u := fmt.Sprintf("%s/exporters", s.path)
 	v := new(qualityprofiles.ExportersResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -269,7 +269,7 @@ func (s *Qualityprofiles) Exporters(ctx context.Context, r qualityprofiles.Expor
 // Since 5.2
 // Changelog:
 func (s *Qualityprofiles) Importers(ctx context.Context, r qualityprofiles.ImportersRequest) (*qualityprofiles.ImportersResponse, error) {
-	u := fmt.Sprintf("%s/qualityprofiles/importers", API)
+	u := fmt.Sprintf("%s/importers", s.path)
 	v := new(qualityprofiles.ImportersResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -285,7 +285,7 @@ func (s *Qualityprofiles) Importers(ctx context.Context, r qualityprofiles.Impor
 // Changelog:
 //   10.3: Field 'inactiveRuleCount' added to the response
 func (s *Qualityprofiles) Inheritance(ctx context.Context, r qualityprofiles.InheritanceRequest) (*qualityprofiles.InheritanceResponse, error) {
-	u := fmt.Sprintf("%s/qualityprofiles/inheritance", API)
+	u := fmt.Sprintf("%s/inheritance", s.path)
 	v := new(qualityprofiles.InheritanceResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -309,7 +309,7 @@ func (s *Qualityprofiles) Inheritance(ctx context.Context, r qualityprofiles.Inh
 //   6.0: 'uuid' response field is deprecated and replaced by 'id'
 //   6.0: 'key' response field has been added to return the project key
 func (s *Qualityprofiles) Projects(ctx context.Context, r qualityprofiles.ProjectsRequest, p paging.Params) (*qualityprofiles.ProjectsResponse, error) {
-	u := fmt.Sprintf("%s/qualityprofiles/projects", API)
+	u := fmt.Sprintf("%s/projects", s.path)
 	v := new(qualityprofiles.ProjectsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -350,7 +350,7 @@ func (s *Qualityprofiles) ProjectsAll(ctx context.Context, r qualityprofiles.Pro
 // Since 5.2
 // Changelog:
 func (s *Qualityprofiles) RemoveProject(ctx context.Context, r qualityprofiles.RemoveProjectRequest) error {
-	u := fmt.Sprintf("%s/qualityprofiles/remove_project", API)
+	u := fmt.Sprintf("%s/remove_project", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -368,7 +368,7 @@ func (s *Qualityprofiles) RemoveProject(ctx context.Context, r qualityprofiles.R
 // Since 5.2
 // Changelog:
 func (s *Qualityprofiles) Rename(ctx context.Context, r qualityprofiles.RenameRequest) error {
-	u := fmt.Sprintf("%s/qualityprofiles/rename", API)
+	u := fmt.Sprintf("%s/rename", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -384,7 +384,7 @@ func (s *Qualityprofiles) Rename(ctx context.Context, r qualityprofiles.RenameRe
 // Changelog:
 //   10.3: The 'priority' and 'type' fields of the rule XML object are deprecated.
 func (s *Qualityprofiles) Restore(ctx context.Context, r qualityprofiles.RestoreRequest) error {
-	u := fmt.Sprintf("%s/qualityprofiles/restore", API)
+	u := fmt.Sprintf("%s/restore", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -402,7 +402,7 @@ func (s *Qualityprofiles) Restore(ctx context.Context, r qualityprofiles.Restore
 //   6.6: Add available actions 'edit', 'copy' and 'setAsDefault' and global action 'create'
 //   6.5: The parameters 'defaults', 'project' and 'language' can be combined without any constraint
 func (s *Qualityprofiles) Search(ctx context.Context, r qualityprofiles.SearchRequest) (*qualityprofiles.SearchResponse, error) {
-	u := fmt.Sprintf("%s/qualityprofiles/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(qualityprofiles.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -418,7 +418,7 @@ func (s *Qualityprofiles) Search(ctx context.Context, r qualityprofiles.SearchRe
 // Since 5.2
 // Changelog:
 func (s *Qualityprofiles) SetDefault(ctx context.Context, r qualityprofiles.SetDefaultRequest) error {
-	u := fmt.Sprintf("%s/qualityprofiles/set_default", API)
+	u := fmt.Sprintf("%s/set_default", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {

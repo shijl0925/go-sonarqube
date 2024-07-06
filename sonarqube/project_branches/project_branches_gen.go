@@ -4,8 +4,8 @@ package project_branches
 
 // DeleteRequest Delete a non-main branch of a project or application.<br/>Requires 'Administer' rights on the specified project or application.
 type DeleteRequest struct {
-	Branch  string `json:"branch"`  // Branch key
-	Project string `json:"project"` // Project key
+	Branch  string `form:"branch"`  // Branch key
+	Project string `form:"project"` // Project key
 }
 
 // ListRequest List the branches of a project or application.<br/>Requires 'Browse' or 'Execute analysis' rights on the specified project or application.
@@ -30,19 +30,19 @@ type ListResponse struct {
 
 // RenameRequest Rename the main branch of a project or application.<br/>Requires 'Administer' permission on the specified project or application.
 type RenameRequest struct {
-	Name    string `json:"name"`    // New name of the main branch
-	Project string `json:"project"` // Project key
+	Name    string `form:"name"`    // New name of the main branch
+	Project string `form:"project"` // Project key
 }
 
 // SetAutomaticDeletionProtectionRequest Protect a specific branch from automatic deletion. Protection can't be disabled for the main branch.<br/>Requires 'Administer' permission on the specified project or application.
 type SetAutomaticDeletionProtectionRequest struct {
-	Branch  string `json:"branch"`  // Branch key
-	Project string `json:"project"` // Project key
-	Value   string `json:"value"`   // Sets whether the branch should be protected from automatic deletion when it hasn't been analyzed for a set period of time.
+	Branch  string `form:"branch"`  // Branch key
+	Project string `form:"project"` // Project key
+	Value   string `form:"value"`   // Sets whether the branch should be protected from automatic deletion when it hasn't been analyzed for a set period of time.
 }
 
 // SetMainRequest Allow to set a new main branch.<br/>. Caution, only applicable on projects.<br>Requires 'Administer' rights on the specified project or application.
 type SetMainRequest struct {
-	Branch  string `json:"branch"`  // Branch key
-	Project string `json:"project"` // Project key
+	Branch  string `form:"branch"`  // Branch key
+	Project string `form:"project"` // Project key
 }

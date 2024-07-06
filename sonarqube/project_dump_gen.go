@@ -15,7 +15,7 @@ type ProjectDump service
 // Changelog:
 //   9.2: Moved from Enterprise Edition to Community Edition
 func (s *ProjectDump) Export(ctx context.Context, r project_dump.ExportRequest) (*project_dump.ExportResponse, error) {
-	u := fmt.Sprintf("%s/project_dump/export", API)
+	u := fmt.Sprintf("%s/export", s.path)
 	v := new(project_dump.ExportResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -30,7 +30,7 @@ func (s *ProjectDump) Export(ctx context.Context, r project_dump.ExportRequest) 
 // Since 1.0
 // Changelog:
 func (s *ProjectDump) Import(ctx context.Context, r project_dump.ImportRequest) (*project_dump.ImportResponse, error) {
-	u := fmt.Sprintf("%s/project_dump/import", API)
+	u := fmt.Sprintf("%s/import", s.path)
 	v := new(project_dump.ImportResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)

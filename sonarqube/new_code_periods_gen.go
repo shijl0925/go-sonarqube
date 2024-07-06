@@ -15,7 +15,7 @@ type NewCodePeriods service
 // Since 8.0
 // Changelog:
 func (s *NewCodePeriods) List(ctx context.Context, r new_code_periods.ListRequest) (*new_code_periods.ListResponse, error) {
-	u := fmt.Sprintf("%s/new_code_periods/list", API)
+	u := fmt.Sprintf("%s/list", s.path)
 	v := new(new_code_periods.ListResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -38,7 +38,7 @@ func (s *NewCodePeriods) List(ctx context.Context, r new_code_periods.ListReques
 // Since 8.0
 // Changelog:
 func (s *NewCodePeriods) Set(ctx context.Context, r new_code_periods.SetRequest) error {
-	u := fmt.Sprintf("%s/new_code_periods/set", API)
+	u := fmt.Sprintf("%s/set", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -56,7 +56,7 @@ func (s *NewCodePeriods) Set(ctx context.Context, r new_code_periods.SetRequest)
 // Since 8.0
 // Changelog:
 func (s *NewCodePeriods) Show(ctx context.Context, r new_code_periods.ShowRequest) (*new_code_periods.ShowResponse, error) {
-	u := fmt.Sprintf("%s/new_code_periods/show", API)
+	u := fmt.Sprintf("%s/show", s.path)
 	v := new(new_code_periods.ShowResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -74,7 +74,7 @@ func (s *NewCodePeriods) Show(ctx context.Context, r new_code_periods.ShowReques
 // Since 8.0
 // Changelog:
 func (s *NewCodePeriods) Unset(ctx context.Context, r new_code_periods.UnsetRequest) error {
-	u := fmt.Sprintf("%s/new_code_periods/unset", API)
+	u := fmt.Sprintf("%s/unset", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {

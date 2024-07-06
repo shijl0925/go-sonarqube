@@ -22,7 +22,7 @@ type Favorites service
 //   7.7: It's no longer possible to set a directory as favorite
 //   7.6: The use of module keys in parameter 'component' is deprecated
 func (s *Favorites) Add(ctx context.Context, r favorites.AddRequest) error {
-	u := fmt.Sprintf("%s/favorites/add", API)
+	u := fmt.Sprintf("%s/add", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -39,7 +39,7 @@ func (s *Favorites) Add(ctx context.Context, r favorites.AddRequest) error {
 //   10.1: The use of module keys in parameter 'component' is removed
 //   7.6: The use of module keys in parameter 'component' is deprecated
 func (s *Favorites) Remove(ctx context.Context, r favorites.RemoveRequest) error {
-	u := fmt.Sprintf("%s/favorites/remove", API)
+	u := fmt.Sprintf("%s/remove", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -54,7 +54,7 @@ func (s *Favorites) Remove(ctx context.Context, r favorites.RemoveRequest) error
 // Since 6.3
 // Changelog:
 func (s *Favorites) Search(ctx context.Context, r favorites.SearchRequest, p paging.Params) (*favorites.SearchResponse, error) {
-	u := fmt.Sprintf("%s/favorites/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(favorites.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)

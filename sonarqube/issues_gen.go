@@ -25,7 +25,7 @@ type Issues service
 //   6.5: the response field components.uuid is deprecated. Use components.key instead.
 //   6.3: the response returns the issue with all its details
 func (s *Issues) AddComment(ctx context.Context, r issues.AddCommentRequest) (*issues.AddCommentResponse, error) {
-	u := fmt.Sprintf("%s/issues/add_comment", API)
+	u := fmt.Sprintf("%s/add_comment", s.path)
 	v := new(issues.AddCommentResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -48,7 +48,7 @@ func (s *Issues) AddComment(ctx context.Context, r issues.AddCommentRequest) (*i
 //   6.5: the database ids of the components are removed from the response
 //   6.5: the response field components.uuid is deprecated. Use components.key instead.
 func (s *Issues) Assign(ctx context.Context, r issues.AssignRequest) (*issues.AssignResponse, error) {
-	u := fmt.Sprintf("%s/issues/assign", API)
+	u := fmt.Sprintf("%s/assign", s.path)
 	v := new(issues.AssignResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -66,7 +66,7 @@ func (s *Issues) Assign(ctx context.Context, r issues.AssignRequest) (*issues.As
 // Changelog:
 //   7.4: The maximum size of 'ps' is set to 100
 func (s *Issues) Authors(ctx context.Context, r issues.AuthorsRequest) (*issues.AuthorsResponse, error) {
-	u := fmt.Sprintf("%s/issues/authors", API)
+	u := fmt.Sprintf("%s/authors", s.path)
 	v := new(issues.AuthorsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -88,7 +88,7 @@ func (s *Issues) Authors(ctx context.Context, r issues.AuthorsRequest) (*issues.
 //   8.2: Transitions 'setinreview', 'resolveasreviewed' and 'openasvulnerability' are no more supported
 //   6.3: 'actions' parameter is ignored
 func (s *Issues) BulkChange(ctx context.Context, r issues.BulkChangeRequest) (*issues.BulkChangeResponse, error) {
-	u := fmt.Sprintf("%s/issues/bulk_change", API)
+	u := fmt.Sprintf("%s/bulk_change", s.path)
 	v := new(issues.BulkChangeResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -108,7 +108,7 @@ func (s *Issues) BulkChange(ctx context.Context, r issues.BulkChangeRequest) (*i
 //   9.7: 'externalUser' and 'webhookSource' information added to the answer
 //   6.3: changes on effort is expressed with the raw value in minutes (instead of the duration previously)
 func (s *Issues) Changelog(ctx context.Context, r issues.ChangelogRequest) (*issues.ChangelogResponse, error) {
-	u := fmt.Sprintf("%s/issues/changelog", API)
+	u := fmt.Sprintf("%s/changelog", s.path)
 	v := new(issues.ChangelogResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -134,7 +134,7 @@ func (s *Issues) Changelog(ctx context.Context, r issues.ChangelogRequest) (*iss
 //   6.3: the response returns the issue with all its details
 //   6.3: the 'key' parameter is renamed 'comment'
 func (s *Issues) DeleteComment(ctx context.Context, r issues.DeleteCommentRequest) (*issues.DeleteCommentResponse, error) {
-	u := fmt.Sprintf("%s/issues/delete_comment", API)
+	u := fmt.Sprintf("%s/delete_comment", s.path)
 	v := new(issues.DeleteCommentResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -167,7 +167,7 @@ func (s *Issues) DeleteComment(ctx context.Context, r issues.DeleteCommentReques
 //   6.5: the database ids of the components are removed from the response
 //   6.5: the response field components.uuid is deprecated. Use components.key instead.
 func (s *Issues) DoTransition(ctx context.Context, r issues.DoTransitionRequest) (*issues.DoTransitionResponse, error) {
-	u := fmt.Sprintf("%s/issues/do_transition", API)
+	u := fmt.Sprintf("%s/do_transition", s.path)
 	v := new(issues.DoTransitionResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -193,7 +193,7 @@ func (s *Issues) DoTransition(ctx context.Context, r issues.DoTransitionRequest)
 //   6.3: the response returns the issue with all its details
 //   6.3: the 'key' parameter has been renamed comment
 func (s *Issues) EditComment(ctx context.Context, r issues.EditCommentRequest) (*issues.EditCommentResponse, error) {
-	u := fmt.Sprintf("%s/issues/edit_comment", API)
+	u := fmt.Sprintf("%s/edit_comment", s.path)
 	v := new(issues.EditCommentResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -209,7 +209,7 @@ func (s *Issues) EditComment(ctx context.Context, r issues.EditCommentRequest) (
 // Since 10.2
 // Changelog:
 func (s *Issues) GitlabSastExport(ctx context.Context, r issues.GitlabSastExportRequest) (*issues.GitlabSastExportResponse, error) {
-	u := fmt.Sprintf("%s/issues/gitlab_sast_export", API)
+	u := fmt.Sprintf("%s/gitlab_sast_export", s.path)
 	v := new(issues.GitlabSastExportResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -225,7 +225,7 @@ func (s *Issues) GitlabSastExport(ctx context.Context, r issues.GitlabSastExport
 // Since 9.8
 // Changelog:
 func (s *Issues) Reindex(ctx context.Context, r issues.ReindexRequest) error {
-	u := fmt.Sprintf("%s/issues/reindex", API)
+	u := fmt.Sprintf("%s/reindex", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -304,7 +304,7 @@ func (s *Issues) Reindex(ctx context.Context, r issues.ReindexRequest) error {
 //   5.5: parameters 'reporters', 'actionPlans' and 'planned' are dropped and therefore ignored (drop of action plan and manual issue features)
 //   5.5: response field 'debt' is renamed 'effort'
 func (s *Issues) Search(ctx context.Context, r issues.SearchRequest, p paging.Params) (*issues.SearchResponse, error) {
-	u := fmt.Sprintf("%s/issues/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(issues.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -358,7 +358,7 @@ func (s *Issues) SearchAll(ctx context.Context, r issues.SearchRequest) (*issues
 //   6.5: the database ids of the components are removed from the response
 //   6.5: the response field components.uuid is deprecated. Use components.key instead.
 func (s *Issues) SetSeverity(ctx context.Context, r issues.SetSeverityRequest) (*issues.SetSeverityResponse, error) {
-	u := fmt.Sprintf("%s/issues/set_severity", API)
+	u := fmt.Sprintf("%s/set_severity", s.path)
 	v := new(issues.SetSeverityResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -383,7 +383,7 @@ func (s *Issues) SetSeverity(ctx context.Context, r issues.SetSeverityRequest) (
 //   6.5: the response field components.uuid is deprecated. Use components.key instead.
 //   6.4: response contains issue information instead of list of tags
 func (s *Issues) SetTags(ctx context.Context, r issues.SetTagsRequest) (*issues.SetTagsResponse, error) {
-	u := fmt.Sprintf("%s/issues/set_tags", API)
+	u := fmt.Sprintf("%s/set_tags", s.path)
 	v := new(issues.SetTagsResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -412,7 +412,7 @@ func (s *Issues) SetTags(ctx context.Context, r issues.SetTagsRequest) (*issues.
 //   6.5: the database ids of the components are removed from the response
 //   6.5: the response field components.uuid is deprecated. Use components.key instead.
 func (s *Issues) SetType(ctx context.Context, r issues.SetTypeRequest) (*issues.SetTypeResponse, error) {
-	u := fmt.Sprintf("%s/issues/set_type", API)
+	u := fmt.Sprintf("%s/set_type", s.path)
 	v := new(issues.SetTypeResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -429,7 +429,7 @@ func (s *Issues) SetType(ctx context.Context, r issues.SetTypeRequest) (*issues.
 //   9.4: Max page size increased to 500
 //   7.4: Result doesn't include rules tags anymore
 func (s *Issues) Tags(ctx context.Context, r issues.TagsRequest) (*issues.TagsResponse, error) {
-	u := fmt.Sprintf("%s/issues/tags", API)
+	u := fmt.Sprintf("%s/tags", s.path)
 	v := new(issues.TagsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

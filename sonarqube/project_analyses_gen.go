@@ -20,7 +20,7 @@ type ProjectAnalyses service
 // Since 6.3
 // Changelog:
 func (s *ProjectAnalyses) CreateEvent(ctx context.Context, r project_analyses.CreateEventRequest) (*project_analyses.CreateEventResponse, error) {
-	u := fmt.Sprintf("%s/project_analyses/create_event", API)
+	u := fmt.Sprintf("%s/create_event", s.path)
 	v := new(project_analyses.CreateEventResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -39,7 +39,7 @@ func (s *ProjectAnalyses) CreateEvent(ctx context.Context, r project_analyses.Cr
 // Since 6.3
 // Changelog:
 func (s *ProjectAnalyses) Delete(ctx context.Context, r project_analyses.DeleteRequest) error {
-	u := fmt.Sprintf("%s/project_analyses/delete", API)
+	u := fmt.Sprintf("%s/delete", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -58,7 +58,7 @@ func (s *ProjectAnalyses) Delete(ctx context.Context, r project_analyses.DeleteR
 // Since 6.3
 // Changelog:
 func (s *ProjectAnalyses) DeleteEvent(ctx context.Context, r project_analyses.DeleteEventRequest) error {
-	u := fmt.Sprintf("%s/project_analyses/delete_event", API)
+	u := fmt.Sprintf("%s/delete_event", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -77,7 +77,7 @@ func (s *ProjectAnalyses) DeleteEvent(ctx context.Context, r project_analyses.De
 //   9.0: Add response field 'detectedCI'
 //   7.5: Add QualityGate information on Applications
 func (s *ProjectAnalyses) Search(ctx context.Context, r project_analyses.SearchRequest, p paging.Params) (*project_analyses.SearchResponse, error) {
-	u := fmt.Sprintf("%s/project_analyses/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(project_analyses.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -118,7 +118,7 @@ func (s *ProjectAnalyses) SearchAll(ctx context.Context, r project_analyses.Sear
 // Since 6.3
 // Changelog:
 func (s *ProjectAnalyses) UpdateEvent(ctx context.Context, r project_analyses.UpdateEventRequest) (*project_analyses.UpdateEventResponse, error) {
-	u := fmt.Sprintf("%s/project_analyses/update_event", API)
+	u := fmt.Sprintf("%s/update_event", s.path)
 	v := new(project_analyses.UpdateEventResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)

@@ -22,7 +22,7 @@ type Permissions service
 //   10.0: Parameter 'groupId' is removed. Use 'groupName' instead.
 //   8.4: Parameter 'groupId' is deprecated. Format changes from integer to string. Use 'groupName' instead.
 func (s *Permissions) AddGroup(ctx context.Context, r permissions.AddGroupRequest) error {
-	u := fmt.Sprintf("%s/permissions/add_group", API)
+	u := fmt.Sprintf("%s/add_group", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -40,7 +40,7 @@ func (s *Permissions) AddGroup(ctx context.Context, r permissions.AddGroupReques
 //   10.0: Parameter 'groupId' is removed. Use 'groupName' instead.
 //   8.4: Parameter 'groupId' is deprecated. Format changes from integer to string. Use 'groupName' instead.
 func (s *Permissions) AddGroupToTemplate(ctx context.Context, r permissions.AddGroupToTemplateRequest) error {
-	u := fmt.Sprintf("%s/permissions/add_group_to_template", API)
+	u := fmt.Sprintf("%s/add_group_to_template", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -55,7 +55,7 @@ func (s *Permissions) AddGroupToTemplate(ctx context.Context, r permissions.AddG
 // Since 6.0
 // Changelog:
 func (s *Permissions) AddProjectCreatorToTemplate(ctx context.Context, r permissions.AddProjectCreatorToTemplateRequest) error {
-	u := fmt.Sprintf("%s/permissions/add_project_creator_to_template", API)
+	u := fmt.Sprintf("%s/add_project_creator_to_template", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -74,7 +74,7 @@ func (s *Permissions) AddProjectCreatorToTemplate(ctx context.Context, r permiss
 // Since 5.2
 // Changelog:
 func (s *Permissions) AddUser(ctx context.Context, r permissions.AddUserRequest) error {
-	u := fmt.Sprintf("%s/permissions/add_user", API)
+	u := fmt.Sprintf("%s/add_user", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -89,7 +89,7 @@ func (s *Permissions) AddUser(ctx context.Context, r permissions.AddUserRequest)
 // Since 5.2
 // Changelog:
 func (s *Permissions) AddUserToTemplate(ctx context.Context, r permissions.AddUserToTemplateRequest) error {
-	u := fmt.Sprintf("%s/permissions/add_user_to_template", API)
+	u := fmt.Sprintf("%s/add_user_to_template", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -106,7 +106,7 @@ func (s *Permissions) AddUserToTemplate(ctx context.Context, r permissions.AddUs
 // Since 5.2
 // Changelog:
 func (s *Permissions) ApplyTemplate(ctx context.Context, r permissions.ApplyTemplateRequest) error {
-	u := fmt.Sprintf("%s/permissions/apply_template", API)
+	u := fmt.Sprintf("%s/apply_template", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -123,7 +123,7 @@ func (s *Permissions) ApplyTemplate(ctx context.Context, r permissions.ApplyTemp
 // Changelog:
 //   6.7.2: Parameter projects accepts maximum 1000 values
 func (s *Permissions) BulkApplyTemplate(ctx context.Context, r permissions.BulkApplyTemplateRequest) error {
-	u := fmt.Sprintf("%s/permissions/bulk_apply_template", API)
+	u := fmt.Sprintf("%s/bulk_apply_template", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -138,7 +138,7 @@ func (s *Permissions) BulkApplyTemplate(ctx context.Context, r permissions.BulkA
 // Since 5.2
 // Changelog:
 func (s *Permissions) CreateTemplate(ctx context.Context, r permissions.CreateTemplateRequest) (*permissions.CreateTemplateResponse, error) {
-	u := fmt.Sprintf("%s/permissions/create_template", API)
+	u := fmt.Sprintf("%s/create_template", s.path)
 	v := new(permissions.CreateTemplateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -154,7 +154,7 @@ func (s *Permissions) CreateTemplate(ctx context.Context, r permissions.CreateTe
 // Since 5.2
 // Changelog:
 func (s *Permissions) DeleteTemplate(ctx context.Context, r permissions.DeleteTemplateRequest) error {
-	u := fmt.Sprintf("%s/permissions/delete_template", API)
+	u := fmt.Sprintf("%s/delete_template", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -176,7 +176,7 @@ func (s *Permissions) DeleteTemplate(ctx context.Context, r permissions.DeleteTe
 //   10.0: Parameter 'groupId' is removed. Use 'groupName' instead.
 //   8.4: Parameter 'groupId' is deprecated. Format changes from integer to string. Use 'groupName' instead.
 func (s *Permissions) RemoveGroup(ctx context.Context, r permissions.RemoveGroupRequest) error {
-	u := fmt.Sprintf("%s/permissions/remove_group", API)
+	u := fmt.Sprintf("%s/remove_group", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -194,7 +194,7 @@ func (s *Permissions) RemoveGroup(ctx context.Context, r permissions.RemoveGroup
 //   10.0: Parameter 'groupId' is removed. Use 'groupName' instead.
 //   8.4: Parameter 'groupId' is deprecated. Format changes from integer to string. Use 'groupName' instead.
 func (s *Permissions) RemoveGroupFromTemplate(ctx context.Context, r permissions.RemoveGroupFromTemplateRequest) error {
-	u := fmt.Sprintf("%s/permissions/remove_group_from_template", API)
+	u := fmt.Sprintf("%s/remove_group_from_template", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -209,7 +209,7 @@ func (s *Permissions) RemoveGroupFromTemplate(ctx context.Context, r permissions
 // Since 6.0
 // Changelog:
 func (s *Permissions) RemoveProjectCreatorFromTemplate(ctx context.Context, r permissions.RemoveProjectCreatorFromTemplateRequest) error {
-	u := fmt.Sprintf("%s/permissions/remove_project_creator_from_template", API)
+	u := fmt.Sprintf("%s/remove_project_creator_from_template", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -228,7 +228,7 @@ func (s *Permissions) RemoveProjectCreatorFromTemplate(ctx context.Context, r pe
 // Since 5.2
 // Changelog:
 func (s *Permissions) RemoveUser(ctx context.Context, r permissions.RemoveUserRequest) error {
-	u := fmt.Sprintf("%s/permissions/remove_user", API)
+	u := fmt.Sprintf("%s/remove_user", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -243,7 +243,7 @@ func (s *Permissions) RemoveUser(ctx context.Context, r permissions.RemoveUserRe
 // Since 5.2
 // Changelog:
 func (s *Permissions) RemoveUserFromTemplate(ctx context.Context, r permissions.RemoveUserFromTemplateRequest) error {
-	u := fmt.Sprintf("%s/permissions/remove_user_from_template", API)
+	u := fmt.Sprintf("%s/remove_user_from_template", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -258,7 +258,7 @@ func (s *Permissions) RemoveUserFromTemplate(ctx context.Context, r permissions.
 // Since 5.2
 // Changelog:
 func (s *Permissions) SearchTemplates(ctx context.Context, r permissions.SearchTemplatesRequest) (*permissions.SearchTemplatesResponse, error) {
-	u := fmt.Sprintf("%s/permissions/search_templates", API)
+	u := fmt.Sprintf("%s/search_templates", s.path)
 	v := new(permissions.SearchTemplatesResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -274,7 +274,7 @@ func (s *Permissions) SearchTemplates(ctx context.Context, r permissions.SearchT
 // Since 5.2
 // Changelog:
 func (s *Permissions) SetDefaultTemplate(ctx context.Context, r permissions.SetDefaultTemplateRequest) error {
-	u := fmt.Sprintf("%s/permissions/set_default_template", API)
+	u := fmt.Sprintf("%s/set_default_template", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -289,7 +289,7 @@ func (s *Permissions) SetDefaultTemplate(ctx context.Context, r permissions.SetD
 // Since 5.2
 // Changelog:
 func (s *Permissions) UpdateTemplate(ctx context.Context, r permissions.UpdateTemplateRequest) (*permissions.UpdateTemplateResponse, error) {
-	u := fmt.Sprintf("%s/permissions/update_template", API)
+	u := fmt.Sprintf("%s/update_template", s.path)
 	v := new(permissions.UpdateTemplateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)

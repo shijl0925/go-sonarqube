@@ -25,7 +25,7 @@ type QualityGateResponse string
 
 // RenewTokenRequest Creates new token replacing any existing token for project or application badge access for private projects and applications.<br/>This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.<br/>Requires 'Administer' permission on the specified project or application.
 type RenewTokenRequest struct {
-	Project string `json:"project"` // Project or application key
+	Project string `form:"project"` // Project or application key
 }
 
 // TokenRequest Retrieve a token to use for project or application badge access for private projects or applications.<br/>This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.<br/>Requires 'Browse' permission on the specified project or application.

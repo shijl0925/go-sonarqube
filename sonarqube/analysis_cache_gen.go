@@ -15,7 +15,7 @@ type AnalysisCache service
 // Changelog:
 //   9.9: The web service is no longer internal
 func (s *AnalysisCache) Get(ctx context.Context, r analysis_cache.GetRequest) error {
-	u := fmt.Sprintf("%s/analysis_cache/get", API)
+	u := fmt.Sprintf("%s/get", s.path)
 
 	_, err := s.client.Call(ctx, "GET", u, nil, r)
 	if err != nil {

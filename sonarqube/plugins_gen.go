@@ -21,7 +21,7 @@ type Plugins service
 // Since 5.2
 // Changelog:
 func (s *Plugins) Available(ctx context.Context, r plugins.AvailableRequest) (*plugins.AvailableResponse, error) {
-	u := fmt.Sprintf("%s/plugins/available", API)
+	u := fmt.Sprintf("%s/available", s.path)
 	v := new(plugins.AvailableResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -37,7 +37,7 @@ func (s *Plugins) Available(ctx context.Context, r plugins.AvailableRequest) (*p
 // Since 5.2
 // Changelog:
 func (s *Plugins) CancelAll(ctx context.Context, r plugins.CancelAllRequest) error {
-	u := fmt.Sprintf("%s/plugins/cancel_all", API)
+	u := fmt.Sprintf("%s/cancel_all", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -54,7 +54,7 @@ func (s *Plugins) CancelAll(ctx context.Context, r plugins.CancelAllRequest) err
 // Since 5.2
 // Changelog:
 func (s *Plugins) Install(ctx context.Context, r plugins.InstallRequest) error {
-	u := fmt.Sprintf("%s/plugins/install", API)
+	u := fmt.Sprintf("%s/install", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -78,7 +78,7 @@ func (s *Plugins) Install(ctx context.Context, r plugins.InstallRequest) error {
 //   6.6: The 'sonarLintSupported' field is added
 //   6.6: The 'updatedAt' field is added
 func (s *Plugins) Installed(ctx context.Context, r plugins.InstalledRequest) (*plugins.InstalledResponse, error) {
-	u := fmt.Sprintf("%s/plugins/installed", API)
+	u := fmt.Sprintf("%s/installed", s.path)
 	v := new(plugins.InstalledResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -96,7 +96,7 @@ func (s *Plugins) Installed(ctx context.Context, r plugins.InstalledRequest) (*p
 //   9.8: The 'documentationPath' field is deprecated
 //   8.0: The 'documentationPath' field is added
 func (s *Plugins) Pending(ctx context.Context, r plugins.PendingRequest) (*plugins.PendingResponse, error) {
-	u := fmt.Sprintf("%s/plugins/pending", API)
+	u := fmt.Sprintf("%s/pending", s.path)
 	v := new(plugins.PendingResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -112,7 +112,7 @@ func (s *Plugins) Pending(ctx context.Context, r plugins.PendingRequest) (*plugi
 // Since 5.2
 // Changelog:
 func (s *Plugins) Uninstall(ctx context.Context, r plugins.UninstallRequest) error {
-	u := fmt.Sprintf("%s/plugins/uninstall", API)
+	u := fmt.Sprintf("%s/uninstall", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -128,7 +128,7 @@ func (s *Plugins) Uninstall(ctx context.Context, r plugins.UninstallRequest) err
 // Since 5.2
 // Changelog:
 func (s *Plugins) Update(ctx context.Context, r plugins.UpdateRequest) error {
-	u := fmt.Sprintf("%s/plugins/update", API)
+	u := fmt.Sprintf("%s/update", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -146,7 +146,7 @@ func (s *Plugins) Update(ctx context.Context, r plugins.UpdateRequest) error {
 // Since 5.2
 // Changelog:
 func (s *Plugins) Updates(ctx context.Context, r plugins.UpdatesRequest) (*plugins.UpdatesResponse, error) {
-	u := fmt.Sprintf("%s/plugins/updates", API)
+	u := fmt.Sprintf("%s/updates", s.path)
 	v := new(plugins.UpdatesResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

@@ -26,7 +26,7 @@ type Ce service
 //   6.1: field "logs" is deprecated and its value is always false
 //   5.5: it's no more possible to specify the page parameter.
 func (s *Ce) Activity(ctx context.Context, r ce.ActivityRequest, p paging.Params) (*ce.ActivityResponse, error) {
-	u := fmt.Sprintf("%s/ce/activity", API)
+	u := fmt.Sprintf("%s/activity", s.path)
 	v := new(ce.ActivityResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -68,7 +68,7 @@ func (s *Ce) ActivityAll(ctx context.Context, r ce.ActivityRequest) (*ce.Activit
 //   7.8: New field 'pendingTime' in response, only included when there are pending tasks
 //   6.6: New field 'inProgress' in response
 func (s *Ce) ActivityStatus(ctx context.Context, r ce.ActivityStatusRequest) (*ce.ActivityStatusResponse, error) {
-	u := fmt.Sprintf("%s/ce/activity_status", API)
+	u := fmt.Sprintf("%s/activity_status", s.path)
 	v := new(ce.ActivityStatusResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -90,7 +90,7 @@ func (s *Ce) ActivityStatus(ctx context.Context, r ce.ActivityStatusRequest) (*c
 //   6.6: fields "branch" and "branchType" added
 //   6.1: field "logs" is deprecated and its value is always false
 func (s *Ce) Component(ctx context.Context, r ce.ComponentRequest) (*ce.ComponentResponse, error) {
-	u := fmt.Sprintf("%s/ce/component", API)
+	u := fmt.Sprintf("%s/component", s.path)
 	v := new(ce.ComponentResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -112,7 +112,7 @@ func (s *Ce) Component(ctx context.Context, r ce.ComponentRequest) (*ce.Componen
 //   10.1: 'Project Administrator' is added to the list of allowed permissions to access this endpoint
 //   6.6: fields "branch" and "branchType" added
 func (s *Ce) Task(ctx context.Context, r ce.TaskRequest) (*ce.TaskResponse, error) {
-	u := fmt.Sprintf("%s/ce/task", API)
+	u := fmt.Sprintf("%s/task", s.path)
 	v := new(ce.TaskResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

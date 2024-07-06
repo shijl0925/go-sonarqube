@@ -15,7 +15,7 @@ type ProjectBranches service
 // Since 6.6
 // Changelog:
 func (s *ProjectBranches) Delete(ctx context.Context, r project_branches.DeleteRequest) error {
-	u := fmt.Sprintf("%s/project_branches/delete", API)
+	u := fmt.Sprintf("%s/delete", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -32,7 +32,7 @@ func (s *ProjectBranches) Delete(ctx context.Context, r project_branches.DeleteR
 //   10.6: Field 'branchId' added to the response
 //   7.2: Application can be used on this web service
 func (s *ProjectBranches) List(ctx context.Context, r project_branches.ListRequest) (*project_branches.ListResponse, error) {
-	u := fmt.Sprintf("%s/project_branches/list", API)
+	u := fmt.Sprintf("%s/list", s.path)
 	v := new(project_branches.ListResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -48,7 +48,7 @@ func (s *ProjectBranches) List(ctx context.Context, r project_branches.ListReque
 // Since 6.6
 // Changelog:
 func (s *ProjectBranches) Rename(ctx context.Context, r project_branches.RenameRequest) error {
-	u := fmt.Sprintf("%s/project_branches/rename", API)
+	u := fmt.Sprintf("%s/rename", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -63,7 +63,7 @@ func (s *ProjectBranches) Rename(ctx context.Context, r project_branches.RenameR
 // Since 8.1
 // Changelog:
 func (s *ProjectBranches) SetAutomaticDeletionProtection(ctx context.Context, r project_branches.SetAutomaticDeletionProtectionRequest) error {
-	u := fmt.Sprintf("%s/project_branches/set_automatic_deletion_protection", API)
+	u := fmt.Sprintf("%s/set_automatic_deletion_protection", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -79,7 +79,7 @@ func (s *ProjectBranches) SetAutomaticDeletionProtection(ctx context.Context, r 
 // Since 10.2
 // Changelog:
 func (s *ProjectBranches) SetMain(ctx context.Context, r project_branches.SetMainRequest) error {
-	u := fmt.Sprintf("%s/project_branches/set_main", API)
+	u := fmt.Sprintf("%s/set_main", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {

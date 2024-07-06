@@ -16,7 +16,7 @@ type ProjectBadges service
 // Changelog:
 //   10.4: The following metric keys are now deprecated: bugs, code_smells, security_hotspots, vulnerabilities
 func (s *ProjectBadges) Measure(ctx context.Context, r project_badges.MeasureRequest) (*project_badges.MeasureResponse, error) {
-	u := fmt.Sprintf("%s/project_badges/measure", API)
+	u := fmt.Sprintf("%s/measure", s.path)
 	v := new(project_badges.MeasureResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -32,7 +32,7 @@ func (s *ProjectBadges) Measure(ctx context.Context, r project_badges.MeasureReq
 // Since 7.1
 // Changelog:
 func (s *ProjectBadges) QualityGate(ctx context.Context, r project_badges.QualityGateRequest) (*project_badges.QualityGateResponse, error) {
-	u := fmt.Sprintf("%s/project_badges/quality_gate", API)
+	u := fmt.Sprintf("%s/quality_gate", s.path)
 	v := new(project_badges.QualityGateResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -50,7 +50,7 @@ func (s *ProjectBadges) QualityGate(ctx context.Context, r project_badges.Qualit
 // Changelog:
 //   10.1: Application key can be used for project parameter.
 func (s *ProjectBadges) RenewToken(ctx context.Context, r project_badges.RenewTokenRequest) error {
-	u := fmt.Sprintf("%s/project_badges/renew_token", API)
+	u := fmt.Sprintf("%s/renew_token", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -67,7 +67,7 @@ func (s *ProjectBadges) RenewToken(ctx context.Context, r project_badges.RenewTo
 // Changelog:
 //   10.1: Application key can be used for project parameter.
 func (s *ProjectBadges) Token(ctx context.Context, r project_badges.TokenRequest) (*project_badges.TokenResponse, error) {
-	u := fmt.Sprintf("%s/project_badges/token", API)
+	u := fmt.Sprintf("%s/token", s.path)
 	v := new(project_badges.TokenResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

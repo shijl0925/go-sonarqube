@@ -26,6 +26,6 @@ type SearchResponseAll struct {
 
 // SetRequest Set tags on a project.<br>Requires the following permission: 'Administer' rights on the specified project
 type SetRequest struct {
-	Project string `json:"project"` // Project key
-	Tags    string `json:"tags"`    // Comma-separated list of tags
+	Project string `form:"project"` // Project key
+	Tags    string `form:"tags"`    // Comma-separated list of tags
 }

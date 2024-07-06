@@ -23,7 +23,7 @@ type Settings service
 //   10.1: The use of module keys in parameter 'component' is removed
 //   7.6: The use of module keys in parameter 'component' is deprecated
 func (s *Settings) ListDefinitions(ctx context.Context, r settings.ListDefinitionsRequest) (*settings.ListDefinitionsResponse, error) {
-	u := fmt.Sprintf("%s/settings/list_definitions", API)
+	u := fmt.Sprintf("%s/list_definitions", s.path)
 	v := new(settings.ListDefinitionsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -48,7 +48,7 @@ func (s *Settings) ListDefinitions(ctx context.Context, r settings.ListDefinitio
 //   7.6: The use of module keys in parameter 'component' is deprecated
 //   7.1: The settings defined in conf/sonar.properties are read-only and can't be changed
 func (s *Settings) Reset(ctx context.Context, r settings.ResetRequest) error {
-	u := fmt.Sprintf("%s/settings/reset", API)
+	u := fmt.Sprintf("%s/reset", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -73,7 +73,7 @@ func (s *Settings) Reset(ctx context.Context, r settings.ResetRequest) error {
 //   7.6: The use of module keys in parameter 'component' is deprecated
 //   7.1: The settings defined in conf/sonar.properties are read-only and can't be changed
 func (s *Settings) Set(ctx context.Context, r settings.SetRequest) error {
-	u := fmt.Sprintf("%s/settings/set", API)
+	u := fmt.Sprintf("%s/set", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -96,7 +96,7 @@ func (s *Settings) Set(ctx context.Context, r settings.SetRequest) error {
 //   7.6: The use of module keys in parameter 'component' is deprecated
 //   7.1: The settings from conf/sonar.properties are excluded from results.
 func (s *Settings) Values(ctx context.Context, r settings.ValuesRequest) (*settings.ValuesResponse, error) {
-	u := fmt.Sprintf("%s/settings/values", API)
+	u := fmt.Sprintf("%s/values", s.path)
 	v := new(settings.ValuesResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

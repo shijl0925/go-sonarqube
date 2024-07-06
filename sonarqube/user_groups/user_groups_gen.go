@@ -7,15 +7,15 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 // AddUserRequest Add a user to a group.<br />'name' must be provided.<br />Requires the following permission: 'Administer System'.
 // Deprecated: this action has been deprecated since version 10.4
 type AddUserRequest struct {
-	Login string `json:"login,omitempty"` // User login
-	Name  string `json:"name"`            // Group name
+	Login string `form:"login,omitempty"` // User login
+	Name  string `form:"name"`            // Group name
 }
 
 // CreateRequest Create a group.<br>Requires the following permission: 'Administer System'.
 // Deprecated: this action has been deprecated since version 10.4
 type CreateRequest struct {
-	Description string `json:"description,omitempty"` // Description for the new group. A group description cannot be larger than 200 characters.
-	Name        string `json:"name"`                  // Name for the new group. A group name cannot be larger than 255 characters and must be unique. The value 'anyone' (whatever the case) is reserved and cannot be used.
+	Description string `form:"description,omitempty"` // Description for the new group. A group description cannot be larger than 200 characters.
+	Name        string `form:"name"`                  // Name for the new group. A group name cannot be larger than 255 characters and must be unique. The value 'anyone' (whatever the case) is reserved and cannot be used.
 }
 
 // CreateResponse is the response for CreateRequest
@@ -33,14 +33,14 @@ type CreateResponse struct {
 // DeleteRequest Delete a group. The default groups cannot be deleted.<br/>'name' must be provided.<br />Requires the following permission: 'Administer System'.
 // Deprecated: this action has been deprecated since version 10.4
 type DeleteRequest struct {
-	Name string `json:"name"` // Group name
+	Name string `form:"name"` // Group name
 }
 
 // RemoveUserRequest Remove a user from a group.<br />'name' must be provided.<br>Requires the following permission: 'Administer System'.
 // Deprecated: this action has been deprecated since version 10.4
 type RemoveUserRequest struct {
-	Login string `json:"login,omitempty"` // User login
-	Name  string `json:"name"`            // Group name
+	Login string `form:"login,omitempty"` // User login
+	Name  string `form:"name"`            // Group name
 }
 
 // SearchRequest Search for user groups.<br>Requires the following permission: 'Administer System'.
@@ -82,9 +82,9 @@ type SearchResponseAll struct {
 // UpdateRequest Update a group.<br>Requires the following permission: 'Administer System'.
 // Deprecated: this action has been deprecated since version 10.4
 type UpdateRequest struct {
-	CurrentName string `json:"currentName"`           // Since 8.5;Name of the group to be updated.
-	Description string `json:"description,omitempty"` // New optional description for the group. A group description cannot be larger than 200 characters. If value is not defined, then description is not changed.
-	Name        string `json:"name,omitempty"`        // New optional name for the group. A group name cannot be larger than 255 characters and must be unique. Value 'anyone' (whatever the case) is reserved and cannot be used. If value is empty or not defined, then name is not changed.
+	CurrentName string `form:"currentName"`           // Since 8.5;Name of the group to be updated.
+	Description string `form:"description,omitempty"` // New optional description for the group. A group description cannot be larger than 200 characters. If value is not defined, then description is not changed.
+	Name        string `form:"name,omitempty"`        // New optional name for the group. A group name cannot be larger than 255 characters and must be unique. Value 'anyone' (whatever the case) is reserved and cannot be used. If value is empty or not defined, then name is not changed.
 }
 
 // UsersRequest Search for users with membership information with respect to a group.<br>Requires the following permission: 'Administer System'.

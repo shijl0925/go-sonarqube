@@ -20,7 +20,7 @@ type Projects service
 //   9.1: The parameter 'analyzedBefore' takes into account the analysis of all branches and pull requests, not only the main branch.
 //   7.8: At least one parameter is required among analyzedBefore, projects and q
 func (s *Projects) BulkDelete(ctx context.Context, r projects.BulkDeleteRequest) error {
-	u := fmt.Sprintf("%s/projects/bulk_delete", API)
+	u := fmt.Sprintf("%s/bulk_delete", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -38,7 +38,7 @@ func (s *Projects) BulkDelete(ctx context.Context, r projects.BulkDeleteRequest)
 //   9.8: Field 'mainBranch' added to the request
 //   7.1: The 'visibility' parameter is public
 func (s *Projects) Create(ctx context.Context, r projects.CreateRequest) (*projects.CreateResponse, error) {
-	u := fmt.Sprintf("%s/projects/create", API)
+	u := fmt.Sprintf("%s/create", s.path)
 	v := new(projects.CreateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -54,7 +54,7 @@ func (s *Projects) Create(ctx context.Context, r projects.CreateRequest) (*proje
 // Since 5.2
 // Changelog:
 func (s *Projects) Delete(ctx context.Context, r projects.DeleteRequest) error {
-	u := fmt.Sprintf("%s/projects/delete", API)
+	u := fmt.Sprintf("%s/delete", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -77,7 +77,7 @@ func (s *Projects) Delete(ctx context.Context, r projects.DeleteRequest) error {
 //   9.3: createdAt and updatedAt now return effective issue creation and update date, instead of the database operation date
 //   9.3: projectKey field now return correctly the projectKey, instead of <projectKey>:PULL_REQUEST:<pullRequestKey>
 func (s *Projects) ExportFindings(ctx context.Context, r projects.ExportFindingsRequest) (*projects.ExportFindingsResponse, error) {
-	u := fmt.Sprintf("%s/projects/export_findings", API)
+	u := fmt.Sprintf("%s/export_findings", s.path)
 	v := new(projects.ExportFindingsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -94,7 +94,7 @@ func (s *Projects) ExportFindings(ctx context.Context, r projects.ExportFindings
 // Changelog:
 //   9.5: Response format changed from CSV to Json
 func (s *Projects) LicenseUsage(ctx context.Context, r projects.LicenseUsageRequest) (*projects.LicenseUsageResponse, error) {
-	u := fmt.Sprintf("%s/projects/license_usage", API)
+	u := fmt.Sprintf("%s/license_usage", s.path)
 	v := new(projects.LicenseUsageResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -119,7 +119,7 @@ func (s *Projects) LicenseUsage(ctx context.Context, r projects.LicenseUsageRequ
 //   10.2: Response includes 'managed' field.
 //   9.1: The parameter 'analyzedBefore' and the field 'lastAnalysisDate' of the returned projects take into account the analysis of all branches and pull requests, not only the main branch.
 func (s *Projects) Search(ctx context.Context, r projects.SearchRequest, p paging.Params) (*projects.SearchResponse, error) {
-	u := fmt.Sprintf("%s/projects/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(projects.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -160,7 +160,7 @@ func (s *Projects) SearchAll(ctx context.Context, r projects.SearchRequest) (*pr
 // Changelog:
 //   7.1: Ability to update key of a disabled module
 func (s *Projects) UpdateKey(ctx context.Context, r projects.UpdateKeyRequest) error {
-	u := fmt.Sprintf("%s/projects/update_key", API)
+	u := fmt.Sprintf("%s/update_key", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -175,7 +175,7 @@ func (s *Projects) UpdateKey(ctx context.Context, r projects.UpdateKeyRequest) e
 // Since 6.4
 // Changelog:
 func (s *Projects) UpdateVisibility(ctx context.Context, r projects.UpdateVisibilityRequest) error {
-	u := fmt.Sprintf("%s/projects/update_visibility", API)
+	u := fmt.Sprintf("%s/update_visibility", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {

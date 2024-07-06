@@ -23,7 +23,7 @@ type Rules service
 //   10.0: Drop deprecated keys: 'custom_key', 'template_key', 'markdown_description', 'prevent_reactivation'
 //   5.5: Creating manual rule is not more possible
 func (s *Rules) Create(ctx context.Context, r rules.CreateRequest) (*rules.CreateResponse, error) {
-	u := fmt.Sprintf("%s/rules/create", API)
+	u := fmt.Sprintf("%s/create", s.path)
 	v := new(rules.CreateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -39,7 +39,7 @@ func (s *Rules) Create(ctx context.Context, r rules.CreateRequest) (*rules.Creat
 // Since 4.4
 // Changelog:
 func (s *Rules) Delete(ctx context.Context, r rules.DeleteRequest) error {
-	u := fmt.Sprintf("%s/rules/delete", API)
+	u := fmt.Sprintf("%s/delete", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -53,7 +53,7 @@ func (s *Rules) Delete(ctx context.Context, r rules.DeleteRequest) error {
 // Since 4.5
 // Changelog:
 func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (*rules.RepositoriesResponse, error) {
-	u := fmt.Sprintf("%s/rules/repositories", API)
+	u := fmt.Sprintf("%s/repositories", s.path)
 	v := new(rules.RepositoriesResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -107,7 +107,7 @@ func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (
 //   5.5: The field 'defaultDebtRemFnOffset' has been deprecated, use 'defaultRemFnBaseEffort' instead
 //   5.5: The field 'debtOverloaded' has been deprecated, use 'remFnOverloaded' instead
 func (s *Rules) Search(ctx context.Context, r rules.SearchRequest, p paging.Params) (*rules.SearchResponse, error) {
-	u := fmt.Sprintf("%s/rules/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(rules.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -166,7 +166,7 @@ func (s *Rules) SearchAll(ctx context.Context, r rules.SearchRequest) (*rules.Se
 //   5.5: The field 'defaultDebtRemFnOffset' in the response has been deprecated, it becomes 'defaultRemFnBaseEffort'.
 //   5.5: The field 'debtOverloaded' in the response has been deprecated, it becomes 'remFnOverloaded'.
 func (s *Rules) Show(ctx context.Context, r rules.ShowRequest) (*rules.ShowResponse, error) {
-	u := fmt.Sprintf("%s/rules/show", API)
+	u := fmt.Sprintf("%s/show", s.path)
 	v := new(rules.ShowResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -182,7 +182,7 @@ func (s *Rules) Show(ctx context.Context, r rules.ShowRequest) (*rules.ShowRespo
 // Changelog:
 //   9.4: Max page size increased to 500
 func (s *Rules) Tags(ctx context.Context, r rules.TagsRequest) (*rules.TagsResponse, error) {
-	u := fmt.Sprintf("%s/rules/tags", API)
+	u := fmt.Sprintf("%s/tags", s.path)
 	v := new(rules.TagsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -202,7 +202,7 @@ func (s *Rules) Tags(ctx context.Context, r rules.TagsRequest) (*rules.TagsRespo
 //   10.2: The field 'severity' and 'type' in the response have been deprecated, use 'impacts' instead.
 //   10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
 func (s *Rules) Update(ctx context.Context, r rules.UpdateRequest) (*rules.UpdateResponse, error) {
-	u := fmt.Sprintf("%s/rules/update", API)
+	u := fmt.Sprintf("%s/update", s.path)
 	v := new(rules.UpdateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)

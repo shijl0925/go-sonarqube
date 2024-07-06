@@ -6,10 +6,10 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // ChangeStatusRequest Change the status of a Security Hotpot.<br/>Requires the 'Administer Security Hotspot' permission.
 type ChangeStatusRequest struct {
-	Comment    string `json:"comment,omitempty"`    // Comment text.
-	Hotspot    string `json:"hotspot"`              // Key of the Security Hotspot
-	Resolution string `json:"resolution,omitempty"` // Resolution of the Security Hotspot when new status is REVIEWED, otherwise must not be set.
-	Status     string `json:"status"`               // New status of the Security Hotspot.
+	Comment    string `form:"comment,omitempty"`    // Comment text.
+	Hotspot    string `form:"hotspot"`              // Key of the Security Hotspot
+	Resolution string `form:"resolution,omitempty"` // Resolution of the Security Hotspot when new status is REVIEWED, otherwise must not be set.
+	Status     string `form:"status"`               // New status of the Security Hotspot.
 }
 
 // SearchRequest Search for Security Hotpots. <br>Requires the 'Browse' permission on the specified project(s). <br>For applications, it also requires 'Browse' permission on its child projects. <br>When issue indexing is in progress returns 503 service unavailable HTTP code.

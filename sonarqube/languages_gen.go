@@ -14,7 +14,7 @@ type Languages service
 // Since 5.1
 // Changelog:
 func (s *Languages) List(ctx context.Context, r languages.ListRequest) (*languages.ListResponse, error) {
-	u := fmt.Sprintf("%s/languages/list", API)
+	u := fmt.Sprintf("%s/list", s.path)
 	v := new(languages.ListResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

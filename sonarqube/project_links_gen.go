@@ -15,7 +15,7 @@ type ProjectLinks service
 // Since 6.1
 // Changelog:
 func (s *ProjectLinks) Create(ctx context.Context, r project_links.CreateRequest) (*project_links.CreateResponse, error) {
-	u := fmt.Sprintf("%s/project_links/create", API)
+	u := fmt.Sprintf("%s/create", s.path)
 	v := new(project_links.CreateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -31,7 +31,7 @@ func (s *ProjectLinks) Create(ctx context.Context, r project_links.CreateRequest
 // Since 6.1
 // Changelog:
 func (s *ProjectLinks) Delete(ctx context.Context, r project_links.DeleteRequest) error {
-	u := fmt.Sprintf("%s/project_links/delete", API)
+	u := fmt.Sprintf("%s/delete", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -51,7 +51,7 @@ func (s *ProjectLinks) Delete(ctx context.Context, r project_links.DeleteRequest
 // Since 6.1
 // Changelog:
 func (s *ProjectLinks) Search(ctx context.Context, r project_links.SearchRequest) (*project_links.SearchResponse, error) {
-	u := fmt.Sprintf("%s/project_links/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(project_links.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

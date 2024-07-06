@@ -17,7 +17,7 @@ type Hotspots service
 // Changelog:
 //   10.1: Endpoint visibility change from internal to public
 func (s *Hotspots) ChangeStatus(ctx context.Context, r hotspots.ChangeStatusRequest) error {
-	u := fmt.Sprintf("%s/hotspots/change_status", API)
+	u := fmt.Sprintf("%s/change_status", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -41,7 +41,7 @@ func (s *Hotspots) ChangeStatus(ctx context.Context, r hotspots.ChangeStatusRequ
 //   9.7: Hotspot in the response contain the corresponding ruleKey
 //   9.6: Added parameters 'pciDss-3.2' and 'pciDss-4.0
 func (s *Hotspots) Search(ctx context.Context, r hotspots.SearchRequest, p paging.Params) (*hotspots.SearchResponse, error) {
-	u := fmt.Sprintf("%s/hotspots/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(hotspots.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -82,7 +82,7 @@ func (s *Hotspots) SearchAll(ctx context.Context, r hotspots.SearchRequest) (*ho
 //   9.7: Hotspot flows in the response may contain a description and a type
 //   9.5: The fields rule.riskDescription, rule.fixRecommendations, rule.vulnerabilityDescription of the response are deprecated. /api/rules/show endpoint should be used to fetch rule descriptions.
 func (s *Hotspots) Show(ctx context.Context, r hotspots.ShowRequest) (*hotspots.ShowResponse, error) {
-	u := fmt.Sprintf("%s/hotspots/show", API)
+	u := fmt.Sprintf("%s/show", s.path)
 	v := new(hotspots.ShowResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

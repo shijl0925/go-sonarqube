@@ -4,8 +4,8 @@ package authentication
 
 // LoginRequest Authenticate a user.
 type LoginRequest struct {
-	Login    string `json:"login"`    // Login of the user
-	Password string `json:"password"` // Password of the user
+	Login    string `form:"login"`    // Login of the user
+	Password string `form:"password"` // Password of the user
 }
 
 // LogoutRequest Logout a user.

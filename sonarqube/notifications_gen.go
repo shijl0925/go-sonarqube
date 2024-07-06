@@ -18,7 +18,7 @@ type Notifications service
 // Since 6.3
 // Changelog:
 func (s *Notifications) Add(ctx context.Context, r notifications.AddRequest) error {
-	u := fmt.Sprintf("%s/notifications/add", API)
+	u := fmt.Sprintf("%s/add", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -36,7 +36,7 @@ func (s *Notifications) Add(ctx context.Context, r notifications.AddRequest) err
 // Since 6.3
 // Changelog:
 func (s *Notifications) List(ctx context.Context, r notifications.ListRequest) (*notifications.ListResponse, error) {
-	u := fmt.Sprintf("%s/notifications/list", API)
+	u := fmt.Sprintf("%s/list", s.path)
 	v := new(notifications.ListResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -55,7 +55,7 @@ func (s *Notifications) List(ctx context.Context, r notifications.ListRequest) (
 // Since 6.3
 // Changelog:
 func (s *Notifications) Remove(ctx context.Context, r notifications.RemoveRequest) error {
-	u := fmt.Sprintf("%s/notifications/remove", API)
+	u := fmt.Sprintf("%s/remove", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {

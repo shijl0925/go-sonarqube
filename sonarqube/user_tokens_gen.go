@@ -17,7 +17,7 @@ type UserTokens service
 // Changelog:
 //   9.6: Response field 'expirationDate' added
 func (s *UserTokens) Generate(ctx context.Context, r user_tokens.GenerateRequest) (*user_tokens.GenerateResponse, error) {
-	u := fmt.Sprintf("%s/user_tokens/generate", API)
+	u := fmt.Sprintf("%s/generate", s.path)
 	v := new(user_tokens.GenerateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -33,7 +33,7 @@ func (s *UserTokens) Generate(ctx context.Context, r user_tokens.GenerateRequest
 // Since 5.3
 // Changelog:
 func (s *UserTokens) Revoke(ctx context.Context, r user_tokens.RevokeRequest) error {
-	u := fmt.Sprintf("%s/user_tokens/revoke", API)
+	u := fmt.Sprintf("%s/revoke", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -53,7 +53,7 @@ func (s *UserTokens) Revoke(ctx context.Context, r user_tokens.RevokeRequest) er
 //   9.6: New field 'expirationDate' is added to response
 //   7.7: New field 'lastConnectionDate' is added to response
 func (s *UserTokens) Search(ctx context.Context, r user_tokens.SearchRequest) (*user_tokens.SearchResponse, error) {
-	u := fmt.Sprintf("%s/user_tokens/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(user_tokens.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

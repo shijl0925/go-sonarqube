@@ -14,7 +14,7 @@ type Sources service
 // Since 5.0
 // Changelog:
 func (s *Sources) Raw(ctx context.Context, r sources.RawRequest) (*sources.RawResponse, error) {
-	u := fmt.Sprintf("%s/sources/raw", API)
+	u := fmt.Sprintf("%s/raw", s.path)
 	v := new(sources.RawResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -34,7 +34,7 @@ func (s *Sources) Raw(ctx context.Context, r sources.RawRequest) (*sources.RawRe
 // Since 4.4
 // Changelog:
 func (s *Sources) Scm(ctx context.Context, r sources.ScmRequest) (*sources.ScmResponse, error) {
-	u := fmt.Sprintf("%s/sources/scm", API)
+	u := fmt.Sprintf("%s/scm", s.path)
 	v := new(sources.ScmResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -52,7 +52,7 @@ func (s *Sources) Scm(ctx context.Context, r sources.ScmRequest) (*sources.ScmRe
 // Since 4.4
 // Changelog:
 func (s *Sources) Show(ctx context.Context, r sources.ShowRequest) (*sources.ShowResponse, error) {
-	u := fmt.Sprintf("%s/sources/show", API)
+	u := fmt.Sprintf("%s/show", s.path)
 	v := new(sources.ShowResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

@@ -6,17 +6,17 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // CreateRequest Create a custom rule.<br>Requires the 'Administer Quality Profiles' permission
 type CreateRequest struct {
-	CleanCodeAttribute  string `json:"cleanCodeAttribute,omitempty"`  // Since 10.4;Clean code attribute
-	CustomKey           string `json:"customKey"`                     // Key of the custom rule
-	Impacts             string `json:"impacts,omitempty"`             // Since 10.4;Impacts as semi-colon list of &lt;software_quality&gt;=&lt;severity&gt;
-	MarkdownDescription string `json:"markdownDescription"`           // Rule description in <a href='/formatting/help'>markdown format</a>
-	Name                string `json:"name"`                          // Rule name
-	Params              string `json:"params,omitempty"`              // Parameters as semi-colon list of &lt;key&gt;=&lt;value&gt;
-	PreventReactivation string `json:"preventReactivation,omitempty"` // Deprecated since 10.4;If set to true and if the rule has been deactivated (status 'REMOVED'), a status 409 will be returned
-	Severity            string `json:"severity,omitempty"`            // Deprecated since 10.4;Rule severity
-	Status              string `json:"status,omitempty"`              // Rule status
-	TemplateKey         string `json:"templateKey"`                   // Key of the template rule in order to create a custom rule
-	Type                string `json:"type,omitempty"`                // Since 6.7;Deprecated since 10.4;Rule type
+	CleanCodeAttribute  string `form:"cleanCodeAttribute,omitempty"`  // Since 10.4;Clean code attribute
+	CustomKey           string `form:"customKey"`                     // Key of the custom rule
+	Impacts             string `form:"impacts,omitempty"`             // Since 10.4;Impacts as semi-colon list of &lt;software_quality&gt;=&lt;severity&gt;
+	MarkdownDescription string `form:"markdownDescription"`           // Rule description in <a href='/formatting/help'>markdown format</a>
+	Name                string `form:"name"`                          // Rule name
+	Params              string `form:"params,omitempty"`              // Parameters as semi-colon list of &lt;key&gt;=&lt;value&gt;
+	PreventReactivation string `form:"preventReactivation,omitempty"` // Deprecated since 10.4;If set to true and if the rule has been deactivated (status 'REMOVED'), a status 409 will be returned
+	Severity            string `form:"severity,omitempty"`            // Deprecated since 10.4;Rule severity
+	Status              string `form:"status,omitempty"`              // Rule status
+	TemplateKey         string `form:"templateKey"`                   // Key of the template rule in order to create a custom rule
+	Type                string `form:"type,omitempty"`                // Since 6.7;Deprecated since 10.4;Rule type
 }
 
 // CreateResponse is the response for CreateRequest
@@ -55,7 +55,7 @@ type CreateResponse struct {
 
 // DeleteRequest Delete custom rule.<br/>Requires the 'Administer Quality Profiles' permission
 type DeleteRequest struct {
-	Key string `json:"key"` // Rule key
+	Key string `form:"key"` // Rule key
 }
 
 // RepositoriesRequest List available rule repositories
@@ -352,17 +352,17 @@ type TagsResponse struct {
 
 // UpdateRequest Update an existing rule.<br>Requires the 'Administer Quality Profiles' permission
 type UpdateRequest struct {
-	Key                        string `json:"key"`                                     // Key of the rule to update
-	MarkdownDescription        string `json:"markdownDescription,omitempty"`           // Rule description (mandatory for custom rule and manual rule) in <a href='/formatting/help'>markdown format</a>
-	MarkdownNote               string `json:"markdown_note,omitempty"`                 // Optional note in <a href='/formatting/help'>markdown format</a>. Use empty value to remove current note. Note is not changed if the parameter is not set.
-	Name                       string `json:"name,omitempty"`                          // Rule name (mandatory for custom rule)
-	Params                     string `json:"params,omitempty"`                        // Parameters as semi-colon list of <key>=<value>, for example 'params=key1=v1;key2=v2' (Only when updating a custom rule)
-	RemediationFnBaseEffort    string `json:"remediation_fn_base_effort,omitempty"`    // Since 5.5;Base effort of the remediation function of the rule
-	RemediationFnType          string `json:"remediation_fn_type,omitempty"`           // Since 5.5;Type of the remediation function of the rule
-	RemediationFyGapMultiplier string `json:"remediation_fy_gap_multiplier,omitempty"` // Since 5.5;Gap multiplier of the remediation function of the rule
-	Severity                   string `json:"severity,omitempty"`                      // Deprecated since 10.4;Rule severity (Only when updating a custom rule)
-	Status                     string `json:"status,omitempty"`                        // Rule status (Only when updating a custom rule)
-	Tags                       string `json:"tags,omitempty"`                          // Optional comma-separated list of tags to set. Use blank value to remove current tags. Tags are not changed if the parameter is not set.
+	Key                        string `form:"key"`                                     // Key of the rule to update
+	MarkdownDescription        string `form:"markdownDescription,omitempty"`           // Rule description (mandatory for custom rule and manual rule) in <a href='/formatting/help'>markdown format</a>
+	MarkdownNote               string `form:"markdown_note,omitempty"`                 // Optional note in <a href='/formatting/help'>markdown format</a>. Use empty value to remove current note. Note is not changed if the parameter is not set.
+	Name                       string `form:"name,omitempty"`                          // Rule name (mandatory for custom rule)
+	Params                     string `form:"params,omitempty"`                        // Parameters as semi-colon list of <key>=<value>, for example 'params=key1=v1;key2=v2' (Only when updating a custom rule)
+	RemediationFnBaseEffort    string `form:"remediation_fn_base_effort,omitempty"`    // Since 5.5;Base effort of the remediation function of the rule
+	RemediationFnType          string `form:"remediation_fn_type,omitempty"`           // Since 5.5;Type of the remediation function of the rule
+	RemediationFyGapMultiplier string `form:"remediation_fy_gap_multiplier,omitempty"` // Since 5.5;Gap multiplier of the remediation function of the rule
+	Severity                   string `form:"severity,omitempty"`                      // Deprecated since 10.4;Rule severity (Only when updating a custom rule)
+	Status                     string `form:"status,omitempty"`                        // Rule status (Only when updating a custom rule)
+	Tags                       string `form:"tags,omitempty"`                          // Optional comma-separated list of tags to set. Use blank value to remove current tags. Tags are not changed if the parameter is not set.
 }
 
 // UpdateResponse is the response for UpdateRequest

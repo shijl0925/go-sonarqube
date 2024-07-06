@@ -15,7 +15,7 @@ type AlmSettings service
 // Since 8.1
 // Changelog:
 func (s *AlmSettings) CountBinding(ctx context.Context, r alm_settings.CountBindingRequest) (*alm_settings.CountBindingResponse, error) {
-	u := fmt.Sprintf("%s/alm_settings/count_binding", API)
+	u := fmt.Sprintf("%s/count_binding", s.path)
 	v := new(alm_settings.CountBindingResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -32,7 +32,7 @@ func (s *AlmSettings) CountBinding(ctx context.Context, r alm_settings.CountBind
 // Changelog:
 //   8.6: Parameter 'URL' was added
 func (s *AlmSettings) CreateAzure(ctx context.Context, r alm_settings.CreateAzureRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/create_azure", API)
+	u := fmt.Sprintf("%s/create_azure", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -47,7 +47,7 @@ func (s *AlmSettings) CreateAzure(ctx context.Context, r alm_settings.CreateAzur
 // Since 8.1
 // Changelog:
 func (s *AlmSettings) CreateBitbucket(ctx context.Context, r alm_settings.CreateBitbucketRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/create_bitbucket", API)
+	u := fmt.Sprintf("%s/create_bitbucket", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -62,7 +62,7 @@ func (s *AlmSettings) CreateBitbucket(ctx context.Context, r alm_settings.Create
 // Since 8.7
 // Changelog:
 func (s *AlmSettings) CreateBitbucketcloud(ctx context.Context, r alm_settings.CreateBitbucketcloudRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/create_bitbucketcloud", API)
+	u := fmt.Sprintf("%s/create_bitbucketcloud", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -78,7 +78,7 @@ func (s *AlmSettings) CreateBitbucketcloud(ctx context.Context, r alm_settings.C
 // Changelog:
 //   9.7: Optional parameter 'webhookSecret' was added
 func (s *AlmSettings) CreateGithub(ctx context.Context, r alm_settings.CreateGithubRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/create_github", API)
+	u := fmt.Sprintf("%s/create_github", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -94,7 +94,7 @@ func (s *AlmSettings) CreateGithub(ctx context.Context, r alm_settings.CreateGit
 // Changelog:
 //   8.2: Parameter 'URL' was added
 func (s *AlmSettings) CreateGitlab(ctx context.Context, r alm_settings.CreateGitlabRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/create_gitlab", API)
+	u := fmt.Sprintf("%s/create_gitlab", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -109,7 +109,7 @@ func (s *AlmSettings) CreateGitlab(ctx context.Context, r alm_settings.CreateGit
 // Since 8.1
 // Changelog:
 func (s *AlmSettings) Delete(ctx context.Context, r alm_settings.DeleteRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/delete", API)
+	u := fmt.Sprintf("%s/delete", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -124,7 +124,7 @@ func (s *AlmSettings) Delete(ctx context.Context, r alm_settings.DeleteRequest) 
 // Since 8.1
 // Changelog:
 func (s *AlmSettings) DeleteBinding(ctx context.Context, r alm_settings.DeleteBindingRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/delete_binding", API)
+	u := fmt.Sprintf("%s/delete_binding", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -142,7 +142,7 @@ func (s *AlmSettings) DeleteBinding(ctx context.Context, r alm_settings.DeleteBi
 //   8.7: Azure binding now contains a monorepo flag for monorepo feature in Enterprise Edition and above
 //   8.6: Azure binding now contains the project and repository names
 func (s *AlmSettings) GetBinding(ctx context.Context, r alm_settings.GetBindingRequest) (*alm_settings.GetBindingResponse, error) {
-	u := fmt.Sprintf("%s/alm_settings/get_binding", API)
+	u := fmt.Sprintf("%s/get_binding", s.path)
 	v := new(alm_settings.GetBindingResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -161,7 +161,7 @@ func (s *AlmSettings) GetBinding(ctx context.Context, r alm_settings.GetBindingR
 //   8.3: Permission needed changed to 'Administer project' or 'Create Projects'
 //   8.2: Permission needed changed from 'Administer project' to 'Create Projects'
 func (s *AlmSettings) List(ctx context.Context, r alm_settings.ListRequest) (*alm_settings.ListResponse, error) {
-	u := fmt.Sprintf("%s/alm_settings/list", API)
+	u := fmt.Sprintf("%s/list", s.path)
 	v := new(alm_settings.ListResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -180,7 +180,7 @@ func (s *AlmSettings) List(ctx context.Context, r alm_settings.ListRequest) (*al
 //   8.6: Field 'URL' added for Azure definitions
 //   8.2: Field 'URL' added for GitLab definitions
 func (s *AlmSettings) ListDefinitions(ctx context.Context, r alm_settings.ListDefinitionsRequest) (*alm_settings.ListDefinitionsResponse, error) {
-	u := fmt.Sprintf("%s/alm_settings/list_definitions", API)
+	u := fmt.Sprintf("%s/list_definitions", s.path)
 	v := new(alm_settings.ListDefinitionsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -196,7 +196,7 @@ func (s *AlmSettings) ListDefinitions(ctx context.Context, r alm_settings.ListDe
 // Since 8.1
 // Changelog:
 func (s *AlmSettings) SetAzureBinding(ctx context.Context, r alm_settings.SetAzureBindingRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/set_azure_binding", API)
+	u := fmt.Sprintf("%s/set_azure_binding", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -211,7 +211,7 @@ func (s *AlmSettings) SetAzureBinding(ctx context.Context, r alm_settings.SetAzu
 // Since 8.1
 // Changelog:
 func (s *AlmSettings) SetBitbucketBinding(ctx context.Context, r alm_settings.SetBitbucketBindingRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/set_bitbucket_binding", API)
+	u := fmt.Sprintf("%s/set_bitbucket_binding", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -226,7 +226,7 @@ func (s *AlmSettings) SetBitbucketBinding(ctx context.Context, r alm_settings.Se
 // Since 8.7
 // Changelog:
 func (s *AlmSettings) SetBitbucketcloudBinding(ctx context.Context, r alm_settings.SetBitbucketcloudBindingRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/set_bitbucketcloud_binding", API)
+	u := fmt.Sprintf("%s/set_bitbucketcloud_binding", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -242,7 +242,7 @@ func (s *AlmSettings) SetBitbucketcloudBinding(ctx context.Context, r alm_settin
 // Changelog:
 //   8.3: Add 'summaryCommentEnabled' param to enable/disable of putting analysis summary in a conversation tab of GitHub
 func (s *AlmSettings) SetGithubBinding(ctx context.Context, r alm_settings.SetGithubBindingRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/set_github_binding", API)
+	u := fmt.Sprintf("%s/set_github_binding", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -258,7 +258,7 @@ func (s *AlmSettings) SetGithubBinding(ctx context.Context, r alm_settings.SetGi
 // Changelog:
 //   8.2: Parameter 'repository' was added
 func (s *AlmSettings) SetGitlabBinding(ctx context.Context, r alm_settings.SetGitlabBindingRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/set_gitlab_binding", API)
+	u := fmt.Sprintf("%s/set_gitlab_binding", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -275,7 +275,7 @@ func (s *AlmSettings) SetGitlabBinding(ctx context.Context, r alm_settings.SetGi
 //   8.7: Parameter 'personalAccessToken' is no longer required
 //   8.6: Parameter 'URL' was added
 func (s *AlmSettings) UpdateAzure(ctx context.Context, r alm_settings.UpdateAzureRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/update_azure", API)
+	u := fmt.Sprintf("%s/update_azure", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -291,7 +291,7 @@ func (s *AlmSettings) UpdateAzure(ctx context.Context, r alm_settings.UpdateAzur
 // Changelog:
 //   8.7: Parameter 'personalAccessToken' is no longer required
 func (s *AlmSettings) UpdateBitbucket(ctx context.Context, r alm_settings.UpdateBitbucketRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/update_bitbucket", API)
+	u := fmt.Sprintf("%s/update_bitbucket", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -306,7 +306,7 @@ func (s *AlmSettings) UpdateBitbucket(ctx context.Context, r alm_settings.Update
 // Since 8.7
 // Changelog:
 func (s *AlmSettings) UpdateBitbucketcloud(ctx context.Context, r alm_settings.UpdateBitbucketcloudRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/update_bitbucketcloud", API)
+	u := fmt.Sprintf("%s/update_bitbucketcloud", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -324,7 +324,7 @@ func (s *AlmSettings) UpdateBitbucketcloud(ctx context.Context, r alm_settings.U
 //   8.7: Parameter 'privateKey' is no longer required
 //   8.7: Parameter 'clientSecret' is no longer required
 func (s *AlmSettings) UpdateGithub(ctx context.Context, r alm_settings.UpdateGithubRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/update_github", API)
+	u := fmt.Sprintf("%s/update_github", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -341,7 +341,7 @@ func (s *AlmSettings) UpdateGithub(ctx context.Context, r alm_settings.UpdateGit
 //   8.7: Parameter 'personalAccessToken' is no longer required
 //   8.2: Parameter 'URL' was added
 func (s *AlmSettings) UpdateGitlab(ctx context.Context, r alm_settings.UpdateGitlabRequest) error {
-	u := fmt.Sprintf("%s/alm_settings/update_gitlab", API)
+	u := fmt.Sprintf("%s/update_gitlab", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -356,7 +356,7 @@ func (s *AlmSettings) UpdateGitlab(ctx context.Context, r alm_settings.UpdateGit
 // Since 8.6
 // Changelog:
 func (s *AlmSettings) Validate(ctx context.Context, r alm_settings.ValidateRequest) (*alm_settings.ValidateResponse, error) {
-	u := fmt.Sprintf("%s/alm_settings/validate", API)
+	u := fmt.Sprintf("%s/validate", s.path)
 	v := new(alm_settings.ValidateResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

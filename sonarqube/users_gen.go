@@ -17,7 +17,7 @@ type Users service
 // Changelog:
 //   10.4: Deprecated. Use DELETE api/v2/users-management/users/{id}?anonymize=true instead
 func (s *Users) Anonymize(ctx context.Context, r users.AnonymizeRequest) error {
-	u := fmt.Sprintf("%s/users/anonymize", API)
+	u := fmt.Sprintf("%s/anonymize", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -32,7 +32,7 @@ func (s *Users) Anonymize(ctx context.Context, r users.AnonymizeRequest) error {
 // Changelog:
 //   8.6: It's no more possible for the password to be the same as the previous one
 func (s *Users) ChangePassword(ctx context.Context, r users.ChangePasswordRequest) error {
-	u := fmt.Sprintf("%s/users/change_password", API)
+	u := fmt.Sprintf("%s/change_password", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -52,7 +52,7 @@ func (s *Users) ChangePassword(ctx context.Context, r users.ChangePasswordReques
 //   6.3: The password is only mandatory when creating local users, and should not be set on non local users
 //   6.3: The 'infos' message is no more returned when a user is reactivated
 func (s *Users) Create(ctx context.Context, r users.CreateRequest) (*users.CreateResponse, error) {
-	u := fmt.Sprintf("%s/users/create", API)
+	u := fmt.Sprintf("%s/create", s.path)
 	v := new(users.CreateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -69,7 +69,7 @@ func (s *Users) Create(ctx context.Context, r users.CreateRequest) (*users.Creat
 // Changelog:
 //   10.4: Deprecated. Use DELETE api/v2/users-management/users/{id} instead
 func (s *Users) Deactivate(ctx context.Context, r users.DeactivateRequest) (*users.DeactivateResponse, error) {
-	u := fmt.Sprintf("%s/users/deactivate", API)
+	u := fmt.Sprintf("%s/deactivate", s.path)
 	v := new(users.DeactivateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -89,7 +89,7 @@ func (s *Users) Deactivate(ctx context.Context, r users.DeactivateRequest) (*use
 //   6.4: Paging response fields moved to a Paging object
 //   6.4: 'default' response field has been added
 func (s *Users) Groups(ctx context.Context, r users.GroupsRequest, p paging.Params) (*users.GroupsResponse, error) {
-	u := fmt.Sprintf("%s/users/groups", API)
+	u := fmt.Sprintf("%s/groups", s.path)
 	v := new(users.GroupsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -149,7 +149,7 @@ func (s *Users) GroupsAll(ctx context.Context, r users.GroupsRequest) (*users.Gr
 //   6.4: Avatar has been added to the response
 //   6.4: Email is only returned when user has Administer System permission
 func (s *Users) Search(ctx context.Context, r users.SearchRequest, p paging.Params) (*users.SearchResponse, error) {
-	u := fmt.Sprintf("%s/users/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(users.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -189,7 +189,7 @@ func (s *Users) SearchAll(ctx context.Context, r users.SearchRequest) (*users.Se
 //   10.4: Deprecated. Use PATCH api/v2/users-management/users/{id} instead
 //   5.2: User's password can only be changed using the 'change_password' action.
 func (s *Users) Update(ctx context.Context, r users.UpdateRequest) (*users.UpdateResponse, error) {
-	u := fmt.Sprintf("%s/users/update", API)
+	u := fmt.Sprintf("%s/update", s.path)
 	v := new(users.UpdateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -209,7 +209,7 @@ func (s *Users) Update(ctx context.Context, r users.UpdateRequest) (*users.Updat
 //   10.4: Deprecated. Use PATCH api/v2/users-management/users/{id} instead
 //   9.8: Use of 'sonarqube' for the value of 'newExternalProvider' is deprecated.
 func (s *Users) UpdateIdentityProvider(ctx context.Context, r users.UpdateIdentityProviderRequest) error {
-	u := fmt.Sprintf("%s/users/update_identity_provider", API)
+	u := fmt.Sprintf("%s/update_identity_provider", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -226,7 +226,7 @@ func (s *Users) UpdateIdentityProvider(ctx context.Context, r users.UpdateIdenti
 // Changelog:
 //   10.4: Deprecated. Use PATCH api/v2/users-management/users/{id} instead
 func (s *Users) UpdateLogin(ctx context.Context, r users.UpdateLoginRequest) error {
-	u := fmt.Sprintf("%s/users/update_login", API)
+	u := fmt.Sprintf("%s/update_login", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {

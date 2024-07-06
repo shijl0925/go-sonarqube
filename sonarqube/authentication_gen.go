@@ -14,7 +14,7 @@ type Authentication service
 // Since 6.0
 // Changelog:
 func (s *Authentication) Login(ctx context.Context, r authentication.LoginRequest) error {
-	u := fmt.Sprintf("%s/authentication/login", API)
+	u := fmt.Sprintf("%s/login", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -28,7 +28,7 @@ func (s *Authentication) Login(ctx context.Context, r authentication.LoginReques
 // Since 6.3
 // Changelog:
 func (s *Authentication) Logout(ctx context.Context, r authentication.LogoutRequest) error {
-	u := fmt.Sprintf("%s/authentication/logout", API)
+	u := fmt.Sprintf("%s/logout", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -42,7 +42,7 @@ func (s *Authentication) Logout(ctx context.Context, r authentication.LogoutRequ
 // Since 3.3
 // Changelog:
 func (s *Authentication) Validate(ctx context.Context, r authentication.ValidateRequest) (*authentication.ValidateResponse, error) {
-	u := fmt.Sprintf("%s/authentication/validate", API)
+	u := fmt.Sprintf("%s/validate", s.path)
 	v := new(authentication.ValidateResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

@@ -4,7 +4,7 @@ package system
 
 // ChangeLogLevelRequest Temporarily changes level of logs. New level is not persistent and is lost when restarting server. Requires system administration permission.
 type ChangeLogLevelRequest struct {
-	Level string `json:"level"` // The new level. Be cautious: DEBUG, and even more TRACE, may have performance impacts.
+	Level string `form:"level"` // The new level. Be cautious: DEBUG, and even more TRACE, may have performance impacts.
 }
 
 // DbMigrationStatusRequest Display the database migration status of SonarQube.<br/>State values are:<ul><li>NO_MIGRATION: DB is up to date with current version of SonarQube.</li><li>NOT_SUPPORTED: Migration is not supported on embedded databases.</li><li>MIGRATION_RUNNING: DB migration is under go.</li><li>MIGRATION_SUCCEEDED: DB migration has run and has been successful.</li><li>MIGRATION_FAILED: DB migration has run and failed. SonarQube must be restarted in order to retry a DB migration (optionally after DB has been restored from backup).</li><li>MIGRATION_REQUIRED: DB migration is required.</li></ul>

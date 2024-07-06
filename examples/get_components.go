@@ -11,7 +11,7 @@ import (
 
 func main() {
 	ctx := context.Background()
-	baseUrl := "https://next.sonarqube.com/sonarqube/api"
+	baseUrl := "https://next.sonarqube.com/sonarqube"
 	client := sonarqube.NewClient(baseUrl, "", "", nil)
 	req := components.SearchRequest{
 		Qualifiers: "TRK",

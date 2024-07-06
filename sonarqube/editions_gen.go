@@ -14,7 +14,7 @@ type Editions service
 // Since 10.3
 // Changelog:
 func (s *Editions) ActivateGracePeriod(ctx context.Context, r editions.ActivateGracePeriodRequest) error {
-	u := fmt.Sprintf("%s/editions/activate_grace_period", API)
+	u := fmt.Sprintf("%s/activate_grace_period", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -28,7 +28,7 @@ func (s *Editions) ActivateGracePeriod(ctx context.Context, r editions.ActivateG
 // Since 7.2
 // Changelog:
 func (s *Editions) SetLicense(ctx context.Context, r editions.SetLicenseRequest) error {
-	u := fmt.Sprintf("%s/editions/set_license", API)
+	u := fmt.Sprintf("%s/set_license", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {

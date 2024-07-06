@@ -16,7 +16,7 @@ type Monitoring service
 // Since 9.3
 // Changelog:
 func (s *Monitoring) Metrics(ctx context.Context, r monitoring.MetricsRequest) (*monitoring.MetricsResponse, error) {
-	u := fmt.Sprintf("%s/monitoring/metrics", API)
+	u := fmt.Sprintf("%s/metrics", s.path)
 	v := new(monitoring.MetricsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

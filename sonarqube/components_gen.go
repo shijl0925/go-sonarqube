@@ -19,7 +19,7 @@ type Components service
 //   8.0: Field 'id' from response has been removed
 //   7.6: The use of 'BRC' as value for parameter 'qualifiers' is deprecated
 func (s *Components) Search(ctx context.Context, r components.SearchRequest, p paging.Params) (*components.SearchResponse, error) {
-	u := fmt.Sprintf("%s/components/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(components.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -57,7 +57,7 @@ func (s *Components) SearchAll(ctx context.Context, r components.SearchRequest) 
 //   10.1: The use of module keys in parameter 'component' is removed
 //   7.6: The use of module keys in parameter 'component' is deprecated
 func (s *Components) Show(ctx context.Context, r components.ShowRequest) (*components.ShowResponse, error) {
-	u := fmt.Sprintf("%s/components/show", API)
+	u := fmt.Sprintf("%s/show", s.path)
 	v := new(components.ShowResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -78,7 +78,7 @@ func (s *Components) Show(ctx context.Context, r components.ShowRequest) (*compo
 //   7.6: The use of 'BRC' as value for parameter 'qualifiers' is deprecated
 //   7.6: The use of module keys in parameter 'component' is deprecated
 func (s *Components) Tree(ctx context.Context, r components.TreeRequest, p paging.Params) (*components.TreeResponse, error) {
-	u := fmt.Sprintf("%s/components/tree", API)
+	u := fmt.Sprintf("%s/tree", s.path)
 	v := new(components.TreeResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)

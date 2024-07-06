@@ -4,8 +4,8 @@ package project_pull_requests
 
 // DeleteRequest Delete a pull request.<br/>Requires 'Administer' rights on the specified project.
 type DeleteRequest struct {
-	Project     string `json:"project"`     // Project key
-	PullRequest string `json:"pullRequest"` // Pull request id
+	Project     string `form:"project"`     // Project key
+	PullRequest string `form:"pullRequest"` // Pull request id
 }
 
 // ListRequest List the pull requests of a project.<br/>One of the following permissions is required: <ul><li>'Browse' rights on the specified project</li><li>'Execute Analysis' rights on the specified project</li></ul>

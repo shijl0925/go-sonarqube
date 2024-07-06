@@ -16,7 +16,7 @@ type Metrics service
 // Changelog:
 //   8.4: Field 'id' in the response is deprecated
 func (s *Metrics) Search(ctx context.Context, r metrics.SearchRequest, p paging.Params) (*metrics.SearchResponse, error) {
-	u := fmt.Sprintf("%s/metrics/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(metrics.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -52,7 +52,7 @@ func (s *Metrics) SearchAll(ctx context.Context, r metrics.SearchRequest) (*metr
 // Since 5.2
 // Changelog:
 func (s *Metrics) Types(ctx context.Context, r metrics.TypesRequest) (*metrics.TypesResponse, error) {
-	u := fmt.Sprintf("%s/metrics/types", API)
+	u := fmt.Sprintf("%s/types", s.path)
 	v := new(metrics.TypesResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

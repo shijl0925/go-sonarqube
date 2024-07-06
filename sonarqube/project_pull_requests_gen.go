@@ -15,7 +15,7 @@ type ProjectPullRequests service
 // Since 7.1
 // Changelog:
 func (s *ProjectPullRequests) Delete(ctx context.Context, r project_pull_requests.DeleteRequest) error {
-	u := fmt.Sprintf("%s/project_pull_requests/delete", API)
+	u := fmt.Sprintf("%s/delete", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -35,7 +35,7 @@ func (s *ProjectPullRequests) Delete(ctx context.Context, r project_pull_request
 //   9.8: Response fields: 'bugs', 'vulnerabilities', 'codeSmells' has been dropped.
 //   8.4: Response fields: 'bugs', 'vulnerabilities', 'codeSmells' are deprecated.
 func (s *ProjectPullRequests) List(ctx context.Context, r project_pull_requests.ListRequest) (*project_pull_requests.ListResponse, error) {
-	u := fmt.Sprintf("%s/project_pull_requests/list", API)
+	u := fmt.Sprintf("%s/list", s.path)
 	v := new(project_pull_requests.ListResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)

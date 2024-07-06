@@ -14,8 +14,6 @@ import (
 	"github.com/iancoleman/strcase"
 )
 
-var API string
-
 const (
 	basicAuth int = iota
 	privateToken
@@ -24,7 +22,7 @@ const (
 
 type Client struct {
 	client              *http.Client
-	API                 string
+	host                string
 	username            string
 	password            string
 	token               string
@@ -37,7 +35,7 @@ type Client struct {
 	Authentication      *Authentication
 	Ce                  *Ce
 	Components          *Components
-	//Duplications        *Duplications
+	Duplications        *Duplications
 	Editions            *Editions
 	Favorites           *Favorites
 	Hotspots            *Hotspots
@@ -75,6 +73,7 @@ type Client struct {
 
 type service struct {
 	client *Client
+	path   string
 }
 
 func NewClient(sonarURL string, username string, password string, client *http.Client) *Client {
@@ -96,49 +95,49 @@ func NewClient(sonarURL string, username string, password string, client *http.C
 		authType: authType,
 	}
 
-	API = sonarURL
-	c.AlmIntegrations = &AlmIntegrations{client: c}
-	c.AlmSettings = &AlmSettings{client: c}
-	c.AnalysisCache = &AnalysisCache{client: c}
-	c.Applications = &Applications{client: c}
-	c.AuditLogs = &AuditLogs{client: c}
-	c.Authentication = &Authentication{client: c}
-	c.Ce = &Ce{client: c}
-	c.Components = &Components{client: c}
-	//c.Duplications = &Duplications{client: c}
-	c.Editions = &Editions{client: c}
-	c.Favorites = &Favorites{client: c}
-	c.Hotspots = &Hotspots{client: c}
-	c.Issues = &Issues{client: c}
-	c.Languages = &Languages{client: c}
-	c.Measures = &Measures{client: c}
-	c.Metrics = &Metrics{client: c}
-	c.Monitoring = &Monitoring{client: c}
-	c.NewCodePeriods = &NewCodePeriods{client: c}
-	c.Notifications = &Notifications{client: c}
-	c.Permissions = &Permissions{client: c}
-	c.Plugins = &Plugins{client: c}
-	c.ProjectAnalyses = &ProjectAnalyses{client: c}
-	c.ProjectBadges = &ProjectBadges{client: c}
-	c.ProjectBranches = &ProjectBranches{client: c}
-	c.ProjectDump = &ProjectDump{client: c}
-	c.ProjectLinks = &ProjectLinks{client: c}
-	c.ProjectPullRequests = &ProjectPullRequests{client: c}
-	c.ProjectTags = &ProjectTags{client: c}
-	c.Projects = &Projects{client: c}
-	c.Qualitygates = &Qualitygates{client: c}
-	c.Qualityprofiles = &Qualityprofiles{client: c}
-	c.Rules = &Rules{client: c}
-	c.Server = &Server{client: c}
-	c.Settings = &Settings{client: c}
-	c.Sources = &Sources{client: c}
-	c.System = &System{client: c}
-	c.UserGroups = &UserGroups{client: c}
-	c.UserTokens = &UserTokens{client: c}
-	c.Users = &Users{client: c}
-	c.Views = &Views{client: c}
-	c.Webhooks = &Webhooks{client: c}
-	c.Webservices = &Webservices{client: c}
+	c.host = sonarURL
+	c.AlmIntegrations = &AlmIntegrations{client: c, path: "api/alm_integrations"}
+	c.AlmSettings = &AlmSettings{client: c, path: "api/alm_settings"}
+	c.AnalysisCache = &AnalysisCache{client: c, path: "api/analysis_cache"}
+	c.Applications = &Applications{client: c, path: "api/applications"}
+	c.AuditLogs = &AuditLogs{client: c, path: "api/audit_logs"}
+	c.Authentication = &Authentication{client: c, path: "api/authentication"}
+	c.Ce = &Ce{client: c, path: "api/ce"}
+	c.Components = &Components{client: c, path: "api/components"}
+	c.Duplications = &Duplications{client: c, path: "api/duplications"}
+	c.Editions = &Editions{client: c, path: "api/editions"}
+	c.Favorites = &Favorites{client: c, path: "api/favorites"}
+	c.Hotspots = &Hotspots{client: c, path: "api/hotspots"}
+	c.Issues = &Issues{client: c, path: "api/issues"}
+	c.Languages = &Languages{client: c, path: "api/languages"}
+	c.Measures = &Measures{client: c, path: "api/measures"}
+	c.Metrics = &Metrics{client: c, path: "api/metrics"}
+	c.Monitoring = &Monitoring{client: c, path: "api/monitoring"}
+	c.NewCodePeriods = &NewCodePeriods{client: c, path: "api/new_code_periods"}
+	c.Notifications = &Notifications{client: c, path: "api/notifications"}
+	c.Permissions = &Permissions{client: c, path: "api/permissions"}
+	c.Plugins = &Plugins{client: c, path: "api/plugins"}
+	c.ProjectAnalyses = &ProjectAnalyses{client: c, path: "api/project_analyses"}
+	c.ProjectBadges = &ProjectBadges{client: c, path: "api/project_badges"}
+	c.ProjectBranches = &ProjectBranches{client: c, path: "api/project_branches"}
+	c.ProjectDump = &ProjectDump{client: c, path: "api/project_dump"}
+	c.ProjectLinks = &ProjectLinks{client: c, path: "api/project_links"}
+	c.ProjectPullRequests = &ProjectPullRequests{client: c, path: "api/project_pull_requests"}
+	c.ProjectTags = &ProjectTags{client: c, path: "api/project_tags"}
+	c.Projects = &Projects{client: c, path: "api/projects"}
+	c.Qualitygates = &Qualitygates{client: c, path: "api/qualitygates"}
+	c.Qualityprofiles = &Qualityprofiles{client: c, path: "api/qualityprofiles"}
+	c.Rules = &Rules{client: c, path: "api/rules"}
+	c.Server = &Server{client: c, path: "api/server"}
+	c.Settings = &Settings{client: c, path: "api/settings"}
+	c.Sources = &Sources{client: c, path: "api/sources"}
+	c.System = &System{client: c, path: "api/system"}
+	c.UserGroups = &UserGroups{client: c, path: "api/user_groups"}
+	c.UserTokens = &UserTokens{client: c, path: "api/user_tokens"}
+	c.Users = &Users{client: c, path: "api/users"}
+	c.Views = &Views{client: c, path: "api/views"}
+	c.Webhooks = &Webhooks{client: c, path: "api/webhooks"}
+	c.Webservices = &Webservices{client: c, path: "api/webservices"}
 
 	return c
 }
@@ -214,6 +213,7 @@ func (c *Client) Do(req *http.Request) (*http.Response, error) {
 }
 
 func (c *Client) Call(ctx context.Context, method string, u string, v interface{}, opt ...interface{}) (*http.Response, error) {
+	u = fmt.Sprintf("%s/%s", c.host, u)
 	var req *http.Request
 	var err error
 	if method == http.MethodGet {
@@ -224,7 +224,7 @@ func (c *Client) Call(ctx context.Context, method string, u string, v interface{
 		}
 	} else {
 		encoder := form.NewEncoder()
-		values, err := encoder.Encode(opt)
+		values, err := encoder.Encode(opt[0])
 		if err != nil {
 			return nil, fmt.Errorf("could not encode form values: %v", err)
 		}
@@ -235,15 +235,6 @@ func (c *Client) Call(ctx context.Context, method string, u string, v interface{
 	}
 
 	isText := false
-	val := reflect.ValueOf(v)
-	if val.Kind() != reflect.Ptr {
-		return nil, fmt.Errorf("v must be a pointer type")
-	}
-	res := val.Elem()
-	if res.Kind() == reflect.String {
-		req.Header.Set("Accept", "text/plain")
-		isText = true
-	}
 
 	resp, err := c.Do(req)
 	if err != nil {
@@ -253,14 +244,18 @@ func (c *Client) Call(ctx context.Context, method string, u string, v interface{
 	if v != nil {
 		defer resp.Body.Close()
 
+		res := reflect.ValueOf(v).Elem()
+		if res.Kind() == reflect.String {
+			isText = true
+		}
+
 		if isText {
 			buf := new(strings.Builder)
 			_, err := io.Copy(buf, resp.Body)
 			if err != nil {
 				return resp, fmt.Errorf("could not read response body: %v", err)
 			}
-			w := val.Elem()
-			w.SetString(buf.String())
+			res.SetString(buf.String())
 		} else {
 			if err := json.NewDecoder(resp.Body).Decode(v); err != nil {
 				return nil, fmt.Errorf("could not decode response: %v", err)

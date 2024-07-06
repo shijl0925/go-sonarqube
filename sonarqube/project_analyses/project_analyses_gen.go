@@ -6,9 +6,9 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // CreateEventRequest Create a project analysis event.<br>Only event of category 'VERSION' and 'OTHER' can be created.<br>Requires one of the following permissions:<ul>  <li>'Administer System'</li>  <li>'Administer' rights on the specified project</li></ul>
 type CreateEventRequest struct {
-	Analysis string `json:"analysis"`           // Analysis key
-	Category string `json:"category,omitempty"` // Category
-	Name     string `json:"name"`               // Name
+	Analysis string `form:"analysis"`           // Analysis key
+	Category string `form:"category,omitempty"` // Category
+	Name     string `form:"name"`               // Name
 }
 
 // CreateEventResponse is the response for CreateEventRequest
@@ -23,12 +23,12 @@ type CreateEventResponse struct {
 
 // DeleteRequest Delete a project analysis.<br>Requires one of the following permissions:<ul>  <li>'Administer System'</li>  <li>'Administer' rights on the project of the specified analysis</li></ul>
 type DeleteRequest struct {
-	Analysis string `json:"analysis"` // Analysis key
+	Analysis string `form:"analysis"` // Analysis key
 }
 
 // DeleteEventRequest Delete a project analysis event.<br>Only event of category 'VERSION' and 'OTHER' can be deleted.<br>Requires one of the following permissions:<ul>  <li>'Administer System'</li>  <li>'Administer' rights on the specified project</li></ul>
 type DeleteEventRequest struct {
-	Event string `json:"event"` // Event key
+	Event string `form:"event"` // Event key
 }
 
 // SearchRequest Search a project analyses and attached events.<br>Requires the following permission: 'Browse' on the specified project. <br>For applications, it also requires 'Browse' permission on its child projects.
@@ -93,8 +93,8 @@ type SearchResponseAll struct {
 
 // UpdateEventRequest Update a project analysis event.<br>Only events of category 'VERSION' and 'OTHER' can be updated.<br>Requires one of the following permissions:<ul>  <li>'Administer System'</li>  <li>'Administer' rights on the specified project</li></ul>
 type UpdateEventRequest struct {
-	Event string `json:"event"` // Event key
-	Name  string `json:"name"`  // New name
+	Event string `form:"event"` // Event key
+	Name  string `form:"name"`  // New name
 }
 
 // UpdateEventResponse is the response for UpdateEventRequest

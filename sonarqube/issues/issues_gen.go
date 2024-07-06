@@ -6,8 +6,8 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // AddCommentRequest Add a comment.<br/>Requires authentication and the following permission: 'Browse' on the project of the specified issue.
 type AddCommentRequest struct {
-	Issue string `json:"issue"` // Issue key
-	Text  string `json:"text"`  // Comment text
+	Issue string `form:"issue"` // Issue key
+	Text  string `form:"text"`  // Comment text
 }
 
 // AddCommentResponse is the response for AddCommentRequest
@@ -78,8 +78,8 @@ type AddCommentResponse struct {
 
 // AssignRequest Assign/Unassign an issue. Requires authentication and Browse permission on project
 type AssignRequest struct {
-	Assignee string `json:"assignee,omitempty"` // Login of the assignee. When not set, it will unassign the issue. Use '_me' to assign to current user
-	Issue    string `json:"issue"`              // Issue key
+	Assignee string `form:"assignee,omitempty"` // Login of the assignee. When not set, it will unassign the issue. Use '_me' to assign to current user
+	Issue    string `form:"issue"`              // Issue key
 }
 
 // AssignResponse is the response for AssignRequest
@@ -160,15 +160,15 @@ type AuthorsResponse struct {
 
 // BulkChangeRequest Bulk change on issues. Up to 500 issues can be updated. <br/>Requires authentication.
 type BulkChangeRequest struct {
-	AddTags           string `json:"add_tags,omitempty"`          // Add tags
-	Assign            string `json:"assign,omitempty"`            // To assign the list of issues to a specific user (login), or un-assign all the issues
-	Comment           string `json:"comment,omitempty"`           // Add a comment. The comment will only be added to issues that are affected either by a change of type or a change of severity as a result of the same WS call.
-	DoTransition      string `json:"do_transition,omitempty"`     // Transition
-	Issues            string `json:"issues"`                      // Comma-separated list of issue keys
-	RemoveTags        string `json:"remove_tags,omitempty"`       // Remove tags
-	SendNotifications string `json:"sendNotifications,omitempty"` // Since 4.0;
-	SetSeverity       string `json:"set_severity,omitempty"`      // Deprecated since 10.2;To change the severity of the list of issues
-	SetType           string `json:"set_type,omitempty"`          // Since 5.5;Deprecated since 10.2;To change the type of the list of issues
+	AddTags           string `form:"add_tags,omitempty"`          // Add tags
+	Assign            string `form:"assign,omitempty"`            // To assign the list of issues to a specific user (login), or un-assign all the issues
+	Comment           string `form:"comment,omitempty"`           // Add a comment. The comment will only be added to issues that are affected either by a change of type or a change of severity as a result of the same WS call.
+	DoTransition      string `form:"do_transition,omitempty"`     // Transition
+	Issues            string `form:"issues"`                      // Comma-separated list of issue keys
+	RemoveTags        string `form:"remove_tags,omitempty"`       // Remove tags
+	SendNotifications string `form:"sendNotifications,omitempty"` // Since 4.0;
+	SetSeverity       string `form:"set_severity,omitempty"`      // Deprecated since 10.2;To change the severity of the list of issues
+	SetType           string `form:"set_type,omitempty"`          // Since 5.5;Deprecated since 10.2;To change the type of the list of issues
 }
 
 // BulkChangeResponse is the response for BulkChangeRequest
@@ -204,7 +204,7 @@ type ChangelogResponse struct {
 
 // DeleteCommentRequest Delete a comment.<br/>Requires authentication and the following permission: 'Browse' on the project of the specified issue.
 type DeleteCommentRequest struct {
-	Comment string `json:"comment"` // Since 6.3;Comment key
+	Comment string `form:"comment"` // Since 6.3;Comment key
 }
 
 // DeleteCommentResponse is the response for DeleteCommentRequest
@@ -278,8 +278,8 @@ The transitions 'accept', 'wontfix' and 'falsepositive' require the permission '
 The transitions involving security hotspots require the permission 'Administer Security Hotspot'.
 */
 type DoTransitionRequest struct {
-	Issue      string `json:"issue"`      // Issue key
-	Transition string `json:"transition"` // Transition
+	Issue      string `form:"issue"`      // Issue key
+	Transition string `form:"transition"` // Transition
 }
 
 // DoTransitionResponse is the response for DoTransitionRequest
@@ -349,8 +349,8 @@ type DoTransitionResponse struct {
 
 // EditCommentRequest Edit a comment.<br/>Requires authentication and the following permission: 'Browse' on the project of the specified issue.
 type EditCommentRequest struct {
-	Comment string `json:"comment"` // Since 6.3;Comment key
-	Text    string `json:"text"`    // Comment text
+	Comment string `form:"comment"` // Since 6.3;Comment key
+	Text    string `form:"text"`    // Comment text
 }
 
 // EditCommentResponse is the response for EditCommentRequest
@@ -485,7 +485,7 @@ type GitlabSastExportResponse struct {
 
 // ReindexRequest Reindex issues for a project.<br> Require 'Administer System' permission.
 type ReindexRequest struct {
-	Project string `json:"project"` // Project key
+	Project string `form:"project"` // Project key
 }
 
 // SearchRequest Search for issues.<br>Requires the 'Browse' permission on the specified project(s). <br>For applications, it also requires 'Browse' permission on its child projects.<br/>When issue indexing is in progress returns 503 service unavailable HTTP code.
@@ -738,8 +738,8 @@ type SearchResponseAll struct {
 // SetSeverityRequest Change severity.<br/>Requires the following permissions:<ul>  <li>'Authentication'</li>  <li>'Browse' rights on project of the specified issue</li>  <li>'Administer Issues' rights on project of the specified issue</li></ul>
 // Deprecated: this action has been deprecated since version 10.2
 type SetSeverityRequest struct {
-	Issue    string `json:"issue"`    // Issue key
-	Severity string `json:"severity"` // New severity
+	Issue    string `form:"issue"`    // Issue key
+	Severity string `form:"severity"` // New severity
 }
 
 // SetSeverityResponse is the response for SetSeverityRequest
@@ -812,8 +812,8 @@ type SetSeverityResponse struct {
 
 // SetTagsRequest Set tags on an issue. <br/>Requires authentication and Browse permission on project
 type SetTagsRequest struct {
-	Issue string `json:"issue"`          // Since 6.3;Issue key
-	Tags  string `json:"tags,omitempty"` // Comma-separated list of tags. All tags are removed if parameter is empty or not set.
+	Issue string `form:"issue"`          // Since 6.3;Issue key
+	Tags  string `form:"tags,omitempty"` // Comma-separated list of tags. All tags are removed if parameter is empty or not set.
 }
 
 // SetTagsResponse is the response for SetTagsRequest
@@ -886,8 +886,8 @@ type SetTagsResponse struct {
 // SetTypeRequest Change type of issue, for instance from 'code smell' to 'bug'.<br/>Requires the following permissions:<ul>  <li>'Authentication'</li>  <li>'Browse' rights on project of the specified issue</li>  <li>'Administer Issues' rights on project of the specified issue</li></ul>
 // Deprecated: this action has been deprecated since version 10.2
 type SetTypeRequest struct {
-	Issue string `json:"issue"` // Issue key
-	Type  string `json:"type"`  // New type
+	Issue string `form:"issue"` // Issue key
+	Type  string `form:"type"`  // New type
 }
 
 // SetTypeResponse is the response for SetTypeRequest

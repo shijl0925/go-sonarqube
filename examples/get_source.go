@@ -11,7 +11,7 @@ import (
 func main() {
 	ctx := context.Background()
 	key := "SonarSource_echoes-react_AYvOIyNg-JQvdKIPB6Ig:stories/Icons-stories.tsx"
-	baseUrl := "https://next.sonarqube.com/sonarqube/api"
+	baseUrl := "https://next.sonarqube.com/sonarqube"
 	client := sonarqube.NewClient(baseUrl, "", "", nil)
 	req := sources.RawRequest{Key: key}
 

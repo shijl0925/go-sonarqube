@@ -25,17 +25,17 @@ type ListDefinitionsResponse struct {
 
 // ResetRequest Remove a setting value.<br>The settings defined in conf/sonar.properties are read-only and can't be changed.<br/>Requires one of the following permissions: <ul><li>'Administer System'</li><li>'Administer' rights on the specified component</li></ul>
 type ResetRequest struct {
-	Component string `json:"component,omitempty"` // Component key. Only keys for projects, applications, portfolios or subportfolios are accepted.
-	Keys      string `json:"keys"`                // Comma-separated list of keys
+	Component string `form:"component,omitempty"` // Component key. Only keys for projects, applications, portfolios or subportfolios are accepted.
+	Keys      string `form:"keys"`                // Comma-separated list of keys
 }
 
 // SetRequest Update a setting value.<br>Either 'value' or 'values' must be provided.<br> The settings defined in conf/sonar.properties are read-only and can't be changed.<br/>Requires one of the following permissions: <ul><li>'Administer System'</li><li>'Administer' rights on the specified component</li></ul>
 type SetRequest struct {
-	Component   string `json:"component,omitempty"`   // Component key. Only keys for projects, applications, portfolios or subportfolios are accepted.
-	FieldValues string `json:"fieldValues,omitempty"` // Setting field values. To set several values, the parameter must be called once for each value.
-	Key         string `json:"key"`                   // Setting key
-	Value       string `json:"value,omitempty"`       // Setting value. To reset a value, please use the reset web service.
-	Values      string `json:"values,omitempty"`      // Setting multi value. To set several values, the parameter must be called once for each value.
+	Component   string `form:"component,omitempty"`   // Component key. Only keys for projects, applications, portfolios or subportfolios are accepted.
+	FieldValues string `form:"fieldValues,omitempty"` // Setting field values. To set several values, the parameter must be called once for each value.
+	Key         string `form:"key"`                   // Setting key
+	Value       string `form:"value,omitempty"`       // Setting value. To reset a value, please use the reset web service.
+	Values      string `form:"values,omitempty"`      // Setting multi value. To set several values, the parameter must be called once for each value.
 }
 
 // ValuesRequest List settings values.<br>If no value has been set for a setting, then the default value is returned.<br>The settings from conf/sonar.properties are excluded from results.<br>Requires 'Browse' or 'Execute Analysis' permission when a component is specified.<br/>Secured settings values are not returned by the endpoint.<br/>

@@ -7,25 +7,25 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 // AnonymizeRequest Anonymize a deactivated user. Requires Administer System permission
 // Deprecated: this action has been deprecated since version 10.4
 type AnonymizeRequest struct {
-	Login string `json:"login"` // User login
+	Login string `form:"login"` // User login
 }
 
 // ChangePasswordRequest Update a user's password. Authenticated users can change their own password, provided that the account is not linked to an external authentication system. Administer System permission is required to change another user's password.
 type ChangePasswordRequest struct {
-	Login            string `json:"login"`                      // User login
-	Password         string `json:"password"`                   // New password
-	PreviousPassword string `json:"previousPassword,omitempty"` // Previous password. Required when changing one's own password.
+	Login            string `form:"login"`                      // User login
+	Password         string `form:"password"`                   // New password
+	PreviousPassword string `form:"previousPassword,omitempty"` // Previous password. Required when changing one's own password.
 }
 
 // CreateRequest Create a user.<br/>If a deactivated user account exists with the given login, it will be reactivated.<br/>Requires Administer System permission
 // Deprecated: this action has been deprecated since version 10.4
 type CreateRequest struct {
-	Email      string `json:"email,omitempty"`      // User email
-	Local      string `json:"local,omitempty"`      // Since 6.3;Specify if the user should be authenticated from SonarQube server or from an external authentication system. Password should not be set when local is set to false.
-	Login      string `json:"login"`                // User login
-	Name       string `json:"name"`                 // User name
-	Password   string `json:"password,omitempty"`   // User password. Only mandatory when creating local user, otherwise it should not be set
-	ScmAccount string `json:"scmAccount,omitempty"` // List of SCM accounts. To set several values, the parameter must be called once for each value.
+	Email      string `form:"email,omitempty"`      // User email
+	Local      string `form:"local,omitempty"`      // Since 6.3;Specify if the user should be authenticated from SonarQube server or from an external authentication system. Password should not be set when local is set to false.
+	Login      string `form:"login"`                // User login
+	Name       string `form:"name"`                 // User name
+	Password   string `form:"password,omitempty"`   // User password. Only mandatory when creating local user, otherwise it should not be set
+	ScmAccount string `form:"scmAccount,omitempty"` // List of SCM accounts. To set several values, the parameter must be called once for each value.
 }
 
 // CreateResponse is the response for CreateRequest
@@ -43,8 +43,8 @@ type CreateResponse struct {
 // DeactivateRequest Deactivate a user. Requires Administer System permission
 // Deprecated: this action has been deprecated since version 10.4
 type DeactivateRequest struct {
-	Anonymize string `json:"anonymize,omitempty"` // Since 9.7;Anonymize user in addition to deactivating it
-	Login     string `json:"login"`               // User login
+	Anonymize string `form:"anonymize,omitempty"` // Since 9.7;Anonymize user in addition to deactivating it
+	Login     string `form:"login"`               // User login
 }
 
 // DeactivateResponse is the response for DeactivateRequest
@@ -176,10 +176,10 @@ type SearchResponseAll struct {
 // UpdateRequest Update a user.<br/>Requires Administer System permission
 // Deprecated: this action has been deprecated since version 10.4
 type UpdateRequest struct {
-	Email      string `json:"email,omitempty"`      // User email
-	Login      string `json:"login"`                // User login
-	Name       string `json:"name,omitempty"`       // User name
-	ScmAccount string `json:"scmAccount,omitempty"` // SCM accounts. To set several values, the parameter must be called once for each value.
+	Email      string `form:"email,omitempty"`      // User email
+	Login      string `form:"login"`                // User login
+	Name       string `form:"name,omitempty"`       // User name
+	ScmAccount string `form:"scmAccount,omitempty"` // SCM accounts. To set several values, the parameter must be called once for each value.
 }
 
 // UpdateResponse is the response for UpdateRequest
@@ -197,14 +197,14 @@ type UpdateResponse struct {
 // UpdateIdentityProviderRequest Update identity provider information. <br/>It's only possible to migrate to an installed identity provider. Be careful that as soon as this information has been updated for a user, the user will only be able to authenticate on the new identity provider. It is not possible to migrate external user to local one.<br/>Requires Administer System permission.
 // Deprecated: this action has been deprecated since version 10.4
 type UpdateIdentityProviderRequest struct {
-	Login               string `json:"login"`                         // User login
-	NewExternalIdentity string `json:"newExternalIdentity,omitempty"` // New external identity, usually the login used in the authentication system. If not provided previous identity will be used.
-	NewExternalProvider string `json:"newExternalProvider"`           // New external provider. Only authentication system installed are available. Use 'LDAP' identity provider for single server LDAP setup.Use 'LDAP_{serverKey}' identity provider for multiple LDAP servers setup.
+	Login               string `form:"login"`                         // User login
+	NewExternalIdentity string `form:"newExternalIdentity,omitempty"` // New external identity, usually the login used in the authentication system. If not provided previous identity will be used.
+	NewExternalProvider string `form:"newExternalProvider"`           // New external provider. Only authentication system installed are available. Use 'LDAP' identity provider for single server LDAP setup.Use 'LDAP_{serverKey}' identity provider for multiple LDAP servers setup.
 }
 
 // UpdateLoginRequest Update a user login. A login can be updated many times.<br/>Requires Administer System permission
 // Deprecated: this action has been deprecated since version 10.4
 type UpdateLoginRequest struct {
-	Login    string `json:"login"`    // The current login (case-sensitive)
-	NewLogin string `json:"newLogin"` // The new login. It must not already exist.
+	Login    string `form:"login"`    // The current login (case-sensitive)
+	NewLogin string `form:"newLogin"` // The new login. It must not already exist.
 }

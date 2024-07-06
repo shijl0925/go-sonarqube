@@ -15,7 +15,7 @@ type Views service
 // Since 9.3
 // Changelog:
 func (s *Views) AddApplication(ctx context.Context, r views.AddApplicationRequest) error {
-	u := fmt.Sprintf("%s/views/add_application", API)
+	u := fmt.Sprintf("%s/add_application", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -30,7 +30,7 @@ func (s *Views) AddApplication(ctx context.Context, r views.AddApplicationReques
 // Since 9.3
 // Changelog:
 func (s *Views) AddApplicationBranch(ctx context.Context, r views.AddApplicationBranchRequest) error {
-	u := fmt.Sprintf("%s/views/add_application_branch", API)
+	u := fmt.Sprintf("%s/add_application_branch", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -45,7 +45,7 @@ func (s *Views) AddApplicationBranch(ctx context.Context, r views.AddApplication
 // Since 9.3
 // Changelog:
 func (s *Views) AddPortfolio(ctx context.Context, r views.AddPortfolioRequest) error {
-	u := fmt.Sprintf("%s/views/add_portfolio", API)
+	u := fmt.Sprintf("%s/add_portfolio", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -62,7 +62,7 @@ func (s *Views) AddPortfolio(ctx context.Context, r views.AddPortfolioRequest) e
 //   8.3: Project to which user has `Browse` permission can be used in 'project'
 //   7.3: This web service should not be used to add project to an application, api/applications/add_project should be used instead
 func (s *Views) AddProject(ctx context.Context, r views.AddProjectRequest) error {
-	u := fmt.Sprintf("%s/views/add_project", API)
+	u := fmt.Sprintf("%s/add_project", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -77,7 +77,7 @@ func (s *Views) AddProject(ctx context.Context, r views.AddProjectRequest) error
 // Since 9.2
 // Changelog:
 func (s *Views) AddProjectBranch(ctx context.Context, r views.AddProjectBranchRequest) error {
-	u := fmt.Sprintf("%s/views/add_project_branch", API)
+	u := fmt.Sprintf("%s/add_project_branch", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *Views) AddProjectBranch(ctx context.Context, r views.AddProjectBranchRe
 // Since 9.3
 // Changelog:
 func (s *Views) Applications(ctx context.Context, r views.ApplicationsRequest) (*views.ApplicationsResponse, error) {
-	u := fmt.Sprintf("%s/views/applications", API)
+	u := fmt.Sprintf("%s/applications", s.path)
 	v := new(views.ApplicationsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -114,7 +114,7 @@ func (s *Views) Applications(ctx context.Context, r views.ApplicationsRequest) (
 //   7.1: The 'visibility' parameter is public
 //   2.0: Qualifier field is returned in the response
 func (s *Views) Create(ctx context.Context, r views.CreateRequest) error {
-	u := fmt.Sprintf("%s/views/create", API)
+	u := fmt.Sprintf("%s/create", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -132,7 +132,7 @@ func (s *Views) Create(ctx context.Context, r views.CreateRequest) error {
 //   9.3: This web service can't delete applications. Use 'applications/delete' instead
 //   7.3: This web service should not be used to delete an application, api/applications/delete should be used instead
 func (s *Views) Delete(ctx context.Context, r views.DeleteRequest) error {
-	u := fmt.Sprintf("%s/views/delete", API)
+	u := fmt.Sprintf("%s/delete", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -151,7 +151,7 @@ func (s *Views) Delete(ctx context.Context, r views.DeleteRequest) error {
 //   2.0: Qualifier field is returned in the response
 //   2.0: Visibility field is returned in the response
 func (s *Views) List(ctx context.Context, r views.ListRequest) (*views.ListResponse, error) {
-	u := fmt.Sprintf("%s/views/list", API)
+	u := fmt.Sprintf("%s/list", s.path)
 	v := new(views.ListResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -167,7 +167,7 @@ func (s *Views) List(ctx context.Context, r views.ListRequest) (*views.ListRespo
 // Since 1.0
 // Changelog:
 func (s *Views) Move(ctx context.Context, r views.MoveRequest) error {
-	u := fmt.Sprintf("%s/views/move", API)
+	u := fmt.Sprintf("%s/move", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -182,7 +182,7 @@ func (s *Views) Move(ctx context.Context, r views.MoveRequest) error {
 // Since 1.0
 // Changelog:
 func (s *Views) MoveOptions(ctx context.Context, r views.MoveOptionsRequest) (*views.MoveOptionsResponse, error) {
-	u := fmt.Sprintf("%s/views/move_options", API)
+	u := fmt.Sprintf("%s/move_options", s.path)
 	v := new(views.MoveOptionsResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -198,7 +198,7 @@ func (s *Views) MoveOptions(ctx context.Context, r views.MoveOptionsRequest) (*v
 // Since 9.3
 // Changelog:
 func (s *Views) Portfolios(ctx context.Context, r views.PortfoliosRequest) (*views.PortfoliosResponse, error) {
-	u := fmt.Sprintf("%s/views/portfolios", API)
+	u := fmt.Sprintf("%s/portfolios", s.path)
 	v := new(views.PortfoliosResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -214,7 +214,7 @@ func (s *Views) Portfolios(ctx context.Context, r views.PortfoliosRequest) (*vie
 // Since 9.3
 // Changelog:
 func (s *Views) RemoveApplication(ctx context.Context, r views.RemoveApplicationRequest) error {
-	u := fmt.Sprintf("%s/views/remove_application", API)
+	u := fmt.Sprintf("%s/remove_application", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -229,7 +229,7 @@ func (s *Views) RemoveApplication(ctx context.Context, r views.RemoveApplication
 // Since 9.3
 // Changelog:
 func (s *Views) RemoveApplicationBranch(ctx context.Context, r views.RemoveApplicationBranchRequest) error {
-	u := fmt.Sprintf("%s/views/remove_application_branch", API)
+	u := fmt.Sprintf("%s/remove_application_branch", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -244,7 +244,7 @@ func (s *Views) RemoveApplicationBranch(ctx context.Context, r views.RemoveAppli
 // Since 9.3
 // Changelog:
 func (s *Views) RemovePortfolio(ctx context.Context, r views.RemovePortfolioRequest) error {
-	u := fmt.Sprintf("%s/views/remove_portfolio", API)
+	u := fmt.Sprintf("%s/remove_portfolio", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -262,7 +262,7 @@ func (s *Views) RemovePortfolio(ctx context.Context, r views.RemovePortfolioRequ
 //   8.3: Project to which user has `Browse` permission can be used in 'project'
 //   7.3: This web service should not be used on application, api/applications/remove_project should be used instead
 func (s *Views) RemoveProject(ctx context.Context, r views.RemoveProjectRequest) error {
-	u := fmt.Sprintf("%s/views/remove_project", API)
+	u := fmt.Sprintf("%s/remove_project", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -277,7 +277,7 @@ func (s *Views) RemoveProject(ctx context.Context, r views.RemoveProjectRequest)
 // Since 9.2
 // Changelog:
 func (s *Views) RemoveProjectBranch(ctx context.Context, r views.RemoveProjectBranchRequest) error {
-	u := fmt.Sprintf("%s/views/remove_project_branch", API)
+	u := fmt.Sprintf("%s/remove_project_branch", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -293,7 +293,7 @@ func (s *Views) RemoveProjectBranch(ctx context.Context, r views.RemoveProjectBr
 // Since 7.4
 // Changelog:
 func (s *Views) SetManualMode(ctx context.Context, r views.SetManualModeRequest) error {
-	u := fmt.Sprintf("%s/views/set_manual_mode", API)
+	u := fmt.Sprintf("%s/set_manual_mode", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -309,7 +309,7 @@ func (s *Views) SetManualMode(ctx context.Context, r views.SetManualModeRequest)
 // Since 9.1
 // Changelog:
 func (s *Views) SetNoneMode(ctx context.Context, r views.SetNoneModeRequest) error {
-	u := fmt.Sprintf("%s/views/set_none_mode", API)
+	u := fmt.Sprintf("%s/set_none_mode", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -325,7 +325,7 @@ func (s *Views) SetNoneMode(ctx context.Context, r views.SetNoneModeRequest) err
 // Changelog:
 //   9.2: Param 'branch' added
 func (s *Views) SetRegexpMode(ctx context.Context, r views.SetRegexpModeRequest) error {
-	u := fmt.Sprintf("%s/views/set_regexp_mode", API)
+	u := fmt.Sprintf("%s/set_regexp_mode", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -341,7 +341,7 @@ func (s *Views) SetRegexpMode(ctx context.Context, r views.SetRegexpModeRequest)
 // Changelog:
 //   9.2: Param 'branch' added
 func (s *Views) SetRemainingProjectsMode(ctx context.Context, r views.SetRemainingProjectsModeRequest) error {
-	u := fmt.Sprintf("%s/views/set_remaining_projects_mode", API)
+	u := fmt.Sprintf("%s/set_remaining_projects_mode", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -357,7 +357,7 @@ func (s *Views) SetRemainingProjectsMode(ctx context.Context, r views.SetRemaini
 // Changelog:
 //   9.2: Param 'branch' added
 func (s *Views) SetTagsMode(ctx context.Context, r views.SetTagsModeRequest) error {
-	u := fmt.Sprintf("%s/views/set_tags_mode", API)
+	u := fmt.Sprintf("%s/set_tags_mode", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -378,7 +378,7 @@ func (s *Views) SetTagsMode(ctx context.Context, r views.SetTagsModeRequest) err
 //   7.3: Deleted field of projects is deprecated in the response, replaced by enabled
 //   2.0: Qualifier field is returned in the response
 func (s *Views) Show(ctx context.Context, r views.ShowRequest) (*views.ShowResponse, error) {
-	u := fmt.Sprintf("%s/views/show", API)
+	u := fmt.Sprintf("%s/show", s.path)
 	v := new(views.ShowResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r)
@@ -396,7 +396,7 @@ func (s *Views) Show(ctx context.Context, r views.ShowRequest) (*views.ShowRespo
 //   9.3: This web service can't update applications. Use 'applications/update' instead
 //   7.3: This web service should not be used on application, api/applications/update should be used instead
 func (s *Views) Update(ctx context.Context, r views.UpdateRequest) error {
-	u := fmt.Sprintf("%s/views/update", API)
+	u := fmt.Sprintf("%s/update", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {

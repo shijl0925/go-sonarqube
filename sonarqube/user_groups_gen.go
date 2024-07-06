@@ -21,7 +21,7 @@ type UserGroups service
 //   10.0: Parameter 'id' is removed. Use 'name' instead.
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *UserGroups) AddUser(ctx context.Context, r user_groups.AddUserRequest) error {
-	u := fmt.Sprintf("%s/user_groups/add_user", API)
+	u := fmt.Sprintf("%s/add_user", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -39,7 +39,7 @@ func (s *UserGroups) AddUser(ctx context.Context, r user_groups.AddUserRequest) 
 //   10.4: Deprecated. Use POST /api/v2/authorizations/groups instead
 //   8.4: Field 'id' format in the response changes from integer to string.
 func (s *UserGroups) Create(ctx context.Context, r user_groups.CreateRequest) (*user_groups.CreateResponse, error) {
-	u := fmt.Sprintf("%s/user_groups/create", API)
+	u := fmt.Sprintf("%s/create", s.path)
 	v := new(user_groups.CreateResponse)
 
 	_, err := s.client.Call(ctx, "POST", u, v, r)
@@ -60,7 +60,7 @@ func (s *UserGroups) Create(ctx context.Context, r user_groups.CreateRequest) (*
 //   10.0: Parameter 'id' is removed. Use 'name' instead.
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *UserGroups) Delete(ctx context.Context, r user_groups.DeleteRequest) error {
-	u := fmt.Sprintf("%s/user_groups/delete", API)
+	u := fmt.Sprintf("%s/delete", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -80,7 +80,7 @@ func (s *UserGroups) Delete(ctx context.Context, r user_groups.DeleteRequest) er
 //   10.0: Parameter 'id' is removed. Use 'name' instead.
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *UserGroups) RemoveUser(ctx context.Context, r user_groups.RemoveUserRequest) error {
-	u := fmt.Sprintf("%s/user_groups/remove_user", API)
+	u := fmt.Sprintf("%s/remove_user", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -103,7 +103,7 @@ func (s *UserGroups) RemoveUser(ctx context.Context, r user_groups.RemoveUserReq
 //   6.4: Paging response fields moved to a Paging object
 //   6.4: 'default' response field has been added
 func (s *UserGroups) Search(ctx context.Context, r user_groups.SearchRequest, p paging.Params) (*user_groups.SearchResponse, error) {
-	u := fmt.Sprintf("%s/user_groups/search", API)
+	u := fmt.Sprintf("%s/search", s.path)
 	v := new(user_groups.SearchResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
@@ -146,7 +146,7 @@ func (s *UserGroups) SearchAll(ctx context.Context, r user_groups.SearchRequest)
 //   8.4: Parameter 'id' format changes from integer to string
 //   6.4: The default group is no longer editable
 func (s *UserGroups) Update(ctx context.Context, r user_groups.UpdateRequest) error {
-	u := fmt.Sprintf("%s/user_groups/update", API)
+	u := fmt.Sprintf("%s/update", s.path)
 
 	_, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
@@ -168,7 +168,7 @@ func (s *UserGroups) Update(ctx context.Context, r user_groups.UpdateRequest) er
 //   9.8: The field 'paging' has been added to the response.
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *UserGroups) Users(ctx context.Context, r user_groups.UsersRequest, p paging.Params) (*user_groups.UsersResponse, error) {
-	u := fmt.Sprintf("%s/user_groups/users", API)
+	u := fmt.Sprintf("%s/users", s.path)
 	v := new(user_groups.UsersResponse)
 
 	_, err := s.client.Call(ctx, "GET", u, v, r, p)
