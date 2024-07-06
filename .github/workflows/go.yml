@@ -35,7 +35,10 @@ jobs:
         go build -v -o main ./...
         mkdir sonarqube
         ./main --host="https://next.sonarqube.com/sonarqube" --internal=false
+
     - name: Rewrite code 
       run: |
         cp -r sonarqube-gen/sonarqube ./
+        rm -rf sonarqube-gen/
+        git status
         git diff
