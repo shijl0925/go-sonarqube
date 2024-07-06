@@ -44,8 +44,6 @@ jobs:
       run: |
         cp -r sonarqube-gen/sonarqube ./
         rm -rf sonarqube-gen/
-        files=`git diff --name-only --diff-filter=ACMR HEAD~1 | grep -E ".go$"`
-        echo ${files}
         git diff
 
     - name: Create commits
