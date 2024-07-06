@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
 	"github.com/shijl0925/go-sonarqube/sonarqube/webhooks"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -16,31 +17,31 @@ type Webhooks service
 // Since 7.1
 // Changelog:
 //   10.6: The minimum length of parameter 'secret' increased to 16.
-func (s *Webhooks) Create(ctx context.Context, r webhooks.CreateRequest) (*webhooks.CreateResponse, error) {
+func (s *Webhooks) Create(ctx context.Context, r webhooks.CreateRequest) (*webhooks.CreateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 	v := new(webhooks.CreateResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Delete - Delete a Webhook.
 // Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 // Since 7.1
 // Changelog:
-func (s *Webhooks) Delete(ctx context.Context, r webhooks.DeleteRequest) error {
+func (s *Webhooks) Delete(ctx context.Context, r webhooks.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Deliveries - Get the recent deliveries for a specified project or Compute Engine task.
@@ -48,16 +49,16 @@ func (s *Webhooks) Delete(ctx context.Context, r webhooks.DeleteRequest) error {
 // Note that additional information are returned by api/webhooks/delivery.
 // Since 6.2
 // Changelog:
-func (s *Webhooks) Deliveries(ctx context.Context, r webhooks.DeliveriesRequest, p paging.Params) (*webhooks.DeliveriesResponse, error) {
+func (s *Webhooks) Deliveries(ctx context.Context, r webhooks.DeliveriesRequest, p paging.Params) (*webhooks.DeliveriesResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/deliveries", s.path)
 	v := new(webhooks.DeliveriesResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Webhooks) DeliveriesAll(ctx context.Context, r webhooks.DeliveriesRequest) (*webhooks.DeliveriesResponseAll, error) {
@@ -67,7 +68,7 @@ func (s *Webhooks) DeliveriesAll(ctx context.Context, r webhooks.DeliveriesReque
 	}
 	response := &webhooks.DeliveriesResponseAll{}
 	for {
-		res, err := s.Deliveries(ctx, r, p)
+		res, _, err := s.Deliveries(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to webhooks.Deliveries: %+v", err)
 		}
@@ -86,16 +87,16 @@ func (s *Webhooks) DeliveriesAll(ctx context.Context, r webhooks.DeliveriesReque
 // Note that additional information are returned by api/webhooks/delivery.
 // Since 6.2
 // Changelog:
-func (s *Webhooks) Delivery(ctx context.Context, r webhooks.DeliveryRequest) (*webhooks.DeliveryResponse, error) {
+func (s *Webhooks) Delivery(ctx context.Context, r webhooks.DeliveryRequest) (*webhooks.DeliveryResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/delivery", s.path)
 	v := new(webhooks.DeliveryResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // List - Search for global webhooks or project webhooks. Webhooks are ordered by name.
@@ -104,29 +105,29 @@ func (s *Webhooks) Delivery(ctx context.Context, r webhooks.DeliveryRequest) (*w
 // Changelog:
 //   10.1: Field 'secret' replaced by flag 'hasSecret' in response
 //   7.8: Field 'secret' added to response
-func (s *Webhooks) List(ctx context.Context, r webhooks.ListRequest) (*webhooks.ListResponse, error) {
+func (s *Webhooks) List(ctx context.Context, r webhooks.ListRequest) (*webhooks.ListResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/list", s.path)
 	v := new(webhooks.ListResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Update - Update a Webhook.
 // Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 // Since 7.1
 // Changelog:
-func (s *Webhooks) Update(ctx context.Context, r webhooks.UpdateRequest) error {
+func (s *Webhooks) Update(ctx context.Context, r webhooks.UpdateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }

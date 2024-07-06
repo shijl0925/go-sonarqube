@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/favorites"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -21,15 +22,15 @@ type Favorites service
 //   7.7: It's no longer possible to have more than 100 favorites by qualifier
 //   7.7: It's no longer possible to set a directory as favorite
 //   7.6: The use of module keys in parameter 'component' is deprecated
-func (s *Favorites) Add(ctx context.Context, r favorites.AddRequest) error {
+func (s *Favorites) Add(ctx context.Context, r favorites.AddRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Remove - Remove a component (project, portfolio, application etc.) as favorite for the authenticated user.
@@ -38,31 +39,31 @@ func (s *Favorites) Add(ctx context.Context, r favorites.AddRequest) error {
 // Changelog:
 //   10.1: The use of module keys in parameter 'component' is removed
 //   7.6: The use of module keys in parameter 'component' is deprecated
-func (s *Favorites) Remove(ctx context.Context, r favorites.RemoveRequest) error {
+func (s *Favorites) Remove(ctx context.Context, r favorites.RemoveRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Search - Search for the authenticated user favorites.
 // Requires authentication.
 // Since 6.3
 // Changelog:
-func (s *Favorites) Search(ctx context.Context, r favorites.SearchRequest, p paging.Params) (*favorites.SearchResponse, error) {
+func (s *Favorites) Search(ctx context.Context, r favorites.SearchRequest, p paging.Params) (*favorites.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(favorites.SearchResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Favorites) SearchAll(ctx context.Context, r favorites.SearchRequest) (*favorites.SearchResponseAll, error) {
@@ -72,7 +73,7 @@ func (s *Favorites) SearchAll(ctx context.Context, r favorites.SearchRequest) (*
 	}
 	response := &favorites.SearchResponseAll{}
 	for {
-		res, err := s.Search(ctx, r, p)
+		res, _, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to favorites.Search: %+v", err)
 		}

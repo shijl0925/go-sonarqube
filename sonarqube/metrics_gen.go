@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/metrics"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -15,16 +16,16 @@ type Metrics service
 // Since 5.2
 // Changelog:
 //   8.4: Field 'id' in the response is deprecated
-func (s *Metrics) Search(ctx context.Context, r metrics.SearchRequest, p paging.Params) (*metrics.SearchResponse, error) {
+func (s *Metrics) Search(ctx context.Context, r metrics.SearchRequest, p paging.Params) (*metrics.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(metrics.SearchResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Metrics) SearchAll(ctx context.Context, r metrics.SearchRequest) (*metrics.SearchResponseAll, error) {
@@ -34,7 +35,7 @@ func (s *Metrics) SearchAll(ctx context.Context, r metrics.SearchRequest) (*metr
 	}
 	response := &metrics.SearchResponseAll{}
 	for {
-		res, err := s.Search(ctx, r, p)
+		res, _, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to metrics.Search: %+v", err)
 		}
@@ -51,14 +52,14 @@ func (s *Metrics) SearchAll(ctx context.Context, r metrics.SearchRequest) (*metr
 // Types - List all available metric types.
 // Since 5.2
 // Changelog:
-func (s *Metrics) Types(ctx context.Context, r metrics.TypesRequest) (*metrics.TypesResponse, error) {
+func (s *Metrics) Types(ctx context.Context, r metrics.TypesRequest) (*metrics.TypesResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/types", s.path)
 	v := new(metrics.TypesResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }

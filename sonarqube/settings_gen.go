@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/settings"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -22,16 +23,16 @@ type Settings service
 // Changelog:
 //   10.1: The use of module keys in parameter 'component' is removed
 //   7.6: The use of module keys in parameter 'component' is deprecated
-func (s *Settings) ListDefinitions(ctx context.Context, r settings.ListDefinitionsRequest) (*settings.ListDefinitionsResponse, error) {
+func (s *Settings) ListDefinitions(ctx context.Context, r settings.ListDefinitionsRequest) (*settings.ListDefinitionsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/list_definitions", s.path)
 	v := new(settings.ListDefinitionsResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Reset - Remove a setting value.
@@ -47,15 +48,15 @@ func (s *Settings) ListDefinitions(ctx context.Context, r settings.ListDefinitio
 //   8.8: Deprecated parameter 'componentKey' has been removed
 //   7.6: The use of module keys in parameter 'component' is deprecated
 //   7.1: The settings defined in conf/sonar.properties are read-only and can't be changed
-func (s *Settings) Reset(ctx context.Context, r settings.ResetRequest) error {
+func (s *Settings) Reset(ctx context.Context, r settings.ResetRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/reset", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Set - Update a setting value.
@@ -72,15 +73,15 @@ func (s *Settings) Reset(ctx context.Context, r settings.ResetRequest) error {
 //   8.8: Deprecated parameter 'componentKey' has been removed
 //   7.6: The use of module keys in parameter 'component' is deprecated
 //   7.1: The settings defined in conf/sonar.properties are read-only and can't be changed
-func (s *Settings) Set(ctx context.Context, r settings.SetRequest) error {
+func (s *Settings) Set(ctx context.Context, r settings.SetRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Values - List settings values.
@@ -95,14 +96,14 @@ func (s *Settings) Set(ctx context.Context, r settings.SetRequest) error {
 //   9.1: The secured settings values are no longer returned. Secured settings keys that have a value are now returned in setSecuredSettings array.
 //   7.6: The use of module keys in parameter 'component' is deprecated
 //   7.1: The settings from conf/sonar.properties are excluded from results.
-func (s *Settings) Values(ctx context.Context, r settings.ValuesRequest) (*settings.ValuesResponse, error) {
+func (s *Settings) Values(ctx context.Context, r settings.ValuesRequest) (*settings.ValuesResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/values", s.path)
 	v := new(settings.ValuesResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }

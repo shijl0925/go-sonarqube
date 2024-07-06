@@ -17,10 +17,12 @@ func main() {
 		Issue: "63fa8f0c-0a58-42c3-b59e-2a82565e98bf",
 	}
 
-	res, err := client.Issues.Changelog(ctx, req)
+	res, resp, err := client.Issues.Changelog(ctx, req)
 	if err != nil {
 		log.Fatalf("could not get authors: %+v", err)
 	}
+
+	fmt.Printf("Response status code: %d\n", resp.StatusCode)
 
 	fmt.Printf("%+v\n", res)
 }

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
 	"github.com/shijl0925/go-sonarqube/sonarqube/project_tags"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -15,16 +16,16 @@ type ProjectTags service
 // Since 6.4
 // Changelog:
 //   9.2: Parameter 'page' added
-func (s *ProjectTags) Search(ctx context.Context, r project_tags.SearchRequest, p paging.Params) (*project_tags.SearchResponse, error) {
+func (s *ProjectTags) Search(ctx context.Context, r project_tags.SearchRequest, p paging.Params) (*project_tags.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(project_tags.SearchResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *ProjectTags) SearchAll(ctx context.Context, r project_tags.SearchRequest) (*project_tags.SearchResponseAll, error) {
@@ -34,7 +35,7 @@ func (s *ProjectTags) SearchAll(ctx context.Context, r project_tags.SearchReques
 	}
 	response := &project_tags.SearchResponseAll{}
 	for {
-		res, err := s.Search(ctx, r, p)
+		res, _, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to project_tags.Search: %+v", err)
 		}
@@ -52,13 +53,13 @@ func (s *ProjectTags) SearchAll(ctx context.Context, r project_tags.SearchReques
 // Requires the following permission: 'Administer' rights on the specified project
 // Since 6.4
 // Changelog:
-func (s *ProjectTags) Set(ctx context.Context, r project_tags.SetRequest) error {
+func (s *ProjectTags) Set(ctx context.Context, r project_tags.SetRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }

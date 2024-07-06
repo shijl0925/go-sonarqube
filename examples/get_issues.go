@@ -20,10 +20,12 @@ func main() {
 		P:  1,
 	}
 
-	res, err := client.Issues.Search(ctx, req, p)
+	res, resp, err := client.Issues.Search(ctx, req, p)
 	if err != nil {
 		log.Fatalf("could not search issues: %+v", err)
 	}
+
+	fmt.Printf("Response status code: %d\n", resp.StatusCode)
 
 	fmt.Printf("%+v\n", res)
 }

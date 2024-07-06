@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/permissions"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -21,15 +22,15 @@ type Permissions service
 // Changelog:
 //   10.0: Parameter 'groupId' is removed. Use 'groupName' instead.
 //   8.4: Parameter 'groupId' is deprecated. Format changes from integer to string. Use 'groupName' instead.
-func (s *Permissions) AddGroup(ctx context.Context, r permissions.AddGroupRequest) error {
+func (s *Permissions) AddGroup(ctx context.Context, r permissions.AddGroupRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_group", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // AddGroupToTemplate - Add a group to a permission template.
@@ -39,30 +40,30 @@ func (s *Permissions) AddGroup(ctx context.Context, r permissions.AddGroupReques
 // Changelog:
 //   10.0: Parameter 'groupId' is removed. Use 'groupName' instead.
 //   8.4: Parameter 'groupId' is deprecated. Format changes from integer to string. Use 'groupName' instead.
-func (s *Permissions) AddGroupToTemplate(ctx context.Context, r permissions.AddGroupToTemplateRequest) error {
+func (s *Permissions) AddGroupToTemplate(ctx context.Context, r permissions.AddGroupToTemplateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_group_to_template", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // AddProjectCreatorToTemplate - Add a project creator to a permission template.
 // Requires the following permission: 'Administer System'.
 // Since 6.0
 // Changelog:
-func (s *Permissions) AddProjectCreatorToTemplate(ctx context.Context, r permissions.AddProjectCreatorToTemplateRequest) error {
+func (s *Permissions) AddProjectCreatorToTemplate(ctx context.Context, r permissions.AddProjectCreatorToTemplateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_project_creator_to_template", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // AddUser - Add permission to a user.
@@ -73,30 +74,30 @@ func (s *Permissions) AddProjectCreatorToTemplate(ctx context.Context, r permiss
 //
 // Since 5.2
 // Changelog:
-func (s *Permissions) AddUser(ctx context.Context, r permissions.AddUserRequest) error {
+func (s *Permissions) AddUser(ctx context.Context, r permissions.AddUserRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_user", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // AddUserToTemplate - Add a user to a permission template.
 //  Requires the following permission: 'Administer System'.
 // Since 5.2
 // Changelog:
-func (s *Permissions) AddUserToTemplate(ctx context.Context, r permissions.AddUserToTemplateRequest) error {
+func (s *Permissions) AddUserToTemplate(ctx context.Context, r permissions.AddUserToTemplateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_user_to_template", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // ApplyTemplate - Apply a permission template to one project.
@@ -105,15 +106,15 @@ func (s *Permissions) AddUserToTemplate(ctx context.Context, r permissions.AddUs
 // Requires the following permission: 'Administer System'.
 // Since 5.2
 // Changelog:
-func (s *Permissions) ApplyTemplate(ctx context.Context, r permissions.ApplyTemplateRequest) error {
+func (s *Permissions) ApplyTemplate(ctx context.Context, r permissions.ApplyTemplateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/apply_template", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // BulkApplyTemplate - Apply a permission template to several components. Managed projects will be ignored.
@@ -122,46 +123,46 @@ func (s *Permissions) ApplyTemplate(ctx context.Context, r permissions.ApplyTemp
 // Since 5.5
 // Changelog:
 //   6.7.2: Parameter projects accepts maximum 1000 values
-func (s *Permissions) BulkApplyTemplate(ctx context.Context, r permissions.BulkApplyTemplateRequest) error {
+func (s *Permissions) BulkApplyTemplate(ctx context.Context, r permissions.BulkApplyTemplateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/bulk_apply_template", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // CreateTemplate - Create a permission template.
 // Requires the following permission: 'Administer System'.
 // Since 5.2
 // Changelog:
-func (s *Permissions) CreateTemplate(ctx context.Context, r permissions.CreateTemplateRequest) (*permissions.CreateTemplateResponse, error) {
+func (s *Permissions) CreateTemplate(ctx context.Context, r permissions.CreateTemplateRequest) (*permissions.CreateTemplateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create_template", s.path)
 	v := new(permissions.CreateTemplateResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // DeleteTemplate - Delete a permission template.
 // Requires the following permission: 'Administer System'.
 // Since 5.2
 // Changelog:
-func (s *Permissions) DeleteTemplate(ctx context.Context, r permissions.DeleteTemplateRequest) error {
+func (s *Permissions) DeleteTemplate(ctx context.Context, r permissions.DeleteTemplateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete_template", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // RemoveGroup - Remove a permission from a group.
@@ -175,15 +176,15 @@ func (s *Permissions) DeleteTemplate(ctx context.Context, r permissions.DeleteTe
 // Changelog:
 //   10.0: Parameter 'groupId' is removed. Use 'groupName' instead.
 //   8.4: Parameter 'groupId' is deprecated. Format changes from integer to string. Use 'groupName' instead.
-func (s *Permissions) RemoveGroup(ctx context.Context, r permissions.RemoveGroupRequest) error {
+func (s *Permissions) RemoveGroup(ctx context.Context, r permissions.RemoveGroupRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_group", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // RemoveGroupFromTemplate - Remove a group from a permission template.
@@ -193,30 +194,30 @@ func (s *Permissions) RemoveGroup(ctx context.Context, r permissions.RemoveGroup
 // Changelog:
 //   10.0: Parameter 'groupId' is removed. Use 'groupName' instead.
 //   8.4: Parameter 'groupId' is deprecated. Format changes from integer to string. Use 'groupName' instead.
-func (s *Permissions) RemoveGroupFromTemplate(ctx context.Context, r permissions.RemoveGroupFromTemplateRequest) error {
+func (s *Permissions) RemoveGroupFromTemplate(ctx context.Context, r permissions.RemoveGroupFromTemplateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_group_from_template", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // RemoveProjectCreatorFromTemplate - Remove a project creator from a permission template.
 // Requires the following permission: 'Administer System'.
 // Since 6.0
 // Changelog:
-func (s *Permissions) RemoveProjectCreatorFromTemplate(ctx context.Context, r permissions.RemoveProjectCreatorFromTemplateRequest) error {
+func (s *Permissions) RemoveProjectCreatorFromTemplate(ctx context.Context, r permissions.RemoveProjectCreatorFromTemplateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_project_creator_from_template", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // RemoveUser - Remove permission from a user.
@@ -227,75 +228,75 @@ func (s *Permissions) RemoveProjectCreatorFromTemplate(ctx context.Context, r pe
 //
 // Since 5.2
 // Changelog:
-func (s *Permissions) RemoveUser(ctx context.Context, r permissions.RemoveUserRequest) error {
+func (s *Permissions) RemoveUser(ctx context.Context, r permissions.RemoveUserRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_user", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // RemoveUserFromTemplate - Remove a user from a permission template.
 //  Requires the following permission: 'Administer System'.
 // Since 5.2
 // Changelog:
-func (s *Permissions) RemoveUserFromTemplate(ctx context.Context, r permissions.RemoveUserFromTemplateRequest) error {
+func (s *Permissions) RemoveUserFromTemplate(ctx context.Context, r permissions.RemoveUserFromTemplateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_user_from_template", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // SearchTemplates - List permission templates.
 // Requires the following permission: 'Administer System'.
 // Since 5.2
 // Changelog:
-func (s *Permissions) SearchTemplates(ctx context.Context, r permissions.SearchTemplatesRequest) (*permissions.SearchTemplatesResponse, error) {
+func (s *Permissions) SearchTemplates(ctx context.Context, r permissions.SearchTemplatesRequest) (*permissions.SearchTemplatesResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search_templates", s.path)
 	v := new(permissions.SearchTemplatesResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // SetDefaultTemplate - Set a permission template as default.
 // Requires the following permission: 'Administer System'.
 // Since 5.2
 // Changelog:
-func (s *Permissions) SetDefaultTemplate(ctx context.Context, r permissions.SetDefaultTemplateRequest) error {
+func (s *Permissions) SetDefaultTemplate(ctx context.Context, r permissions.SetDefaultTemplateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_default_template", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // UpdateTemplate - Update a permission template.
 // Requires the following permission: 'Administer System'.
 // Since 5.2
 // Changelog:
-func (s *Permissions) UpdateTemplate(ctx context.Context, r permissions.UpdateTemplateRequest) (*permissions.UpdateTemplateResponse, error) {
+func (s *Permissions) UpdateTemplate(ctx context.Context, r permissions.UpdateTemplateRequest) (*permissions.UpdateTemplateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/update_template", s.path)
 	v := new(permissions.UpdateTemplateResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }

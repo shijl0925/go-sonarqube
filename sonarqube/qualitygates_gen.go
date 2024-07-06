@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
 	"github.com/shijl0925/go-sonarqube/sonarqube/qualitygates"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -18,15 +19,15 @@ type Qualitygates service
 //
 // Since 9.2
 // Changelog:
-func (s *Qualitygates) AddGroup(ctx context.Context, r qualitygates.AddGroupRequest) error {
+func (s *Qualitygates) AddGroup(ctx context.Context, r qualitygates.AddGroupRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_group", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // AddUser - Allow a user to edit a Quality Gate.
@@ -36,15 +37,15 @@ func (s *Qualitygates) AddGroup(ctx context.Context, r qualitygates.AddGroupRequ
 //
 // Since 9.2
 // Changelog:
-func (s *Qualitygates) AddUser(ctx context.Context, r qualitygates.AddUserRequest) error {
+func (s *Qualitygates) AddUser(ctx context.Context, r qualitygates.AddUserRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_user", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Copy - Copy a Quality Gate.
@@ -55,15 +56,15 @@ func (s *Qualitygates) AddUser(ctx context.Context, r qualitygates.AddUserReques
 //   10.0: Parameter 'id' is removed. Use 'sourceName' instead.
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'sourceName' instead.
 //   8.4: Parameter 'sourceName' added
-func (s *Qualitygates) Copy(ctx context.Context, r qualitygates.CopyRequest) error {
+func (s *Qualitygates) Copy(ctx context.Context, r qualitygates.CopyRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/copy", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Create - Create a Quality Gate.
@@ -72,16 +73,16 @@ func (s *Qualitygates) Copy(ctx context.Context, r qualitygates.CopyRequest) err
 // Changelog:
 //   10.0: Field 'id' in the response is removed.
 //   8.4: Field 'id' in the response is deprecated. Format changes from integer to string.
-func (s *Qualitygates) Create(ctx context.Context, r qualitygates.CreateRequest) (*qualitygates.CreateResponse, error) {
+func (s *Qualitygates) Create(ctx context.Context, r qualitygates.CreateRequest) (*qualitygates.CreateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 	v := new(qualitygates.CreateResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // CreateCondition - Add a new condition to a quality gate.
@@ -94,31 +95,31 @@ func (s *Qualitygates) Create(ctx context.Context, r qualitygates.CreateRequest)
 //   7.6: Removed optional 'warning' and 'period' parameters
 //   7.6: Made 'error' parameter mandatory
 //   7.6: Reduced the possible values of 'op' parameter to LT and GT
-func (s *Qualitygates) CreateCondition(ctx context.Context, r qualitygates.CreateConditionRequest) (*qualitygates.CreateConditionResponse, error) {
+func (s *Qualitygates) CreateCondition(ctx context.Context, r qualitygates.CreateConditionRequest) (*qualitygates.CreateConditionResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create_condition", s.path)
 	v := new(qualitygates.CreateConditionResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // DeleteCondition - Delete a condition from a quality gate.
 // Requires the 'Administer Quality Gates' permission.
 // Since 4.3
 // Changelog:
-func (s *Qualitygates) DeleteCondition(ctx context.Context, r qualitygates.DeleteConditionRequest) error {
+func (s *Qualitygates) DeleteCondition(ctx context.Context, r qualitygates.DeleteConditionRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete_condition", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Deselect - Remove the association of a project from a quality gate.
@@ -130,15 +131,15 @@ func (s *Qualitygates) DeleteCondition(ctx context.Context, r qualitygates.Delet
 // Changelog:
 //   8.3: The parameter 'projectId' was removed
 //   6.6: The parameter 'gateId' was removed
-func (s *Qualitygates) Deselect(ctx context.Context, r qualitygates.DeselectRequest) error {
+func (s *Qualitygates) Deselect(ctx context.Context, r qualitygates.DeselectRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/deselect", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Destroy - Delete a Quality Gate.
@@ -148,15 +149,15 @@ func (s *Qualitygates) Deselect(ctx context.Context, r qualitygates.DeselectRequ
 //   10.0: Parameter 'id' is removed. Use 'name' instead.
 //   8.4: Parameter 'name' added
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
-func (s *Qualitygates) Destroy(ctx context.Context, r qualitygates.DestroyRequest) error {
+func (s *Qualitygates) Destroy(ctx context.Context, r qualitygates.DestroyRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/destroy", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // GetByProject - Get the quality gate of a project.
@@ -172,16 +173,16 @@ func (s *Qualitygates) Destroy(ctx context.Context, r qualitygates.DestroyReques
 //   6.6: The parameter 'projectId' has been removed
 //   6.6: The parameter 'projectKey' has been renamed to 'project'
 //   6.6: This webservice is now part of the public API
-func (s *Qualitygates) GetByProject(ctx context.Context, r qualitygates.GetByProjectRequest) (*qualitygates.GetByProjectResponse, error) {
+func (s *Qualitygates) GetByProject(ctx context.Context, r qualitygates.GetByProjectRequest) (*qualitygates.GetByProjectResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/get_by_project", s.path)
 	v := new(qualitygates.GetByProjectResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // List - Get a list of quality gates
@@ -195,16 +196,16 @@ func (s *Qualitygates) GetByProject(ctx context.Context, r qualitygates.GetByPro
 //   7.0: 'default' field on root level is deprecated
 //   7.0: 'isBuiltIn' field is added in the response
 //   7.0: 'actions' fields are added in the response
-func (s *Qualitygates) List(ctx context.Context, r qualitygates.ListRequest) (*qualitygates.ListResponse, error) {
+func (s *Qualitygates) List(ctx context.Context, r qualitygates.ListRequest) (*qualitygates.ListResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/list", s.path)
 	v := new(qualitygates.ListResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // ProjectStatus - Get the quality gate status of a project or a Compute Engine task.
@@ -226,16 +227,16 @@ func (s *Qualitygates) List(ctx context.Context, r qualitygates.ListRequest) (*q
 //   7.7: The parameters 'branch' and 'pullRequest' were added
 //   7.6: The field 'warning' in the response is deprecated
 //   6.4: The field 'ignoredConditions' is added to the response
-func (s *Qualitygates) ProjectStatus(ctx context.Context, r qualitygates.ProjectStatusRequest) (*qualitygates.ProjectStatusResponse, error) {
+func (s *Qualitygates) ProjectStatus(ctx context.Context, r qualitygates.ProjectStatusRequest) (*qualitygates.ProjectStatusResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/project_status", s.path)
 	v := new(qualitygates.ProjectStatusResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // RemoveGroup - Remove the ability from a group to edit a Quality Gate.
@@ -245,15 +246,15 @@ func (s *Qualitygates) ProjectStatus(ctx context.Context, r qualitygates.Project
 //
 // Since 9.2
 // Changelog:
-func (s *Qualitygates) RemoveGroup(ctx context.Context, r qualitygates.RemoveGroupRequest) error {
+func (s *Qualitygates) RemoveGroup(ctx context.Context, r qualitygates.RemoveGroupRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_group", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // RemoveUser - Remove the ability from an user to edit a Quality Gate.
@@ -263,15 +264,15 @@ func (s *Qualitygates) RemoveGroup(ctx context.Context, r qualitygates.RemoveGro
 //
 // Since 9.2
 // Changelog:
-func (s *Qualitygates) RemoveUser(ctx context.Context, r qualitygates.RemoveUserRequest) error {
+func (s *Qualitygates) RemoveUser(ctx context.Context, r qualitygates.RemoveUserRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_user", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Rename - Rename a Quality Gate.
@@ -282,15 +283,15 @@ func (s *Qualitygates) RemoveUser(ctx context.Context, r qualitygates.RemoveUser
 //   10.0: Parameter 'id' is removed. Use 'currentName' instead.
 //   8.4: Parameter 'currentName' added
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'currentName' instead.
-func (s *Qualitygates) Rename(ctx context.Context, r qualitygates.RenameRequest) error {
+func (s *Qualitygates) Rename(ctx context.Context, r qualitygates.RenameRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/rename", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Search - Search for projects associated (or not) to a quality gate.
@@ -304,16 +305,16 @@ func (s *Qualitygates) Rename(ctx context.Context, r qualitygates.RenameRequest)
 //   7.9: New field 'paging' in response
 //   7.9: New field 'key' returning the project key in 'results' response
 //   7.9: Field 'more' is deprecated in the response
-func (s *Qualitygates) Search(ctx context.Context, r qualitygates.SearchRequest) (*qualitygates.SearchResponse, error) {
+func (s *Qualitygates) Search(ctx context.Context, r qualitygates.SearchRequest) (*qualitygates.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(qualitygates.SearchResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // SearchGroups - List the groups that are allowed to edit a Quality Gate.
@@ -323,16 +324,16 @@ func (s *Qualitygates) Search(ctx context.Context, r qualitygates.SearchRequest)
 //
 // Since 9.2
 // Changelog:
-func (s *Qualitygates) SearchGroups(ctx context.Context, r qualitygates.SearchGroupsRequest, p paging.Params) (*qualitygates.SearchGroupsResponse, error) {
+func (s *Qualitygates) SearchGroups(ctx context.Context, r qualitygates.SearchGroupsRequest, p paging.Params) (*qualitygates.SearchGroupsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search_groups", s.path)
 	v := new(qualitygates.SearchGroupsResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Qualitygates) SearchGroupsAll(ctx context.Context, r qualitygates.SearchGroupsRequest) (*qualitygates.SearchGroupsResponseAll, error) {
@@ -342,7 +343,7 @@ func (s *Qualitygates) SearchGroupsAll(ctx context.Context, r qualitygates.Searc
 	}
 	response := &qualitygates.SearchGroupsResponseAll{}
 	for {
-		res, err := s.SearchGroups(ctx, r, p)
+		res, _, err := s.SearchGroups(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to qualitygates.SearchGroups: %+v", err)
 		}
@@ -363,16 +364,16 @@ func (s *Qualitygates) SearchGroupsAll(ctx context.Context, r qualitygates.Searc
 //
 // Since 9.2
 // Changelog:
-func (s *Qualitygates) SearchUsers(ctx context.Context, r qualitygates.SearchUsersRequest, p paging.Params) (*qualitygates.SearchUsersResponse, error) {
+func (s *Qualitygates) SearchUsers(ctx context.Context, r qualitygates.SearchUsersRequest, p paging.Params) (*qualitygates.SearchUsersResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search_users", s.path)
 	v := new(qualitygates.SearchUsersResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Qualitygates) SearchUsersAll(ctx context.Context, r qualitygates.SearchUsersRequest) (*qualitygates.SearchUsersResponseAll, error) {
@@ -382,7 +383,7 @@ func (s *Qualitygates) SearchUsersAll(ctx context.Context, r qualitygates.Search
 	}
 	response := &qualitygates.SearchUsersResponseAll{}
 	for {
-		res, err := s.SearchUsers(ctx, r, p)
+		res, _, err := s.SearchUsers(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to qualitygates.SearchUsers: %+v", err)
 		}
@@ -407,15 +408,15 @@ func (s *Qualitygates) SearchUsersAll(ctx context.Context, r qualitygates.Search
 //   8.4: Parameter 'gateName' added
 //   8.4: Parameter 'gateId' is deprecated. Format changes from integer to string. Use 'gateName' instead.
 //   8.3: The parameter 'projectId' was removed
-func (s *Qualitygates) Select(ctx context.Context, r qualitygates.SelectRequest) error {
+func (s *Qualitygates) Select(ctx context.Context, r qualitygates.SelectRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/select", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // SetAsDefault - Set a quality gate as the default quality gate.
@@ -425,15 +426,15 @@ func (s *Qualitygates) Select(ctx context.Context, r qualitygates.SelectRequest)
 //   10.0: Parameter 'id' is removed. Use 'name' instead.
 //   8.4: Parameter 'name' added
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
-func (s *Qualitygates) SetAsDefault(ctx context.Context, r qualitygates.SetAsDefaultRequest) error {
+func (s *Qualitygates) SetAsDefault(ctx context.Context, r qualitygates.SetAsDefaultRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_as_default", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Show - Display the details of a quality gate
@@ -448,16 +449,16 @@ func (s *Qualitygates) SetAsDefault(ctx context.Context, r qualitygates.SetAsDef
 //   7.6: 'period' and 'warning' fields of conditions are removed from the response
 //   7.0: 'isBuiltIn' field is added to the response
 //   7.0: 'actions' field is added in the response
-func (s *Qualitygates) Show(ctx context.Context, r qualitygates.ShowRequest) (*qualitygates.ShowResponse, error) {
+func (s *Qualitygates) Show(ctx context.Context, r qualitygates.ShowRequest) (*qualitygates.ShowResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/show", s.path)
 	v := new(qualitygates.ShowResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // UpdateCondition - Update a condition attached to a quality gate.
@@ -468,13 +469,13 @@ func (s *Qualitygates) Show(ctx context.Context, r qualitygates.ShowRequest) (*q
 //   7.6: Removed optional 'warning' and 'period' parameters
 //   7.6: Made 'error' parameter mandatory
 //   7.6: Reduced the possible values of 'op' parameter to LT and GT
-func (s *Qualitygates) UpdateCondition(ctx context.Context, r qualitygates.UpdateConditionRequest) error {
+func (s *Qualitygates) UpdateCondition(ctx context.Context, r qualitygates.UpdateConditionRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update_condition", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }

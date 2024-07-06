@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/project_branches"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -14,15 +15,15 @@ type ProjectBranches service
 // Requires 'Administer' rights on the specified project or application.
 // Since 6.6
 // Changelog:
-func (s *ProjectBranches) Delete(ctx context.Context, r project_branches.DeleteRequest) error {
+func (s *ProjectBranches) Delete(ctx context.Context, r project_branches.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // List - List the branches of a project or application.
@@ -31,46 +32,46 @@ func (s *ProjectBranches) Delete(ctx context.Context, r project_branches.DeleteR
 // Changelog:
 //   10.6: Field 'branchId' added to the response
 //   7.2: Application can be used on this web service
-func (s *ProjectBranches) List(ctx context.Context, r project_branches.ListRequest) (*project_branches.ListResponse, error) {
+func (s *ProjectBranches) List(ctx context.Context, r project_branches.ListRequest) (*project_branches.ListResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/list", s.path)
 	v := new(project_branches.ListResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Rename - Rename the main branch of a project or application.
 // Requires 'Administer' permission on the specified project or application.
 // Since 6.6
 // Changelog:
-func (s *ProjectBranches) Rename(ctx context.Context, r project_branches.RenameRequest) error {
+func (s *ProjectBranches) Rename(ctx context.Context, r project_branches.RenameRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/rename", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // SetAutomaticDeletionProtection - Protect a specific branch from automatic deletion. Protection can't be disabled for the main branch.
 // Requires 'Administer' permission on the specified project or application.
 // Since 8.1
 // Changelog:
-func (s *ProjectBranches) SetAutomaticDeletionProtection(ctx context.Context, r project_branches.SetAutomaticDeletionProtectionRequest) error {
+func (s *ProjectBranches) SetAutomaticDeletionProtection(ctx context.Context, r project_branches.SetAutomaticDeletionProtectionRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_automatic_deletion_protection", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // SetMain - Allow to set a new main branch.
@@ -78,13 +79,13 @@ func (s *ProjectBranches) SetAutomaticDeletionProtection(ctx context.Context, r 
 // Requires 'Administer' rights on the specified project or application.
 // Since 10.2
 // Changelog:
-func (s *ProjectBranches) SetMain(ctx context.Context, r project_branches.SetMainRequest) error {
+func (s *ProjectBranches) SetMain(ctx context.Context, r project_branches.SetMainRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_main", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }

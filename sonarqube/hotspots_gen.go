@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/hotspots"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -16,15 +17,15 @@ type Hotspots service
 // Since 8.1
 // Changelog:
 //   10.1: Endpoint visibility change from internal to public
-func (s *Hotspots) ChangeStatus(ctx context.Context, r hotspots.ChangeStatusRequest) error {
+func (s *Hotspots) ChangeStatus(ctx context.Context, r hotspots.ChangeStatusRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/change_status", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Search - Search for Security Hotpots.
@@ -40,16 +41,16 @@ func (s *Hotspots) ChangeStatus(ctx context.Context, r hotspots.ChangeStatusRequ
 //   9.7: Hotspot flows in the response may contain a description and a type
 //   9.7: Hotspot in the response contain the corresponding ruleKey
 //   9.6: Added parameters 'pciDss-3.2' and 'pciDss-4.0
-func (s *Hotspots) Search(ctx context.Context, r hotspots.SearchRequest, p paging.Params) (*hotspots.SearchResponse, error) {
+func (s *Hotspots) Search(ctx context.Context, r hotspots.SearchRequest, p paging.Params) (*hotspots.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(hotspots.SearchResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Hotspots) SearchAll(ctx context.Context, r hotspots.SearchRequest) (*hotspots.SearchResponseAll, error) {
@@ -59,7 +60,7 @@ func (s *Hotspots) SearchAll(ctx context.Context, r hotspots.SearchRequest) (*ho
 	}
 	response := &hotspots.SearchResponseAll{}
 	for {
-		res, err := s.Search(ctx, r, p)
+		res, _, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to hotspots.Search: %+v", err)
 		}
@@ -81,14 +82,14 @@ func (s *Hotspots) SearchAll(ctx context.Context, r hotspots.SearchRequest) (*ho
 //   9.8: Add message formatting to issue and locations response
 //   9.7: Hotspot flows in the response may contain a description and a type
 //   9.5: The fields rule.riskDescription, rule.fixRecommendations, rule.vulnerabilityDescription of the response are deprecated. /api/rules/show endpoint should be used to fetch rule descriptions.
-func (s *Hotspots) Show(ctx context.Context, r hotspots.ShowRequest) (*hotspots.ShowResponse, error) {
+func (s *Hotspots) Show(ctx context.Context, r hotspots.ShowRequest) (*hotspots.ShowResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/show", s.path)
 	v := new(hotspots.ShowResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }

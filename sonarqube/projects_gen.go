@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
 	"github.com/shijl0925/go-sonarqube/sonarqube/projects"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -19,15 +20,15 @@ type Projects service
 // Changelog:
 //   9.1: The parameter 'analyzedBefore' takes into account the analysis of all branches and pull requests, not only the main branch.
 //   7.8: At least one parameter is required among analyzedBefore, projects and q
-func (s *Projects) BulkDelete(ctx context.Context, r projects.BulkDeleteRequest) error {
+func (s *Projects) BulkDelete(ctx context.Context, r projects.BulkDeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/bulk_delete", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Create - Create a project.
@@ -37,31 +38,31 @@ func (s *Projects) BulkDelete(ctx context.Context, r projects.BulkDeleteRequest)
 // Changelog:
 //   9.8: Field 'mainBranch' added to the request
 //   7.1: The 'visibility' parameter is public
-func (s *Projects) Create(ctx context.Context, r projects.CreateRequest) (*projects.CreateResponse, error) {
+func (s *Projects) Create(ctx context.Context, r projects.CreateRequest) (*projects.CreateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 	v := new(projects.CreateResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Delete - Delete a project.
 // Requires 'Administer System' permission or 'Administer' permission on the project.
 // Since 5.2
 // Changelog:
-func (s *Projects) Delete(ctx context.Context, r projects.DeleteRequest) error {
+func (s *Projects) Delete(ctx context.Context, r projects.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // ExportFindings - Export all findings (issues and hotspots) of a specific project branch.
@@ -76,16 +77,16 @@ func (s *Projects) Delete(ctx context.Context, r projects.DeleteRequest) error {
 //   9.3: add field 'branch' and 'pullRequest' in the payload. mutually exclusive, depending on the request
 //   9.3: createdAt and updatedAt now return effective issue creation and update date, instead of the database operation date
 //   9.3: projectKey field now return correctly the projectKey, instead of <projectKey>:PULL_REQUEST:<pullRequestKey>
-func (s *Projects) ExportFindings(ctx context.Context, r projects.ExportFindingsRequest) (*projects.ExportFindingsResponse, error) {
+func (s *Projects) ExportFindings(ctx context.Context, r projects.ExportFindingsRequest) (*projects.ExportFindingsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/export_findings", s.path)
 	v := new(projects.ExportFindingsResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // LicenseUsage - Help admins to understand how much each project affects the total number of lines of code. Returns the list of projects together with information about their usage, sorted by lines of code descending.
@@ -93,16 +94,16 @@ func (s *Projects) ExportFindings(ctx context.Context, r projects.ExportFindings
 // Since 9.4
 // Changelog:
 //   9.5: Response format changed from CSV to Json
-func (s *Projects) LicenseUsage(ctx context.Context, r projects.LicenseUsageRequest) (*projects.LicenseUsageResponse, error) {
+func (s *Projects) LicenseUsage(ctx context.Context, r projects.LicenseUsageRequest) (*projects.LicenseUsageResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/license_usage", s.path)
 	v := new(projects.LicenseUsageResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Search - Search for projects or views to administrate them.
@@ -118,16 +119,16 @@ func (s *Projects) LicenseUsage(ctx context.Context, r projects.LicenseUsageRequ
 // Changelog:
 //   10.2: Response includes 'managed' field.
 //   9.1: The parameter 'analyzedBefore' and the field 'lastAnalysisDate' of the returned projects take into account the analysis of all branches and pull requests, not only the main branch.
-func (s *Projects) Search(ctx context.Context, r projects.SearchRequest, p paging.Params) (*projects.SearchResponse, error) {
+func (s *Projects) Search(ctx context.Context, r projects.SearchRequest, p paging.Params) (*projects.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(projects.SearchResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Projects) SearchAll(ctx context.Context, r projects.SearchRequest) (*projects.SearchResponseAll, error) {
@@ -137,7 +138,7 @@ func (s *Projects) SearchAll(ctx context.Context, r projects.SearchRequest) (*pr
 	}
 	response := &projects.SearchResponseAll{}
 	for {
-		res, err := s.Search(ctx, r, p)
+		res, _, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to projects.Search: %+v", err)
 		}
@@ -159,28 +160,28 @@ func (s *Projects) SearchAll(ctx context.Context, r projects.SearchRequest) (*pr
 // Since 6.1
 // Changelog:
 //   7.1: Ability to update key of a disabled module
-func (s *Projects) UpdateKey(ctx context.Context, r projects.UpdateKeyRequest) error {
+func (s *Projects) UpdateKey(ctx context.Context, r projects.UpdateKeyRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update_key", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // UpdateVisibility - Updates visibility of a project, application or a portfolio.
 // Requires 'Project administer' permission on the specified entity
 // Since 6.4
 // Changelog:
-func (s *Projects) UpdateVisibility(ctx context.Context, r projects.UpdateVisibilityRequest) error {
+func (s *Projects) UpdateVisibility(ctx context.Context, r projects.UpdateVisibilityRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update_visibility", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/measures"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -37,16 +38,16 @@ type Measures service
 //   7.6: The use of module keys in parameter 'component' is deprecated
 //   6.6: the response field 'id' is deprecated. Use 'key' instead.
 //   6.6: the response field 'refId' is deprecated. Use 'refKey' instead.
-func (s *Measures) Component(ctx context.Context, r measures.ComponentRequest) (*measures.ComponentResponse, error) {
+func (s *Measures) Component(ctx context.Context, r measures.ComponentRequest) (*measures.ComponentResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/component", s.path)
 	v := new(measures.ComponentResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // ComponentTree - Navigate through components based on the chosen strategy with specified measures.
@@ -81,16 +82,16 @@ func (s *Measures) Component(ctx context.Context, r measures.ComponentRequest) (
 //   6.6: the response field 'id' is deprecated. Use 'key' instead.
 //   6.6: the response field 'refId' is deprecated. Use 'refKey' instead.
 //   6.3: Number of metric keys is limited to 15
-func (s *Measures) ComponentTree(ctx context.Context, r measures.ComponentTreeRequest, p paging.Params) (*measures.ComponentTreeResponse, error) {
+func (s *Measures) ComponentTree(ctx context.Context, r measures.ComponentTreeRequest, p paging.Params) (*measures.ComponentTreeResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/component_tree", s.path)
 	v := new(measures.ComponentTreeResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Measures) ComponentTreeAll(ctx context.Context, r measures.ComponentTreeRequest) (*measures.ComponentTreeResponseAll, error) {
@@ -100,7 +101,7 @@ func (s *Measures) ComponentTreeAll(ctx context.Context, r measures.ComponentTre
 	}
 	response := &measures.ComponentTreeResponseAll{}
 	for {
-		res, err := s.ComponentTree(ctx, r, p)
+		res, _, err := s.ComponentTree(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to measures.ComponentTree: %+v", err)
 		}
@@ -133,16 +134,16 @@ func (s *Measures) ComponentTreeAll(ctx context.Context, r measures.ComponentTre
 //   10.0: The use of the following metrics in 'metricKeys' parameter is not deprecated anymore: 'releasability_effort', 'security_rating_effort', 'reliability_rating_effort', 'security_review_rating_effort', 'maintainability_rating_effort', 'last_change_on_maintainability_rating', 'last_change_on_releasability_rating', 'last_change_on_reliability_rating', 'last_change_on_security_rating', 'last_change_on_security_review_rating'
 //   9.3: The use of the following metrics in 'metrics' parameter is deprecated: 'releasability_effort', 'security_rating_effort', 'reliability_rating_effort', 'security_review_rating_effort', 'maintainability_rating_effort', 'last_change_on_maintainability_rating', 'last_change_on_releasability_rating', 'last_change_on_reliability_rating', 'last_change_on_security_rating', 'last_change_on_security_review_rating'
 //   7.6: The use of module keys in parameter 'component' is deprecated
-func (s *Measures) SearchHistory(ctx context.Context, r measures.SearchHistoryRequest, p paging.Params) (*measures.SearchHistoryResponse, error) {
+func (s *Measures) SearchHistory(ctx context.Context, r measures.SearchHistoryRequest, p paging.Params) (*measures.SearchHistoryResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search_history", s.path)
 	v := new(measures.SearchHistoryResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Measures) SearchHistoryAll(ctx context.Context, r measures.SearchHistoryRequest) (*measures.SearchHistoryResponseAll, error) {
@@ -152,7 +153,7 @@ func (s *Measures) SearchHistoryAll(ctx context.Context, r measures.SearchHistor
 	}
 	response := &measures.SearchHistoryResponseAll{}
 	for {
-		res, err := s.SearchHistory(ctx, r, p)
+		res, _, err := s.SearchHistory(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to measures.SearchHistory: %+v", err)
 		}

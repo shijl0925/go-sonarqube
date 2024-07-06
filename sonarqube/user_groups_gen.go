@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
 	"github.com/shijl0925/go-sonarqube/sonarqube/user_groups"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -20,15 +21,15 @@ type UserGroups service
 //   10.4: Deprecated. Use POST /api/v2/authorizations/group-memberships instead
 //   10.0: Parameter 'id' is removed. Use 'name' instead.
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
-func (s *UserGroups) AddUser(ctx context.Context, r user_groups.AddUserRequest) error {
+func (s *UserGroups) AddUser(ctx context.Context, r user_groups.AddUserRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_user", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Create - Create a group.
@@ -38,16 +39,16 @@ func (s *UserGroups) AddUser(ctx context.Context, r user_groups.AddUserRequest) 
 // Changelog:
 //   10.4: Deprecated. Use POST /api/v2/authorizations/groups instead
 //   8.4: Field 'id' format in the response changes from integer to string.
-func (s *UserGroups) Create(ctx context.Context, r user_groups.CreateRequest) (*user_groups.CreateResponse, error) {
+func (s *UserGroups) Create(ctx context.Context, r user_groups.CreateRequest) (*user_groups.CreateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 	v := new(user_groups.CreateResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Delete - Delete a group. The default groups cannot be deleted.
@@ -59,15 +60,15 @@ func (s *UserGroups) Create(ctx context.Context, r user_groups.CreateRequest) (*
 //   10.4: Deprecated. Use DELETE /api/v2/authorizations/groups instead
 //   10.0: Parameter 'id' is removed. Use 'name' instead.
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
-func (s *UserGroups) Delete(ctx context.Context, r user_groups.DeleteRequest) error {
+func (s *UserGroups) Delete(ctx context.Context, r user_groups.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // RemoveUser - Remove a user from a group.
@@ -79,15 +80,15 @@ func (s *UserGroups) Delete(ctx context.Context, r user_groups.DeleteRequest) er
 //   10.4: Deprecated. Use DELETE /api/v2/authorizations/group-memberships instead
 //   10.0: Parameter 'id' is removed. Use 'name' instead.
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
-func (s *UserGroups) RemoveUser(ctx context.Context, r user_groups.RemoveUserRequest) error {
+func (s *UserGroups) RemoveUser(ctx context.Context, r user_groups.RemoveUserRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_user", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Search - Search for user groups.
@@ -102,16 +103,16 @@ func (s *UserGroups) RemoveUser(ctx context.Context, r user_groups.RemoveUserReq
 //   8.4: Field 'id' in the response is deprecated. Format changes from integer to string.
 //   6.4: Paging response fields moved to a Paging object
 //   6.4: 'default' response field has been added
-func (s *UserGroups) Search(ctx context.Context, r user_groups.SearchRequest, p paging.Params) (*user_groups.SearchResponse, error) {
+func (s *UserGroups) Search(ctx context.Context, r user_groups.SearchRequest, p paging.Params) (*user_groups.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(user_groups.SearchResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *UserGroups) SearchAll(ctx context.Context, r user_groups.SearchRequest) (*user_groups.SearchResponseAll, error) {
@@ -121,7 +122,7 @@ func (s *UserGroups) SearchAll(ctx context.Context, r user_groups.SearchRequest)
 	}
 	response := &user_groups.SearchResponseAll{}
 	for {
-		res, err := s.Search(ctx, r, p)
+		res, _, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to user_groups.Search: %+v", err)
 		}
@@ -145,15 +146,15 @@ func (s *UserGroups) SearchAll(ctx context.Context, r user_groups.SearchRequest)
 //   8.5: Parameter 'id' deprecated in favor of 'currentName'
 //   8.4: Parameter 'id' format changes from integer to string
 //   6.4: The default group is no longer editable
-func (s *UserGroups) Update(ctx context.Context, r user_groups.UpdateRequest) error {
+func (s *UserGroups) Update(ctx context.Context, r user_groups.UpdateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Users - Search for users with membership information with respect to a group.
@@ -167,16 +168,16 @@ func (s *UserGroups) Update(ctx context.Context, r user_groups.UpdateRequest) er
 //   9.8: response fields 'total', 's', 'ps' have been deprecated, please use 'paging' object instead.
 //   9.8: The field 'paging' has been added to the response.
 //   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
-func (s *UserGroups) Users(ctx context.Context, r user_groups.UsersRequest, p paging.Params) (*user_groups.UsersResponse, error) {
+func (s *UserGroups) Users(ctx context.Context, r user_groups.UsersRequest, p paging.Params) (*user_groups.UsersResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/users", s.path)
 	v := new(user_groups.UsersResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *UserGroups) UsersAll(ctx context.Context, r user_groups.UsersRequest) (*user_groups.UsersResponseAll, error) {
@@ -186,7 +187,7 @@ func (s *UserGroups) UsersAll(ctx context.Context, r user_groups.UsersRequest) (
 	}
 	response := &user_groups.UsersResponseAll{}
 	for {
-		res, err := s.Users(ctx, r, p)
+		res, _, err := s.Users(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to user_groups.Users: %+v", err)
 		}

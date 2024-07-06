@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/project_badges"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -15,32 +16,32 @@ type ProjectBadges service
 // Since 7.1
 // Changelog:
 //   10.4: The following metric keys are now deprecated: bugs, code_smells, security_hotspots, vulnerabilities
-func (s *ProjectBadges) Measure(ctx context.Context, r project_badges.MeasureRequest) (*project_badges.MeasureResponse, error) {
+func (s *ProjectBadges) Measure(ctx context.Context, r project_badges.MeasureRequest) (*project_badges.MeasureResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/measure", s.path)
 	v := new(project_badges.MeasureResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // QualityGate - Generate badge for project's quality gate as an SVG.
 // Requires 'Browse' permission on the specified project.
 // Since 7.1
 // Changelog:
-func (s *ProjectBadges) QualityGate(ctx context.Context, r project_badges.QualityGateRequest) (*project_badges.QualityGateResponse, error) {
+func (s *ProjectBadges) QualityGate(ctx context.Context, r project_badges.QualityGateRequest) (*project_badges.QualityGateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/quality_gate", s.path)
 	v := new(project_badges.QualityGateResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // RenewToken - Creates new token replacing any existing token for project or application badge access for private projects and applications.
@@ -49,15 +50,15 @@ func (s *ProjectBadges) QualityGate(ctx context.Context, r project_badges.Qualit
 // Since 9.2
 // Changelog:
 //   10.1: Application key can be used for project parameter.
-func (s *ProjectBadges) RenewToken(ctx context.Context, r project_badges.RenewTokenRequest) error {
+func (s *ProjectBadges) RenewToken(ctx context.Context, r project_badges.RenewTokenRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/renew_token", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Token - Retrieve a token to use for project or application badge access for private projects or applications.
@@ -66,14 +67,14 @@ func (s *ProjectBadges) RenewToken(ctx context.Context, r project_badges.RenewTo
 // Since 9.2
 // Changelog:
 //   10.1: Application key can be used for project parameter.
-func (s *ProjectBadges) Token(ctx context.Context, r project_badges.TokenRequest) (*project_badges.TokenResponse, error) {
+func (s *ProjectBadges) Token(ctx context.Context, r project_badges.TokenRequest) (*project_badges.TokenResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/token", s.path)
 	v := new(project_badges.TokenResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }

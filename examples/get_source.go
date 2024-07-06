@@ -15,10 +15,12 @@ func main() {
 	client := sonarqube.NewClient(baseUrl, "", "", nil)
 	req := sources.RawRequest{Key: key}
 
-	res, err := client.Sources.Raw(ctx, req)
+	res, resp, err := client.Sources.Raw(ctx, req)
 	if err != nil {
 		log.Fatalf("could not get source rsw: %+v", err)
 	}
+
+	fmt.Printf("Response status code: %d\n", resp.StatusCode)
 
 	fmt.Printf("%+v\n", *res)
 }

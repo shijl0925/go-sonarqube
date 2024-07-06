@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/ce"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -25,16 +26,16 @@ type Ce service
 //   6.6: fields "branch" and "branchType" added
 //   6.1: field "logs" is deprecated and its value is always false
 //   5.5: it's no more possible to specify the page parameter.
-func (s *Ce) Activity(ctx context.Context, r ce.ActivityRequest, p paging.Params) (*ce.ActivityResponse, error) {
+func (s *Ce) Activity(ctx context.Context, r ce.ActivityRequest, p paging.Params) (*ce.ActivityResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/activity", s.path)
 	v := new(ce.ActivityResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Ce) ActivityAll(ctx context.Context, r ce.ActivityRequest) (*ce.ActivityResponseAll, error) {
@@ -44,7 +45,7 @@ func (s *Ce) ActivityAll(ctx context.Context, r ce.ActivityRequest) (*ce.Activit
 	}
 	response := &ce.ActivityResponseAll{}
 	for {
-		res, err := s.Activity(ctx, r, p)
+		res, _, err := s.Activity(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to ce.Activity: %+v", err)
 		}
@@ -67,16 +68,16 @@ func (s *Ce) ActivityAll(ctx context.Context, r ce.ActivityRequest) (*ce.Activit
 //   8.8: Parameter 'componentKey' is now removed. Please use parameter 'component' instead.
 //   7.8: New field 'pendingTime' in response, only included when there are pending tasks
 //   6.6: New field 'inProgress' in response
-func (s *Ce) ActivityStatus(ctx context.Context, r ce.ActivityStatusRequest) (*ce.ActivityStatusResponse, error) {
+func (s *Ce) ActivityStatus(ctx context.Context, r ce.ActivityStatusRequest) (*ce.ActivityStatusResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/activity_status", s.path)
 	v := new(ce.ActivityStatusResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Component - Get the pending tasks, in-progress tasks and the last executed task of a given component (usually a project).
@@ -89,16 +90,16 @@ func (s *Ce) ActivityStatus(ctx context.Context, r ce.ActivityStatusRequest) (*c
 //   7.6: The use of module keys in parameter "component" is deprecated
 //   6.6: fields "branch" and "branchType" added
 //   6.1: field "logs" is deprecated and its value is always false
-func (s *Ce) Component(ctx context.Context, r ce.ComponentRequest) (*ce.ComponentResponse, error) {
+func (s *Ce) Component(ctx context.Context, r ce.ComponentRequest) (*ce.ComponentResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/component", s.path)
 	v := new(ce.ComponentResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Task - Give Compute Engine task details such as type, status, duration and associated component.
@@ -111,14 +112,14 @@ func (s *Ce) Component(ctx context.Context, r ce.ComponentRequest) (*ce.Componen
 //   10.1: Warnings field will be now always be filled (it is not necessary to mention it explicitly in 'additionalFields'). 'additionalFields' value `warning' is deprecated.
 //   10.1: 'Project Administrator' is added to the list of allowed permissions to access this endpoint
 //   6.6: fields "branch" and "branchType" added
-func (s *Ce) Task(ctx context.Context, r ce.TaskRequest) (*ce.TaskResponse, error) {
+func (s *Ce) Task(ctx context.Context, r ce.TaskRequest) (*ce.TaskResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/task", s.path)
 	v := new(ce.TaskResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }

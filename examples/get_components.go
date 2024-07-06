@@ -20,12 +20,14 @@ func main() {
 		Ps: 100,
 		P:  1,
 	}
-	res, err := client.Components.Search(ctx, req, p)
+	res, resp, err := client.Components.Search(ctx, req, p)
 
 	//res, err := client.Components.SearchAll(ctx, req)
 	if err != nil {
 		log.Fatalf("could not search components: %+v", err)
 	}
+
+	fmt.Printf("Response status code: %d\n", resp.StatusCode)
 
 	fmt.Printf("%+v\n", res)
 }

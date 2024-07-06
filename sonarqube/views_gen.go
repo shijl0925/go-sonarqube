@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/views"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -14,45 +15,45 @@ type Views service
 // Authentication is required for this API endpoint.
 // Since 9.3
 // Changelog:
-func (s *Views) AddApplication(ctx context.Context, r views.AddApplicationRequest) error {
+func (s *Views) AddApplication(ctx context.Context, r views.AddApplicationRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_application", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // AddApplicationBranch - Add a branch of an application selected in a portfolio.
 // Requires 'Administrator' permission on the portfolio and 'Browse' permission for the application.
 // Since 9.3
 // Changelog:
-func (s *Views) AddApplicationBranch(ctx context.Context, r views.AddApplicationBranchRequest) error {
+func (s *Views) AddApplicationBranch(ctx context.Context, r views.AddApplicationBranchRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_application_branch", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // AddPortfolio - Add an existing portfolio to the structure of another portfolio.
 // Authentication is required for this API endpoint.
 // Since 9.3
 // Changelog:
-func (s *Views) AddPortfolio(ctx context.Context, r views.AddPortfolioRequest) error {
+func (s *Views) AddPortfolio(ctx context.Context, r views.AddPortfolioRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_portfolio", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // AddProject - Add a project to a portfolio.
@@ -61,46 +62,46 @@ func (s *Views) AddPortfolio(ctx context.Context, r views.AddPortfolioRequest) e
 // Changelog:
 //   8.3: Project to which user has `Browse` permission can be used in 'project'
 //   7.3: This web service should not be used to add project to an application, api/applications/add_project should be used instead
-func (s *Views) AddProject(ctx context.Context, r views.AddProjectRequest) error {
+func (s *Views) AddProject(ctx context.Context, r views.AddProjectRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_project", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // AddProjectBranch - Add a branch of a project selected in a portfolio.
 // Requires 'Administrator' permission on the portfolio and 'Browse' permission for the project.
 // Since 9.2
 // Changelog:
-func (s *Views) AddProjectBranch(ctx context.Context, r views.AddProjectBranchRequest) error {
+func (s *Views) AddProjectBranch(ctx context.Context, r views.AddProjectBranchRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_project_branch", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Applications - List applications which the user has access to that can be added to a portfolio.
 // Authentication is required for this API endpoint
 // Since 9.3
 // Changelog:
-func (s *Views) Applications(ctx context.Context, r views.ApplicationsRequest) (*views.ApplicationsResponse, error) {
+func (s *Views) Applications(ctx context.Context, r views.ApplicationsRequest) (*views.ApplicationsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/applications", s.path)
 	v := new(views.ApplicationsResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Create - Create a new portfolio.
@@ -113,15 +114,15 @@ func (s *Views) Applications(ctx context.Context, r views.ApplicationsRequest) (
 //   7.3: This web service should not be used to create an application, api/applications/create should be used instead
 //   7.1: The 'visibility' parameter is public
 //   2.0: Qualifier field is returned in the response
-func (s *Views) Create(ctx context.Context, r views.CreateRequest) error {
+func (s *Views) Create(ctx context.Context, r views.CreateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Delete - Delete a portfolio definition.
@@ -131,15 +132,15 @@ func (s *Views) Create(ctx context.Context, r views.CreateRequest) error {
 //   9.3: This web service should not be used to delete references to portfolios and applications. Use 'views/remove_portfolio' and 'views/remove_application' instead
 //   9.3: This web service can't delete applications. Use 'applications/delete' instead
 //   7.3: This web service should not be used to delete an application, api/applications/delete should be used instead
-func (s *Views) Delete(ctx context.Context, r views.DeleteRequest) error {
+func (s *Views) Delete(ctx context.Context, r views.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // List - List root portfolios.
@@ -150,108 +151,108 @@ func (s *Views) Delete(ctx context.Context, r views.DeleteRequest) error {
 //   9.3: Returning applications is now deprecated
 //   2.0: Qualifier field is returned in the response
 //   2.0: Visibility field is returned in the response
-func (s *Views) List(ctx context.Context, r views.ListRequest) (*views.ListResponse, error) {
+func (s *Views) List(ctx context.Context, r views.ListRequest) (*views.ListResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/list", s.path)
 	v := new(views.ListResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Move - Move a portfolio.
 // Authentication is required for this API endpoint.
 // Since 1.0
 // Changelog:
-func (s *Views) Move(ctx context.Context, r views.MoveRequest) error {
+func (s *Views) Move(ctx context.Context, r views.MoveRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/move", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // MoveOptions - List possible portfolio destinations.
 // Authentication is required for this API endpoint.
 // Since 1.0
 // Changelog:
-func (s *Views) MoveOptions(ctx context.Context, r views.MoveOptionsRequest) (*views.MoveOptionsResponse, error) {
+func (s *Views) MoveOptions(ctx context.Context, r views.MoveOptionsRequest) (*views.MoveOptionsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/move_options", s.path)
 	v := new(views.MoveOptionsResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Portfolios - List portfolios that can be referenced.
 // Authentication is required for this API endpoint.
 // Since 9.3
 // Changelog:
-func (s *Views) Portfolios(ctx context.Context, r views.PortfoliosRequest) (*views.PortfoliosResponse, error) {
+func (s *Views) Portfolios(ctx context.Context, r views.PortfoliosRequest) (*views.PortfoliosResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/portfolios", s.path)
 	v := new(views.PortfoliosResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // RemoveApplication - Remove an application from a portfolio.
 // Requires 'Administrator' permission on the portfolio.
 // Since 9.3
 // Changelog:
-func (s *Views) RemoveApplication(ctx context.Context, r views.RemoveApplicationRequest) error {
+func (s *Views) RemoveApplication(ctx context.Context, r views.RemoveApplicationRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_application", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // RemoveApplicationBranch - Remove a branch of an application selected in a portfolio.
 // Requires 'Administrator' permission on the portfolio and 'Browse' permission for the application.
 // Since 9.3
 // Changelog:
-func (s *Views) RemoveApplicationBranch(ctx context.Context, r views.RemoveApplicationBranchRequest) error {
+func (s *Views) RemoveApplicationBranch(ctx context.Context, r views.RemoveApplicationBranchRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_application_branch", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // RemovePortfolio - Remove a reference to a portfolio.
 // Requires 'Administrator' permission on the portfolio.
 // Since 9.3
 // Changelog:
-func (s *Views) RemovePortfolio(ctx context.Context, r views.RemovePortfolioRequest) error {
+func (s *Views) RemovePortfolio(ctx context.Context, r views.RemovePortfolioRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_portfolio", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // RemoveProject - Remove a project from a portfolio.
@@ -261,30 +262,30 @@ func (s *Views) RemovePortfolio(ctx context.Context, r views.RemovePortfolioRequ
 //   9.3: The `Browse` permission on a project is no longer required to remove it from a portfolio definition
 //   8.3: Project to which user has `Browse` permission can be used in 'project'
 //   7.3: This web service should not be used on application, api/applications/remove_project should be used instead
-func (s *Views) RemoveProject(ctx context.Context, r views.RemoveProjectRequest) error {
+func (s *Views) RemoveProject(ctx context.Context, r views.RemoveProjectRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_project", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // RemoveProjectBranch - Remove a branch of a project selected in a portfolio.
 // Requires 'Administrator' permission on the portfolio and 'Browse' permission for the project.
 // Since 9.2
 // Changelog:
-func (s *Views) RemoveProjectBranch(ctx context.Context, r views.RemoveProjectBranchRequest) error {
+func (s *Views) RemoveProjectBranch(ctx context.Context, r views.RemoveProjectBranchRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_project_branch", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // SetManualMode - Set the projects selection mode of a portfolio on manual selection.
@@ -292,15 +293,15 @@ func (s *Views) RemoveProjectBranch(ctx context.Context, r views.RemoveProjectBr
 // Requires 'Administrator' permission on the portfolio.
 // Since 7.4
 // Changelog:
-func (s *Views) SetManualMode(ctx context.Context, r views.SetManualModeRequest) error {
+func (s *Views) SetManualMode(ctx context.Context, r views.SetManualModeRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_manual_mode", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // SetNoneMode - Set the projects selection mode of a portfolio to none.
@@ -308,15 +309,15 @@ func (s *Views) SetManualMode(ctx context.Context, r views.SetManualModeRequest)
 // Requires 'Administrator' permission on the portfolio.
 // Since 9.1
 // Changelog:
-func (s *Views) SetNoneMode(ctx context.Context, r views.SetNoneModeRequest) error {
+func (s *Views) SetNoneMode(ctx context.Context, r views.SetNoneModeRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_none_mode", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // SetRegexpMode - Set the projects selection mode of a portfolio on regular expression.
@@ -324,15 +325,15 @@ func (s *Views) SetNoneMode(ctx context.Context, r views.SetNoneModeRequest) err
 // Since 7.4
 // Changelog:
 //   9.2: Param 'branch' added
-func (s *Views) SetRegexpMode(ctx context.Context, r views.SetRegexpModeRequest) error {
+func (s *Views) SetRegexpMode(ctx context.Context, r views.SetRegexpModeRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_regexp_mode", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // SetRemainingProjectsMode - Set the projects selection mode of a portfolio on unassociated projects in hierarchy.
@@ -340,15 +341,15 @@ func (s *Views) SetRegexpMode(ctx context.Context, r views.SetRegexpModeRequest)
 // Since 7.4
 // Changelog:
 //   9.2: Param 'branch' added
-func (s *Views) SetRemainingProjectsMode(ctx context.Context, r views.SetRemainingProjectsModeRequest) error {
+func (s *Views) SetRemainingProjectsMode(ctx context.Context, r views.SetRemainingProjectsModeRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_remaining_projects_mode", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // SetTagsMode - Set the projects selection mode of a portfolio on project tags.
@@ -356,15 +357,15 @@ func (s *Views) SetRemainingProjectsMode(ctx context.Context, r views.SetRemaini
 // Since 7.4
 // Changelog:
 //   9.2: Param 'branch' added
-func (s *Views) SetTagsMode(ctx context.Context, r views.SetTagsModeRequest) error {
+func (s *Views) SetTagsMode(ctx context.Context, r views.SetTagsModeRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_tags_mode", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Show - Show the details of a portfolio, including its hierarchy and project selection mode.
@@ -377,16 +378,16 @@ func (s *Views) SetTagsMode(ctx context.Context, r views.SetTagsModeRequest) err
 //   9.2: The response field 'projects' for each portfolio is deprecated in favor of the new field 'selectedProjects'
 //   7.3: Deleted field of projects is deprecated in the response, replaced by enabled
 //   2.0: Qualifier field is returned in the response
-func (s *Views) Show(ctx context.Context, r views.ShowRequest) (*views.ShowResponse, error) {
+func (s *Views) Show(ctx context.Context, r views.ShowRequest) (*views.ShowResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/show", s.path)
 	v := new(views.ShowResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Update - Update a portfolio.
@@ -395,13 +396,13 @@ func (s *Views) Show(ctx context.Context, r views.ShowRequest) (*views.ShowRespo
 // Changelog:
 //   9.3: This web service can't update applications. Use 'applications/update' instead
 //   7.3: This web service should not be used on application, api/applications/update should be used instead
-func (s *Views) Update(ctx context.Context, r views.UpdateRequest) error {
+func (s *Views) Update(ctx context.Context, r views.UpdateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }

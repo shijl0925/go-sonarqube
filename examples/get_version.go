@@ -14,9 +14,12 @@ func main() {
 	client := sonarqube.NewClient(baseUrl, "", "", nil)
 	req := server.VersionRequest{}
 
-	res, err := client.Server.Version(ctx, req)
+	res, resp, err := client.Server.Version(ctx, req)
 	if err != nil {
 		log.Fatalf("could not get version: %+v", err)
 	}
+
+	fmt.Printf("Response status code: %d\n", resp.StatusCode)
+
 	fmt.Printf("version: %s\n", *res)
 }

@@ -15,11 +15,13 @@ func main() {
 	req := duplications.ShowRequest{
 		Key: "sonar-scanner-azdo-sc:src/common/sonarqube-v5/helpers/api.ts",
 	}
-	res, err := client.Duplications.Show(ctx, req)
+	res, resp, err := client.Duplications.Show(ctx, req)
 
 	if err != nil {
 		log.Fatalf("could not show duplications: %+v", err)
 	}
+
+	fmt.Printf("Response status code: %d\n", resp.StatusCode)
 
 	fmt.Printf("%+v\n", res)
 }

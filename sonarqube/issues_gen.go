@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/issues"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -24,16 +25,16 @@ type Issues service
 //   6.5: the database ids of the components are removed from the response
 //   6.5: the response field components.uuid is deprecated. Use components.key instead.
 //   6.3: the response returns the issue with all its details
-func (s *Issues) AddComment(ctx context.Context, r issues.AddCommentRequest) (*issues.AddCommentResponse, error) {
+func (s *Issues) AddComment(ctx context.Context, r issues.AddCommentRequest) (*issues.AddCommentResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/add_comment", s.path)
 	v := new(issues.AddCommentResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Assign - Assign/Unassign an issue. Requires authentication and Browse permission on project
@@ -47,16 +48,16 @@ func (s *Issues) AddComment(ctx context.Context, r issues.AddCommentRequest) (*i
 //   8.8: The response field components.uuid is removed
 //   6.5: the database ids of the components are removed from the response
 //   6.5: the response field components.uuid is deprecated. Use components.key instead.
-func (s *Issues) Assign(ctx context.Context, r issues.AssignRequest) (*issues.AssignResponse, error) {
+func (s *Issues) Assign(ctx context.Context, r issues.AssignRequest) (*issues.AssignResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/assign", s.path)
 	v := new(issues.AssignResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Authors - Search SCM accounts which match a given query.
@@ -65,16 +66,16 @@ func (s *Issues) Assign(ctx context.Context, r issues.AssignRequest) (*issues.As
 // Since 5.1
 // Changelog:
 //   7.4: The maximum size of 'ps' is set to 100
-func (s *Issues) Authors(ctx context.Context, r issues.AuthorsRequest) (*issues.AuthorsResponse, error) {
+func (s *Issues) Authors(ctx context.Context, r issues.AuthorsRequest) (*issues.AuthorsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/authors", s.path)
 	v := new(issues.AuthorsResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // BulkChange - Bulk change on issues. Up to 500 issues can be updated.
@@ -87,16 +88,16 @@ func (s *Issues) Authors(ctx context.Context, r issues.AuthorsRequest) (*issues.
 //   8.2: Security hotspots are no longer supported and will be ignored.
 //   8.2: Transitions 'setinreview', 'resolveasreviewed' and 'openasvulnerability' are no more supported
 //   6.3: 'actions' parameter is ignored
-func (s *Issues) BulkChange(ctx context.Context, r issues.BulkChangeRequest) (*issues.BulkChangeResponse, error) {
+func (s *Issues) BulkChange(ctx context.Context, r issues.BulkChangeRequest) (*issues.BulkChangeResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/bulk_change", s.path)
 	v := new(issues.BulkChangeResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Changelog - Display changelog of an issue.
@@ -107,16 +108,16 @@ func (s *Issues) BulkChange(ctx context.Context, r issues.BulkChangeRequest) (*i
 //   10.4: 'status', 'resolution', 'severity' and 'type' keys are now deprecated in the differences
 //   9.7: 'externalUser' and 'webhookSource' information added to the answer
 //   6.3: changes on effort is expressed with the raw value in minutes (instead of the duration previously)
-func (s *Issues) Changelog(ctx context.Context, r issues.ChangelogRequest) (*issues.ChangelogResponse, error) {
+func (s *Issues) Changelog(ctx context.Context, r issues.ChangelogRequest) (*issues.ChangelogResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/changelog", s.path)
 	v := new(issues.ChangelogResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // DeleteComment - Delete a comment.
@@ -133,16 +134,16 @@ func (s *Issues) Changelog(ctx context.Context, r issues.ChangelogRequest) (*iss
 //   6.5: the database ids of the components are removed from the response
 //   6.3: the response returns the issue with all its details
 //   6.3: the 'key' parameter is renamed 'comment'
-func (s *Issues) DeleteComment(ctx context.Context, r issues.DeleteCommentRequest) (*issues.DeleteCommentResponse, error) {
+func (s *Issues) DeleteComment(ctx context.Context, r issues.DeleteCommentRequest) (*issues.DeleteCommentResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/delete_comment", s.path)
 	v := new(issues.DeleteCommentResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // DoTransition - Do workflow transition on an issue. Requires authentication and Browse permission on project.
@@ -166,16 +167,16 @@ func (s *Issues) DeleteComment(ctx context.Context, r issues.DeleteCommentReques
 //   7.3: added transitions for security hotspots
 //   6.5: the database ids of the components are removed from the response
 //   6.5: the response field components.uuid is deprecated. Use components.key instead.
-func (s *Issues) DoTransition(ctx context.Context, r issues.DoTransitionRequest) (*issues.DoTransitionResponse, error) {
+func (s *Issues) DoTransition(ctx context.Context, r issues.DoTransitionRequest) (*issues.DoTransitionResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/do_transition", s.path)
 	v := new(issues.DoTransitionResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // EditComment - Edit a comment.
@@ -192,47 +193,47 @@ func (s *Issues) DoTransition(ctx context.Context, r issues.DoTransitionRequest)
 //   6.5: the response field components.uuid is deprecated. Use components.key instead.
 //   6.3: the response returns the issue with all its details
 //   6.3: the 'key' parameter has been renamed comment
-func (s *Issues) EditComment(ctx context.Context, r issues.EditCommentRequest) (*issues.EditCommentResponse, error) {
+func (s *Issues) EditComment(ctx context.Context, r issues.EditCommentRequest) (*issues.EditCommentResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/edit_comment", s.path)
 	v := new(issues.EditCommentResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // GitlabSastExport - Return a list of vulnerabilities according to the Gitlab SAST JSON format.
 // The JSON produced can be used in GitLab for generating the Vulnerability Report.Requires the 'Browse' or 'Scan' permission on the specified project.
 // Since 10.2
 // Changelog:
-func (s *Issues) GitlabSastExport(ctx context.Context, r issues.GitlabSastExportRequest) (*issues.GitlabSastExportResponse, error) {
+func (s *Issues) GitlabSastExport(ctx context.Context, r issues.GitlabSastExportRequest) (*issues.GitlabSastExportResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/gitlab_sast_export", s.path)
 	v := new(issues.GitlabSastExportResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Reindex - Reindex issues for a project.
 // Require 'Administer System' permission.
 // Since 9.8
 // Changelog:
-func (s *Issues) Reindex(ctx context.Context, r issues.ReindexRequest) error {
+func (s *Issues) Reindex(ctx context.Context, r issues.ReindexRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/reindex", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Search - Search for issues.
@@ -303,16 +304,16 @@ func (s *Issues) Reindex(ctx context.Context, r issues.ReindexRequest) error {
 //   5.5: response fields 'reporter' and 'actionPlan' are removed (drop of action plan and manual issue features)
 //   5.5: parameters 'reporters', 'actionPlans' and 'planned' are dropped and therefore ignored (drop of action plan and manual issue features)
 //   5.5: response field 'debt' is renamed 'effort'
-func (s *Issues) Search(ctx context.Context, r issues.SearchRequest, p paging.Params) (*issues.SearchResponse, error) {
+func (s *Issues) Search(ctx context.Context, r issues.SearchRequest, p paging.Params) (*issues.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(issues.SearchResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Issues) SearchAll(ctx context.Context, r issues.SearchRequest) (*issues.SearchResponseAll, error) {
@@ -322,7 +323,7 @@ func (s *Issues) SearchAll(ctx context.Context, r issues.SearchRequest) (*issues
 	}
 	response := &issues.SearchResponseAll{}
 	for {
-		res, err := s.Search(ctx, r, p)
+		res, _, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to issues.Search: %+v", err)
 		}
@@ -357,16 +358,16 @@ func (s *Issues) SearchAll(ctx context.Context, r issues.SearchRequest) (*issues
 //   8.8: The response field components.uuid is removed
 //   6.5: the database ids of the components are removed from the response
 //   6.5: the response field components.uuid is deprecated. Use components.key instead.
-func (s *Issues) SetSeverity(ctx context.Context, r issues.SetSeverityRequest) (*issues.SetSeverityResponse, error) {
+func (s *Issues) SetSeverity(ctx context.Context, r issues.SetSeverityRequest) (*issues.SetSeverityResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/set_severity", s.path)
 	v := new(issues.SetSeverityResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // SetTags - Set tags on an issue.
@@ -382,16 +383,16 @@ func (s *Issues) SetSeverity(ctx context.Context, r issues.SetSeverityRequest) (
 //   6.5: the database ids of the components are removed from the response
 //   6.5: the response field components.uuid is deprecated. Use components.key instead.
 //   6.4: response contains issue information instead of list of tags
-func (s *Issues) SetTags(ctx context.Context, r issues.SetTagsRequest) (*issues.SetTagsResponse, error) {
+func (s *Issues) SetTags(ctx context.Context, r issues.SetTagsRequest) (*issues.SetTagsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/set_tags", s.path)
 	v := new(issues.SetTagsResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // SetType - Change type of issue, for instance from 'code smell' to 'bug'.
@@ -411,16 +412,16 @@ func (s *Issues) SetTags(ctx context.Context, r issues.SetTagsRequest) (*issues.
 //   8.8: The response field components.uuid is removed
 //   6.5: the database ids of the components are removed from the response
 //   6.5: the response field components.uuid is deprecated. Use components.key instead.
-func (s *Issues) SetType(ctx context.Context, r issues.SetTypeRequest) (*issues.SetTypeResponse, error) {
+func (s *Issues) SetType(ctx context.Context, r issues.SetTypeRequest) (*issues.SetTypeResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/set_type", s.path)
 	v := new(issues.SetTypeResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Tags - List tags matching a given query
@@ -428,14 +429,14 @@ func (s *Issues) SetType(ctx context.Context, r issues.SetTypeRequest) (*issues.
 // Changelog:
 //   9.4: Max page size increased to 500
 //   7.4: Result doesn't include rules tags anymore
-func (s *Issues) Tags(ctx context.Context, r issues.TagsRequest) (*issues.TagsResponse, error) {
+func (s *Issues) Tags(ctx context.Context, r issues.TagsRequest) (*issues.TagsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/tags", s.path)
 	v := new(issues.TagsResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }

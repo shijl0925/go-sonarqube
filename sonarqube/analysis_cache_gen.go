@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/analysis_cache"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -14,13 +15,13 @@ type AnalysisCache service
 // Since 9.4
 // Changelog:
 //   9.9: The web service is no longer internal
-func (s *AnalysisCache) Get(ctx context.Context, r analysis_cache.GetRequest) error {
+func (s *AnalysisCache) Get(ctx context.Context, r analysis_cache.GetRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/get", s.path)
 
-	_, err := s.client.Call(ctx, "GET", u, nil, r)
+	resp, err := s.client.Call(ctx, "GET", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }

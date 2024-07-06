@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
 	"github.com/shijl0925/go-sonarqube/sonarqube/project_analyses"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -19,16 +20,16 @@ type ProjectAnalyses service
 //
 // Since 6.3
 // Changelog:
-func (s *ProjectAnalyses) CreateEvent(ctx context.Context, r project_analyses.CreateEventRequest) (*project_analyses.CreateEventResponse, error) {
+func (s *ProjectAnalyses) CreateEvent(ctx context.Context, r project_analyses.CreateEventRequest) (*project_analyses.CreateEventResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create_event", s.path)
 	v := new(project_analyses.CreateEventResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Delete - Delete a project analysis.
@@ -38,15 +39,15 @@ func (s *ProjectAnalyses) CreateEvent(ctx context.Context, r project_analyses.Cr
 //
 // Since 6.3
 // Changelog:
-func (s *ProjectAnalyses) Delete(ctx context.Context, r project_analyses.DeleteRequest) error {
+func (s *ProjectAnalyses) Delete(ctx context.Context, r project_analyses.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // DeleteEvent - Delete a project analysis event.
@@ -57,15 +58,15 @@ func (s *ProjectAnalyses) Delete(ctx context.Context, r project_analyses.DeleteR
 //
 // Since 6.3
 // Changelog:
-func (s *ProjectAnalyses) DeleteEvent(ctx context.Context, r project_analyses.DeleteEventRequest) error {
+func (s *ProjectAnalyses) DeleteEvent(ctx context.Context, r project_analyses.DeleteEventRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete_event", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Search - Search a project analyses and attached events.
@@ -76,16 +77,16 @@ func (s *ProjectAnalyses) DeleteEvent(ctx context.Context, r project_analyses.De
 //   10.3: Add response field 'qualityProfile' for events related to quality profile changes
 //   9.0: Add response field 'detectedCI'
 //   7.5: Add QualityGate information on Applications
-func (s *ProjectAnalyses) Search(ctx context.Context, r project_analyses.SearchRequest, p paging.Params) (*project_analyses.SearchResponse, error) {
+func (s *ProjectAnalyses) Search(ctx context.Context, r project_analyses.SearchRequest, p paging.Params) (*project_analyses.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(project_analyses.SearchResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *ProjectAnalyses) SearchAll(ctx context.Context, r project_analyses.SearchRequest) (*project_analyses.SearchResponseAll, error) {
@@ -95,7 +96,7 @@ func (s *ProjectAnalyses) SearchAll(ctx context.Context, r project_analyses.Sear
 	}
 	response := &project_analyses.SearchResponseAll{}
 	for {
-		res, err := s.Search(ctx, r, p)
+		res, _, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to project_analyses.Search: %+v", err)
 		}
@@ -117,14 +118,14 @@ func (s *ProjectAnalyses) SearchAll(ctx context.Context, r project_analyses.Sear
 //
 // Since 6.3
 // Changelog:
-func (s *ProjectAnalyses) UpdateEvent(ctx context.Context, r project_analyses.UpdateEventRequest) (*project_analyses.UpdateEventResponse, error) {
+func (s *ProjectAnalyses) UpdateEvent(ctx context.Context, r project_analyses.UpdateEventRequest) (*project_analyses.UpdateEventResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/update_event", s.path)
 	v := new(project_analyses.UpdateEventResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }

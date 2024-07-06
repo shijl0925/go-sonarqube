@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
 	"github.com/shijl0925/go-sonarqube/sonarqube/users"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -16,30 +17,30 @@ type Users service
 // Deprecated since 10.4
 // Changelog:
 //   10.4: Deprecated. Use DELETE api/v2/users-management/users/{id}?anonymize=true instead
-func (s *Users) Anonymize(ctx context.Context, r users.AnonymizeRequest) error {
+func (s *Users) Anonymize(ctx context.Context, r users.AnonymizeRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/anonymize", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // ChangePassword - Update a user's password. Authenticated users can change their own password, provided that the account is not linked to an external authentication system. Administer System permission is required to change another user's password.
 // Since 5.2
 // Changelog:
 //   8.6: It's no more possible for the password to be the same as the previous one
-func (s *Users) ChangePassword(ctx context.Context, r users.ChangePasswordRequest) error {
+func (s *Users) ChangePassword(ctx context.Context, r users.ChangePasswordRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/change_password", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Create - Create a user.
@@ -51,16 +52,16 @@ func (s *Users) ChangePassword(ctx context.Context, r users.ChangePasswordReques
 //   10.4: Deprecated. Use POST api/v2/users-management/users instead
 //   6.3: The password is only mandatory when creating local users, and should not be set on non local users
 //   6.3: The 'infos' message is no more returned when a user is reactivated
-func (s *Users) Create(ctx context.Context, r users.CreateRequest) (*users.CreateResponse, error) {
+func (s *Users) Create(ctx context.Context, r users.CreateRequest) (*users.CreateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 	v := new(users.CreateResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Deactivate - Deactivate a user. Requires Administer System permission
@@ -68,16 +69,16 @@ func (s *Users) Create(ctx context.Context, r users.CreateRequest) (*users.Creat
 // Deprecated since 10.4
 // Changelog:
 //   10.4: Deprecated. Use DELETE api/v2/users-management/users/{id} instead
-func (s *Users) Deactivate(ctx context.Context, r users.DeactivateRequest) (*users.DeactivateResponse, error) {
+func (s *Users) Deactivate(ctx context.Context, r users.DeactivateRequest) (*users.DeactivateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/deactivate", s.path)
 	v := new(users.DeactivateResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Groups - Lists the groups a user belongs to.
@@ -88,16 +89,16 @@ func (s *Users) Deactivate(ctx context.Context, r users.DeactivateRequest) (*use
 //   10.4: Deprecated. Use GET api/v2/authorizations/groups-memberships?userId={} instead
 //   6.4: Paging response fields moved to a Paging object
 //   6.4: 'default' response field has been added
-func (s *Users) Groups(ctx context.Context, r users.GroupsRequest, p paging.Params) (*users.GroupsResponse, error) {
+func (s *Users) Groups(ctx context.Context, r users.GroupsRequest, p paging.Params) (*users.GroupsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/groups", s.path)
 	v := new(users.GroupsResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Users) GroupsAll(ctx context.Context, r users.GroupsRequest) (*users.GroupsResponseAll, error) {
@@ -107,7 +108,7 @@ func (s *Users) GroupsAll(ctx context.Context, r users.GroupsRequest) (*users.Gr
 	}
 	response := &users.GroupsResponseAll{}
 	for {
-		res, err := s.Groups(ctx, r, p)
+		res, _, err := s.Groups(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to users.Groups: %+v", err)
 		}
@@ -148,16 +149,16 @@ func (s *Users) GroupsAll(ctx context.Context, r users.GroupsRequest) (*users.Gr
 //   6.4: Paging response fields moved to a Paging object
 //   6.4: Avatar has been added to the response
 //   6.4: Email is only returned when user has Administer System permission
-func (s *Users) Search(ctx context.Context, r users.SearchRequest, p paging.Params) (*users.SearchResponse, error) {
+func (s *Users) Search(ctx context.Context, r users.SearchRequest, p paging.Params) (*users.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(users.SearchResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Users) SearchAll(ctx context.Context, r users.SearchRequest) (*users.SearchResponseAll, error) {
@@ -167,7 +168,7 @@ func (s *Users) SearchAll(ctx context.Context, r users.SearchRequest) (*users.Se
 	}
 	response := &users.SearchResponseAll{}
 	for {
-		res, err := s.Search(ctx, r, p)
+		res, _, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to users.Search: %+v", err)
 		}
@@ -188,16 +189,16 @@ func (s *Users) SearchAll(ctx context.Context, r users.SearchRequest) (*users.Se
 // Changelog:
 //   10.4: Deprecated. Use PATCH api/v2/users-management/users/{id} instead
 //   5.2: User's password can only be changed using the 'change_password' action.
-func (s *Users) Update(ctx context.Context, r users.UpdateRequest) (*users.UpdateResponse, error) {
+func (s *Users) Update(ctx context.Context, r users.UpdateRequest) (*users.UpdateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/update", s.path)
 	v := new(users.UpdateResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // UpdateIdentityProvider - Update identity provider information.
@@ -208,15 +209,15 @@ func (s *Users) Update(ctx context.Context, r users.UpdateRequest) (*users.Updat
 // Changelog:
 //   10.4: Deprecated. Use PATCH api/v2/users-management/users/{id} instead
 //   9.8: Use of 'sonarqube' for the value of 'newExternalProvider' is deprecated.
-func (s *Users) UpdateIdentityProvider(ctx context.Context, r users.UpdateIdentityProviderRequest) error {
+func (s *Users) UpdateIdentityProvider(ctx context.Context, r users.UpdateIdentityProviderRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update_identity_provider", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // UpdateLogin - Update a user login. A login can be updated many times.
@@ -225,13 +226,13 @@ func (s *Users) UpdateIdentityProvider(ctx context.Context, r users.UpdateIdenti
 // Deprecated since 10.4
 // Changelog:
 //   10.4: Deprecated. Use PATCH api/v2/users-management/users/{id} instead
-func (s *Users) UpdateLogin(ctx context.Context, r users.UpdateLoginRequest) error {
+func (s *Users) UpdateLogin(ctx context.Context, r users.UpdateLoginRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update_login", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }

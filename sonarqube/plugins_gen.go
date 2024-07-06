@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/plugins"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -20,31 +21,31 @@ type Plugins service
 // Require 'Administer System' permission.
 // Since 5.2
 // Changelog:
-func (s *Plugins) Available(ctx context.Context, r plugins.AvailableRequest) (*plugins.AvailableResponse, error) {
+func (s *Plugins) Available(ctx context.Context, r plugins.AvailableRequest) (*plugins.AvailableResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/available", s.path)
 	v := new(plugins.AvailableResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // CancelAll - Cancels any operation pending on any plugin (install, update or uninstall)
 // Requires user to be authenticated with Administer System permissions
 // Since 5.2
 // Changelog:
-func (s *Plugins) CancelAll(ctx context.Context, r plugins.CancelAllRequest) error {
+func (s *Plugins) CancelAll(ctx context.Context, r plugins.CancelAllRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/cancel_all", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Install - Installs the latest version of a plugin specified by its key.
@@ -53,15 +54,15 @@ func (s *Plugins) CancelAll(ctx context.Context, r plugins.CancelAllRequest) err
 // Requires user to be authenticated with Administer System permissions
 // Since 5.2
 // Changelog:
-func (s *Plugins) Install(ctx context.Context, r plugins.InstallRequest) error {
+func (s *Plugins) Install(ctx context.Context, r plugins.InstallRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/install", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Installed - Get the list of all the plugins installed on the SonarQube instance, sorted by plugin name.
@@ -77,16 +78,16 @@ func (s *Plugins) Install(ctx context.Context, r plugins.InstallRequest) error {
 //   6.6: The 'fileHash' field is added
 //   6.6: The 'sonarLintSupported' field is added
 //   6.6: The 'updatedAt' field is added
-func (s *Plugins) Installed(ctx context.Context, r plugins.InstalledRequest) (*plugins.InstalledResponse, error) {
+func (s *Plugins) Installed(ctx context.Context, r plugins.InstalledRequest) (*plugins.InstalledResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/installed", s.path)
 	v := new(plugins.InstalledResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Pending - Get the list of plugins which will either be installed or removed at the next startup of the SonarQube instance, sorted by plugin name.
@@ -95,31 +96,31 @@ func (s *Plugins) Installed(ctx context.Context, r plugins.InstalledRequest) (*p
 // Changelog:
 //   9.8: The 'documentationPath' field is deprecated
 //   8.0: The 'documentationPath' field is added
-func (s *Plugins) Pending(ctx context.Context, r plugins.PendingRequest) (*plugins.PendingResponse, error) {
+func (s *Plugins) Pending(ctx context.Context, r plugins.PendingRequest) (*plugins.PendingResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/pending", s.path)
 	v := new(plugins.PendingResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Uninstall - Uninstalls the plugin specified by its key.
 // Requires user to be authenticated with Administer System permissions.
 // Since 5.2
 // Changelog:
-func (s *Plugins) Uninstall(ctx context.Context, r plugins.UninstallRequest) error {
+func (s *Plugins) Uninstall(ctx context.Context, r plugins.UninstallRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/uninstall", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Update - Updates a plugin specified by its key to the latest version compatible with the SonarQube instance.
@@ -127,15 +128,15 @@ func (s *Plugins) Uninstall(ctx context.Context, r plugins.UninstallRequest) err
 // Requires user to be authenticated with Administer System permissions
 // Since 5.2
 // Changelog:
-func (s *Plugins) Update(ctx context.Context, r plugins.UpdateRequest) error {
+func (s *Plugins) Update(ctx context.Context, r plugins.UpdateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Updates - Lists plugins installed on the SonarQube instance for which at least one newer version is available, sorted by plugin name.
@@ -145,14 +146,14 @@ func (s *Plugins) Update(ctx context.Context, r plugins.UpdateRequest) error {
 // Require 'Administer System' permission.
 // Since 5.2
 // Changelog:
-func (s *Plugins) Updates(ctx context.Context, r plugins.UpdatesRequest) (*plugins.UpdatesResponse, error) {
+func (s *Plugins) Updates(ctx context.Context, r plugins.UpdatesRequest) (*plugins.UpdatesResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/updates", s.path)
 	v := new(plugins.UpdatesResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }

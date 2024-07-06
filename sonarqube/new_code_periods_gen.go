@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/new_code_periods"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -14,16 +15,16 @@ type NewCodePeriods service
 // Requires the permission to browse the project
 // Since 8.0
 // Changelog:
-func (s *NewCodePeriods) List(ctx context.Context, r new_code_periods.ListRequest) (*new_code_periods.ListResponse, error) {
+func (s *NewCodePeriods) List(ctx context.Context, r new_code_periods.ListRequest) (*new_code_periods.ListResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/list", s.path)
 	v := new(new_code_periods.ListResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Set - Updates the <a href="https://sonar-documentations-preview.netlify.app/sonarqube/10.7/project-administration/clean-as-you-code-settings/defining-new-code/" target="_blank" rel="noopener noreferrer">new code definition</a> on different levels:
@@ -37,15 +38,15 @@ func (s *NewCodePeriods) List(ctx context.Context, r new_code_periods.ListReques
 //
 // Since 8.0
 // Changelog:
-func (s *NewCodePeriods) Set(ctx context.Context, r new_code_periods.SetRequest) error {
+func (s *NewCodePeriods) Set(ctx context.Context, r new_code_periods.SetRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Show - Shows the <a href="https://sonar-documentations-preview.netlify.app/sonarqube/10.7/project-administration/clean-as-you-code-settings/defining-new-code/" target="_blank" rel="noopener noreferrer">new code definition</a>.
@@ -55,16 +56,16 @@ func (s *NewCodePeriods) Set(ctx context.Context, r new_code_periods.SetRequest)
 //
 // Since 8.0
 // Changelog:
-func (s *NewCodePeriods) Show(ctx context.Context, r new_code_periods.ShowRequest) (*new_code_periods.ShowResponse, error) {
+func (s *NewCodePeriods) Show(ctx context.Context, r new_code_periods.ShowRequest) (*new_code_periods.ShowResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/show", s.path)
 	v := new(new_code_periods.ShowResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Unset - Unsets the <a href="https://sonar-documentations-preview.netlify.app/sonarqube/10.7/project-administration/clean-as-you-code-settings/defining-new-code/" target="_blank" rel="noopener noreferrer">new code definition</a> for a branch, project or global. It requires the inherited New Code Definition to be compatible with the Clean as You Code methodology, and one of the following permissions:
@@ -73,13 +74,13 @@ func (s *NewCodePeriods) Show(ctx context.Context, r new_code_periods.ShowReques
 //
 // Since 8.0
 // Changelog:
-func (s *NewCodePeriods) Unset(ctx context.Context, r new_code_periods.UnsetRequest) error {
+func (s *NewCodePeriods) Unset(ctx context.Context, r new_code_periods.UnsetRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/unset", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }

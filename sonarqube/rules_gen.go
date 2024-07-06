@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
 	"github.com/shijl0925/go-sonarqube/sonarqube/rules"
+	"net/http"
 )
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
@@ -22,46 +23,46 @@ type Rules service
 //   10.2: Fields 'type' and 'severity' are deprecated in the response. Use 'impacts' instead.
 //   10.0: Drop deprecated keys: 'custom_key', 'template_key', 'markdown_description', 'prevent_reactivation'
 //   5.5: Creating manual rule is not more possible
-func (s *Rules) Create(ctx context.Context, r rules.CreateRequest) (*rules.CreateResponse, error) {
+func (s *Rules) Create(ctx context.Context, r rules.CreateRequest) (*rules.CreateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 	v := new(rules.CreateResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Delete - Delete custom rule.
 // Requires the 'Administer Quality Profiles' permission
 // Since 4.4
 // Changelog:
-func (s *Rules) Delete(ctx context.Context, r rules.DeleteRequest) error {
+func (s *Rules) Delete(ctx context.Context, r rules.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
-	_, err := s.client.Call(ctx, "POST", u, nil, r)
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
 	if err != nil {
-		return err
+		return resp, err
 	}
 
-	return nil
+	return resp, nil
 }
 
 // Repositories - List available rule repositories
 // Since 4.5
 // Changelog:
-func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (*rules.RepositoriesResponse, error) {
+func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (*rules.RepositoriesResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/repositories", s.path)
 	v := new(rules.RepositoriesResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Search - Search for a collection of relevant rules matching a specified query.
@@ -106,16 +107,16 @@ func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (
 //   5.5: The field 'debtRemFnOffset' has been deprecated, use 'remFnBaseEffort' instead
 //   5.5: The field 'defaultDebtRemFnOffset' has been deprecated, use 'defaultRemFnBaseEffort' instead
 //   5.5: The field 'debtOverloaded' has been deprecated, use 'remFnOverloaded' instead
-func (s *Rules) Search(ctx context.Context, r rules.SearchRequest, p paging.Params) (*rules.SearchResponse, error) {
+func (s *Rules) Search(ctx context.Context, r rules.SearchRequest, p paging.Params) (*rules.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(rules.SearchResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r, p)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 func (s *Rules) SearchAll(ctx context.Context, r rules.SearchRequest) (*rules.SearchResponseAll, error) {
@@ -125,7 +126,7 @@ func (s *Rules) SearchAll(ctx context.Context, r rules.SearchRequest) (*rules.Se
 	}
 	response := &rules.SearchResponseAll{}
 	for {
-		res, err := s.Search(ctx, r, p)
+		res, _, err := s.Search(ctx, r, p)
 		if err != nil {
 			return nil, fmt.Errorf("error during call to rules.Search: %+v", err)
 		}
@@ -165,32 +166,32 @@ func (s *Rules) SearchAll(ctx context.Context, r rules.SearchRequest) (*rules.Se
 //   5.5: The field 'debtRemFnOffset' in the response has been deprecated, it becomes 'remFnBaseEffort'.
 //   5.5: The field 'defaultDebtRemFnOffset' in the response has been deprecated, it becomes 'defaultRemFnBaseEffort'.
 //   5.5: The field 'debtOverloaded' in the response has been deprecated, it becomes 'remFnOverloaded'.
-func (s *Rules) Show(ctx context.Context, r rules.ShowRequest) (*rules.ShowResponse, error) {
+func (s *Rules) Show(ctx context.Context, r rules.ShowRequest) (*rules.ShowResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/show", s.path)
 	v := new(rules.ShowResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Tags - List rule tags
 // Since 4.4
 // Changelog:
 //   9.4: Max page size increased to 500
-func (s *Rules) Tags(ctx context.Context, r rules.TagsRequest) (*rules.TagsResponse, error) {
+func (s *Rules) Tags(ctx context.Context, r rules.TagsRequest) (*rules.TagsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/tags", s.path)
 	v := new(rules.TagsResponse)
 
-	_, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
 
 // Update - Update an existing rule.
@@ -201,14 +202,14 @@ func (s *Rules) Tags(ctx context.Context, r rules.TagsRequest) (*rules.TagsRespo
 //   10.4: Updating a removed rule is now possible.
 //   10.2: The field 'severity' and 'type' in the response have been deprecated, use 'impacts' instead.
 //   10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
-func (s *Rules) Update(ctx context.Context, r rules.UpdateRequest) (*rules.UpdateResponse, error) {
+func (s *Rules) Update(ctx context.Context, r rules.UpdateRequest) (*rules.UpdateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/update", s.path)
 	v := new(rules.UpdateResponse)
 
-	_, err := s.client.Call(ctx, "POST", u, v, r)
+	resp, err := s.client.Call(ctx, "POST", u, v, r)
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 
-	return v, nil
+	return v, resp, nil
 }
