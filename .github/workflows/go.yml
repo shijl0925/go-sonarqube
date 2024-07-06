@@ -47,12 +47,19 @@ jobs:
         git diff
 
     - name: Create commits
-      run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          # date +%s > report.txt
-          git add -A
-          git commit -m "Add untracked file during workflow"
+      uses: EndBug/add-and-commit@v9
+      with:
+        message: Add untracked file during workflow
+        committer_name: GitHub Actions
+        committer_email: actions@github.com
+
+    # - name: Create commits
+    #   run: |
+    #       git config user.name 'github-actions[bot]'
+    #       git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+    #       # date +%s > report.txt
+    #       git add -A
+    #       git commit -m "Add untracked file during workflow"
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v6
