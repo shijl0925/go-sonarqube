@@ -6,6 +6,8 @@ name: Go
 on:
   push:
     branches: [ "master" ]
+  schedule:
+    - cron:  '0 1 * * *'
 
 jobs:
 
@@ -17,8 +19,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-      # with:
-      #   ref: dev
 
     - name: Set up Go
       uses: actions/setup-go@v4
@@ -44,13 +44,15 @@ jobs:
       run: |
         cp -r sonarqube-gen/sonarqube ./
         rm -rf sonarqube-gen/
+        files=`git diff --name-only --diff-filter=ACMR HEAD~1 | grep -E ".go$"`
+        echo ${files}
         git diff
 
     - name: Create commits
       run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          date +%s > report.txt
+          # date +%s > report.txt
           git add -A
           git commit -m "Add untracked file during workflow"
 
@@ -58,8 +60,3 @@ jobs:
       uses: peter-evans/create-pull-request@v6
       with:
           token: ${{ secrets.PAT }}
-
-    # - name: Create Pull Request
-    #   run: gh pr create -B master -H dev --title 'Merge dev into master' --body 'Created by Github action'
-    #   env:
-    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
