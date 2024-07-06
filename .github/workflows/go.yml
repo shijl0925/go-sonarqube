@@ -52,6 +52,7 @@ jobs:
         message: Add untracked file during workflow
         committer_name: GitHub Actions
         committer_email: actions@github.com
+        push: false
 
     # - name: Create commits
     #   run: |
