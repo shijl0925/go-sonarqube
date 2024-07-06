@@ -30,6 +30,12 @@ jobs:
         repository: 'sonarqube-gen'
 
     - name: Build sonarqube-gen
-      run: ls -la; cd sonarqube-gen;go build -v -o main ./...;cp main ../;rm -rf sonarqube-gen
-    - name: Generate code 
-      run: ./main --host="https://next.sonarqube.com/sonarqube" --internal=false
+      run: |
+        cd sonarqube-gen
+        go build -v -o main ./...
+        mkdir sonarqube
+        ./main --host="https://next.sonarqube.com/sonarqube" --internal=false
+    - name: Rewrite code 
+      run: |
+        cp -r sonarqube-gen/sonarqube ./
+        git diff
