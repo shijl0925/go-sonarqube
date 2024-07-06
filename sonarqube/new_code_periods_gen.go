@@ -14,7 +14,6 @@ type NewCodePeriods service
 // List - Lists the <a href="https://sonar-documentations-preview.netlify.app/sonarqube/10.7/project-administration/clean-as-you-code-settings/defining-new-code/" target="_blank" rel="noopener noreferrer">new code definition</a> for all branches in a project.
 // Requires the permission to browse the project
 // Since 8.0
-// Changelog:
 func (s *NewCodePeriods) List(ctx context.Context, r new_code_periods.ListRequest) (*new_code_periods.ListResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/list", s.path)
 	v := new(new_code_periods.ListResponse)
@@ -37,7 +36,6 @@ func (s *NewCodePeriods) List(ctx context.Context, r new_code_periods.ListReques
 //  * 'Administer' rights on the specified project to change the project setting
 //
 // Since 8.0
-// Changelog:
 func (s *NewCodePeriods) Set(ctx context.Context, r new_code_periods.SetRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set", s.path)
 
@@ -55,7 +53,6 @@ func (s *NewCodePeriods) Set(ctx context.Context, r new_code_periods.SetRequest)
 //  * 'Execute analysis' rights on the specified component
 //
 // Since 8.0
-// Changelog:
 func (s *NewCodePeriods) Show(ctx context.Context, r new_code_periods.ShowRequest) (*new_code_periods.ShowResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/show", s.path)
 	v := new(new_code_periods.ShowResponse)
@@ -73,7 +70,6 @@ func (s *NewCodePeriods) Show(ctx context.Context, r new_code_periods.ShowReques
 //  * 'Administer' rights for a specified component
 //
 // Since 8.0
-// Changelog:
 func (s *NewCodePeriods) Unset(ctx context.Context, r new_code_periods.UnsetRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/unset", s.path)
 

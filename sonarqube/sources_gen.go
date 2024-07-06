@@ -13,7 +13,6 @@ type Sources service
 
 // Raw - Get source code as raw text. Require 'See Source Code' permission on file
 // Since 5.0
-// Changelog:
 func (s *Sources) Raw(ctx context.Context, r sources.RawRequest) (*sources.RawResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/raw", s.path)
 	v := new(sources.RawResponse)
@@ -27,13 +26,13 @@ func (s *Sources) Raw(ctx context.Context, r sources.RawRequest) (*sources.RawRe
 }
 
 // Scm - Get SCM information of source files. Require See Source Code permission on file's project
-// Each element of the result array is composed of:<ol> * Line number
+// Each element of the result array is composed of:
+//  * Line number
 //  * Author of the commit
 //  * Datetime of the commit (before 5.2 it was only the Date)
 //  * Revision of the commit (added in 5.2)
-// </ol>
+//
 // Since 4.4
-// Changelog:
 func (s *Sources) Scm(ctx context.Context, r sources.ScmRequest) (*sources.ScmResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/scm", s.path)
 	v := new(sources.ScmResponse)
@@ -47,11 +46,11 @@ func (s *Sources) Scm(ctx context.Context, r sources.ScmRequest) (*sources.ScmRe
 }
 
 // Show - Get source code. Requires See Source Code permission on file's project
-// Each element of the result array is composed of:<ol> * Line number
+// Each element of the result array is composed of:
+//  * Line number
 //  * Content of the line
-// </ol>
+//
 // Since 4.4
-// Changelog:
 func (s *Sources) Show(ctx context.Context, r sources.ShowRequest) (*sources.ShowResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/show", s.path)
 	v := new(sources.ShowResponse)

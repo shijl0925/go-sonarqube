@@ -18,8 +18,9 @@ type Projects service
 // At least one parameter is required among analyzedBefore, projects and q
 // Since 5.2
 // Changelog:
-//   9.1: The parameter 'analyzedBefore' takes into account the analysis of all branches and pull requests, not only the main branch.
-//   7.8: At least one parameter is required among analyzedBefore, projects and q
+//
+//	9.1: The parameter 'analyzedBefore' takes into account the analysis of all branches and pull requests, not only the main branch.
+//	7.8: At least one parameter is required among analyzedBefore, projects and q
 func (s *Projects) BulkDelete(ctx context.Context, r projects.BulkDeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/bulk_delete", s.path)
 
@@ -36,8 +37,9 @@ func (s *Projects) BulkDelete(ctx context.Context, r projects.BulkDeleteRequest)
 //
 // Since 4.0
 // Changelog:
-//   9.8: Field 'mainBranch' added to the request
-//   7.1: The 'visibility' parameter is public
+//
+//	9.8: Field 'mainBranch' added to the request
+//	7.1: The 'visibility' parameter is public
 func (s *Projects) Create(ctx context.Context, r projects.CreateRequest) (*projects.CreateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 	v := new(projects.CreateResponse)
@@ -53,7 +55,6 @@ func (s *Projects) Create(ctx context.Context, r projects.CreateRequest) (*proje
 // Delete - Delete a project.
 // Requires 'Administer System' permission or 'Administer' permission on the project.
 // Since 5.2
-// Changelog:
 func (s *Projects) Delete(ctx context.Context, r projects.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
@@ -69,14 +70,15 @@ func (s *Projects) Delete(ctx context.Context, r projects.DeleteRequest) (*http.
 // Requires 'Administer System' permission. Keep in mind that this endpoint will return all findings, issues and hotspots (no filter), which can take time and use a lot of resources on the SonarQube server side and put pressure on the database until completion. This endpoint can be used to feed third party systems. Either the branch key or the pull request key should be specified, and not both at the same time.
 // Since 9.1
 // Changelog:
-//   10.4: 'status' and 'resolution' fields are now deprecated for issues. Use 'issueStatus' instead. Note that both fields remain available for 'type=SECURITY_HOTSPOT'.
-//   10.4: Add 'issueStatus' field to the response
-//   10.4: 'type' and 'severity' fields are now deprecated for issues. Use 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields instead. Note that 'type' remains available for 'type=SECURITY_HOTSPOT'.
-//   10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
-//   9.3: ruleReference field now contain 'repository_key:rule_key' instead of only the rule key
-//   9.3: add field 'branch' and 'pullRequest' in the payload. mutually exclusive, depending on the request
-//   9.3: createdAt and updatedAt now return effective issue creation and update date, instead of the database operation date
-//   9.3: projectKey field now return correctly the projectKey, instead of <projectKey>:PULL_REQUEST:<pullRequestKey>
+//
+//	10.4: 'status' and 'resolution' fields are now deprecated for issues. Use 'issueStatus' instead. Note that both fields remain available for 'type=SECURITY_HOTSPOT'.
+//	10.4: Add 'issueStatus' field to the response
+//	10.4: 'type' and 'severity' fields are now deprecated for issues. Use 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields instead. Note that 'type' remains available for 'type=SECURITY_HOTSPOT'.
+//	10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
+//	9.3: ruleReference field now contain 'repository_key:rule_key' instead of only the rule key
+//	9.3: add field 'branch' and 'pullRequest' in the payload. mutually exclusive, depending on the request
+//	9.3: createdAt and updatedAt now return effective issue creation and update date, instead of the database operation date
+//	9.3: projectKey field now return correctly the projectKey, instead of <projectKey>:PULL_REQUEST:<pullRequestKey>
 func (s *Projects) ExportFindings(ctx context.Context, r projects.ExportFindingsRequest) (*projects.ExportFindingsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/export_findings", s.path)
 	v := new(projects.ExportFindingsResponse)
@@ -93,7 +95,8 @@ func (s *Projects) ExportFindings(ctx context.Context, r projects.ExportFindings
 // Requires Administer System permission.
 // Since 9.4
 // Changelog:
-//   9.5: Response format changed from CSV to Json
+//
+//	9.5: Response format changed from CSV to Json
 func (s *Projects) LicenseUsage(ctx context.Context, r projects.LicenseUsageRequest) (*projects.LicenseUsageResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/license_usage", s.path)
 	v := new(projects.LicenseUsageResponse)
@@ -117,8 +120,9 @@ func (s *Projects) LicenseUsage(ctx context.Context, r projects.LicenseUsageRequ
 // Requires 'Administer System' permission
 // Since 6.3
 // Changelog:
-//   10.2: Response includes 'managed' field.
-//   9.1: The parameter 'analyzedBefore' and the field 'lastAnalysisDate' of the returned projects take into account the analysis of all branches and pull requests, not only the main branch.
+//
+//	10.2: Response includes 'managed' field.
+//	9.1: The parameter 'analyzedBefore' and the field 'lastAnalysisDate' of the returned projects take into account the analysis of all branches and pull requests, not only the main branch.
 func (s *Projects) Search(ctx context.Context, r projects.SearchRequest, p paging.Params) (*projects.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(projects.SearchResponse)
@@ -159,7 +163,8 @@ func (s *Projects) SearchAll(ctx context.Context, r projects.SearchRequest) (*pr
 //
 // Since 6.1
 // Changelog:
-//   7.1: Ability to update key of a disabled module
+//
+//	7.1: Ability to update key of a disabled module
 func (s *Projects) UpdateKey(ctx context.Context, r projects.UpdateKeyRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update_key", s.path)
 
@@ -174,7 +179,6 @@ func (s *Projects) UpdateKey(ctx context.Context, r projects.UpdateKeyRequest) (
 // UpdateVisibility - Updates visibility of a project, application or a portfolio.
 // Requires 'Project administer' permission on the specified entity
 // Since 6.4
-// Changelog:
 func (s *Projects) UpdateVisibility(ctx context.Context, r projects.UpdateVisibilityRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update_visibility", s.path)
 

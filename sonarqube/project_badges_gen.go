@@ -15,7 +15,8 @@ type ProjectBadges service
 // Requires 'Browse' permission on the specified project.
 // Since 7.1
 // Changelog:
-//   10.4: The following metric keys are now deprecated: bugs, code_smells, security_hotspots, vulnerabilities
+//
+//	10.4: The following metric keys are now deprecated: bugs, code_smells, security_hotspots, vulnerabilities
 func (s *ProjectBadges) Measure(ctx context.Context, r project_badges.MeasureRequest) (*project_badges.MeasureResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/measure", s.path)
 	v := new(project_badges.MeasureResponse)
@@ -31,7 +32,6 @@ func (s *ProjectBadges) Measure(ctx context.Context, r project_badges.MeasureReq
 // QualityGate - Generate badge for project's quality gate as an SVG.
 // Requires 'Browse' permission on the specified project.
 // Since 7.1
-// Changelog:
 func (s *ProjectBadges) QualityGate(ctx context.Context, r project_badges.QualityGateRequest) (*project_badges.QualityGateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/quality_gate", s.path)
 	v := new(project_badges.QualityGateResponse)
@@ -49,7 +49,8 @@ func (s *ProjectBadges) QualityGate(ctx context.Context, r project_badges.Qualit
 // Requires 'Administer' permission on the specified project or application.
 // Since 9.2
 // Changelog:
-//   10.1: Application key can be used for project parameter.
+//
+//	10.1: Application key can be used for project parameter.
 func (s *ProjectBadges) RenewToken(ctx context.Context, r project_badges.RenewTokenRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/renew_token", s.path)
 
@@ -66,7 +67,8 @@ func (s *ProjectBadges) RenewToken(ctx context.Context, r project_badges.RenewTo
 // Requires 'Browse' permission on the specified project or application.
 // Since 9.2
 // Changelog:
-//   10.1: Application key can be used for project parameter.
+//
+//	10.1: Application key can be used for project parameter.
 func (s *ProjectBadges) Token(ctx context.Context, r project_badges.TokenRequest) (*project_badges.TokenResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/token", s.path)
 	v := new(project_badges.TokenResponse)

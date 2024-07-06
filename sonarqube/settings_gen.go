@@ -21,8 +21,9 @@ type Settings service
 //
 // Since 6.3
 // Changelog:
-//   10.1: The use of module keys in parameter 'component' is removed
-//   7.6: The use of module keys in parameter 'component' is deprecated
+//
+//	10.1: The use of module keys in parameter 'component' is removed
+//	7.6: The use of module keys in parameter 'component' is deprecated
 func (s *Settings) ListDefinitions(ctx context.Context, r settings.ListDefinitionsRequest) (*settings.ListDefinitionsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/list_definitions", s.path)
 	v := new(settings.ListDefinitionsResponse)
@@ -43,11 +44,12 @@ func (s *Settings) ListDefinitions(ctx context.Context, r settings.ListDefinitio
 //
 // Since 6.1
 // Changelog:
-//   10.1: Param 'component' now only accept keys for projects, applications, portfolios or subportfolios
-//   10.1: Internal parameters 'branch' and 'pullRequest' were removed
-//   8.8: Deprecated parameter 'componentKey' has been removed
-//   7.6: The use of module keys in parameter 'component' is deprecated
-//   7.1: The settings defined in conf/sonar.properties are read-only and can't be changed
+//
+//	10.1: Param 'component' now only accept keys for projects, applications, portfolios or subportfolios
+//	10.1: Internal parameters 'branch' and 'pullRequest' were removed
+//	8.8: Deprecated parameter 'componentKey' has been removed
+//	7.6: The use of module keys in parameter 'component' is deprecated
+//	7.1: The settings defined in conf/sonar.properties are read-only and can't be changed
 func (s *Settings) Reset(ctx context.Context, r settings.ResetRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/reset", s.path)
 
@@ -68,11 +70,12 @@ func (s *Settings) Reset(ctx context.Context, r settings.ResetRequest) (*http.Re
 //
 // Since 6.1
 // Changelog:
-//   10.1: Param 'component' now only accept keys for projects, applications, portfolios or subportfolios
-//   10.1: The use of module keys in parameter 'component' is removed
-//   8.8: Deprecated parameter 'componentKey' has been removed
-//   7.6: The use of module keys in parameter 'component' is deprecated
-//   7.1: The settings defined in conf/sonar.properties are read-only and can't be changed
+//
+//	10.1: Param 'component' now only accept keys for projects, applications, portfolios or subportfolios
+//	10.1: The use of module keys in parameter 'component' is removed
+//	8.8: Deprecated parameter 'componentKey' has been removed
+//	7.6: The use of module keys in parameter 'component' is deprecated
+//	7.1: The settings defined in conf/sonar.properties are read-only and can't be changed
 func (s *Settings) Set(ctx context.Context, r settings.SetRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set", s.path)
 
@@ -92,10 +95,11 @@ func (s *Settings) Set(ctx context.Context, r settings.SetRequest) (*http.Respon
 //
 // Since 6.3
 // Changelog:
-//   10.1: The use of module keys in parameter 'component' is removed
-//   9.1: The secured settings values are no longer returned. Secured settings keys that have a value are now returned in setSecuredSettings array.
-//   7.6: The use of module keys in parameter 'component' is deprecated
-//   7.1: The settings from conf/sonar.properties are excluded from results.
+//
+//	10.1: The use of module keys in parameter 'component' is removed
+//	9.1: The secured settings values are no longer returned. Secured settings keys that have a value are now returned in setSecuredSettings array.
+//	7.6: The use of module keys in parameter 'component' is deprecated
+//	7.1: The settings from conf/sonar.properties are excluded from results.
 func (s *Settings) Values(ctx context.Context, r settings.ValuesRequest) (*settings.ValuesResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/values", s.path)
 	v := new(settings.ValuesResponse)

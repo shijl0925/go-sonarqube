@@ -19,8 +19,9 @@ type Qualityprofiles service
 //
 // Since 4.4
 // Changelog:
-//   10.6: Add parameter 'prioritizedRule'.
-//   10.2: Parameter 'severity' is now deprecated.
+//
+//	10.6: Add parameter 'prioritizedRule'.
+//	10.2: Parameter 'severity' is now deprecated.
 func (s *Qualityprofiles) ActivateRule(ctx context.Context, r qualityprofiles.ActivateRuleRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/activate_rule", s.path)
 
@@ -39,9 +40,10 @@ func (s *Qualityprofiles) ActivateRule(ctx context.Context, r qualityprofiles.Ac
 //
 // Since 4.4
 // Changelog:
-//   10.6: Add parameter 'prioritizedRule'.
-//   10.2: Parameters 'severities', 'targetSeverity', 'active_severities', and 'types' are now deprecated.
-//   10.0: Parameter 'sansTop25' is deprecated
+//
+//	10.6: Add parameter 'prioritizedRule'.
+//	10.2: Parameters 'severities', 'targetSeverity', 'active_severities', and 'types' are now deprecated.
+//	10.0: Parameter 'sansTop25' is deprecated
 func (s *Qualityprofiles) ActivateRules(ctx context.Context, r qualityprofiles.ActivateRulesRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/activate_rules", s.path)
 
@@ -59,7 +61,6 @@ func (s *Qualityprofiles) ActivateRules(ctx context.Context, r qualityprofiles.A
 //    * Administer right on the specified project
 //
 // Since 5.2
-// Changelog:
 func (s *Qualityprofiles) AddProject(ctx context.Context, r qualityprofiles.AddProjectRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_project", s.path)
 
@@ -74,7 +75,8 @@ func (s *Qualityprofiles) AddProject(ctx context.Context, r qualityprofiles.AddP
 // Backup - Backup a quality profile in XML form. The exported profile can be restored through api/qualityprofiles/restore.
 // Since 5.2
 // Changelog:
-//   10.3: The 'priority' and 'type' fields of the rule XML object are deprecated.
+//
+//	10.3: The 'priority' and 'type' fields of the rule XML object are deprecated.
 func (s *Qualityprofiles) Backup(ctx context.Context, r qualityprofiles.BackupRequest) (*qualityprofiles.BackupResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/backup", s.path)
 	v := new(qualityprofiles.BackupResponse)
@@ -93,7 +95,6 @@ func (s *Qualityprofiles) Backup(ctx context.Context, r qualityprofiles.BackupRe
 //    * Edit right on the specified quality profile
 //
 // Since 5.2
-// Changelog:
 func (s *Qualityprofiles) ChangeParent(ctx context.Context, r qualityprofiles.ChangeParentRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/change_parent", s.path)
 
@@ -108,11 +109,12 @@ func (s *Qualityprofiles) ChangeParent(ctx context.Context, r qualityprofiles.Ch
 // Changelog - Get the history of changes on a quality profile: rule activation/deactivation, change in parameters/severity. Events are ordered by date in descending order (most recent first).
 // Since 5.2
 // Changelog:
-//   10.3: Added fields 'cleanCodeAttributeCategory', 'impacts' to response
-//   10.3: Added fields 'oldCleanCodeAttribute', 'newCleanCodeAttribute', 'oldCleanCodeAttributeCategory', 'newCleanCodeAttributeCategory' and 'impactChanges' to 'params' section of response
-//   10.3: Added field 'sonarQubeVersion' to 'params' section of response
-//   9.8: response fields 'total', 's', 'ps' have been deprecated, please use 'paging' object instead
-//   9.8: The field 'paging' has been added to the response
+//
+//	10.3: Added fields 'cleanCodeAttributeCategory', 'impacts' to response
+//	10.3: Added fields 'oldCleanCodeAttribute', 'newCleanCodeAttribute', 'oldCleanCodeAttributeCategory', 'newCleanCodeAttributeCategory' and 'impactChanges' to 'params' section of response
+//	10.3: Added field 'sonarQubeVersion' to 'params' section of response
+//	9.8: response fields 'total', 's', 'ps' have been deprecated, please use 'paging' object instead
+//	9.8: The field 'paging' has been added to the response
 func (s *Qualityprofiles) Changelog(ctx context.Context, r qualityprofiles.ChangelogRequest, p paging.Params) (*qualityprofiles.ChangelogResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/changelog", s.path)
 	v := new(qualityprofiles.ChangelogResponse)
@@ -149,7 +151,6 @@ func (s *Qualityprofiles) ChangelogAll(ctx context.Context, r qualityprofiles.Ch
 // Copy - Copy a quality profile.
 // Requires to be logged in and the 'Administer Quality Profiles' permission.
 // Since 5.2
-// Changelog:
 func (s *Qualityprofiles) Copy(ctx context.Context, r qualityprofiles.CopyRequest) (*qualityprofiles.CopyResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/copy", s.path)
 	v := new(qualityprofiles.CopyResponse)
@@ -165,7 +166,6 @@ func (s *Qualityprofiles) Copy(ctx context.Context, r qualityprofiles.CopyReques
 // Create - Create a quality profile.
 // Requires to be logged in and the 'Administer Quality Profiles' permission.
 // Since 5.2
-// Changelog:
 func (s *Qualityprofiles) Create(ctx context.Context, r qualityprofiles.CreateRequest) (*qualityprofiles.CreateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 	v := new(qualityprofiles.CreateResponse)
@@ -185,7 +185,8 @@ func (s *Qualityprofiles) Create(ctx context.Context, r qualityprofiles.CreateRe
 //
 // Since 4.4
 // Changelog:
-//   10.3: Inherited rules can be deactivated (if the global admin setting is enabled)
+//
+//	10.3: Inherited rules can be deactivated (if the global admin setting is enabled)
 func (s *Qualityprofiles) DeactivateRule(ctx context.Context, r qualityprofiles.DeactivateRuleRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/deactivate_rule", s.path)
 
@@ -204,9 +205,10 @@ func (s *Qualityprofiles) DeactivateRule(ctx context.Context, r qualityprofiles.
 //
 // Since 4.4
 // Changelog:
-//   10.3: Inherited rules can be deactivated (if the global admin setting is enabled)
-//   10.2: Parameters 'severities', 'active_severities', and 'types' are now deprecated.
-//   10.0: Parameter 'sansTop25' is deprecated
+//
+//	10.3: Inherited rules can be deactivated (if the global admin setting is enabled)
+//	10.2: Parameters 'severities', 'active_severities', and 'types' are now deprecated.
+//	10.0: Parameter 'sansTop25' is deprecated
 func (s *Qualityprofiles) DeactivateRules(ctx context.Context, r qualityprofiles.DeactivateRulesRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/deactivate_rules", s.path)
 
@@ -224,7 +226,6 @@ func (s *Qualityprofiles) DeactivateRules(ctx context.Context, r qualityprofiles
 //    * Edit right on the specified quality profile
 //
 // Since 5.2
-// Changelog:
 func (s *Qualityprofiles) Delete(ctx context.Context, r qualityprofiles.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
@@ -238,7 +239,6 @@ func (s *Qualityprofiles) Delete(ctx context.Context, r qualityprofiles.DeleteRe
 
 // Export - Export a quality profile.
 // Since 5.2
-// Changelog:
 func (s *Qualityprofiles) Export(ctx context.Context, r qualityprofiles.ExportRequest) (*qualityprofiles.ExportResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/export", s.path)
 	v := new(qualityprofiles.ExportResponse)
@@ -253,7 +253,6 @@ func (s *Qualityprofiles) Export(ctx context.Context, r qualityprofiles.ExportRe
 
 // Exporters - Lists available profile export formats.
 // Since 5.2
-// Changelog:
 func (s *Qualityprofiles) Exporters(ctx context.Context, r qualityprofiles.ExportersRequest) (*qualityprofiles.ExportersResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/exporters", s.path)
 	v := new(qualityprofiles.ExportersResponse)
@@ -268,7 +267,6 @@ func (s *Qualityprofiles) Exporters(ctx context.Context, r qualityprofiles.Expor
 
 // Importers - List supported importers.
 // Since 5.2
-// Changelog:
 func (s *Qualityprofiles) Importers(ctx context.Context, r qualityprofiles.ImportersRequest) (*qualityprofiles.ImportersResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/importers", s.path)
 	v := new(qualityprofiles.ImportersResponse)
@@ -284,7 +282,8 @@ func (s *Qualityprofiles) Importers(ctx context.Context, r qualityprofiles.Impor
 // Inheritance - Show a quality profile's ancestors and children.
 // Since 5.2
 // Changelog:
-//   10.3: Field 'inactiveRuleCount' added to the response
+//
+//	10.3: Field 'inactiveRuleCount' added to the response
 func (s *Qualityprofiles) Inheritance(ctx context.Context, r qualityprofiles.InheritanceRequest) (*qualityprofiles.InheritanceResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/inheritance", s.path)
 	v := new(qualityprofiles.InheritanceResponse)
@@ -302,13 +301,14 @@ func (s *Qualityprofiles) Inheritance(ctx context.Context, r qualityprofiles.Inh
 // See api/qualityprofiles/search in order to get the Quality Profile Key.
 // Since 5.2
 // Changelog:
-//   10.0: deprecated 'more' response field has been removed
-//   8.8: deprecated 'id' response field has been removed
-//   8.8: deprecated 'uuid' response field has been removed
-//   7.2: 'more' response field is deprecated
-//   6.5: 'id' response field is deprecated
-//   6.0: 'uuid' response field is deprecated and replaced by 'id'
-//   6.0: 'key' response field has been added to return the project key
+//
+//	10.0: deprecated 'more' response field has been removed
+//	8.8: deprecated 'id' response field has been removed
+//	8.8: deprecated 'uuid' response field has been removed
+//	7.2: 'more' response field is deprecated
+//	6.5: 'id' response field is deprecated
+//	6.0: 'uuid' response field is deprecated and replaced by 'id'
+//	6.0: 'key' response field has been added to return the project key
 func (s *Qualityprofiles) Projects(ctx context.Context, r qualityprofiles.ProjectsRequest, p paging.Params) (*qualityprofiles.ProjectsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/projects", s.path)
 	v := new(qualityprofiles.ProjectsResponse)
@@ -349,7 +349,6 @@ func (s *Qualityprofiles) ProjectsAll(ctx context.Context, r qualityprofiles.Pro
 //    * Administer right on the specified project
 //
 // Since 5.2
-// Changelog:
 func (s *Qualityprofiles) RemoveProject(ctx context.Context, r qualityprofiles.RemoveProjectRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_project", s.path)
 
@@ -367,7 +366,6 @@ func (s *Qualityprofiles) RemoveProject(ctx context.Context, r qualityprofiles.R
 //    * Edit right on the specified quality profile
 //
 // Since 5.2
-// Changelog:
 func (s *Qualityprofiles) Rename(ctx context.Context, r qualityprofiles.RenameRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/rename", s.path)
 
@@ -383,7 +381,8 @@ func (s *Qualityprofiles) Rename(ctx context.Context, r qualityprofiles.RenameRe
 // Requires to be logged in and the 'Administer Quality Profiles' permission.
 // Since 5.2
 // Changelog:
-//   10.3: The 'priority' and 'type' fields of the rule XML object are deprecated.
+//
+//	10.3: The 'priority' and 'type' fields of the rule XML object are deprecated.
 func (s *Qualityprofiles) Restore(ctx context.Context, r qualityprofiles.RestoreRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/restore", s.path)
 
@@ -398,10 +397,11 @@ func (s *Qualityprofiles) Restore(ctx context.Context, r qualityprofiles.Restore
 // Search - Search quality profiles
 // Since 5.2
 // Changelog:
-//   10.0: Remove deprecated parameter 'project_key'. Please use 'project' instead.
-//   7.0: Add available actions 'delete' and 'associateProjects'
-//   6.6: Add available actions 'edit', 'copy' and 'setAsDefault' and global action 'create'
-//   6.5: The parameters 'defaults', 'project' and 'language' can be combined without any constraint
+//
+//	10.0: Remove deprecated parameter 'project_key'. Please use 'project' instead.
+//	7.0: Add available actions 'delete' and 'associateProjects'
+//	6.6: Add available actions 'edit', 'copy' and 'setAsDefault' and global action 'create'
+//	6.5: The parameters 'defaults', 'project' and 'language' can be combined without any constraint
 func (s *Qualityprofiles) Search(ctx context.Context, r qualityprofiles.SearchRequest) (*qualityprofiles.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(qualityprofiles.SearchResponse)
@@ -417,7 +417,6 @@ func (s *Qualityprofiles) Search(ctx context.Context, r qualityprofiles.SearchRe
 // SetDefault - Select the default profile for a given language.
 // Requires to be logged in and the 'Administer Quality Profiles' permission.
 // Since 5.2
-// Changelog:
 func (s *Qualityprofiles) SetDefault(ctx context.Context, r qualityprofiles.SetDefaultRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_default", s.path)
 

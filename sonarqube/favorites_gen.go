@@ -17,11 +17,12 @@ type Favorites service
 // Requires authentication and the following permission: 'Browse' on the component.
 // Since 6.3
 // Changelog:
-//   10.1: The use of module keys in parameter 'component' is removed
-//   8.4: It's no longer possible to set a file as favorite
-//   7.7: It's no longer possible to have more than 100 favorites by qualifier
-//   7.7: It's no longer possible to set a directory as favorite
-//   7.6: The use of module keys in parameter 'component' is deprecated
+//
+//	10.1: The use of module keys in parameter 'component' is removed
+//	8.4: It's no longer possible to set a file as favorite
+//	7.7: It's no longer possible to have more than 100 favorites by qualifier
+//	7.7: It's no longer possible to set a directory as favorite
+//	7.6: The use of module keys in parameter 'component' is deprecated
 func (s *Favorites) Add(ctx context.Context, r favorites.AddRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add", s.path)
 
@@ -37,8 +38,9 @@ func (s *Favorites) Add(ctx context.Context, r favorites.AddRequest) (*http.Resp
 // Requires authentication.
 // Since 6.3
 // Changelog:
-//   10.1: The use of module keys in parameter 'component' is removed
-//   7.6: The use of module keys in parameter 'component' is deprecated
+//
+//	10.1: The use of module keys in parameter 'component' is removed
+//	7.6: The use of module keys in parameter 'component' is deprecated
 func (s *Favorites) Remove(ctx context.Context, r favorites.RemoveRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove", s.path)
 
@@ -53,7 +55,6 @@ func (s *Favorites) Remove(ctx context.Context, r favorites.RemoveRequest) (*htt
 // Search - Search for the authenticated user favorites.
 // Requires authentication.
 // Since 6.3
-// Changelog:
 func (s *Favorites) Search(ctx context.Context, r favorites.SearchRequest, p paging.Params) (*favorites.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(favorites.SearchResponse)

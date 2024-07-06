@@ -14,7 +14,6 @@ type ProjectLinks service
 // Create - Create a new project link.
 // Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 // Since 6.1
-// Changelog:
 func (s *ProjectLinks) Create(ctx context.Context, r project_links.CreateRequest) (*project_links.CreateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 	v := new(project_links.CreateResponse)
@@ -30,7 +29,6 @@ func (s *ProjectLinks) Create(ctx context.Context, r project_links.CreateRequest
 // Delete - Delete existing project link.
 // Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 // Since 6.1
-// Changelog:
 func (s *ProjectLinks) Delete(ctx context.Context, r project_links.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
@@ -50,7 +48,6 @@ func (s *ProjectLinks) Delete(ctx context.Context, r project_links.DeleteRequest
 //  * 'Browse' on the specified project
 //
 // Since 6.1
-// Changelog:
 func (s *ProjectLinks) Search(ctx context.Context, r project_links.SearchRequest) (*project_links.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(project_links.SearchResponse)

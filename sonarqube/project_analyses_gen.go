@@ -19,7 +19,6 @@ type ProjectAnalyses service
 //    * 'Administer' rights on the specified project
 //
 // Since 6.3
-// Changelog:
 func (s *ProjectAnalyses) CreateEvent(ctx context.Context, r project_analyses.CreateEventRequest) (*project_analyses.CreateEventResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create_event", s.path)
 	v := new(project_analyses.CreateEventResponse)
@@ -38,7 +37,6 @@ func (s *ProjectAnalyses) CreateEvent(ctx context.Context, r project_analyses.Cr
 //    * 'Administer' rights on the project of the specified analysis
 //
 // Since 6.3
-// Changelog:
 func (s *ProjectAnalyses) Delete(ctx context.Context, r project_analyses.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
@@ -57,7 +55,6 @@ func (s *ProjectAnalyses) Delete(ctx context.Context, r project_analyses.DeleteR
 //    * 'Administer' rights on the specified project
 //
 // Since 6.3
-// Changelog:
 func (s *ProjectAnalyses) DeleteEvent(ctx context.Context, r project_analyses.DeleteEventRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete_event", s.path)
 
@@ -74,9 +71,10 @@ func (s *ProjectAnalyses) DeleteEvent(ctx context.Context, r project_analyses.De
 // For applications, it also requires 'Browse' permission on its child projects.
 // Since 6.3
 // Changelog:
-//   10.3: Add response field 'qualityProfile' for events related to quality profile changes
-//   9.0: Add response field 'detectedCI'
-//   7.5: Add QualityGate information on Applications
+//
+//	10.3: Add response field 'qualityProfile' for events related to quality profile changes
+//	9.0: Add response field 'detectedCI'
+//	7.5: Add QualityGate information on Applications
 func (s *ProjectAnalyses) Search(ctx context.Context, r project_analyses.SearchRequest, p paging.Params) (*project_analyses.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(project_analyses.SearchResponse)
@@ -117,7 +115,6 @@ func (s *ProjectAnalyses) SearchAll(ctx context.Context, r project_analyses.Sear
 //    * 'Administer' rights on the specified project
 //
 // Since 6.3
-// Changelog:
 func (s *ProjectAnalyses) UpdateEvent(ctx context.Context, r project_analyses.UpdateEventRequest) (*project_analyses.UpdateEventResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/update_event", s.path)
 	v := new(project_analyses.UpdateEventResponse)

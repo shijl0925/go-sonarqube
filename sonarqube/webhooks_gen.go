@@ -16,7 +16,8 @@ type Webhooks service
 // Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 // Since 7.1
 // Changelog:
-//   10.6: The minimum length of parameter 'secret' increased to 16.
+//
+//	10.6: The minimum length of parameter 'secret' increased to 16.
 func (s *Webhooks) Create(ctx context.Context, r webhooks.CreateRequest) (*webhooks.CreateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 	v := new(webhooks.CreateResponse)
@@ -32,7 +33,6 @@ func (s *Webhooks) Create(ctx context.Context, r webhooks.CreateRequest) (*webho
 // Delete - Delete a Webhook.
 // Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 // Since 7.1
-// Changelog:
 func (s *Webhooks) Delete(ctx context.Context, r webhooks.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
@@ -48,7 +48,6 @@ func (s *Webhooks) Delete(ctx context.Context, r webhooks.DeleteRequest) (*http.
 // Require 'Administer' permission on the related project.
 // Note that additional information are returned by api/webhooks/delivery.
 // Since 6.2
-// Changelog:
 func (s *Webhooks) Deliveries(ctx context.Context, r webhooks.DeliveriesRequest, p paging.Params) (*webhooks.DeliveriesResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/deliveries", s.path)
 	v := new(webhooks.DeliveriesResponse)
@@ -86,7 +85,6 @@ func (s *Webhooks) DeliveriesAll(ctx context.Context, r webhooks.DeliveriesReque
 // Require 'Administer System' permission.
 // Note that additional information are returned by api/webhooks/delivery.
 // Since 6.2
-// Changelog:
 func (s *Webhooks) Delivery(ctx context.Context, r webhooks.DeliveryRequest) (*webhooks.DeliveryResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/delivery", s.path)
 	v := new(webhooks.DeliveryResponse)
@@ -103,8 +101,9 @@ func (s *Webhooks) Delivery(ctx context.Context, r webhooks.DeliveryRequest) (*w
 // Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 // Since 7.1
 // Changelog:
-//   10.1: Field 'secret' replaced by flag 'hasSecret' in response
-//   7.8: Field 'secret' added to response
+//
+//	10.1: Field 'secret' replaced by flag 'hasSecret' in response
+//	7.8: Field 'secret' added to response
 func (s *Webhooks) List(ctx context.Context, r webhooks.ListRequest) (*webhooks.ListResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/list", s.path)
 	v := new(webhooks.ListResponse)
@@ -120,7 +119,6 @@ func (s *Webhooks) List(ctx context.Context, r webhooks.ListRequest) (*webhooks.
 // Update - Update a Webhook.
 // Requires 'Administer' permission on the specified project, or global 'Administer' permission.
 // Since 7.1
-// Changelog:
 func (s *Webhooks) Update(ctx context.Context, r webhooks.UpdateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update", s.path)
 
