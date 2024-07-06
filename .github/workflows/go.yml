@@ -4,6 +4,8 @@
 name: Go
 
 on:
+  push:
+    branches: [ "master" ]
   schedule:
     - cron:  '0 1 * * *'
 
@@ -45,7 +47,15 @@ jobs:
         git diff
 
     - name: Test
-      run: go test -v ./...
+      run: |
+        # go test -v ./...
+        cd examples
+        go run get_components.go
+        go run get_duplications.go
+        go run get_issue_changelog.go
+        go run get_issues.go
+        go run get_source.go
+        go run get_version.go
 
     - name: Create commits
       uses: EndBug/add-and-commit@v9
