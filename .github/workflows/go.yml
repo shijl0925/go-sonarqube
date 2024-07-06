@@ -44,6 +44,9 @@ jobs:
         rm -rf sonarqube-gen/
         git diff
 
+    - name: Test
+      run: go test -v ./...
+
     - name: Create commits
       uses: EndBug/add-and-commit@v9
       with:
