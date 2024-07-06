@@ -17,7 +17,7 @@ go get github.com/shijl0925/go-sonarqube
 
 ## Usage
 
-Use `shijl0925.NewClient` to create a new client. It needs a SonarQube baseUrl and username / password or token, and optionally accepts
+Use `sonarqube.NewClient` to create a new client. It needs a SonarQube baseUrl and username / password or token, and optionally accepts
 an existing `*http.Client`.
 
 After creating the client, create a new request from one of the endpoint-specific packages, i.e.
