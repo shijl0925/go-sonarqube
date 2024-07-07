@@ -16,7 +16,8 @@ type Users service
 // Since 9.7
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use DELETE api/v2/users-management/users/{id}?anonymize=true instead
+//
+//	10.4: Deprecated. Use DELETE api/v2/users-management/users/{id}?anonymize=true instead
 func (s *Users) Anonymize(ctx context.Context, r users.AnonymizeRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/anonymize", s.path)
 
@@ -31,7 +32,8 @@ func (s *Users) Anonymize(ctx context.Context, r users.AnonymizeRequest) (*http.
 // ChangePassword - Update a user's password. Authenticated users can change their own password, provided that the account is not linked to an external authentication system. Administer System permission is required to change another user's password.
 // Since 5.2
 // Changelog:
-//   8.6: It's no more possible for the password to be the same as the previous one
+//
+//	8.6: It's no more possible for the password to be the same as the previous one
 func (s *Users) ChangePassword(ctx context.Context, r users.ChangePasswordRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/change_password", s.path)
 
@@ -49,9 +51,10 @@ func (s *Users) ChangePassword(ctx context.Context, r users.ChangePasswordReques
 // Since 3.7
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use POST api/v2/users-management/users instead
-//   6.3: The password is only mandatory when creating local users, and should not be set on non local users
-//   6.3: The 'infos' message is no more returned when a user is reactivated
+//
+//	10.4: Deprecated. Use POST api/v2/users-management/users instead
+//	6.3: The password is only mandatory when creating local users, and should not be set on non local users
+//	6.3: The 'infos' message is no more returned when a user is reactivated
 func (s *Users) Create(ctx context.Context, r users.CreateRequest) (*users.CreateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 	v := new(users.CreateResponse)
@@ -68,7 +71,8 @@ func (s *Users) Create(ctx context.Context, r users.CreateRequest) (*users.Creat
 // Since 3.7
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use DELETE api/v2/users-management/users/{id} instead
+//
+//	10.4: Deprecated. Use DELETE api/v2/users-management/users/{id} instead
 func (s *Users) Deactivate(ctx context.Context, r users.DeactivateRequest) (*users.DeactivateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/deactivate", s.path)
 	v := new(users.DeactivateResponse)
@@ -86,9 +90,10 @@ func (s *Users) Deactivate(ctx context.Context, r users.DeactivateRequest) (*use
 // Since 5.2
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use GET api/v2/authorizations/groups-memberships?userId={} instead
-//   6.4: Paging response fields moved to a Paging object
-//   6.4: 'default' response field has been added
+//
+//	10.4: Deprecated. Use GET api/v2/authorizations/groups-memberships?userId={} instead
+//	6.4: Paging response fields moved to a Paging object
+//	6.4: 'default' response field has been added
 func (s *Users) Groups(ctx context.Context, r users.GroupsRequest, p paging.Params) (*users.GroupsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/groups", s.path)
 	v := new(users.GroupsResponse)
@@ -135,20 +140,21 @@ func (s *Users) GroupsAll(ctx context.Context, r users.GroupsRequest) (*users.Gr
 // Since 3.6
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use GET api/v2/users-management/users instead
-//   10.3: New optional parameters externalIdentity to find a user by its IdP login
-//   10.1: New optional parameters slLastConnectedAfter and slLastConnectedBefore to filter users by SonarLint last connection date. Only available with Administer System permission.
-//   10.1: New optional parameters lastConnectedAfter and lastConnectedBefore to filter users by SonarQube last connection date. Only available with Administer System permission.
-//   10.1: New field 'sonarLintLastConnectionDate' is added to response
-//   10.0: 'q' parameter values is now always performing a case insensitive match
-//   10.0: New parameter 'managed' to optionally search by managed status
-//   10.0: Response includes 'managed' field.
-//   9.7: New parameter 'deactivated' to optionally search for deactivated users
-//   7.7: New field 'lastConnectionDate' is added to response
-//   7.4: External identity is only returned to system administrators
-//   6.4: Paging response fields moved to a Paging object
-//   6.4: Avatar has been added to the response
-//   6.4: Email is only returned when user has Administer System permission
+//
+//	10.4: Deprecated. Use GET api/v2/users-management/users instead
+//	10.3: New optional parameters externalIdentity to find a user by its IdP login
+//	10.1: New optional parameters slLastConnectedAfter and slLastConnectedBefore to filter users by SonarLint last connection date. Only available with Administer System permission.
+//	10.1: New optional parameters lastConnectedAfter and lastConnectedBefore to filter users by SonarQube last connection date. Only available with Administer System permission.
+//	10.1: New field 'sonarLintLastConnectionDate' is added to response
+//	10.0: 'q' parameter values is now always performing a case insensitive match
+//	10.0: New parameter 'managed' to optionally search by managed status
+//	10.0: Response includes 'managed' field.
+//	9.7: New parameter 'deactivated' to optionally search for deactivated users
+//	7.7: New field 'lastConnectionDate' is added to response
+//	7.4: External identity is only returned to system administrators
+//	6.4: Paging response fields moved to a Paging object
+//	6.4: Avatar has been added to the response
+//	6.4: Email is only returned when user has Administer System permission
 func (s *Users) Search(ctx context.Context, r users.SearchRequest, p paging.Params) (*users.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(users.SearchResponse)
@@ -187,8 +193,9 @@ func (s *Users) SearchAll(ctx context.Context, r users.SearchRequest) (*users.Se
 // Since 3.7
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use PATCH api/v2/users-management/users/{id} instead
-//   5.2: User's password can only be changed using the 'change_password' action.
+//
+//	10.4: Deprecated. Use PATCH api/v2/users-management/users/{id} instead
+//	5.2: User's password can only be changed using the 'change_password' action.
 func (s *Users) Update(ctx context.Context, r users.UpdateRequest) (*users.UpdateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/update", s.path)
 	v := new(users.UpdateResponse)
@@ -207,8 +214,9 @@ func (s *Users) Update(ctx context.Context, r users.UpdateRequest) (*users.Updat
 // Since 8.7
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use PATCH api/v2/users-management/users/{id} instead
-//   9.8: Use of 'sonarqube' for the value of 'newExternalProvider' is deprecated.
+//
+//	10.4: Deprecated. Use PATCH api/v2/users-management/users/{id} instead
+//	9.8: Use of 'sonarqube' for the value of 'newExternalProvider' is deprecated.
 func (s *Users) UpdateIdentityProvider(ctx context.Context, r users.UpdateIdentityProviderRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update_identity_provider", s.path)
 
@@ -225,7 +233,8 @@ func (s *Users) UpdateIdentityProvider(ctx context.Context, r users.UpdateIdenti
 // Since 7.6
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use PATCH api/v2/users-management/users/{id} instead
+//
+//	10.4: Deprecated. Use PATCH api/v2/users-management/users/{id} instead
 func (s *Users) UpdateLogin(ctx context.Context, r users.UpdateLoginRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update_login", s.path)
 

@@ -17,7 +17,6 @@ type Notifications service
 //   * System administration if a login is provided. If a project is provided, requires the 'Browse' permission on the specified project.
 //
 // Since 6.3
-// Changelog:
 func (s *Notifications) Add(ctx context.Context, r notifications.AddRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add", s.path)
 
@@ -35,7 +34,6 @@ func (s *Notifications) Add(ctx context.Context, r notifications.AddRequest) (*h
 //    * System administration if a login is provided
 //
 // Since 6.3
-// Changelog:
 func (s *Notifications) List(ctx context.Context, r notifications.ListRequest) (*notifications.ListResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/list", s.path)
 	v := new(notifications.ListResponse)
@@ -54,7 +52,6 @@ func (s *Notifications) List(ctx context.Context, r notifications.ListRequest) (
 //    * System administration if a login is provided
 //
 // Since 6.3
-// Changelog:
 func (s *Notifications) Remove(ctx context.Context, r notifications.RemoveRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove", s.path)
 

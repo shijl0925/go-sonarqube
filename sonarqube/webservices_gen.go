@@ -13,7 +13,6 @@ type Webservices service
 
 // List - List web services
 // Since 4.2
-// Changelog:
 func (s *Webservices) List(ctx context.Context, r webservices.ListRequest) (*webservices.ListResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/list", s.path)
 	v := new(webservices.ListResponse)
@@ -28,7 +27,6 @@ func (s *Webservices) List(ctx context.Context, r webservices.ListRequest) (*web
 
 // ResponseExample - Display web service response example
 // Since 4.4
-// Changelog:
 func (s *Webservices) ResponseExample(ctx context.Context, r webservices.ResponseExampleRequest) (*webservices.ResponseExampleResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/response_example", s.path)
 	v := new(webservices.ResponseExampleResponse)

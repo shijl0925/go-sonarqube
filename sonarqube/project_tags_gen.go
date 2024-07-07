@@ -15,7 +15,8 @@ type ProjectTags service
 // Search - Search tags
 // Since 6.4
 // Changelog:
-//   9.2: Parameter 'page' added
+//
+//	9.2: Parameter 'page' added
 func (s *ProjectTags) Search(ctx context.Context, r project_tags.SearchRequest, p paging.Params) (*project_tags.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(project_tags.SearchResponse)
@@ -52,7 +53,6 @@ func (s *ProjectTags) SearchAll(ctx context.Context, r project_tags.SearchReques
 // Set - Set tags on a project.
 // Requires the following permission: 'Administer' rights on the specified project
 // Since 6.4
-// Changelog:
 func (s *ProjectTags) Set(ctx context.Context, r project_tags.SetRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set", s.path)
 

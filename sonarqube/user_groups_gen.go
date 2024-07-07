@@ -18,9 +18,10 @@ type UserGroups service
 // Since 5.2
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use POST /api/v2/authorizations/group-memberships instead
-//   10.0: Parameter 'id' is removed. Use 'name' instead.
-//   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
+//
+//	10.4: Deprecated. Use POST /api/v2/authorizations/group-memberships instead
+//	10.0: Parameter 'id' is removed. Use 'name' instead.
+//	8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *UserGroups) AddUser(ctx context.Context, r user_groups.AddUserRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_user", s.path)
 
@@ -37,8 +38,9 @@ func (s *UserGroups) AddUser(ctx context.Context, r user_groups.AddUserRequest) 
 // Since 5.2
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use POST /api/v2/authorizations/groups instead
-//   8.4: Field 'id' format in the response changes from integer to string.
+//
+//	10.4: Deprecated. Use POST /api/v2/authorizations/groups instead
+//	8.4: Field 'id' format in the response changes from integer to string.
 func (s *UserGroups) Create(ctx context.Context, r user_groups.CreateRequest) (*user_groups.CreateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 	v := new(user_groups.CreateResponse)
@@ -57,9 +59,10 @@ func (s *UserGroups) Create(ctx context.Context, r user_groups.CreateRequest) (*
 // Since 5.2
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use DELETE /api/v2/authorizations/groups instead
-//   10.0: Parameter 'id' is removed. Use 'name' instead.
-//   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
+//
+//	10.4: Deprecated. Use DELETE /api/v2/authorizations/groups instead
+//	10.0: Parameter 'id' is removed. Use 'name' instead.
+//	8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *UserGroups) Delete(ctx context.Context, r user_groups.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
@@ -77,9 +80,10 @@ func (s *UserGroups) Delete(ctx context.Context, r user_groups.DeleteRequest) (*
 // Since 5.2
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use DELETE /api/v2/authorizations/group-memberships instead
-//   10.0: Parameter 'id' is removed. Use 'name' instead.
-//   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
+//
+//	10.4: Deprecated. Use DELETE /api/v2/authorizations/group-memberships instead
+//	10.0: Parameter 'id' is removed. Use 'name' instead.
+//	8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *UserGroups) RemoveUser(ctx context.Context, r user_groups.RemoveUserRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_user", s.path)
 
@@ -96,13 +100,14 @@ func (s *UserGroups) RemoveUser(ctx context.Context, r user_groups.RemoveUserReq
 // Since 5.2
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use GET /api/v2/authorizations/groups instead
-//   10.0: Field 'id' in the response has been removed
-//   10.0: New parameter 'managed' to optionally search by managed status
-//   10.0: Response includes 'managed' field.
-//   8.4: Field 'id' in the response is deprecated. Format changes from integer to string.
-//   6.4: Paging response fields moved to a Paging object
-//   6.4: 'default' response field has been added
+//
+//	10.4: Deprecated. Use GET /api/v2/authorizations/groups instead
+//	10.0: Field 'id' in the response has been removed
+//	10.0: New parameter 'managed' to optionally search by managed status
+//	10.0: Response includes 'managed' field.
+//	8.4: Field 'id' in the response is deprecated. Format changes from integer to string.
+//	6.4: Paging response fields moved to a Paging object
+//	6.4: 'default' response field has been added
 func (s *UserGroups) Search(ctx context.Context, r user_groups.SearchRequest, p paging.Params) (*user_groups.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(user_groups.SearchResponse)
@@ -141,11 +146,12 @@ func (s *UserGroups) SearchAll(ctx context.Context, r user_groups.SearchRequest)
 // Since 5.2
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use PATCH /api/v2/authorizations/groups instead
-//   10.0: Parameter 'id' is removed in favor of 'currentName'
-//   8.5: Parameter 'id' deprecated in favor of 'currentName'
-//   8.4: Parameter 'id' format changes from integer to string
-//   6.4: The default group is no longer editable
+//
+//	10.4: Deprecated. Use PATCH /api/v2/authorizations/groups instead
+//	10.0: Parameter 'id' is removed in favor of 'currentName'
+//	8.5: Parameter 'id' deprecated in favor of 'currentName'
+//	8.4: Parameter 'id' format changes from integer to string
+//	6.4: The default group is no longer editable
 func (s *UserGroups) Update(ctx context.Context, r user_groups.UpdateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update", s.path)
 
@@ -162,12 +168,13 @@ func (s *UserGroups) Update(ctx context.Context, r user_groups.UpdateRequest) (*
 // Since 5.2
 // Deprecated since 10.4
 // Changelog:
-//   10.4: Deprecated. Use GET /api/v2/authorizations/group-memberships instead
-//   10.0: Field 'managed' added to the payload.
-//   10.0: Parameter 'id' is removed. Use 'name' instead.
-//   9.8: response fields 'total', 's', 'ps' have been deprecated, please use 'paging' object instead.
-//   9.8: The field 'paging' has been added to the response.
-//   8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
+//
+//	10.4: Deprecated. Use GET /api/v2/authorizations/group-memberships instead
+//	10.0: Field 'managed' added to the payload.
+//	10.0: Parameter 'id' is removed. Use 'name' instead.
+//	9.8: response fields 'total', 's', 'ps' have been deprecated, please use 'paging' object instead.
+//	9.8: The field 'paging' has been added to the response.
+//	8.4: Parameter 'id' is deprecated. Format changes from integer to string. Use 'name' instead.
 func (s *UserGroups) Users(ctx context.Context, r user_groups.UsersRequest, p paging.Params) (*user_groups.UsersResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/users", s.path)
 	v := new(user_groups.UsersResponse)

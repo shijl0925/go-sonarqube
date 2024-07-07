@@ -16,10 +16,11 @@ type AuditLogs service
 //
 // Since 9.1
 // Changelog:
-//   10.2: Fields 'permissionUuid', 'componentUuid', 'groupUuid', 'permissionTemplateUuid',
+//
+//	10.2: Fields 'permissionUuid', 'componentUuid', 'groupUuid', 'permissionTemplateUuid',
 // 'devOpsPlatformSettingUuid', 'qualityGateUuid', 'patUuid', 'userUuid', 'pluginUuid', 'webhookUuid', 'tokenUuid' in response are
 // now deprecated.
-//   9.5: Field 'userTriggered' added to the response payload.
+//	9.5: Field 'userTriggered' added to the response payload.
 func (s *AuditLogs) Download(ctx context.Context, r audit_logs.DownloadRequest) (*audit_logs.DownloadResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/download", s.path)
 	v := new(audit_logs.DownloadResponse)

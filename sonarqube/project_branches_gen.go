@@ -14,7 +14,6 @@ type ProjectBranches service
 // Delete - Delete a non-main branch of a project or application.
 // Requires 'Administer' rights on the specified project or application.
 // Since 6.6
-// Changelog:
 func (s *ProjectBranches) Delete(ctx context.Context, r project_branches.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
@@ -30,8 +29,9 @@ func (s *ProjectBranches) Delete(ctx context.Context, r project_branches.DeleteR
 // Requires 'Browse' or 'Execute analysis' rights on the specified project or application.
 // Since 6.6
 // Changelog:
-//   10.6: Field 'branchId' added to the response
-//   7.2: Application can be used on this web service
+//
+//	10.6: Field 'branchId' added to the response
+//	7.2: Application can be used on this web service
 func (s *ProjectBranches) List(ctx context.Context, r project_branches.ListRequest) (*project_branches.ListResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/list", s.path)
 	v := new(project_branches.ListResponse)
@@ -47,7 +47,6 @@ func (s *ProjectBranches) List(ctx context.Context, r project_branches.ListReque
 // Rename - Rename the main branch of a project or application.
 // Requires 'Administer' permission on the specified project or application.
 // Since 6.6
-// Changelog:
 func (s *ProjectBranches) Rename(ctx context.Context, r project_branches.RenameRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/rename", s.path)
 
@@ -62,7 +61,6 @@ func (s *ProjectBranches) Rename(ctx context.Context, r project_branches.RenameR
 // SetAutomaticDeletionProtection - Protect a specific branch from automatic deletion. Protection can't be disabled for the main branch.
 // Requires 'Administer' permission on the specified project or application.
 // Since 8.1
-// Changelog:
 func (s *ProjectBranches) SetAutomaticDeletionProtection(ctx context.Context, r project_branches.SetAutomaticDeletionProtectionRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_automatic_deletion_protection", s.path)
 
@@ -78,7 +76,6 @@ func (s *ProjectBranches) SetAutomaticDeletionProtection(ctx context.Context, r 
 // . Caution, only applicable on projects.
 // Requires 'Administer' rights on the specified project or application.
 // Since 10.2
-// Changelog:
 func (s *ProjectBranches) SetMain(ctx context.Context, r project_branches.SetMainRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_main", s.path)
 

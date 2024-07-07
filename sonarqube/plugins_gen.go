@@ -20,7 +20,6 @@ type Plugins service
 //  * DEPS_REQUIRE_SYSTEM_UPGRADE: at least one plugin on which the plugin is dependent requires SonarQube to be upgraded.
 // Require 'Administer System' permission.
 // Since 5.2
-// Changelog:
 func (s *Plugins) Available(ctx context.Context, r plugins.AvailableRequest) (*plugins.AvailableResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/available", s.path)
 	v := new(plugins.AvailableResponse)
@@ -36,7 +35,6 @@ func (s *Plugins) Available(ctx context.Context, r plugins.AvailableRequest) (*p
 // CancelAll - Cancels any operation pending on any plugin (install, update or uninstall)
 // Requires user to be authenticated with Administer System permissions
 // Since 5.2
-// Changelog:
 func (s *Plugins) CancelAll(ctx context.Context, r plugins.CancelAllRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/cancel_all", s.path)
 
@@ -53,7 +51,6 @@ func (s *Plugins) CancelAll(ctx context.Context, r plugins.CancelAllRequest) (*h
 // Fails if used on commercial editions or plugin risk consent has not been accepted.
 // Requires user to be authenticated with Administer System permissions
 // Since 5.2
-// Changelog:
 func (s *Plugins) Install(ctx context.Context, r plugins.InstallRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/install", s.path)
 
@@ -69,15 +66,16 @@ func (s *Plugins) Install(ctx context.Context, r plugins.InstallRequest) (*http.
 // Requires authentication.
 // Since 5.2
 // Changelog:
-//   10.4: The response field 'requiredForLanguages' is added for plugins that support it
-//   9.8: The 'documentationPath' field is deprecated
-//   9.7: Authentication check added
-//   8.0: The 'documentationPath' field is added
-//   7.0: The fields 'compressedHash' and 'compressedFilename' are added
-//   6.6: The 'filename' field is added
-//   6.6: The 'fileHash' field is added
-//   6.6: The 'sonarLintSupported' field is added
-//   6.6: The 'updatedAt' field is added
+//
+//	10.4: The response field 'requiredForLanguages' is added for plugins that support it
+//	9.8: The 'documentationPath' field is deprecated
+//	9.7: Authentication check added
+//	8.0: The 'documentationPath' field is added
+//	7.0: The fields 'compressedHash' and 'compressedFilename' are added
+//	6.6: The 'filename' field is added
+//	6.6: The 'fileHash' field is added
+//	6.6: The 'sonarLintSupported' field is added
+//	6.6: The 'updatedAt' field is added
 func (s *Plugins) Installed(ctx context.Context, r plugins.InstalledRequest) (*plugins.InstalledResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/installed", s.path)
 	v := new(plugins.InstalledResponse)
@@ -94,8 +92,9 @@ func (s *Plugins) Installed(ctx context.Context, r plugins.InstalledRequest) (*p
 // Require 'Administer System' permission.
 // Since 5.2
 // Changelog:
-//   9.8: The 'documentationPath' field is deprecated
-//   8.0: The 'documentationPath' field is added
+//
+//	9.8: The 'documentationPath' field is deprecated
+//	8.0: The 'documentationPath' field is added
 func (s *Plugins) Pending(ctx context.Context, r plugins.PendingRequest) (*plugins.PendingResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/pending", s.path)
 	v := new(plugins.PendingResponse)
@@ -111,7 +110,6 @@ func (s *Plugins) Pending(ctx context.Context, r plugins.PendingRequest) (*plugi
 // Uninstall - Uninstalls the plugin specified by its key.
 // Requires user to be authenticated with Administer System permissions.
 // Since 5.2
-// Changelog:
 func (s *Plugins) Uninstall(ctx context.Context, r plugins.UninstallRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/uninstall", s.path)
 
@@ -127,7 +125,6 @@ func (s *Plugins) Uninstall(ctx context.Context, r plugins.UninstallRequest) (*h
 // Plugin information is retrieved from Update Center.
 // Requires user to be authenticated with Administer System permissions
 // Since 5.2
-// Changelog:
 func (s *Plugins) Update(ctx context.Context, r plugins.UpdateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update", s.path)
 
@@ -145,7 +142,6 @@ func (s *Plugins) Update(ctx context.Context, r plugins.UpdateRequest) (*http.Re
 // Update status values are: [COMPATIBLE, INCOMPATIBLE, REQUIRES_UPGRADE, DEPS_REQUIRE_UPGRADE].
 // Require 'Administer System' permission.
 // Since 5.2
-// Changelog:
 func (s *Plugins) Updates(ctx context.Context, r plugins.UpdatesRequest) (*plugins.UpdatesResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/updates", s.path)
 	v := new(plugins.UpdatesResponse)

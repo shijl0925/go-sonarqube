@@ -14,7 +14,6 @@ type Views service
 // AddApplication - Add an existing application to a portfolio.
 // Authentication is required for this API endpoint.
 // Since 9.3
-// Changelog:
 func (s *Views) AddApplication(ctx context.Context, r views.AddApplicationRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_application", s.path)
 
@@ -29,7 +28,6 @@ func (s *Views) AddApplication(ctx context.Context, r views.AddApplicationReques
 // AddApplicationBranch - Add a branch of an application selected in a portfolio.
 // Requires 'Administrator' permission on the portfolio and 'Browse' permission for the application.
 // Since 9.3
-// Changelog:
 func (s *Views) AddApplicationBranch(ctx context.Context, r views.AddApplicationBranchRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_application_branch", s.path)
 
@@ -44,7 +42,6 @@ func (s *Views) AddApplicationBranch(ctx context.Context, r views.AddApplication
 // AddPortfolio - Add an existing portfolio to the structure of another portfolio.
 // Authentication is required for this API endpoint.
 // Since 9.3
-// Changelog:
 func (s *Views) AddPortfolio(ctx context.Context, r views.AddPortfolioRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_portfolio", s.path)
 
@@ -60,8 +57,9 @@ func (s *Views) AddPortfolio(ctx context.Context, r views.AddPortfolioRequest) (
 // Requires 'Administrator' permission on the portfolio and 'Browse' permission for adding project.
 // Since 1.0
 // Changelog:
-//   8.3: Project to which user has `Browse` permission can be used in 'project'
-//   7.3: This web service should not be used to add project to an application, api/applications/add_project should be used instead
+//
+//	8.3: Project to which user has `Browse` permission can be used in 'project'
+//	7.3: This web service should not be used to add project to an application, api/applications/add_project should be used instead
 func (s *Views) AddProject(ctx context.Context, r views.AddProjectRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_project", s.path)
 
@@ -76,7 +74,6 @@ func (s *Views) AddProject(ctx context.Context, r views.AddProjectRequest) (*htt
 // AddProjectBranch - Add a branch of a project selected in a portfolio.
 // Requires 'Administrator' permission on the portfolio and 'Browse' permission for the project.
 // Since 9.2
-// Changelog:
 func (s *Views) AddProjectBranch(ctx context.Context, r views.AddProjectBranchRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/add_project_branch", s.path)
 
@@ -91,7 +88,6 @@ func (s *Views) AddProjectBranch(ctx context.Context, r views.AddProjectBranchRe
 // Applications - List applications which the user has access to that can be added to a portfolio.
 // Authentication is required for this API endpoint
 // Since 9.3
-// Changelog:
 func (s *Views) Applications(ctx context.Context, r views.ApplicationsRequest) (*views.ApplicationsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/applications", s.path)
 	v := new(views.ApplicationsResponse)
@@ -108,12 +104,13 @@ func (s *Views) Applications(ctx context.Context, r views.ApplicationsRequest) (
 // Requires 'Administer System' permission or 'Create Portfolios' permission,
 // Since 1.0
 // Changelog:
-//   9.3: This web service can't create applications. Use 'applications/create' instead
-//   9.3: Parameter 'parent' added to create sub-portfolios
-//   7.4: Add support of the new permission 'Create Portfolios' permission
-//   7.3: This web service should not be used to create an application, api/applications/create should be used instead
-//   7.1: The 'visibility' parameter is public
-//   2.0: Qualifier field is returned in the response
+//
+//	9.3: This web service can't create applications. Use 'applications/create' instead
+//	9.3: Parameter 'parent' added to create sub-portfolios
+//	7.4: Add support of the new permission 'Create Portfolios' permission
+//	7.3: This web service should not be used to create an application, api/applications/create should be used instead
+//	7.1: The 'visibility' parameter is public
+//	2.0: Qualifier field is returned in the response
 func (s *Views) Create(ctx context.Context, r views.CreateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/create", s.path)
 
@@ -129,9 +126,10 @@ func (s *Views) Create(ctx context.Context, r views.CreateRequest) (*http.Respon
 // Requires 'Administrator' permission on the portfolio.
 // Since 1.0
 // Changelog:
-//   9.3: This web service should not be used to delete references to portfolios and applications. Use 'views/remove_portfolio' and 'views/remove_application' instead
-//   9.3: This web service can't delete applications. Use 'applications/delete' instead
-//   7.3: This web service should not be used to delete an application, api/applications/delete should be used instead
+//
+//	9.3: This web service should not be used to delete references to portfolios and applications. Use 'views/remove_portfolio' and 'views/remove_application' instead
+//	9.3: This web service can't delete applications. Use 'applications/delete' instead
+//	7.3: This web service should not be used to delete an application, api/applications/delete should be used instead
 func (s *Views) Delete(ctx context.Context, r views.DeleteRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/delete", s.path)
 
@@ -147,10 +145,11 @@ func (s *Views) Delete(ctx context.Context, r views.DeleteRequest) (*http.Respon
 // Requires authentication. Only portfolios with the admin permission are returned.
 // Since 1.0
 // Changelog:
-//   10.0: The applications are removed from the response
-//   9.3: Returning applications is now deprecated
-//   2.0: Qualifier field is returned in the response
-//   2.0: Visibility field is returned in the response
+//
+//	10.0: The applications are removed from the response
+//	9.3: Returning applications is now deprecated
+//	2.0: Qualifier field is returned in the response
+//	2.0: Visibility field is returned in the response
 func (s *Views) List(ctx context.Context, r views.ListRequest) (*views.ListResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/list", s.path)
 	v := new(views.ListResponse)
@@ -166,7 +165,6 @@ func (s *Views) List(ctx context.Context, r views.ListRequest) (*views.ListRespo
 // Move - Move a portfolio.
 // Authentication is required for this API endpoint.
 // Since 1.0
-// Changelog:
 func (s *Views) Move(ctx context.Context, r views.MoveRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/move", s.path)
 
@@ -181,7 +179,6 @@ func (s *Views) Move(ctx context.Context, r views.MoveRequest) (*http.Response, 
 // MoveOptions - List possible portfolio destinations.
 // Authentication is required for this API endpoint.
 // Since 1.0
-// Changelog:
 func (s *Views) MoveOptions(ctx context.Context, r views.MoveOptionsRequest) (*views.MoveOptionsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/move_options", s.path)
 	v := new(views.MoveOptionsResponse)
@@ -197,7 +194,6 @@ func (s *Views) MoveOptions(ctx context.Context, r views.MoveOptionsRequest) (*v
 // Portfolios - List portfolios that can be referenced.
 // Authentication is required for this API endpoint.
 // Since 9.3
-// Changelog:
 func (s *Views) Portfolios(ctx context.Context, r views.PortfoliosRequest) (*views.PortfoliosResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/portfolios", s.path)
 	v := new(views.PortfoliosResponse)
@@ -213,7 +209,6 @@ func (s *Views) Portfolios(ctx context.Context, r views.PortfoliosRequest) (*vie
 // RemoveApplication - Remove an application from a portfolio.
 // Requires 'Administrator' permission on the portfolio.
 // Since 9.3
-// Changelog:
 func (s *Views) RemoveApplication(ctx context.Context, r views.RemoveApplicationRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_application", s.path)
 
@@ -228,7 +223,6 @@ func (s *Views) RemoveApplication(ctx context.Context, r views.RemoveApplication
 // RemoveApplicationBranch - Remove a branch of an application selected in a portfolio.
 // Requires 'Administrator' permission on the portfolio and 'Browse' permission for the application.
 // Since 9.3
-// Changelog:
 func (s *Views) RemoveApplicationBranch(ctx context.Context, r views.RemoveApplicationBranchRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_application_branch", s.path)
 
@@ -243,7 +237,6 @@ func (s *Views) RemoveApplicationBranch(ctx context.Context, r views.RemoveAppli
 // RemovePortfolio - Remove a reference to a portfolio.
 // Requires 'Administrator' permission on the portfolio.
 // Since 9.3
-// Changelog:
 func (s *Views) RemovePortfolio(ctx context.Context, r views.RemovePortfolioRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_portfolio", s.path)
 
@@ -259,9 +252,10 @@ func (s *Views) RemovePortfolio(ctx context.Context, r views.RemovePortfolioRequ
 // Requires 'Administrator' permission on the portfolio.
 // Since 1.0
 // Changelog:
-//   9.3: The `Browse` permission on a project is no longer required to remove it from a portfolio definition
-//   8.3: Project to which user has `Browse` permission can be used in 'project'
-//   7.3: This web service should not be used on application, api/applications/remove_project should be used instead
+//
+//	9.3: The `Browse` permission on a project is no longer required to remove it from a portfolio definition
+//	8.3: Project to which user has `Browse` permission can be used in 'project'
+//	7.3: This web service should not be used on application, api/applications/remove_project should be used instead
 func (s *Views) RemoveProject(ctx context.Context, r views.RemoveProjectRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_project", s.path)
 
@@ -276,7 +270,6 @@ func (s *Views) RemoveProject(ctx context.Context, r views.RemoveProjectRequest)
 // RemoveProjectBranch - Remove a branch of a project selected in a portfolio.
 // Requires 'Administrator' permission on the portfolio and 'Browse' permission for the project.
 // Since 9.2
-// Changelog:
 func (s *Views) RemoveProjectBranch(ctx context.Context, r views.RemoveProjectBranchRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/remove_project_branch", s.path)
 
@@ -292,7 +285,6 @@ func (s *Views) RemoveProjectBranch(ctx context.Context, r views.RemoveProjectBr
 // In order to add project, please use api/view/add_project.
 // Requires 'Administrator' permission on the portfolio.
 // Since 7.4
-// Changelog:
 func (s *Views) SetManualMode(ctx context.Context, r views.SetManualModeRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_manual_mode", s.path)
 
@@ -308,7 +300,6 @@ func (s *Views) SetManualMode(ctx context.Context, r views.SetManualModeRequest)
 // After setting this mode portfolio will not have any projects assigned.
 // Requires 'Administrator' permission on the portfolio.
 // Since 9.1
-// Changelog:
 func (s *Views) SetNoneMode(ctx context.Context, r views.SetNoneModeRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_none_mode", s.path)
 
@@ -324,7 +315,8 @@ func (s *Views) SetNoneMode(ctx context.Context, r views.SetNoneModeRequest) (*h
 // Requires 'Administrator' permission on the portfolio.
 // Since 7.4
 // Changelog:
-//   9.2: Param 'branch' added
+//
+//	9.2: Param 'branch' added
 func (s *Views) SetRegexpMode(ctx context.Context, r views.SetRegexpModeRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_regexp_mode", s.path)
 
@@ -340,7 +332,8 @@ func (s *Views) SetRegexpMode(ctx context.Context, r views.SetRegexpModeRequest)
 // Requires 'Administrator' permission on the portfolio.
 // Since 7.4
 // Changelog:
-//   9.2: Param 'branch' added
+//
+//	9.2: Param 'branch' added
 func (s *Views) SetRemainingProjectsMode(ctx context.Context, r views.SetRemainingProjectsModeRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_remaining_projects_mode", s.path)
 
@@ -356,7 +349,8 @@ func (s *Views) SetRemainingProjectsMode(ctx context.Context, r views.SetRemaini
 // Requires 'Administrator' permission on the portfolio.
 // Since 7.4
 // Changelog:
-//   9.2: Param 'branch' added
+//
+//	9.2: Param 'branch' added
 func (s *Views) SetTagsMode(ctx context.Context, r views.SetTagsModeRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_tags_mode", s.path)
 
@@ -372,12 +366,13 @@ func (s *Views) SetTagsMode(ctx context.Context, r views.SetTagsModeRequest) (*h
 // Authentication is required for this API endpoint.
 // Since 1.0
 // Changelog:
-//   10.1: The deprecated response field 'projects' has been removed. Use 'selectedProjects' instead
-//   10.0: This web service no longer shows applications. Use 'api/applications/show' instead
-//   9.3: Use of the web service for application is deprecated. api/applications/show should be used
-//   9.2: The response field 'projects' for each portfolio is deprecated in favor of the new field 'selectedProjects'
-//   7.3: Deleted field of projects is deprecated in the response, replaced by enabled
-//   2.0: Qualifier field is returned in the response
+//
+//	10.1: The deprecated response field 'projects' has been removed. Use 'selectedProjects' instead
+//	10.0: This web service no longer shows applications. Use 'api/applications/show' instead
+//	9.3: Use of the web service for application is deprecated. api/applications/show should be used
+//	9.2: The response field 'projects' for each portfolio is deprecated in favor of the new field 'selectedProjects'
+//	7.3: Deleted field of projects is deprecated in the response, replaced by enabled
+//	2.0: Qualifier field is returned in the response
 func (s *Views) Show(ctx context.Context, r views.ShowRequest) (*views.ShowResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/show", s.path)
 	v := new(views.ShowResponse)
@@ -394,8 +389,9 @@ func (s *Views) Show(ctx context.Context, r views.ShowRequest) (*views.ShowRespo
 // Requires 'Administrator' permission on the portfolio.
 // Since 1.0
 // Changelog:
-//   9.3: This web service can't update applications. Use 'applications/update' instead
-//   7.3: This web service should not be used on application, api/applications/update should be used instead
+//
+//	9.3: This web service can't update applications. Use 'applications/update' instead
+//	7.3: This web service should not be used on application, api/applications/update should be used instead
 func (s *Views) Update(ctx context.Context, r views.UpdateRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/update", s.path)
 

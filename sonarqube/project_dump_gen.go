@@ -14,7 +14,8 @@ type ProjectDump service
 // Export - Triggers project dump so that the project can be imported to another SonarQube server (see api/project_dump/import, available in Enterprise Edition). Requires the 'Administer' permission.
 // Since 1.0
 // Changelog:
-//   9.2: Moved from Enterprise Edition to Community Edition
+//
+//	9.2: Moved from Enterprise Edition to Community Edition
 func (s *ProjectDump) Export(ctx context.Context, r project_dump.ExportRequest) (*project_dump.ExportResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/export", s.path)
 	v := new(project_dump.ExportResponse)
@@ -29,7 +30,6 @@ func (s *ProjectDump) Export(ctx context.Context, r project_dump.ExportRequest) 
 
 // Import - Triggers the import of a project dump. Permission 'Administer' is required. This feature is provided by the Governance plugin.
 // Since 1.0
-// Changelog:
 func (s *ProjectDump) Import(ctx context.Context, r project_dump.ImportRequest) (*project_dump.ImportResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/import", s.path)
 	v := new(project_dump.ImportResponse)

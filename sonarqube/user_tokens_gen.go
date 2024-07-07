@@ -16,7 +16,8 @@ type UserTokens service
 // It requires administration permissions to specify a 'login' and generate a token for another user. Otherwise, a token is generated for the current user.
 // Since 5.3
 // Changelog:
-//   9.6: Response field 'expirationDate' added
+//
+//	9.6: Response field 'expirationDate' added
 func (s *UserTokens) Generate(ctx context.Context, r user_tokens.GenerateRequest) (*user_tokens.GenerateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/generate", s.path)
 	v := new(user_tokens.GenerateResponse)
@@ -32,7 +33,6 @@ func (s *UserTokens) Generate(ctx context.Context, r user_tokens.GenerateRequest
 // Revoke - Revoke a user access token.
 // It requires administration permissions to specify a 'login' and revoke a token for another user. Otherwise, the token for the current user is revoked.
 // Since 5.3
-// Changelog:
 func (s *UserTokens) Revoke(ctx context.Context, r user_tokens.RevokeRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/revoke", s.path)
 
@@ -51,8 +51,9 @@ func (s *UserTokens) Revoke(ctx context.Context, r user_tokens.RevokeRequest) (*
 // Authentication is required for this API endpoint
 // Since 5.3
 // Changelog:
-//   9.6: New field 'expirationDate' is added to response
-//   7.7: New field 'lastConnectionDate' is added to response
+//
+//	9.6: New field 'expirationDate' is added to response
+//	7.7: New field 'lastConnectionDate' is added to response
 func (s *UserTokens) Search(ctx context.Context, r user_tokens.SearchRequest) (*user_tokens.SearchResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search", s.path)
 	v := new(user_tokens.SearchResponse)

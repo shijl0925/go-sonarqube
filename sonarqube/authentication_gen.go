@@ -13,7 +13,6 @@ type Authentication service
 
 // Login - Authenticate a user.
 // Since 6.0
-// Changelog:
 func (s *Authentication) Login(ctx context.Context, r authentication.LoginRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/login", s.path)
 
@@ -27,7 +26,6 @@ func (s *Authentication) Login(ctx context.Context, r authentication.LoginReques
 
 // Logout - Logout a user.
 // Since 6.3
-// Changelog:
 func (s *Authentication) Logout(ctx context.Context, r authentication.LogoutRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/logout", s.path)
 
@@ -41,7 +39,6 @@ func (s *Authentication) Logout(ctx context.Context, r authentication.LogoutRequ
 
 // Validate - Check credentials.
 // Since 3.3
-// Changelog:
 func (s *Authentication) Validate(ctx context.Context, r authentication.ValidateRequest) (*authentication.ValidateResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/validate", s.path)
 	v := new(authentication.ValidateResponse)
