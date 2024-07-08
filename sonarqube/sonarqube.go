@@ -5,13 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/go-playground/form/v4"
+	"github.com/google/go-querystring/query"
 	"io"
 	"net/http"
+	"net/url"
 	"reflect"
-	"strconv"
 	"strings"
-
-	"github.com/iancoleman/strcase"
 )
 
 const (
@@ -168,7 +167,7 @@ func (c *Client) handleAuth(req *http.Request) {
 	}
 }
 
-func (c *Client) NewRequest(ctx context.Context, method, url string, body io.Reader, params ...string) (*http.Request, error) {
+func (c *Client) NewRequest(ctx context.Context, method, url string, body io.Reader) (*http.Request, error) {
 	req, err := http.NewRequestWithContext(ctx, method, url, body)
 	if err != nil {
 		return nil, err
@@ -176,17 +175,6 @@ func (c *Client) NewRequest(ctx context.Context, method, url string, body io.Rea
 
 	// 认证处理
 	c.handleAuth(req)
-
-	// 如果是GET请求且有参数，设置参数
-	if method == "GET" && len(params) > 0 {
-		q := req.URL.Query()
-
-		for i := 0; i < len(params); i++ {
-			q.Add(params[i], params[i+1])
-			i++
-		}
-		req.URL.RawQuery = q.Encode()
-	}
 
 	// 设置通用请求头
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
@@ -216,9 +204,17 @@ func (c *Client) Call(ctx context.Context, method string, u string, v interface{
 	u = fmt.Sprintf("%s/%s", c.host, u)
 	var req *http.Request
 	var err error
+
 	if method == http.MethodGet {
-		params := paramsFrom(opt...)
-		req, err = c.NewRequest(ctx, "GET", u, nil, params...)
+		for _, o := range opt {
+			urlStr, err := addOptions(u, o)
+			if err != nil {
+				return nil, err
+			}
+			u = urlStr
+		}
+
+		req, err = c.NewRequest(ctx, "GET", u, nil)
 		if err != nil {
 			return nil, fmt.Errorf("could not create request: %v", err)
 		}
@@ -265,42 +261,30 @@ func (c *Client) Call(ctx context.Context, method string, u string, v interface{
 	return resp, err
 }
 
-// paramsFrom creates a slice with interleaving param and value entries, i.e. ["key1", "value1", "key2, "value2"]
-func paramsFrom(items ...interface{}) []string {
-	allParams := make([]string, 0)
+func addOptions(s string, opt interface{}) (string, error) {
+	v := reflect.ValueOf(opt)
 
-	for _, item := range items {
-		v := reflect.ValueOf(item)
-		t := v.Type()
-
-		params := make([]string, 2*v.NumField())
-
-		for i := 0; i < v.NumField(); i++ {
-			j := i * 2
-			k := j + 1
-
-			if v.Field(i).IsZero() {
-				continue
-			}
-
-			// Convert some basic types to strings for convenience.
-			// Note: other types should not be used as parameter values.
-			fieldValue := ""
-			switch t.Field(i).Type.Name() {
-			case "int":
-				fieldValue = strconv.Itoa(v.Field(i).Interface().(int))
-			case "string":
-				fieldValue = v.Field(i).Interface().(string)
-			case "bool":
-				fieldValue = strconv.FormatBool(v.Field(i).Interface().(bool))
-			}
-
-			params[j] = strcase.ToLowerCamel(t.Field(i).Name)
-			params[k] = fieldValue
-		}
-
-		allParams = append(allParams, params...)
+	if v.Kind() == reflect.Ptr && v.IsNil() {
+		return s, nil
 	}
 
-	return allParams
+	origURL, err := url.Parse(s)
+	if err != nil {
+		return s, err
+	}
+
+	origValues := origURL.Query()
+
+	newValues, err := query.Values(opt)
+	if err != nil {
+		return s, err
+	}
+
+	for k, v := range newValues {
+		origValues[k] = v
+	}
+
+	origURL.RawQuery = origValues.Encode()
+
+	return origURL.String(), nil
 }
