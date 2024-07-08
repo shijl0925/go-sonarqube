@@ -37,7 +37,7 @@ type CreateResponse struct {
 type CreateConditionRequest struct {
 	Error    string `form:"error"`        // Condition error threshold
 	GateName string `form:"gateName"`     // Name of the quality gate
-	Metric   string `form:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>security_hotspots</li><li>alert_status</li><li>new_security_hotspots</li></ul>
+	Metric   string `form:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>new_security_hotspots</li><li>security_hotspots</li><li>alert_status</li></ul>
 	Op       string `form:"op,omitempty"` // Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul>
 }
 
@@ -281,6 +281,6 @@ type ShowResponse struct {
 type UpdateConditionRequest struct {
 	Error  string `form:"error"`        // Condition error threshold
 	Id     string `form:"id"`           // Condition ID
-	Metric string `form:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>security_hotspots</li><li>alert_status</li><li>new_security_hotspots</li></ul>
+	Metric string `form:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>new_security_hotspots</li><li>security_hotspots</li><li>alert_status</li></ul>
 	Op     string `form:"op,omitempty"` // Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul>
 }
