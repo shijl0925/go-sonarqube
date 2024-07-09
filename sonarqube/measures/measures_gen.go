@@ -53,7 +53,7 @@ type ComponentTreeRequest struct {
 	Asc              string `url:"asc,omitempty"`              // Ascending sort
 	Branch           string `url:"branch,omitempty"`           // Since 6.6;Branch key. Not available in the community edition.
 	Component        string `url:"component"`                  // Component key. The search is based on this component.
-	MetricKeys       string `url:"metricKeys"`                 // Comma-separated list of metric keys. Types DISTRIB are not allowed. For type DATA only new_reliability_issues, new_security_issues, new_maintainability_issues, reliability_issues, maintainability_issues, security_issues metrics are supported
+	MetricKeys       string `url:"metricKeys"`                 // Comma-separated list of metric keys. Types DISTRIB are not allowed. For type DATA only security_issues, maintainability_issues, reliability_issues, new_maintainability_issues, new_security_issues, new_reliability_issues metrics are supported
 	MetricPeriodSort string `url:"metricPeriodSort,omitempty"` // Since 5.5;Sort measures by leak period or not ?. The 's' parameter must contain the 'metricPeriod' value.
 	MetricSort       string `url:"metricSort,omitempty"`       // Metric key to sort by. The 's' parameter must contain the 'metric' or 'metricPeriod' value. It must be part of the 'metricKeys' parameter
 	MetricSortFilter string `url:"metricSortFilter,omitempty"` // Filter components. Sort must be on a metric. Possible values are: <ul><li>all: return all components</li><li>withMeasuresOnly: filter out components that do not have a measure on the sorted metric</li></ul>
