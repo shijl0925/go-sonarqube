@@ -209,7 +209,7 @@ func (c *Client) Call(ctx context.Context, method string, u string, v interface{
 		for _, o := range opt {
 			urlStr, err := addOptions(u, o)
 			if err != nil {
-				return nil, err
+				return nil, fmt.Errorf("could not Parse query values: %v", err)
 			}
 			u = urlStr
 		}
@@ -219,11 +219,19 @@ func (c *Client) Call(ctx context.Context, method string, u string, v interface{
 			return nil, fmt.Errorf("could not create request: %v", err)
 		}
 	} else {
+		values := make(url.Values)
 		encoder := form.NewEncoder()
-		values, err := encoder.Encode(opt[0])
-		if err != nil {
-			return nil, fmt.Errorf("could not encode form values: %v", err)
+
+		for _, o := range opt {
+			vs, err := encoder.Encode(o)
+			if err != nil {
+				return nil, fmt.Errorf("could not encode form values: %v", err)
+			}
+			for k, v := range vs {
+				values[k] = append(values[k], v...)
+			}
 		}
+
 		req, err = c.NewRequest(ctx, "POST", u, strings.NewReader(values.Encode()))
 		if err != nil {
 			return nil, fmt.Errorf("could not create request: %v", err)
