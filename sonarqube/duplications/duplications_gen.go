@@ -9,7 +9,7 @@ type ShowResponse struct {
 	Files        map[string]struct {
 		Key         string `json:"key,omitempty"`
 		Name        string `json:"name,omitempty"`
-		projectName string `json:"projectName,omitempty"`
+		ProjectName string `json:"projectName,omitempty"`
 	} `json:"files,omitempty"`
 }
 
