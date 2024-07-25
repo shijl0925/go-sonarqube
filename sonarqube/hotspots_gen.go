@@ -36,6 +36,7 @@ func (s *Hotspots) ChangeStatus(ctx context.Context, r hotspots.ChangeStatusRequ
 // Since 8.1
 // Changelog:
 //
+//	10.7: Added parameter 'stig-ASD_V5R3'
 //	10.2: Parameter 'projectKey' renamed to 'project'
 //	10.0: Parameter 'sansTop25' is deprecated
 //	9.8: Endpoint visibility change from internal to public

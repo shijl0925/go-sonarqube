@@ -530,6 +530,7 @@ type SearchRequest struct {
 	Severities                   string `url:"severities,omitempty"`                   // Deprecated since 10.4;Comma-separated list of severities
 	SonarsourceSecurity          string `url:"sonarsourceSecurity,omitempty"`          // Since 7.8;Comma-separated list of SonarSource security categories. Use 'others' to select issues not associated with any category
 	Statuses                     string `url:"statuses,omitempty"`                     // Deprecated since 10.4;Comma-separated list of statuses
+	StigASDV5R3                  string `url:"stig-ASD_V5R3,omitempty"`                // Since 9.4;Comma-separated list of STIG V5R3 categories.
 	Tags                         string `url:"tags,omitempty"`                         // Comma-separated list of tags.
 	TimeZone                     string `url:"timeZone,omitempty"`                     // Since 8.6;To resolve dates passed to 'createdAfter' or 'createdBefore' (does not apply to datetime) and to compute creation date histogram
 	Types                        string `url:"types,omitempty"`                        // Since 5.5;Deprecated since 10.4;Comma-separated list of types.

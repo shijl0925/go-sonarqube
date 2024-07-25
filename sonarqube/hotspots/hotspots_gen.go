@@ -32,6 +32,7 @@ type SearchRequest struct {
 	SansTop25           string `url:"sansTop25,omitempty"`           // Since 8.6;Deprecated since 10.0;Comma-separated list of SANS Top 25 categories.
 	SonarsourceSecurity string `url:"sonarsourceSecurity,omitempty"` // Since 8.6;Comma-separated list of SonarSource security categories. Use 'others' to select issues not associated with any category
 	Status              string `url:"status,omitempty"`              // If 'project' is provided, only Security Hotspots with the specified status are returned.
+	StigASDV5R3         string `url:"stig-ASD_V5R3,omitempty"`       // Since 10.7;Comma-separated list of STIG V5R3 lowercase categories.
 }
 
 // SearchResponse is the response for SearchRequest
