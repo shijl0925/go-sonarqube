@@ -496,6 +496,7 @@ type SearchRequest struct {
 	Assignees                    string `url:"assignees,omitempty"`                    // Comma-separated list of assignee logins. The value '__me__' can be used as a placeholder for user who performs the request
 	Author                       string `url:"author,omitempty"`                       // SCM accounts. To set several values, the parameter must be called once for each value.
 	Branch                       string `url:"branch,omitempty"`                       // Since 6.6;Branch key. Not available in the community edition.
+	Casa                         string `url:"casa,omitempty"`                         // Since 10.7;Comma-separated list of CASA categories.
 	CleanCodeAttributeCategories string `url:"cleanCodeAttributeCategories,omitempty"` // Since 10.2;Comma-separated list of Clean Code Attribute Categories
 	CodeVariants                 string `url:"codeVariants,omitempty"`                 // Since 10.1;Comma-separated list of code variants.
 	Components                   string `url:"components,omitempty"`                   // Comma-separated list of component keys. Retrieve issues associated to a specific list of components (and all its descendants). A component can be a portfolio, project, module, directory or file.
@@ -530,7 +531,7 @@ type SearchRequest struct {
 	Severities                   string `url:"severities,omitempty"`                   // Deprecated since 10.4;Comma-separated list of severities
 	SonarsourceSecurity          string `url:"sonarsourceSecurity,omitempty"`          // Since 7.8;Comma-separated list of SonarSource security categories. Use 'others' to select issues not associated with any category
 	Statuses                     string `url:"statuses,omitempty"`                     // Deprecated since 10.4;Comma-separated list of statuses
-	StigASDV5R3                  string `url:"stig-ASD_V5R3,omitempty"`                // Since 9.4;Comma-separated list of STIG V5R3 categories.
+	StigASDV5R3                  string `url:"stig-ASD_V5R3,omitempty"`                // Since 10.7;Comma-separated list of STIG V5R3 categories.
 	Tags                         string `url:"tags,omitempty"`                         // Comma-separated list of tags.
 	TimeZone                     string `url:"timeZone,omitempty"`                     // Since 8.6;To resolve dates passed to 'createdAfter' or 'createdBefore' (does not apply to datetime) and to compute creation date histogram
 	Types                        string `url:"types,omitempty"`                        // Since 5.5;Deprecated since 10.4;Comma-separated list of types.
