@@ -249,6 +249,8 @@ func (s *Issues) Reindex(ctx context.Context, r issues.ReindexRequest) (*http.Re
 // Since 3.6
 // Changelog:
 //
+//	10.7: Facet 'casa' has been added
+//	10.7: Param 'casa' has been added
 //	10.7: Facet 'stig-ASD_V5R3' has been added
 //	10.7: Param 'stig-ASD_V5R3' has been added
 //	10.6: Facet 'prioritizedRule' has been added
