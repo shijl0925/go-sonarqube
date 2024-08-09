@@ -157,10 +157,7 @@ func (s *Projects) SearchAll(ctx context.Context, r projects.SearchRequest) (*pr
 }
 
 // UpdateKey - Update a project all its sub-components keys.
-// Requires one of the following permissions:
-//  * 'Administer System'
-//  * 'Administer' rights on the specified project
-//
+// Requires 'Administer' permission on the project.
 // Since 6.1
 // Changelog:
 //
