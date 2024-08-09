@@ -140,7 +140,7 @@ type SearchResponseAll struct {
 	} `json:"components,omitempty"`
 }
 
-// UpdateKeyRequest Update a project all its sub-components keys.<br>Requires one of the following permissions: <ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>
+// UpdateKeyRequest Update a project all its sub-components keys.<br>Requires 'Administer' permission on the project.
 type UpdateKeyRequest struct {
 	From string `form:"from"` // Project key
 	To   string `form:"to"`   // New project key
