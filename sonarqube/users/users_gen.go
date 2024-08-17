@@ -114,7 +114,7 @@ type SearchRequest struct {
 	The format must be ISO 8601 datetime format (YYYY-MM-DDThh:mm:ss±hhmm)
 	*/
 	Managed              string `url:"managed,omitempty"`              // Since 10.0;Return managed or non-managed users. Only available for managed instances, throws for non-managed instances.
-	Q                    string `url:"q,omitempty"`                    // Filter on login, name and email.<br />This parameter can either perform an exact match, or a partial match (contains), it is case insensitive.
+	Q                    string `url:"q,omitempty"`                    // Filter on login, name and email.<br />This parameter performs a partial match (contains), it is case insensitive.
 	SlLastConnectedAfter string `url:"slLastConnectedAfter,omitempty"` /*
 	Since 10.1;Filter the users based on the sonar lint last connection date field
 	Only users who interacted with this instance using SonarLint at or after the date will be returned.
