@@ -48,6 +48,10 @@ func (s *Webhooks) Delete(ctx context.Context, r webhooks.DeleteRequest) (*http.
 // Require 'Administer' permission on the related project.
 // Note that additional information are returned by api/webhooks/delivery.
 // Since 6.2
+// Changelog:
+//
+//	10.7: 'ceTaskId' and 'componentKey' parameters are now deprecated. These parameters won't be replaced, the deliveries related to a specific project can be obtained by fetching the webhook first, and then fetching the associated deliveries.
+//	10.7: 'ceTaskId' response field is now deprecated.
 func (s *Webhooks) Deliveries(ctx context.Context, r webhooks.DeliveriesRequest, p paging.Params) (*webhooks.DeliveriesResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/deliveries", s.path)
 	v := new(webhooks.DeliveriesResponse)

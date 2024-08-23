@@ -29,8 +29,8 @@ type DeleteRequest struct {
 
 // DeliveriesRequest Get the recent deliveries for a specified project or Compute Engine task.<br/>Require 'Administer' permission on the related project.<br/>Note that additional information are returned by api/webhooks/delivery.
 type DeliveriesRequest struct {
-	CeTaskId     string `url:"ceTaskId,omitempty"`     // Id of the Compute Engine task
-	ComponentKey string `url:"componentKey,omitempty"` // Key of the project
+	CeTaskId     string `url:"ceTaskId,omitempty"`     // Deprecated since 10.7;Id of the Compute Engine task
+	ComponentKey string `url:"componentKey,omitempty"` // Deprecated since 10.7;Key of the project
 	Webhook      string `url:"webhook,omitempty"`      // Since 7.1;Key of the webhook that triggered those deliveries, auto-generated value that can be obtained through api/webhooks/create or api/webhooks/list
 }
 
