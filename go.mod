@@ -1,6 +1,6 @@
 module github.com/shijl0925/go-sonarqube
 
-go 1.20.6
+go 1.21.8
 
 require (
 	github.com/go-playground/form/v4 v4.2.0
