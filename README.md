@@ -1,5 +1,7 @@
 # go-sonarqube
 
+![Alt](https://repobeats.axiom.co/api/embed/9761ef8e37a45d95b447066467cfdcfab4f0a0e3.svg "Repobeats analytics image")
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=shijl0925_go-sonarqube&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=shijl0925_go-sonarqube)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/348d869a77a64dfc997b9a273d03d5cc)](https://app.codacy.com/gh/shijl0925/go-sonarqube/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
