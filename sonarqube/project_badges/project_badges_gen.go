@@ -2,6 +2,15 @@ package project_badges
 
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
 
+// AiCodeAssuranceRequest Generate a badge for project's AI assurance as an SVG.<br/>Requires 'Browse' permission on the specified project.
+type AiCodeAssuranceRequest struct {
+	Project string `url:"project"`         // Project or application key
+	Token   string `url:"token,omitempty"` // Project badge token
+}
+
+// AiCodeAssuranceResponse is the response for AiCodeAssuranceRequest
+type AiCodeAssuranceResponse string
+
 // MeasureRequest Generate badge for project's measure as an SVG.<br/>Requires 'Browse' permission on the specified project.
 type MeasureRequest struct {
 	Branch  string `url:"branch,omitempty"` // Branch key

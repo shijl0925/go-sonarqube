@@ -11,6 +11,21 @@ import (
 
 type ProjectBadges service
 
+// AiCodeAssurance - Generate a badge for project's AI assurance as an SVG.
+// Requires 'Browse' permission on the specified project.
+// Since 10.7
+func (s *ProjectBadges) AiCodeAssurance(ctx context.Context, r project_badges.AiCodeAssuranceRequest) (*project_badges.AiCodeAssuranceResponse, *http.Response, error) {
+	u := fmt.Sprintf("%s/ai_code_assurance", s.path)
+	v := new(project_badges.AiCodeAssuranceResponse)
+
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return v, resp, nil
+}
+
 // Measure - Generate badge for project's measure as an SVG.
 // Requires 'Browse' permission on the specified project.
 // Since 7.1
