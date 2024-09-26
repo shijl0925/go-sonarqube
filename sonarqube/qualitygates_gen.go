@@ -130,6 +130,7 @@ func (s *Qualitygates) DeleteCondition(ctx context.Context, r qualitygates.Delet
 // Since 4.3
 // Changelog:
 //
+//	10.7: It is not possible anymore to change the Quality Gate of a project flagged as containing AI code.
 //	8.3: The parameter 'projectId' was removed
 //	6.6: The parameter 'gateId' was removed
 func (s *Qualitygates) Deselect(ctx context.Context, r qualitygates.DeselectRequest) (*http.Response, error) {
@@ -408,6 +409,7 @@ func (s *Qualitygates) SearchUsersAll(ctx context.Context, r qualitygates.Search
 // Since 4.3
 // Changelog:
 //
+//	10.7: It is not possible anymore to change the Quality Gate of a project flagged as containing AI code.
 //	10.0: Parameter 'gateId' is removed. Use 'gateName' instead.
 //	8.4: Parameter 'gateName' added
 //	8.4: Parameter 'gateId' is deprecated. Format changes from integer to string. Use 'gateName' instead.
