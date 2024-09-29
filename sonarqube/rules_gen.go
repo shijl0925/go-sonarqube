@@ -134,9 +134,8 @@ func (s *Rules) SearchAll(ctx context.Context, r rules.SearchRequest) (*rules.Se
 		response.Rules = append(response.Rules, res.Rules...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }

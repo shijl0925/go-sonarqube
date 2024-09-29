@@ -190,9 +190,8 @@ func (s *AlmIntegrations) SearchBitbucketcloudReposAll(ctx context.Context, r al
 		response.Repositories = append(response.Repositories, res.Repositories...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }
@@ -241,9 +240,8 @@ func (s *AlmIntegrations) SearchGitlabReposAll(ctx context.Context, r alm_integr
 		response.Repositories = append(response.Repositories, res.Repositories...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }

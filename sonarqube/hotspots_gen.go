@@ -71,9 +71,8 @@ func (s *Hotspots) SearchAll(ctx context.Context, r hotspots.SearchRequest) (*ho
 		response.Hotspots = append(response.Hotspots, res.Hotspots...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }

@@ -43,9 +43,8 @@ func (s *Metrics) SearchAll(ctx context.Context, r metrics.SearchRequest) (*metr
 		response.Metrics = append(response.Metrics, res.Metrics...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }

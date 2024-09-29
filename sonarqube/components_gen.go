@@ -46,9 +46,8 @@ func (s *Components) SearchAll(ctx context.Context, r components.SearchRequest) 
 		response.Components = append(response.Components, res.Components...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }
@@ -107,9 +106,8 @@ func (s *Components) TreeAll(ctx context.Context, r components.TreeRequest) (*co
 		response.Components = append(response.Components, res.Components...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }

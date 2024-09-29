@@ -43,9 +43,8 @@ func (s *ProjectTags) SearchAll(ctx context.Context, r project_tags.SearchReques
 		response.Tags = append(response.Tags, res.Tags...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }

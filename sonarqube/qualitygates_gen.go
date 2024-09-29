@@ -355,9 +355,8 @@ func (s *Qualitygates) SearchGroupsAll(ctx context.Context, r qualitygates.Searc
 		response.Groups = append(response.Groups, res.Groups...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }
@@ -394,9 +393,8 @@ func (s *Qualitygates) SearchUsersAll(ctx context.Context, r qualitygates.Search
 		response.Users = append(response.Users, res.Users...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }
