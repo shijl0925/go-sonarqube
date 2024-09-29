@@ -81,9 +81,8 @@ func (s *Favorites) SearchAll(ctx context.Context, r favorites.SearchRequest) (*
 		response.Favorites = append(response.Favorites, res.Favorites...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }

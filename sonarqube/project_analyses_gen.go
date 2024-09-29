@@ -101,9 +101,8 @@ func (s *ProjectAnalyses) SearchAll(ctx context.Context, r project_analyses.Sear
 		response.Analyses = append(response.Analyses, res.Analyses...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }

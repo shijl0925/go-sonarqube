@@ -53,9 +53,8 @@ func (s *Ce) ActivityAll(ctx context.Context, r ce.ActivityRequest) (*ce.Activit
 		response.Tasks = append(response.Tasks, res.Tasks...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }

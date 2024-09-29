@@ -114,9 +114,8 @@ func (s *Measures) ComponentTreeAll(ctx context.Context, r measures.ComponentTre
 		response.Metrics = append(response.Metrics, res.Metrics...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }
@@ -167,9 +166,8 @@ func (s *Measures) SearchHistoryAll(ctx context.Context, r measures.SearchHistor
 		response.Measures = append(response.Measures, res.Measures...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }

@@ -149,9 +149,8 @@ func (s *Projects) SearchAll(ctx context.Context, r projects.SearchRequest) (*pr
 		response.Components = append(response.Components, res.Components...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }

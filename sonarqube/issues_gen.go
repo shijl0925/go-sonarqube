@@ -345,9 +345,8 @@ func (s *Issues) SearchAll(ctx context.Context, r issues.SearchRequest) (*issues
 		response.Users = append(response.Users, res.Users...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }

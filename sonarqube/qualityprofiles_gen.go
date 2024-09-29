@@ -141,9 +141,8 @@ func (s *Qualityprofiles) ChangelogAll(ctx context.Context, r qualityprofiles.Ch
 		response.Events = append(response.Events, res.Events...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }
@@ -335,9 +334,8 @@ func (s *Qualityprofiles) ProjectsAll(ctx context.Context, r qualityprofiles.Pro
 		response.Results = append(response.Results, res.Results...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }

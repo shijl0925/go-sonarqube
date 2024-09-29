@@ -134,9 +134,8 @@ func (s *UserGroups) SearchAll(ctx context.Context, r user_groups.SearchRequest)
 		response.Groups = append(response.Groups, res.Groups...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }
@@ -201,9 +200,8 @@ func (s *UserGroups) UsersAll(ctx context.Context, r user_groups.UsersRequest) (
 		response.Users = append(response.Users, res.Users...)
 		if res.GetPaging().End() {
 			break
-		} else {
-			p.P++
 		}
+		p.P++
 	}
 	return response, nil
 }
