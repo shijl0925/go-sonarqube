@@ -20,6 +20,7 @@ type Qualityprofiles service
 // Since 4.4
 // Changelog:
 //
+//	10.8: Add new parameter 'impacts'
 //	10.6: Add parameter 'prioritizedRule'.
 //	10.2: Parameter 'severity' is now deprecated.
 func (s *Qualityprofiles) ActivateRule(ctx context.Context, r qualityprofiles.ActivateRuleRequest) (*http.Response, error) {
