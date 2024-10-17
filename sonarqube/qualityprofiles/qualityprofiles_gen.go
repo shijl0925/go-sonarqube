@@ -6,12 +6,13 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 
 // ActivateRuleRequest Activate a rule on a Quality Profile.<br> Requires one of the following permissions:<ul>  <li>'Administer Quality Profiles'</li>  <li>Edit right on the specified quality profile</li></ul>
 type ActivateRuleRequest struct {
+	Impacts         string `form:"impacts,omitempty"`         // Override of impact severities for the rule. Cannot be used as the same time as 'severity'. Ignored if parameter reset is true.
 	Key             string `form:"key"`                       // Quality Profile key. Can be obtained through <code>api/qualityprofiles/search</code>
 	Params          string `form:"params,omitempty"`          // Parameters as semi-colon list of <code>key=value</code>. Ignored if parameter reset is true.
 	PrioritizedRule string `form:"prioritizedRule,omitempty"` // Since 10.6;Mark activated rule as prioritized, so all corresponding Issues will have to be fixed.
 	Reset           string `form:"reset,omitempty"`           // Reset severity and parameters of activated rule. Set the values defined on parent profile or from rule default values.
 	Rule            string `form:"rule"`                      // Rule key
-	Severity        string `form:"severity,omitempty"`        // Deprecated since 10.2;Severity. Ignored if parameter reset is true.
+	Severity        string `form:"severity,omitempty"`        // Deprecated since 10.2;Severity. Cannot be used as the same time as 'impacts'.Ignored if parameter reset is true.
 }
 
 // ActivateRulesRequest Bulk-activate rules on one quality profile.<br> Requires one of the following permissions:<ul>  <li>'Administer Quality Profiles'</li>  <li>Edit right on the specified quality profile</li></ul>

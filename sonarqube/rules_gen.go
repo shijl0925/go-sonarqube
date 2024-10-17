@@ -69,6 +69,7 @@ func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (
 // Since 4.4
 // Changelog:
 //
+//	10.8: The field 'impacts' has been added to the response
 //	10.6: Parameter 'prioritizedRule has been added
 //	10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
 //	10.2: The fields 'type' and 'severity' are deprecated in the response. Use 'impacts' instead.
