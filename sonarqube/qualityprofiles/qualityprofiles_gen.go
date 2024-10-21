@@ -70,12 +70,13 @@ type ChangeParentRequest struct {
 	QualityProfile       string `form:"qualityProfile"`                 // Quality profile name.
 }
 
-// ChangelogRequest Get the history of changes on a quality profile: rule activation/deactivation, change in parameters/severity. Events are ordered by date in descending order (most recent first).
+// ChangelogRequest Get the history of changes on a quality profile: rule activation/deactivation, change in parameters/severity/impacts. Events are ordered by date in descending order (most recent first).
 type ChangelogRequest struct {
-	Language       string `url:"language"`        // Quality profile language.
-	QualityProfile string `url:"qualityProfile"`  // Quality profile name.
-	Since          string `url:"since,omitempty"` // Start date for the changelog (inclusive). <br>Either a date (server timezone) or datetime can be provided.
-	To             string `url:"to,omitempty"`    // End date for the changelog (exclusive, strictly before). <br>Either a date (server timezone) or datetime can be provided.
+	FilterMode     string `url:"filterMode,omitempty"` // Since 10.8;If specified, will return changelog events related to MQR or STANDARD mode. If not specified, all the events are returned
+	Language       string `url:"language"`             // Quality profile language.
+	QualityProfile string `url:"qualityProfile"`       // Quality profile name.
+	Since          string `url:"since,omitempty"`      // Start date for the changelog (inclusive). <br>Either a date (server timezone) or datetime can be provided.
+	To             string `url:"to,omitempty"`         // End date for the changelog (exclusive, strictly before). <br>Either a date (server timezone) or datetime can be provided.
 }
 
 // ChangelogResponse is the response for ChangelogRequest

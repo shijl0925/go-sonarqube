@@ -107,10 +107,11 @@ func (s *Qualityprofiles) ChangeParent(ctx context.Context, r qualityprofiles.Ch
 	return resp, nil
 }
 
-// Changelog - Get the history of changes on a quality profile: rule activation/deactivation, change in parameters/severity. Events are ordered by date in descending order (most recent first).
+// Changelog - Get the history of changes on a quality profile: rule activation/deactivation, change in parameters/severity/impacts. Events are ordered by date in descending order (most recent first).
 // Since 5.2
 // Changelog:
 //
+//	10.8: Added parameter 'filterMode'
 //	10.3: Added fields 'cleanCodeAttributeCategory', 'impacts' to response
 //	10.3: Added fields 'oldCleanCodeAttribute', 'newCleanCodeAttribute', 'oldCleanCodeAttributeCategory', 'newCleanCodeAttributeCategory' and 'impactChanges' to 'params' section of response
 //	10.3: Added field 'sonarQubeVersion' to 'params' section of response
