@@ -69,6 +69,9 @@ func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (
 // Since 4.4
 // Changelog:
 //
+//	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'impactSeverities' of 'facets' have been added
+//	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added
+//	10.8: Parameter 'severities' now supports values: 'INFO','BLOCKER'
 //	10.8: The field 'impacts' has been added to the response
 //	10.6: Parameter 'prioritizedRule has been added
 //	10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
@@ -146,6 +149,7 @@ func (s *Rules) SearchAll(ctx context.Context, r rules.SearchRequest) (*rules.Se
 // Since 4.2
 // Changelog:
 //
+//	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
 //	10.2: The field 'severity' and 'type' in the response have been deprecated, use 'impacts' instead.
 //	10.0: The deprecated field 'effortToFixDescription' has been removed, use 'gapDescription' instead.

@@ -112,6 +112,7 @@ func (s *Qualityprofiles) ChangeParent(ctx context.Context, r qualityprofiles.Ch
 // Changelog:
 //
 //	10.8: Added parameter 'filterMode'
+//	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added
 //	10.3: Added fields 'cleanCodeAttributeCategory', 'impacts' to response
 //	10.3: Added fields 'oldCleanCodeAttribute', 'newCleanCodeAttribute', 'oldCleanCodeAttributeCategory', 'newCleanCodeAttributeCategory' and 'impactChanges' to 'params' section of response
 //	10.3: Added field 'sonarQubeVersion' to 'params' section of response
