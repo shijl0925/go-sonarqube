@@ -17,6 +17,7 @@ type Issues service
 // Since 3.6
 // Changelog:
 //
+//	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.4: The response fields 'severity' and 'type' are deprecated. Please use 'impacts' instead.
 //	10.4: The response fields 'status' and 'resolution' are deprecated. Please use 'issueStatus' instead.
 //	10.4: Add 'issueStatus' field to the response.
@@ -42,6 +43,7 @@ func (s *Issues) AddComment(ctx context.Context, r issues.AddCommentRequest) (*i
 // Since 3.6
 // Changelog:
 //
+//	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.4: The response fields 'severity' and 'type' are deprecated. Please use 'impacts' instead.
 //	10.4: The response fields 'status' and 'resolution' are deprecated. Please use 'issueStatus' instead.
 //	10.4: Add 'issueStatus' field to the response.
@@ -161,6 +163,7 @@ func (s *Issues) DeleteComment(ctx context.Context, r issues.DeleteCommentReques
 // Since 3.6
 // Changelog:
 //
+//	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.4: The transitions 'wontfix' and 'confirm' are deprecated. Please use 'accept' instead. The transition 'unconfirm' is deprecated too.
 //	10.4: Add transition 'accept'.
 //	10.4: The response fields 'severity' and 'type' are deprecated. Please use 'impacts' instead.
@@ -191,6 +194,7 @@ func (s *Issues) DoTransition(ctx context.Context, r issues.DoTransitionRequest)
 // Since 3.6
 // Changelog:
 //
+//	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.4: The response fields 'severity' and 'type' are deprecated. Please use 'impacts' instead.
 //	10.4: The response fields 'status' and 'resolution' are deprecated. Please use 'issueStatus' instead.
 //	10.4: Add 'issueStatus' field to the response.
@@ -249,6 +253,9 @@ func (s *Issues) Reindex(ctx context.Context, r issues.ReindexRequest) (*http.Re
 // Since 3.6
 // Changelog:
 //
+//	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'impactSeverities' of 'facets' have been added.
+//	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
+//	10.8: Parameter 'severities' now supports values: 'INFO','BLOCKER'.
 //	10.7: Facet 'casa' has been added
 //	10.7: Param 'casa' has been added
 //	10.7: Facet 'stig-ASD_V5R3' has been added
@@ -386,6 +393,7 @@ func (s *Issues) SetSeverity(ctx context.Context, r issues.SetSeverityRequest) (
 // Since 5.1
 // Changelog:
 //
+//	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.4: The response fields 'severity' and 'type' are deprecated. Please use 'impacts' instead.
 //	10.4: The response fields 'status' and 'resolution' are deprecated. Please use 'issueStatus' instead.
 //	10.4: Add 'issueStatus' field to the response.
