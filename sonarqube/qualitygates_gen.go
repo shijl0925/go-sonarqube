@@ -193,6 +193,7 @@ func (s *Qualitygates) GetByProject(ctx context.Context, r qualitygates.GetByPro
 // Since 4.3
 // Changelog:
 //
+//	10.8: 'hasMQRConditions' and 'hasStandardConditions' fields are added on quality gate
 //	10.0: Field 'default' in the response has been removed
 //	10.0: Field 'id' in the response has been removed
 //	9.9: 'caycStatus' field is added on quality gate
@@ -446,6 +447,7 @@ func (s *Qualitygates) SetAsDefault(ctx context.Context, r qualitygates.SetAsDef
 // Since 4.3
 // Changelog:
 //
+//	10.8: 'hasMQRConditions' and 'hasStandardConditions' fields are added on quality gate
 //	10.3: 'isDefault' field is added to the response
 //	10.0: Field 'id' in the response has been removed
 //	10.0: Parameter 'id' is removed. Use 'name' instead.
