@@ -17,6 +17,7 @@ type Issues service
 // Since 3.6
 // Changelog:
 //
+//	10.8: The response fields 'severity' and 'type' are not deprecated anymore.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.4: The response fields 'severity' and 'type' are deprecated. Please use 'impacts' instead.
 //	10.4: The response fields 'status' and 'resolution' are deprecated. Please use 'issueStatus' instead.
@@ -43,6 +44,7 @@ func (s *Issues) AddComment(ctx context.Context, r issues.AddCommentRequest) (*i
 // Since 3.6
 // Changelog:
 //
+//	10.8: The response fields 'severity' and 'type' are not deprecated anymore.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.4: The response fields 'severity' and 'type' are deprecated. Please use 'impacts' instead.
 //	10.4: The response fields 'status' and 'resolution' are deprecated. Please use 'issueStatus' instead.
@@ -88,6 +90,7 @@ func (s *Issues) Authors(ctx context.Context, r issues.AuthorsRequest) (*issues.
 // Since 3.7
 // Changelog:
 //
+//	10.8: The parameters 'set_severity' and 'set_type' are not deprecated anymore.
 //	10.4: Transitions 'wontfix' and 'confirm' are now deprecated. Use transition 'accept' instead. The transition 'unconfirm' is deprecated too.
 //	10.4: Transition 'accept' is now supported.
 //	10.2: Parameters 'set_severity' and 'set_type' are now deprecated.
@@ -111,6 +114,7 @@ func (s *Issues) BulkChange(ctx context.Context, r issues.BulkChangeRequest) (*i
 // Since 4.1
 // Changelog:
 //
+//	10.8: 'severity' and 'type' keys are not deprecated anymore.
 //	10.4: 'issueStatus' key is added in the differences
 //	10.4: 'status', 'resolution', 'severity' and 'type' keys are now deprecated in the differences
 //	9.7: 'externalUser' and 'webhookSource' information added to the answer
@@ -132,6 +136,7 @@ func (s *Issues) Changelog(ctx context.Context, r issues.ChangelogRequest) (*iss
 // Since 3.6
 // Changelog:
 //
+//	10.8: The response fields 'severity' and 'type' are not deprecated anymore.
 //	10.4: The response fields 'severity' and 'type' are deprecated. Please use 'impacts' instead.
 //	10.4: The response fields 'status' and 'resolution' are deprecated. Please use 'issueStatus' instead.
 //	10.4: Add 'issueStatus' field to the response.
@@ -163,6 +168,7 @@ func (s *Issues) DeleteComment(ctx context.Context, r issues.DeleteCommentReques
 // Since 3.6
 // Changelog:
 //
+//	10.8: The response fields 'severity' and 'type' are not deprecated anymore.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.4: The transitions 'wontfix' and 'confirm' are deprecated. Please use 'accept' instead. The transition 'unconfirm' is deprecated too.
 //	10.4: Add transition 'accept'.
@@ -194,6 +200,7 @@ func (s *Issues) DoTransition(ctx context.Context, r issues.DoTransitionRequest)
 // Since 3.6
 // Changelog:
 //
+//	10.8: The response fields 'severity' and 'type' are not deprecated anymore.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.4: The response fields 'severity' and 'type' are deprecated. Please use 'impacts' instead.
 //	10.4: The response fields 'status' and 'resolution' are deprecated. Please use 'issueStatus' instead.
@@ -253,6 +260,9 @@ func (s *Issues) Reindex(ctx context.Context, r issues.ReindexRequest) (*http.Re
 // Since 3.6
 // Changelog:
 //
+//	10.8: The response fields 'severity' and 'type' are not deprecated anymore..
+//	10.8: The fields 'severity' and 'type' are not deprecated anymore.
+//	10.8: The parameters 'severities' and 'types' are not deprecated anymore.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'impactSeverities' of 'facets' have been added.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.8: Parameter 'severities' now supports values: 'INFO','BLOCKER'.
@@ -365,9 +375,11 @@ func (s *Issues) SearchAll(ctx context.Context, r issues.SearchRequest) (*issues
 //    * 'Administer Issues' rights on project of the specified issue
 //
 // Since 3.6
-// Deprecated since 10.2
 // Changelog:
 //
+//	10.8: Add 'impact' parameter to the request.
+//	10.8: Parameter 'severity' is now optional.
+//	10.8: This endpoint is not deprecated anymore.
 //	10.4: The response fields 'status' and 'resolution' are deprecated. Please use 'issueStatus' instead.
 //	10.4: Add 'issueStatus' field to the response.
 //	10.2: This endpoint is now deprecated.
@@ -393,6 +405,7 @@ func (s *Issues) SetSeverity(ctx context.Context, r issues.SetSeverityRequest) (
 // Since 5.1
 // Changelog:
 //
+//	10.8: The response fields 'severity' and 'type' are not deprecated anymore.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.4: The response fields 'severity' and 'type' are deprecated. Please use 'impacts' instead.
 //	10.4: The response fields 'status' and 'resolution' are deprecated. Please use 'issueStatus' instead.

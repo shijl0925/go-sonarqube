@@ -13,10 +13,10 @@ type CreateRequest struct {
 	Name                string `form:"name"`                          // Rule name
 	Params              string `form:"params,omitempty"`              // Parameters as semi-colon list of &lt;key&gt;=&lt;value&gt;
 	PreventReactivation string `form:"preventReactivation,omitempty"` // Deprecated since 10.4;If set to true and if the rule has been deactivated (status 'REMOVED'), a status 409 will be returned
-	Severity            string `form:"severity,omitempty"`            // Deprecated since 10.4;Rule severity
+	Severity            string `form:"severity,omitempty"`            // Rule severity
 	Status              string `form:"status,omitempty"`              // Rule status
 	TemplateKey         string `form:"templateKey"`                   // Key of the template rule in order to create a custom rule
-	Type                string `form:"type,omitempty"`                // Since 6.7;Deprecated since 10.4;Rule type
+	Type                string `form:"type,omitempty"`                // Since 6.7;Rule type
 }
 
 // CreateResponse is the response for CreateRequest
@@ -76,7 +76,7 @@ type RepositoriesResponse struct {
 // SearchRequest Search for a collection of relevant rules matching a specified query.<br/>
 type SearchRequest struct {
 	Activation                   string `url:"activation,omitempty"`                   // Filter rules that are activated or deactivated on the selected Quality profile. Ignored if the parameter 'qprofile' is not set.
-	ActiveSeverities             string `url:"active_severities,omitempty"`            // Deprecated since 10.2;Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.
+	ActiveSeverities             string `url:"active_severities,omitempty"`            // Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.
 	Asc                          string `url:"asc,omitempty"`                          // Ascending sort
 	AvailableSince               string `url:"available_since,omitempty"`              // Filters rules added since date. Format is yyyy-MM-dd
 	CleanCodeAttributeCategories string `url:"cleanCodeAttributeCategories,omitempty"` // Since 10.2;Comma-separated list of Clean Code Attribute Categories
@@ -98,12 +98,12 @@ type SearchRequest struct {
 	RuleKey                      string `url:"rule_key,omitempty"`                     // Key of rule to search for
 	S                            string `url:"s,omitempty"`                            // Sort field
 	SansTop25                    string `url:"sansTop25,omitempty"`                    // Since 7.3;Deprecated since 10.0;Comma-separated list of SANS Top 25 categories.
-	Severities                   string `url:"severities,omitempty"`                   // Deprecated since 10.2;Comma-separated list of default severities. Not the same than severity of rules in Quality profiles.
+	Severities                   string `url:"severities,omitempty"`                   // Comma-separated list of default severities. Not the same than severity of rules in Quality profiles.
 	SonarsourceSecurity          string `url:"sonarsourceSecurity,omitempty"`          // Since 7.8;Comma-separated list of SonarSource security categories. Use 'others' to select rules not associated with any category
 	Statuses                     string `url:"statuses,omitempty"`                     // Comma-separated list of status codes
 	Tags                         string `url:"tags,omitempty"`                         // Comma-separated list of tags. Returned rules match any of the tags (OR operator)
 	TemplateKey                  string `url:"template_key,omitempty"`                 // Key of the template rule to filter on. Used to search for the custom rules based on this template.
-	Types                        string `url:"types,omitempty"`                        // Since 5.5;Deprecated since 10.2;Comma-separated list of types. Returned rules match any of the tags (OR operator)
+	Types                        string `url:"types,omitempty"`                        // Since 5.5;Comma-separated list of types. Returned rules match any of the tags (OR operator)
 }
 
 // SearchResponse is the response for SearchRequest
@@ -360,7 +360,7 @@ type UpdateRequest struct {
 	RemediationFnBaseEffort    string `form:"remediation_fn_base_effort,omitempty"`    // Since 5.5;Base effort of the remediation function of the rule
 	RemediationFnType          string `form:"remediation_fn_type,omitempty"`           // Since 5.5;Type of the remediation function of the rule
 	RemediationFyGapMultiplier string `form:"remediation_fy_gap_multiplier,omitempty"` // Since 5.5;Gap multiplier of the remediation function of the rule
-	Severity                   string `form:"severity,omitempty"`                      // Deprecated since 10.4;Rule severity (Only when updating a custom rule)
+	Severity                   string `form:"severity,omitempty"`                      // Rule severity (Only when updating a custom rule)
 	Status                     string `form:"status,omitempty"`                        // Rule status (Only when updating a custom rule)
 	Tags                       string `form:"tags,omitempty"`                          // Optional comma-separated list of tags to set. Use blank value to remove current tags. Tags are not changed if the parameter is not set.
 }

@@ -167,8 +167,8 @@ type BulkChangeRequest struct {
 	Issues            string `form:"issues"`                      // Comma-separated list of issue keys
 	RemoveTags        string `form:"remove_tags,omitempty"`       // Remove tags
 	SendNotifications string `form:"sendNotifications,omitempty"` // Since 4.0;
-	SetSeverity       string `form:"set_severity,omitempty"`      // Deprecated since 10.2;To change the severity of the list of issues
-	SetType           string `form:"set_type,omitempty"`          // Since 5.5;Deprecated since 10.2;To change the type of the list of issues
+	SetSeverity       string `form:"set_severity,omitempty"`      // To change the severity of the list of issues
+	SetType           string `form:"set_type,omitempty"`          // Since 5.5;To change the type of the list of issues
 }
 
 // BulkChangeResponse is the response for BulkChangeRequest
@@ -522,19 +522,19 @@ type SearchRequest struct {
 	PciDss40                     string `url:"pciDss-4.0,omitempty"`                   // Since 9.6;Comma-separated list of PCI DSS v4.0 categories.
 	PrioritizedRule              string `url:"prioritizedRule,omitempty"`              // To match issues with prioritized rule or not
 	PullRequest                  string `url:"pullRequest,omitempty"`                  // Since 7.1;Pull request id. Not available in the community edition.
-	Resolutions                  string `url:"resolutions,omitempty"`                  // Deprecated since 10.4;Comma-separated list of resolutions
+	Resolutions                  string `url:"resolutions,omitempty"`                  // Comma-separated list of resolutions
 	Resolved                     string `url:"resolved,omitempty"`                     // To match resolved or unresolved issues
 	Rules                        string `url:"rules,omitempty"`                        // Comma-separated list of coding rule keys. Format is &lt;repository&gt;:&lt;rule&gt;
 	S                            string `url:"s,omitempty"`                            // Sort field
 	SansTop25                    string `url:"sansTop25,omitempty"`                    // Since 7.3;Deprecated since 10.0;Comma-separated list of SANS Top 25 categories.
 	Scopes                       string `url:"scopes,omitempty"`                       // Comma-separated list of scopes. Available since 8.5
-	Severities                   string `url:"severities,omitempty"`                   // Deprecated since 10.4;Comma-separated list of severities
+	Severities                   string `url:"severities,omitempty"`                   // Comma-separated list of severities
 	SonarsourceSecurity          string `url:"sonarsourceSecurity,omitempty"`          // Since 7.8;Comma-separated list of SonarSource security categories. Use 'others' to select issues not associated with any category
 	Statuses                     string `url:"statuses,omitempty"`                     // Deprecated since 10.4;Comma-separated list of statuses
 	StigASDV5R3                  string `url:"stig-ASD_V5R3,omitempty"`                // Since 10.7;Comma-separated list of STIG V5R3 categories.
 	Tags                         string `url:"tags,omitempty"`                         // Comma-separated list of tags.
 	TimeZone                     string `url:"timeZone,omitempty"`                     // Since 8.6;To resolve dates passed to 'createdAfter' or 'createdBefore' (does not apply to datetime) and to compute creation date histogram
-	Types                        string `url:"types,omitempty"`                        // Since 5.5;Deprecated since 10.4;Comma-separated list of types.
+	Types                        string `url:"types,omitempty"`                        // Since 5.5;Comma-separated list of types.
 }
 
 // SearchResponse is the response for SearchRequest
@@ -738,10 +738,10 @@ type SearchResponseAll struct {
 }
 
 // SetSeverityRequest Change severity.<br/>Requires the following permissions:<ul>  <li>'Authentication'</li>  <li>'Browse' rights on project of the specified issue</li>  <li>'Administer Issues' rights on project of the specified issue</li></ul>
-// Deprecated: this action has been deprecated since version 10.2
 type SetSeverityRequest struct {
-	Issue    string `form:"issue"`    // Issue key
-	Severity string `form:"severity"` // New severity
+	Impact   string `form:"impact,omitempty"`   // Override of impact severity for the rule. Cannot be used as the same time as 'severity'
+	Issue    string `form:"issue"`              // Issue key
+	Severity string `form:"severity,omitempty"` // New severity
 }
 
 // SetSeverityResponse is the response for SetSeverityRequest

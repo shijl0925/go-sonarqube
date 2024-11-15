@@ -20,6 +20,7 @@ type Qualityprofiles service
 // Since 4.4
 // Changelog:
 //
+//	10.8: The parameter 'severity' is not deprecated anymore.
 //	10.8: Add new parameter 'impacts'
 //	10.6: Add parameter 'prioritizedRule'.
 //	10.2: Parameter 'severity' is now deprecated.
@@ -42,6 +43,7 @@ func (s *Qualityprofiles) ActivateRule(ctx context.Context, r qualityprofiles.Ac
 // Since 4.4
 // Changelog:
 //
+//	10.8: The parameters 'severities', 'targetSeverity', 'active_severities', and 'types'  are not deprecated anymore.
 //	10.6: Add parameter 'prioritizedRule'.
 //	10.2: Parameters 'severities', 'targetSeverity', 'active_severities', and 'types' are now deprecated.
 //	10.0: Parameter 'sansTop25' is deprecated
@@ -77,6 +79,7 @@ func (s *Qualityprofiles) AddProject(ctx context.Context, r qualityprofiles.AddP
 // Since 5.2
 // Changelog:
 //
+//	10.8: The 'priority' and 'type' fields of the rule XML object are not deprecated anymore.
 //	10.3: The 'priority' and 'type' fields of the rule XML object are deprecated.
 func (s *Qualityprofiles) Backup(ctx context.Context, r qualityprofiles.BackupRequest) (*qualityprofiles.BackupResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/backup", s.path)
@@ -208,6 +211,7 @@ func (s *Qualityprofiles) DeactivateRule(ctx context.Context, r qualityprofiles.
 // Since 4.4
 // Changelog:
 //
+//	10.8: Parameters 'severities', 'active_severities', and 'types' are not deprecated anymore.
 //	10.3: Inherited rules can be deactivated (if the global admin setting is enabled)
 //	10.2: Parameters 'severities', 'active_severities', and 'types' are now deprecated.
 //	10.0: Parameter 'sansTop25' is deprecated
@@ -383,6 +387,7 @@ func (s *Qualityprofiles) Rename(ctx context.Context, r qualityprofiles.RenameRe
 // Since 5.2
 // Changelog:
 //
+//	10.8: The 'priority' and 'type' fields of the rule XML object are not deprecated anymore.
 //	10.3: The 'priority' and 'type' fields of the rule XML object are deprecated.
 func (s *Qualityprofiles) Restore(ctx context.Context, r qualityprofiles.RestoreRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/restore", s.path)
