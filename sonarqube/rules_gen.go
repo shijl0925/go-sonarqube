@@ -17,6 +17,7 @@ type Rules service
 // Since 4.4
 // Changelog:
 //
+//	10.8: The parameters 'type' and 'severity' are not deprecated anymore.
 //	10.4: Add 'impacts' and 'cleanCodeAttribute' parameters to the request
 //	10.4: Parameters 'type' and 'severity' are deprecated. Use 'impacts' instead.
 //	10.4: Parameter 'preventReactivation' is deprecated. Use api/rules/update endpoint instead.
@@ -73,6 +74,10 @@ func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added
 //	10.8: Parameter 'severities' now supports values: 'INFO','BLOCKER'
 //	10.8: The field 'impacts' has been added to the response
+//	10.8: The parameters 'severities','types and 'active_severities' are not deprecated anymore.
+//	10.8: The values 'severity' and 'types' for the 'facets' parameter are not deprecated anymore.
+//	10.8: The fields 'type' and 'severity' in the response are not deprecated anymore.
+//	10.8: The value 'severity' for the 'f' parameter is not deprecated anymore.
 //	10.6: Parameter 'prioritizedRule has been added
 //	10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
 //	10.2: The fields 'type' and 'severity' are deprecated in the response. Use 'impacts' instead.
@@ -150,6 +155,7 @@ func (s *Rules) SearchAll(ctx context.Context, r rules.SearchRequest) (*rules.Se
 // Changelog:
 //
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
+//	10.8: The field 'severity' and 'type' in the response  are not deprecated anymore.
 //	10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
 //	10.2: The field 'severity' and 'type' in the response have been deprecated, use 'impacts' instead.
 //	10.0: The deprecated field 'effortToFixDescription' has been removed, use 'gapDescription' instead.
@@ -205,6 +211,7 @@ func (s *Rules) Tags(ctx context.Context, r rules.TagsRequest) (*rules.TagsRespo
 // Since 4.4
 // Changelog:
 //
+//	10.8: The parameter 'severity' is not deprecated anymore.
 //	10.4: The parameter 'severity' is deprecated.
 //	10.4: Updating a removed rule is now possible.
 //	10.2: The field 'severity' and 'type' in the response have been deprecated, use 'impacts' instead.

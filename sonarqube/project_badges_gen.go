@@ -31,6 +31,7 @@ func (s *ProjectBadges) AiCodeAssurance(ctx context.Context, r project_badges.Ai
 // Since 7.1
 // Changelog:
 //
+//	10.8: The following metric keys are not deprecated anymore: bugs, code_smells, security_hotspots, vulnerabilities
 //	10.4: The following metric keys are now deprecated: bugs, code_smells, security_hotspots, vulnerabilities
 func (s *ProjectBadges) Measure(ctx context.Context, r project_badges.MeasureRequest) (*project_badges.MeasureResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/measure", s.path)

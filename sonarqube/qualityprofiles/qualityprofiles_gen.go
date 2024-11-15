@@ -12,13 +12,13 @@ type ActivateRuleRequest struct {
 	PrioritizedRule string `form:"prioritizedRule,omitempty"` // Since 10.6;Mark activated rule as prioritized, so all corresponding Issues will have to be fixed.
 	Reset           string `form:"reset,omitempty"`           // Reset severity and parameters of activated rule. Set the values defined on parent profile or from rule default values.
 	Rule            string `form:"rule"`                      // Rule key
-	Severity        string `form:"severity,omitempty"`        // Deprecated since 10.2;Severity. Cannot be used as the same time as 'impacts'.Ignored if parameter reset is true.
+	Severity        string `form:"severity,omitempty"`        // Severity. Cannot be used as the same time as 'impacts'.Ignored if parameter reset is true.
 }
 
 // ActivateRulesRequest Bulk-activate rules on one quality profile.<br> Requires one of the following permissions:<ul>  <li>'Administer Quality Profiles'</li>  <li>Edit right on the specified quality profile</li></ul>
 type ActivateRulesRequest struct {
 	Activation                   string `form:"activation,omitempty"`                   // Filter rules that are activated or deactivated on the selected Quality profile. Ignored if the parameter 'qprofile' is not set.
-	ActiveSeverities             string `form:"active_severities,omitempty"`            // Deprecated since 10.2;Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.
+	ActiveSeverities             string `form:"active_severities,omitempty"`            // Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.
 	Asc                          string `form:"asc,omitempty"`                          // Ascending sort
 	AvailableSince               string `form:"available_since,omitempty"`              // Filters rules added since date. Format is yyyy-MM-dd
 	CleanCodeAttributeCategories string `form:"cleanCodeAttributeCategories,omitempty"` // Since 10.2;Comma-separated list of Clean Code Attribute Categories
@@ -37,14 +37,14 @@ type ActivateRulesRequest struct {
 	RuleKey                      string `form:"rule_key,omitempty"`                     // Key of rule to search for
 	S                            string `form:"s,omitempty"`                            // Sort field
 	SansTop25                    string `form:"sansTop25,omitempty"`                    // Since 7.3;Deprecated since 10.0;Comma-separated list of SANS Top 25 categories.
-	Severities                   string `form:"severities,omitempty"`                   // Deprecated since 10.2;Comma-separated list of default severities. Not the same than severity of rules in Quality profiles.
+	Severities                   string `form:"severities,omitempty"`                   // Comma-separated list of default severities. Not the same than severity of rules in Quality profiles.
 	SonarsourceSecurity          string `form:"sonarsourceSecurity,omitempty"`          // Since 7.8;Comma-separated list of SonarSource security categories. Use 'others' to select rules not associated with any category
 	Statuses                     string `form:"statuses,omitempty"`                     // Comma-separated list of status codes
 	Tags                         string `form:"tags,omitempty"`                         // Comma-separated list of tags. Returned rules match any of the tags (OR operator)
 	TargetKey                    string `form:"targetKey"`                              // Quality Profile key on which the rule activation is done. To retrieve a quality profile key please see <code>api/qualityprofiles/search</code>
-	TargetSeverity               string `form:"targetSeverity,omitempty"`               // Deprecated since 10.2;Severity to set on the activated rules
+	TargetSeverity               string `form:"targetSeverity,omitempty"`               // Severity to set on the activated rules
 	TemplateKey                  string `form:"template_key,omitempty"`                 // Key of the template rule to filter on. Used to search for the custom rules based on this template.
-	Types                        string `form:"types,omitempty"`                        // Since 5.5;Deprecated since 10.2;Comma-separated list of types. Returned rules match any of the tags (OR operator)
+	Types                        string `form:"types,omitempty"`                        // Since 5.5;Comma-separated list of types. Returned rules match any of the tags (OR operator)
 }
 
 // AddProjectRequest Associate a project with a quality profile.<br> Requires one of the following permissions:<ul>  <li>'Administer Quality Profiles'</li>  <li>Administer right on the specified project</li></ul>
@@ -171,7 +171,7 @@ type DeactivateRuleRequest struct {
 // DeactivateRulesRequest Bulk deactivate rules on Quality profiles.<br>Requires one of the following permissions:<ul>  <li>'Administer Quality Profiles'</li>  <li>Edit right on the specified quality profile</li></ul>
 type DeactivateRulesRequest struct {
 	Activation                   string `form:"activation,omitempty"`                   // Filter rules that are activated or deactivated on the selected Quality profile. Ignored if the parameter 'qprofile' is not set.
-	ActiveSeverities             string `form:"active_severities,omitempty"`            // Deprecated since 10.2;Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.
+	ActiveSeverities             string `form:"active_severities,omitempty"`            // Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.
 	Asc                          string `form:"asc,omitempty"`                          // Ascending sort
 	AvailableSince               string `form:"available_since,omitempty"`              // Filters rules added since date. Format is yyyy-MM-dd
 	CleanCodeAttributeCategories string `form:"cleanCodeAttributeCategories,omitempty"` // Since 10.2;Comma-separated list of Clean Code Attribute Categories
@@ -189,13 +189,13 @@ type DeactivateRulesRequest struct {
 	RuleKey                      string `form:"rule_key,omitempty"`                     // Key of rule to search for
 	S                            string `form:"s,omitempty"`                            // Sort field
 	SansTop25                    string `form:"sansTop25,omitempty"`                    // Since 7.3;Deprecated since 10.0;Comma-separated list of SANS Top 25 categories.
-	Severities                   string `form:"severities,omitempty"`                   // Deprecated since 10.2;Comma-separated list of default severities. Not the same than severity of rules in Quality profiles.
+	Severities                   string `form:"severities,omitempty"`                   // Comma-separated list of default severities. Not the same than severity of rules in Quality profiles.
 	SonarsourceSecurity          string `form:"sonarsourceSecurity,omitempty"`          // Since 7.8;Comma-separated list of SonarSource security categories. Use 'others' to select rules not associated with any category
 	Statuses                     string `form:"statuses,omitempty"`                     // Comma-separated list of status codes
 	Tags                         string `form:"tags,omitempty"`                         // Comma-separated list of tags. Returned rules match any of the tags (OR operator)
 	TargetKey                    string `form:"targetKey"`                              // Quality Profile key on which the rule deactivation is done. To retrieve a profile key please see <code>api/qualityprofiles/search</code>
 	TemplateKey                  string `form:"template_key,omitempty"`                 // Key of the template rule to filter on. Used to search for the custom rules based on this template.
-	Types                        string `form:"types,omitempty"`                        // Since 5.5;Deprecated since 10.2;Comma-separated list of types. Returned rules match any of the tags (OR operator)
+	Types                        string `form:"types,omitempty"`                        // Since 5.5;Comma-separated list of types. Returned rules match any of the tags (OR operator)
 }
 
 // DeleteRequest Delete a quality profile and all its descendants. The default quality profile cannot be deleted.<br> Requires one of the following permissions:<ul>  <li>'Administer Quality Profiles'</li>  <li>Edit right on the specified quality profile</li></ul>

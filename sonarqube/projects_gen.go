@@ -71,6 +71,7 @@ func (s *Projects) Delete(ctx context.Context, r projects.DeleteRequest) (*http.
 // Since 9.1
 // Changelog:
 //
+//	10.8: 'type' and 'severity' fields are not deprecated anymore.
 //	10.4: 'status' and 'resolution' fields are now deprecated for issues. Use 'issueStatus' instead. Note that both fields remain available for 'type=SECURITY_HOTSPOT'.
 //	10.4: Add 'issueStatus' field to the response
 //	10.4: 'type' and 'severity' fields are now deprecated for issues. Use 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields instead. Note that 'type' remains available for 'type=SECURITY_HOTSPOT'.
