@@ -352,6 +352,7 @@ type TagsResponse struct {
 
 // UpdateRequest Update an existing rule.<br>Requires the 'Administer Quality Profiles' permission
 type UpdateRequest struct {
+	Impacts                    string `form:"impacts,omitempty"`                       // Rule impacts, semicolon-separated (Only when updating a custom rule impact severity)
 	Key                        string `form:"key"`                                     // Key of the rule to update
 	MarkdownDescription        string `form:"markdownDescription,omitempty"`           // Rule description (mandatory for custom rule and manual rule) in <a href='/formatting/help'>markdown format</a>
 	MarkdownNote               string `form:"markdown_note,omitempty"`                 // Optional note in <a href='/formatting/help'>markdown format</a>. Use empty value to remove current note. Note is not changed if the parameter is not set.

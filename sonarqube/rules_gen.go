@@ -211,7 +211,9 @@ func (s *Rules) Tags(ctx context.Context, r rules.TagsRequest) (*rules.TagsRespo
 // Since 4.4
 // Changelog:
 //
+//	10.8: Parameter impacts was added.
 //	10.8: The parameter 'severity' is not deprecated anymore.
+//	10.8: The field 'severity' and 'type' in the response are not deprecated anymore.
 //	10.4: The parameter 'severity' is deprecated.
 //	10.4: Updating a removed rule is now possible.
 //	10.2: The field 'severity' and 'type' in the response have been deprecated, use 'impacts' instead.
