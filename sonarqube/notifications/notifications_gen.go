@@ -7,7 +7,7 @@ type AddRequest struct {
 	Channel string `form:"channel,omitempty"` // Channel through which the notification is sent. For example, notifications can be sent by email.
 	Login   string `form:"login,omitempty"`   // Since 6.4;User login
 	Project string `form:"project,omitempty"` // Project key
-	Type    string `form:"type"`              // Notification type. Possible values are for:<ul>  <li>Global notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, SQ-MyNewIssues</li>  <li>Per project notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, NewFalsePositiveIssue, NewIssues, SQ-MyNewIssues</li></ul>
+	Type    string `form:"type"`              // Notification type. Possible values are for:<ul>  <li>Global notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, QualityGateConditionsMismatch, SQ-MyNewIssues</li>  <li>Per project notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, NewFalsePositiveIssue, NewIssues, SQ-MyNewIssues</li></ul>
 }
 
 // ListRequest List notifications of the authenticated user.<br>Requires one of the following permissions:<ul>  <li>Authentication if no login is provided</li>  <li>System administration if a login is provided</li></ul>
@@ -34,5 +34,5 @@ type RemoveRequest struct {
 	Channel string `form:"channel,omitempty"` // Channel through which the notification is sent. For example, notifications can be sent by email.
 	Login   string `form:"login,omitempty"`   // Since 6.4;User login
 	Project string `form:"project,omitempty"` // Project key
-	Type    string `form:"type"`              // Notification type. Possible values are for:<ul>  <li>Global notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, SQ-MyNewIssues</li>  <li>Per project notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, NewFalsePositiveIssue, NewIssues, SQ-MyNewIssues</li></ul>
+	Type    string `form:"type"`              // Notification type. Possible values are for:<ul>  <li>Global notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, QualityGateConditionsMismatch, SQ-MyNewIssues</li>  <li>Per project notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, NewFalsePositiveIssue, NewIssues, SQ-MyNewIssues</li></ul>
 }
