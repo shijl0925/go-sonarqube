@@ -37,7 +37,7 @@ type CreateResponse struct {
 type CreateConditionRequest struct {
 	Error    string `form:"error"`        // Condition error threshold
 	GateName string `form:"gateName"`     // Name of the quality gate
-	Metric   string `form:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>alert_status</li><li>new_security_hotspots</li><li>security_hotspots</li></ul>
+	Metric   string `form:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>new_security_hotspots</li><li>security_hotspots</li><li>alert_status</li></ul>
 	Op       string `form:"op,omitempty"` // Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul>
 }
 
@@ -88,17 +88,19 @@ type ListResponse struct {
 	} `json:"actions,omitempty"`
 	Qualitygates []struct {
 		Actions struct {
-			AssociateProjects bool `json:"associateProjects,omitempty"`
-			Copy              bool `json:"copy,omitempty"`
-			Delegate          bool `json:"delegate,omitempty"`
-			Delete            bool `json:"delete,omitempty"`
-			ManageConditions  bool `json:"manageConditions,omitempty"`
-			Rename            bool `json:"rename,omitempty"`
-			SetAsDefault      bool `json:"setAsDefault,omitempty"`
+			AssociateProjects     bool `json:"associateProjects,omitempty"`
+			Copy                  bool `json:"copy,omitempty"`
+			Delegate              bool `json:"delegate,omitempty"`
+			Delete                bool `json:"delete,omitempty"`
+			ManageAiCodeAssurance bool `json:"manageAiCodeAssurance,omitempty"`
+			ManageConditions      bool `json:"manageConditions,omitempty"`
+			Rename                bool `json:"rename,omitempty"`
+			SetAsDefault          bool `json:"setAsDefault,omitempty"`
 		} `json:"actions,omitempty"`
 		CaycStatus            string `json:"caycStatus,omitempty"`
 		HasMQRConditions      bool   `json:"hasMQRConditions,omitempty"`
 		HasStandardConditions bool   `json:"hasStandardConditions,omitempty"`
+		IsAiCodeSupported     bool   `json:"isAiCodeSupported,omitempty"`
 		IsBuiltIn             bool   `json:"isBuiltIn,omitempty"`
 		IsDefault             bool   `json:"isDefault,omitempty"`
 		Name                  string `json:"name,omitempty"`
@@ -170,9 +172,10 @@ type SearchResponse struct {
 		Total     float64 `json:"total,omitempty"`
 	} `json:"paging,omitempty"`
 	Results []struct {
-		Key      string `json:"key,omitempty"`
-		Name     string `json:"name,omitempty"`
-		Selected bool   `json:"selected,omitempty"`
+		AiCodeAssurance string `json:"aiCodeAssurance,omitempty"`
+		Key             string `json:"key,omitempty"`
+		Name            string `json:"name,omitempty"`
+		Selected        bool   `json:"selected,omitempty"`
 	} `json:"results,omitempty"`
 }
 
@@ -259,13 +262,14 @@ type ShowRequest struct {
 // ShowResponse is the response for ShowRequest
 type ShowResponse struct {
 	Actions struct {
-		AssociateProjects bool `json:"associateProjects,omitempty"`
-		Copy              bool `json:"copy,omitempty"`
-		Delegate          bool `json:"delegate,omitempty"`
-		Delete            bool `json:"delete,omitempty"`
-		ManageConditions  bool `json:"manageConditions,omitempty"`
-		Rename            bool `json:"rename,omitempty"`
-		SetAsDefault      bool `json:"setAsDefault,omitempty"`
+		AssociateProjects     bool `json:"associateProjects,omitempty"`
+		Copy                  bool `json:"copy,omitempty"`
+		Delegate              bool `json:"delegate,omitempty"`
+		Delete                bool `json:"delete,omitempty"`
+		ManageAiCodeAssurance bool `json:"manageAiCodeAssurance,omitempty"`
+		ManageConditions      bool `json:"manageConditions,omitempty"`
+		Rename                bool `json:"rename,omitempty"`
+		SetAsDefault          bool `json:"setAsDefault,omitempty"`
 	} `json:"actions,omitempty"`
 	CaycStatus string `json:"caycStatus,omitempty"`
 	Conditions []struct {
@@ -274,15 +278,16 @@ type ShowResponse struct {
 		Metric string `json:"metric,omitempty"`
 		Op     string `json:"op,omitempty"`
 	} `json:"conditions,omitempty"`
-	IsBuiltIn bool   `json:"isBuiltIn,omitempty"`
-	IsDefault bool   `json:"isDefault,omitempty"`
-	Name      string `json:"name,omitempty"`
+	IsAiCodeSupported bool   `json:"isAiCodeSupported,omitempty"`
+	IsBuiltIn         bool   `json:"isBuiltIn,omitempty"`
+	IsDefault         bool   `json:"isDefault,omitempty"`
+	Name              string `json:"name,omitempty"`
 }
 
 // UpdateConditionRequest Update a condition attached to a quality gate.<br>Requires the 'Administer Quality Gates' permission.
 type UpdateConditionRequest struct {
 	Error  string `form:"error"`        // Condition error threshold
 	Id     string `form:"id"`           // Condition ID
-	Metric string `form:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>alert_status</li><li>new_security_hotspots</li><li>security_hotspots</li></ul>
+	Metric string `form:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>new_security_hotspots</li><li>security_hotspots</li><li>alert_status</li></ul>
 	Op     string `form:"op,omitempty"` // Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul>
 }
