@@ -130,6 +130,7 @@ func (s *Qualitygates) DeleteCondition(ctx context.Context, r qualitygates.Delet
 // Since 4.3
 // Changelog:
 //
+//	10.8: Allow to change the Quality Gate of a project flagged as containing AI code.
 //	10.7: It is not possible anymore to change the Quality Gate of a project flagged as containing AI code.
 //	8.3: The parameter 'projectId' was removed
 //	6.6: The parameter 'gateId' was removed
@@ -193,6 +194,7 @@ func (s *Qualitygates) GetByProject(ctx context.Context, r qualitygates.GetByPro
 // Since 4.3
 // Changelog:
 //
+//	10.8: 'isAiCodeSupported' field is added on quality gate
 //	10.8: 'hasMQRConditions' and 'hasStandardConditions' fields are added on quality gate
 //	10.0: Field 'default' in the response has been removed
 //	10.0: Field 'id' in the response has been removed
@@ -305,6 +307,8 @@ func (s *Qualitygates) Rename(ctx context.Context, r qualitygates.RenameRequest)
 // Since 4.3
 // Changelog:
 //
+//	10.8: Field 'isAiCodeAssured' response field has been deprecated. Use 'aiCodeAssurance' instead.
+//	10.8: New field 'aiCodeAssurance' in the response.
 //	10.0: deprecated 'more' response field has been removed
 //	10.0: Parameter 'gateId' is removed. Use 'gateName' instead.
 //	8.4: Parameter 'gateName' added
@@ -408,6 +412,7 @@ func (s *Qualitygates) SearchUsersAll(ctx context.Context, r qualitygates.Search
 // Since 4.3
 // Changelog:
 //
+//	10.8: Allow to change the Quality Gate of a project flagged as containing AI code.
 //	10.7: It is not possible anymore to change the Quality Gate of a project flagged as containing AI code.
 //	10.0: Parameter 'gateId' is removed. Use 'gateName' instead.
 //	8.4: Parameter 'gateName' added
@@ -447,6 +452,7 @@ func (s *Qualitygates) SetAsDefault(ctx context.Context, r qualitygates.SetAsDef
 // Since 4.3
 // Changelog:
 //
+//	10.8: 'isAiCodeSupported' field is added on quality gate
 //	10.8: 'hasMQRConditions' and 'hasStandardConditions' fields are added on quality gate
 //	10.3: 'isDefault' field is added to the response
 //	10.0: Field 'id' in the response has been removed
