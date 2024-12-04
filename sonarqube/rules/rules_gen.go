@@ -93,7 +93,7 @@ type SearchRequest struct {
 	OwaspTop102021               string `url:"owaspTop10-2021,omitempty"`              // Since 9.4;Comma-separated list of OWASP Top 10 2021 lowercase categories.
 	PrioritizedRule              string `url:"prioritizedRule,omitempty"`              // Since 10.6;Filter on prioritized rules. Ignored if the parameter 'qprofile' is not set.
 	Q                            string `url:"q,omitempty"`                            // UTF-8 search query
-	Qprofile                     string `url:"qprofile,omitempty"`                     // Quality profile key to filter on. Used only if the parameter 'activation' is set.
+	Qprofile                     string `url:"qprofile,omitempty"`                     // Quality profile key to filter on. Only rules of the same language as this profile are returned. By default only rules activated in this profile are returned. You can change that using the 'activation' parameter.
 	Repositories                 string `url:"repositories,omitempty"`                 // Comma-separated list of repositories
 	RuleKey                      string `url:"rule_key,omitempty"`                     // Key of rule to search for
 	S                            string `url:"s,omitempty"`                            // Sort field

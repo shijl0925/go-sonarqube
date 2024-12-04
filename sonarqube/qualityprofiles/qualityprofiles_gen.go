@@ -32,7 +32,7 @@ type ActivateRulesRequest struct {
 	OwaspTop102021               string `form:"owaspTop10-2021,omitempty"`              // Since 9.4;Comma-separated list of OWASP Top 10 2021 lowercase categories.
 	PrioritizedRule              string `form:"prioritizedRule,omitempty"`              // Since 10.6;Mark activated rules as prioritized, so all corresponding Issues will have to be fixed.
 	Q                            string `form:"q,omitempty"`                            // UTF-8 search query
-	Qprofile                     string `form:"qprofile,omitempty"`                     // Quality profile key to filter on. Used only if the parameter 'activation' is set.
+	Qprofile                     string `form:"qprofile,omitempty"`                     // Quality profile key to filter on. Only rules of the same language as this profile are returned. By default only rules activated in this profile are returned. You can change that using the 'activation' parameter.
 	Repositories                 string `form:"repositories,omitempty"`                 // Comma-separated list of repositories
 	RuleKey                      string `form:"rule_key,omitempty"`                     // Key of rule to search for
 	S                            string `form:"s,omitempty"`                            // Sort field
@@ -184,7 +184,7 @@ type DeactivateRulesRequest struct {
 	OwaspTop10                   string `form:"owaspTop10,omitempty"`                   // Since 7.3;Comma-separated list of OWASP Top 10 2017 lowercase categories.
 	OwaspTop102021               string `form:"owaspTop10-2021,omitempty"`              // Since 9.4;Comma-separated list of OWASP Top 10 2021 lowercase categories.
 	Q                            string `form:"q,omitempty"`                            // UTF-8 search query
-	Qprofile                     string `form:"qprofile,omitempty"`                     // Quality profile key to filter on. Used only if the parameter 'activation' is set.
+	Qprofile                     string `form:"qprofile,omitempty"`                     // Quality profile key to filter on. Only rules of the same language as this profile are returned. By default only rules activated in this profile are returned. You can change that using the 'activation' parameter.
 	Repositories                 string `form:"repositories,omitempty"`                 // Comma-separated list of repositories
 	RuleKey                      string `form:"rule_key,omitempty"`                     // Key of rule to search for
 	S                            string `form:"s,omitempty"`                            // Sort field
