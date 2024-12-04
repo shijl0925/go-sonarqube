@@ -555,10 +555,7 @@ type SearchResponse struct {
 		} `json:"values,omitempty"`
 	} `json:"facets,omitempty"`
 	Issues []struct {
-		Actions []string `json:"actions,omitempty"`
-		Attr    struct {
-			JiraIssueKey string `json:"jira-issue-key,omitempty"`
-		} `json:"attr,omitempty"`
+		Actions                    []string `json:"actions,omitempty"`
 		Author                     string   `json:"author,omitempty"`
 		CleanCodeAttribute         string   `json:"cleanCodeAttribute,omitempty"`
 		CleanCodeAttributeCategory string   `json:"cleanCodeAttributeCategory,omitempty"`
@@ -658,10 +655,7 @@ type SearchResponseAll struct {
 		} `json:"values,omitempty"`
 	} `json:"facets,omitempty"`
 	Issues []struct {
-		Actions []string `json:"actions,omitempty"`
-		Attr    struct {
-			JiraIssueKey string `json:"jira-issue-key,omitempty"`
-		} `json:"attr,omitempty"`
+		Actions                    []string `json:"actions,omitempty"`
 		Author                     string   `json:"author,omitempty"`
 		CleanCodeAttribute         string   `json:"cleanCodeAttribute,omitempty"`
 		CleanCodeAttributeCategory string   `json:"cleanCodeAttributeCategory,omitempty"`
