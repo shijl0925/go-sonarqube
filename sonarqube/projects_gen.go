@@ -156,6 +156,23 @@ func (s *Projects) SearchAll(ctx context.Context, r projects.SearchRequest) (*pr
 	return response, nil
 }
 
+// SetContainsAiCode - Sets if the project passed as parameter contains or not AI code according to the value of the contains_ai_code parameter.
+// Requires 'Administer' rights on the specified project.
+// Since 10.8
+// Changelog:
+//
+//	2025.1: Make endpoint public
+func (s *Projects) SetContainsAiCode(ctx context.Context, r projects.SetContainsAiCodeRequest) (*http.Response, error) {
+	u := fmt.Sprintf("%s/set_contains_ai_code", s.path)
+
+	resp, err := s.client.Call(ctx, "POST", u, nil, r)
+	if err != nil {
+		return resp, err
+	}
+
+	return resp, nil
+}
+
 // UpdateKey - Update a project all its sub-components keys.
 // Requires 'Administer' permission on the project.
 // Since 6.1
