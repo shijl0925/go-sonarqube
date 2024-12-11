@@ -140,6 +140,12 @@ type SearchResponseAll struct {
 	} `json:"components,omitempty"`
 }
 
+// SetContainsAiCodeRequest Sets if the project passed as parameter contains or not AI code according to the value of the contains_ai_code parameter.<br/>Requires 'Administer' rights on the specified project.
+type SetContainsAiCodeRequest struct {
+	ContainsAiCode string `form:"contains_ai_code"` // Flag to set whether the project contains AI code or not.
+	Project        string `form:"project"`          // Project key
+}
+
 // UpdateKeyRequest Update a project all its sub-components keys.<br>Requires 'Administer' permission on the project.
 type UpdateKeyRequest struct {
 	From string `form:"from"` // Project key

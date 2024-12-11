@@ -66,7 +66,9 @@ type ListAzureProjectsResponse struct {
 
 // ListBitbucketserverProjectsRequest List the Bitbucket Server projects<br/>Requires the 'Create Projects' permission
 type ListBitbucketserverProjectsRequest struct {
-	AlmSetting string `url:"almSetting"` // DevOps Platform setting key
+	AlmSetting string `url:"almSetting"`         // DevOps Platform setting key
+	PageSize   string `url:"pageSize,omitempty"` // Number of items to return.
+	Start      string `url:"start,omitempty"`    // Start number for the page (inclusive). If not passed, the first page is assumed.
 }
 
 // ListBitbucketserverProjectsResponse is the response for ListBitbucketserverProjectsRequest
@@ -133,8 +135,10 @@ type SearchBitbucketcloudReposResponseAll struct {
 // SearchBitbucketserverReposRequest Search the Bitbucket Server repositories with REPO_ADMIN access<br/>Requires the 'Create Projects' permission
 type SearchBitbucketserverReposRequest struct {
 	AlmSetting     string `url:"almSetting"`               // DevOps Platform setting key
+	PageSize       string `url:"pageSize,omitempty"`       // Number of items to return.
 	ProjectName    string `url:"projectName,omitempty"`    // Project name filter
 	RepositoryName string `url:"repositoryName,omitempty"` // Repository name filter
+	Start          string `url:"start,omitempty"`          // Start number for the page (inclusive). If not passed, the first page is assumed.
 }
 
 // SearchBitbucketserverReposResponse is the response for SearchBitbucketserverReposRequest
