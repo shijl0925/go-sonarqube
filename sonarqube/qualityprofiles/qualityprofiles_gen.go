@@ -18,6 +18,7 @@ type ActivateRuleRequest struct {
 // ActivateRulesRequest Bulk-activate rules on one quality profile.<br> Requires one of the following permissions:<ul>  <li>'Administer Quality Profiles'</li>  <li>Edit right on the specified quality profile</li></ul>
 type ActivateRulesRequest struct {
 	Activation                   string `form:"activation,omitempty"`                   // Filter rules that are activated or deactivated on the selected Quality profile. Ignored if the parameter 'qprofile' is not set.
+	ActiveImpactSeverities       string `form:"active_impactSeverities,omitempty"`      // Since 2025.1;Comma-separated list of Activation Software Quality Severities, i.e the impact severity of rules in Quality profiles.
 	ActiveSeverities             string `form:"active_severities,omitempty"`            // Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.
 	Asc                          string `form:"asc,omitempty"`                          // Ascending sort
 	AvailableSince               string `form:"available_since,omitempty"`              // Filters rules added since date. Format is yyyy-MM-dd
@@ -171,6 +172,7 @@ type DeactivateRuleRequest struct {
 // DeactivateRulesRequest Bulk deactivate rules on Quality profiles.<br>Requires one of the following permissions:<ul>  <li>'Administer Quality Profiles'</li>  <li>Edit right on the specified quality profile</li></ul>
 type DeactivateRulesRequest struct {
 	Activation                   string `form:"activation,omitempty"`                   // Filter rules that are activated or deactivated on the selected Quality profile. Ignored if the parameter 'qprofile' is not set.
+	ActiveImpactSeverities       string `form:"active_impactSeverities,omitempty"`      // Since 2025.1;Comma-separated list of Activation Software Quality Severities, i.e the impact severity of rules in Quality profiles.
 	ActiveSeverities             string `form:"active_severities,omitempty"`            // Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.
 	Asc                          string `form:"asc,omitempty"`                          // Ascending sort
 	AvailableSince               string `form:"available_since,omitempty"`              // Filters rules added since date. Format is yyyy-MM-dd

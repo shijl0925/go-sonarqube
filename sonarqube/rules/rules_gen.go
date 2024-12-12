@@ -76,6 +76,7 @@ type RepositoriesResponse struct {
 // SearchRequest Search for a collection of relevant rules matching a specified query.<br/>
 type SearchRequest struct {
 	Activation                   string `url:"activation,omitempty"`                   // Filter rules that are activated or deactivated on the selected Quality profile. Ignored if the parameter 'qprofile' is not set.
+	ActiveImpactSeverities       string `url:"active_impactSeverities,omitempty"`      // Since 2025.1;Comma-separated list of Activation Software Quality Severities, i.e the impact severity of rules in Quality profiles.
 	ActiveSeverities             string `url:"active_severities,omitempty"`            // Comma-separated list of activation severities, i.e the severity of rules in Quality profiles.
 	Asc                          string `url:"asc,omitempty"`                          // Ascending sort
 	AvailableSince               string `url:"available_since,omitempty"`              // Filters rules added since date. Format is yyyy-MM-dd
