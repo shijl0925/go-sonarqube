@@ -70,6 +70,7 @@ func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (
 // Since 4.4
 // Changelog:
 //
+//	2025.2: The facet 'active_impactSeverities' has been added.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'impactSeverities' of 'facets' have been added
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added
 //	10.8: Parameter 'severities' now supports values: 'INFO','BLOCKER'
