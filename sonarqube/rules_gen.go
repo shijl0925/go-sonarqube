@@ -70,7 +70,8 @@ func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (
 // Since 4.4
 // Changelog:
 //
-//	2025.2: The facet 'active_impactSeverities' has been added.
+//	2025.1: The facet 'active_impactSeverities' has been added.
+//	2025.1: The deprecated field 'htmlDesc' is not returned anymore, even if specified in the 'f' parameter.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'impactSeverities' of 'facets' have been added
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added
 //	10.8: Parameter 'severities' now supports values: 'INFO','BLOCKER'
@@ -155,6 +156,7 @@ func (s *Rules) SearchAll(ctx context.Context, r rules.SearchRequest) (*rules.Se
 // Since 4.2
 // Changelog:
 //
+//	2025.1: The deprecated field 'htmlDesc' is not returned anymore, even if specified in the 'f' parameter.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.8: The field 'severity' and 'type' in the response  are not deprecated anymore.
 //	10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
