@@ -92,6 +92,20 @@ func (s *Projects) ExportFindings(ctx context.Context, r projects.ExportFindings
 	return v, resp, nil
 }
 
+// GetContainsAiCode - Get whether a project contains AI code or not
+// Since 2025.1
+func (s *Projects) GetContainsAiCode(ctx context.Context, r projects.GetContainsAiCodeRequest) (*projects.GetContainsAiCodeResponse, *http.Response, error) {
+	u := fmt.Sprintf("%s/get_contains_ai_code", s.path)
+	v := new(projects.GetContainsAiCodeResponse)
+
+	resp, err := s.client.Call(ctx, "GET", u, v, r)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return v, resp, nil
+}
+
 // LicenseUsage - Help admins to understand how much each project affects the total number of lines of code. Returns the list of projects together with information about their usage, sorted by lines of code descending.
 // Requires Administer System permission.
 // Since 9.4

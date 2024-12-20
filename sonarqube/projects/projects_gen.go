@@ -77,6 +77,16 @@ type ExportFindingsResponse struct {
 	} `json:"export_findings,omitempty"`
 }
 
+// GetContainsAiCodeRequest Get whether a project contains AI code or not
+type GetContainsAiCodeRequest struct {
+	Project string `url:"project"` // Project key
+}
+
+// GetContainsAiCodeResponse is the response for GetContainsAiCodeRequest
+type GetContainsAiCodeResponse struct {
+	ContainsAiCode bool `json:"containsAiCode,omitempty"`
+}
+
 // LicenseUsageRequest Help admins to understand how much each project affects the total number of lines of code. Returns the list of projects together with information about their usage, sorted by lines of code descending.<br/>Requires Administer System permission.
 type LicenseUsageRequest struct{}
 
