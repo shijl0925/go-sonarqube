@@ -307,6 +307,9 @@ func (s *Qualitygates) Rename(ctx context.Context, r qualitygates.RenameRequest)
 // Since 4.3
 // Changelog:
 //
+//	2025.1: Field 'containsAiCode' response field has added.
+//	2025.1: Field 'isAiCodeAssured' response field has been removed.
+//	2025.1: Field 'aiCodeAssurance' response field has been removed.
 //	10.8: Field 'isAiCodeAssured' response field has been deprecated. Use 'aiCodeAssurance' instead.
 //	10.8: New field 'aiCodeAssurance' in the response.
 //	10.0: deprecated 'more' response field has been removed
