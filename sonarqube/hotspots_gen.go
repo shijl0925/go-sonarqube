@@ -17,6 +17,8 @@ type Hotspots service
 // Since 8.1
 // Changelog:
 //
+//	2025.1: The following 'resolution' values are not deprecated anymore: FIXED, SAFE, ACKNOWLEDGED
+//	2025.1: The following 'status' values are not deprecated anymore: TO_REVIEW, REVIEWED
 //	10.1: Endpoint visibility change from internal to public
 func (s *Hotspots) ChangeStatus(ctx context.Context, r hotspots.ChangeStatusRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/change_status", s.path)

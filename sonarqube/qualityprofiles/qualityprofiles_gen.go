@@ -93,7 +93,8 @@ type ChangelogResponse struct {
 			SoftwareQuality string `json:"softwareQuality,omitempty"`
 		} `json:"impacts,omitempty"`
 		Params struct {
-			Severity string `json:"severity,omitempty"`
+			PrioritizedRule string `json:"prioritizedRule,omitempty"`
+			Severity        string `json:"severity,omitempty"`
 		} `json:"params,omitempty"`
 		RuleKey          string `json:"ruleKey,omitempty"`
 		RuleName         string `json:"ruleName,omitempty"`
@@ -120,7 +121,8 @@ type ChangelogResponseAll struct {
 			SoftwareQuality string `json:"softwareQuality,omitempty"`
 		} `json:"impacts,omitempty"`
 		Params struct {
-			Severity string `json:"severity,omitempty"`
+			PrioritizedRule string `json:"prioritizedRule,omitempty"`
+			Severity        string `json:"severity,omitempty"`
 		} `json:"params,omitempty"`
 		RuleKey          string `json:"ruleKey,omitempty"`
 		RuleName         string `json:"ruleName,omitempty"`
