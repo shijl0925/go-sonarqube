@@ -13,7 +13,7 @@ type AnonymizeRequest struct {
 // ChangePasswordRequest Update a user's password. Authenticated users can change their own password, provided that the account is not linked to an external authentication system. Administer System permission is required to change another user's password.
 type ChangePasswordRequest struct {
 	Login            string `form:"login"`                      // User login
-	Password         string `form:"password"`                   // New password
+	Password         string `form:"password"`                   // The password needs to fulfill the following requirements: at least 12 characters and contain at least one uppercase character, one lowercase character, one digit and one special character.
 	PreviousPassword string `form:"previousPassword,omitempty"` // Previous password. Required when changing one's own password.
 }
 

@@ -114,6 +114,7 @@ func (s *Qualityprofiles) ChangeParent(ctx context.Context, r qualityprofiles.Ch
 // Since 5.2
 // Changelog:
 //
+//	2025.1: Added field 'prioritizedRule' to 'params' section of response
 //	10.8: Added parameter 'filterMode'
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added
 //	10.3: Added fields 'cleanCodeAttributeCategory', 'impacts' to response
