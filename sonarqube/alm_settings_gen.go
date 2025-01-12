@@ -138,6 +138,7 @@ func (s *AlmSettings) DeleteBinding(ctx context.Context, r alm_settings.DeleteBi
 // Since 8.1
 // Changelog:
 //
+//	2025.1: Azure binding now contains a inlineAnnotationsEnabled flag for inline annotations feature
 //	10.1: Permission needed changed from 'Administer' to 'Browse'
 //	8.7: Azure binding now contains a monorepo flag for monorepo feature in Enterprise Edition and above
 //	8.6: Azure binding now contains the project and repository names
@@ -196,6 +197,9 @@ func (s *AlmSettings) ListDefinitions(ctx context.Context, r alm_settings.ListDe
 // SetAzureBinding - Bind a Azure DevOps instance to a project.
 // If the project was already bound to a previous Azure DevOps instance, the binding will be updated to the new one.Requires the 'Administer' permission on the project
 // Since 8.1
+// Changelog:
+//
+//	2025.1: Add inline annotations parameter
 func (s *AlmSettings) SetAzureBinding(ctx context.Context, r alm_settings.SetAzureBindingRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_azure_binding", s.path)
 

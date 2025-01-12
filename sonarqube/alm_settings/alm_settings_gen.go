@@ -111,11 +111,12 @@ type ListDefinitionsResponse struct {
 
 // SetAzureBindingRequest Bind a Azure DevOps instance to a project.<br/>If the project was already bound to a previous Azure DevOps instance, the binding will be updated to the new one.Requires the 'Administer' permission on the project
 type SetAzureBindingRequest struct {
-	AlmSetting     string `form:"almSetting"`     // Azure DevOps setting key
-	Monorepo       string `form:"monorepo"`       // Since 8.7;Is this project part of a monorepo
-	Project        string `form:"project"`        // SonarQube project key
-	ProjectName    string `form:"projectName"`    // Since 8.6;Azure project name
-	RepositoryName string `form:"repositoryName"` // Since 8.6;Azure repository name
+	AlmSetting               string `form:"almSetting"`                         // Azure DevOps setting key
+	InlineAnnotationsEnabled string `form:"inlineAnnotationsEnabled,omitempty"` // Since 2025.1;Enable inline annotations during Pull Request decoration for this project
+	Monorepo                 string `form:"monorepo"`                           // Since 8.7;Is this project part of a monorepo
+	Project                  string `form:"project"`                            // SonarQube project key
+	ProjectName              string `form:"projectName"`                        // Since 8.6;Azure project name
+	RepositoryName           string `form:"repositoryName"`                     // Since 8.6;Azure repository name
 }
 
 // SetBitbucketBindingRequest Bind a Bitbucket instance to a project.<br/>If the project was already bound to a previous Bitbucket instance, the binding will be updated to the new one.Requires the 'Administer' permission on the project
