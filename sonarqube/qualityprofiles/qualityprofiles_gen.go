@@ -210,7 +210,6 @@ type DeleteRequest struct {
 
 // ExportRequest Export a quality profile.
 type ExportRequest struct {
-	ExporterKey    string `url:"exporterKey,omitempty"`    // Output format. If left empty, the same format as api/qualityprofiles/backup is used. Possible values are described by api/qualityprofiles/exporters.
 	Language       string `url:"language"`                 // Quality profile language
 	QualityProfile string `url:"qualityProfile,omitempty"` // Quality profile name to export. If left empty, the default profile for the language is exported.
 }
