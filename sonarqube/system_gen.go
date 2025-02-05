@@ -95,6 +95,8 @@ func (s *System) Info(ctx context.Context, r system.InfoRequest) (*system.InfoRe
 // Since 5.2
 // Changelog:
 //
+//	2025.2: Added support for Data Center Edition for all possible values of 'name' except 'es'.
+//	2025.2: Removed deprecated 'process' property.
 //	10.4: Add support for deprecation logs in process property.
 //	10.4: Deprecate property 'process' in favor of 'name'.
 func (s *System) Logs(ctx context.Context, r system.LogsRequest) (*system.LogsResponse, *http.Response, error) {
