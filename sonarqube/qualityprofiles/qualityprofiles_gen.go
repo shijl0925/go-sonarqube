@@ -162,7 +162,6 @@ type CreateResponse struct {
 		LanguageName string `json:"languageName,omitempty"`
 		Name         string `json:"name,omitempty"`
 	} `json:"profile,omitempty"`
-	Warnings []string `json:"warnings,omitempty"`
 }
 
 // DeactivateRuleRequest Deactivate a rule on a quality profile.<br> Requires one of the following permissions:<ul>  <li>'Administer Quality Profiles'</li>  <li>Edit right on the specified quality profile</li></ul>
@@ -209,6 +208,7 @@ type DeleteRequest struct {
 }
 
 // ExportRequest Export a quality profile.
+// Deprecated: this action has been deprecated since version 25.4
 type ExportRequest struct {
 	Language       string `url:"language"`                 // Quality profile language
 	QualityProfile string `url:"qualityProfile,omitempty"` // Quality profile name to export. If left empty, the default profile for the language is exported.
@@ -217,28 +217,22 @@ type ExportRequest struct {
 // ExportResponse is the response for ExportRequest
 type ExportResponse string
 
-// ExportersRequest Lists available profile export formats.
+// ExportersRequest Deprecated. No more custom profile exporters.
+// Deprecated: this action has been deprecated since version 25.4
 type ExportersRequest struct{}
 
 // ExportersResponse is the response for ExportersRequest
 type ExportersResponse struct {
-	Exporters []struct {
-		Key       string   `json:"key,omitempty"`
-		Languages []string `json:"languages,omitempty"`
-		Name      string   `json:"name,omitempty"`
-	} `json:"exporters,omitempty"`
+	Exporters []string `json:"exporters,omitempty"`
 }
 
 // ImportersRequest List supported importers.
+// Deprecated: this action has been deprecated since version 25.4
 type ImportersRequest struct{}
 
 // ImportersResponse is the response for ImportersRequest
 type ImportersResponse struct {
-	Importers []struct {
-		Key       string   `json:"key,omitempty"`
-		Languages []string `json:"languages,omitempty"`
-		Name      string   `json:"name,omitempty"`
-	} `json:"importers,omitempty"`
+	Importers []string `json:"importers,omitempty"`
 }
 
 // InheritanceRequest Show a quality profile's ancestors and children.

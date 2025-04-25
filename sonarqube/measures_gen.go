@@ -13,10 +13,14 @@ import (
 type Measures service
 
 // Component - Return component with specified measures.
-// Requires the following permission: 'Browse' on the project of specified component.
+// Requires one of the following permissions:
+//  * 'Browse' on the project of the specified component
+//  * 'Execute Analysis' on the project of the specified component
+//
 // Since 5.4
 // Changelog:
 //
+//	2025.2: The 'Execute Analysis' permission also allows to access the endpoint
 //	10.8: The following metrics are not deprecated anymore: 'bugs', 'new_bugs', 'vulnerabilities', 'new_vulnerabilities', 'code_smells', 'new_code_smells', 'high_impact_accepted_issues', 'new_blocker_violations', 'new_critical_violations', 'new_major_violations', 'new_minor_violations', 'new_info_violations', 'blocker_violations', 'critical_violations', 'major_violations', 'minor_violations', 'info_violations'
 //	10.8: Added new accepted values for the 'metricKeys' param: 'software_quality_blocker_issues', 'software_quality_high_issues', 'software_quality_info_issues', 'software_quality_medium_issues', 'software_quality_low_issues', 'software_quality_maintainability_issues', 'software_quality_reliability_issues', 'software_quality_security_issues', 'new_software_quality_blocker_issues', 'new_software_quality_high_issues', 'new_software_quality_info_issues', 'new_software_quality_medium_issues', 'new_software_quality_low_issues', 'new_software_quality_maintainability_issues', 'new_software_quality_reliability_issues', 'new_software_quality_security_issues'
 //	10.8: The metrics 'maintainability_issues', 'reliability_issues', 'security_issues', 'new_maintainability_issues', 'new_reliability_issues', 'new_security_issues' are now deprecated. Use 'software_quality_maintainability_issues', 'software_quality_reliability_issues', 'software_quality_security_issues', 'new_software_quality_maintainability_issues', 'new_software_quality_reliability_issues', 'new_software_quality_security_issues' instead.

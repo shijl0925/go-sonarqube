@@ -509,7 +509,7 @@ type SearchRequest struct {
 	FixedInPullRequest           string `url:"fixedInPullRequest,omitempty"`           // Since 10.4;Pull request id to filter issues that would be fixed in the specified project or branch by the pull request. Should not be used together with + 'pullRequest'. At least the 'components' must be be specified when this param is used.  Not available in the community edition.
 	ImpactSeverities             string `url:"impactSeverities,omitempty"`             // Since 10.2;Comma-separated list of Software Quality Severities
 	ImpactSoftwareQualities      string `url:"impactSoftwareQualities,omitempty"`      // Since 10.2;Comma-separated list of Software Qualities
-	InNewCodePeriod              string `url:"inNewCodePeriod,omitempty"`              // Since 9.4;To retrieve issues created in the new code period.<br>If this parameter is set to a truthy value, createdAfter must not be set and one component uuid or key must be provided.
+	InNewCodePeriod              string `url:"inNewCodePeriod,omitempty"`              // Since 9.4;To retrieve issues created in the new code period.<br>If this parameter is set to a truthy value, createdAfter must not be set and one component uuid or key must be provided.<br>This parameter is ignored if the requested component is Application or Portfolio.
 	IssueStatuses                string `url:"issueStatuses,omitempty"`                // Since 10.4;
 	Issues                       string `url:"issues,omitempty"`                       // Comma-separated list of issue keys
 	Languages                    string `url:"languages,omitempty"`                    // Comma-separated list of languages. Available since 4.4
