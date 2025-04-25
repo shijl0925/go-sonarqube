@@ -246,6 +246,10 @@ func (s *Qualityprofiles) Delete(ctx context.Context, r qualityprofiles.DeleteRe
 
 // Export - Export a quality profile.
 // Since 5.2
+// Deprecated since 25.4
+// Changelog:
+//
+//	25.4: Deprecated. Use GET /api/qualityprofiles/backup instead
 func (s *Qualityprofiles) Export(ctx context.Context, r qualityprofiles.ExportRequest) (*qualityprofiles.ExportResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/export", s.path)
 	v := new(qualityprofiles.ExportResponse)
@@ -258,8 +262,9 @@ func (s *Qualityprofiles) Export(ctx context.Context, r qualityprofiles.ExportRe
 	return v, resp, nil
 }
 
-// Exporters - Lists available profile export formats.
+// Exporters - Deprecated. No more custom profile exporters.
 // Since 5.2
+// Deprecated since 25.4
 func (s *Qualityprofiles) Exporters(ctx context.Context, r qualityprofiles.ExportersRequest) (*qualityprofiles.ExportersResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/exporters", s.path)
 	v := new(qualityprofiles.ExportersResponse)
@@ -274,6 +279,7 @@ func (s *Qualityprofiles) Exporters(ctx context.Context, r qualityprofiles.Expor
 
 // Importers - List supported importers.
 // Since 5.2
+// Deprecated since 25.4
 func (s *Qualityprofiles) Importers(ctx context.Context, r qualityprofiles.ImportersRequest) (*qualityprofiles.ImportersResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/importers", s.path)
 	v := new(qualityprofiles.ImportersResponse)
