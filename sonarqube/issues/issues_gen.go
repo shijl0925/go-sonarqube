@@ -507,6 +507,7 @@ type SearchRequest struct {
 	Cwe                          string `url:"cwe,omitempty"`                          // Comma-separated list of CWE identifiers. Use 'unknown' to select issues not associated to any CWE.
 	Facets                       string `url:"facets,omitempty"`                       // Comma-separated list of the facets to be computed. No facet is computed by default.
 	FixedInPullRequest           string `url:"fixedInPullRequest,omitempty"`           // Since 10.4;Pull request id to filter issues that would be fixed in the specified project or branch by the pull request. Should not be used together with + 'pullRequest'. At least the 'components' must be be specified when this param is used.  Not available in the community edition.
+	FromSonarQubeUpdate          string `url:"fromSonarQubeUpdate,omitempty"`          // To match issues detected because of SonarQube updates
 	ImpactSeverities             string `url:"impactSeverities,omitempty"`             // Since 10.2;Comma-separated list of Software Quality Severities
 	ImpactSoftwareQualities      string `url:"impactSoftwareQualities,omitempty"`      // Since 10.2;Comma-separated list of Software Qualities
 	InNewCodePeriod              string `url:"inNewCodePeriod,omitempty"`              // Since 9.4;To retrieve issues created in the new code period.<br>If this parameter is set to a truthy value, createdAfter must not be set and one component uuid or key must be provided.<br>This parameter is ignored if the requested component is Application or Portfolio.
@@ -516,6 +517,7 @@ type SearchRequest struct {
 	OnComponentOnly              string `url:"onComponentOnly,omitempty"`              // Return only issues at a component's level, not on its descendants (modules, directories, files, etc). This parameter is only considered when componentKeys is set.
 	OwaspAsvs40                  string `url:"owaspAsvs-4.0,omitempty"`                // Since 9.7;Comma-separated list of OWASP ASVS v4.0 categories.
 	OwaspAsvsLevel               string `url:"owaspAsvsLevel,omitempty"`               // Since 9.7;Level of OWASP ASVS categories.
+	OwaspMobileTop102024         string `url:"owaspMobileTop10-2024,omitempty"`        // Since 2025.3;Comma-separated list of OWASP Mobile Top 10 2024 lowercase categories.
 	OwaspTop10                   string `url:"owaspTop10,omitempty"`                   // Since 7.3;Comma-separated list of OWASP Top 10 2017 lowercase categories.
 	OwaspTop102021               string `url:"owaspTop10-2021,omitempty"`              // Since 9.4;Comma-separated list of OWASP Top 10 2021 lowercase categories.
 	PciDss32                     string `url:"pciDss-3.2,omitempty"`                   // Since 9.6;Comma-separated list of PCI DSS v3.2 categories.
@@ -592,10 +594,11 @@ type SearchResponse struct {
 			Severity        string `json:"severity,omitempty"`
 			SoftwareQuality string `json:"softwareQuality,omitempty"`
 		} `json:"impacts,omitempty"`
-		IssueStatus        string  `json:"issueStatus,omitempty"`
-		Key                string  `json:"key,omitempty"`
-		Line               float64 `json:"line,omitempty"`
-		Message            string  `json:"message,omitempty"`
+		InternalTags       []string `json:"internalTags,omitempty"`
+		IssueStatus        string   `json:"issueStatus,omitempty"`
+		Key                string   `json:"key,omitempty"`
+		Line               float64  `json:"line,omitempty"`
+		Message            string   `json:"message,omitempty"`
 		MessageFormattings []struct {
 			End   float64 `json:"end,omitempty"`
 			Start float64 `json:"start,omitempty"`
@@ -692,10 +695,11 @@ type SearchResponseAll struct {
 			Severity        string `json:"severity,omitempty"`
 			SoftwareQuality string `json:"softwareQuality,omitempty"`
 		} `json:"impacts,omitempty"`
-		IssueStatus        string  `json:"issueStatus,omitempty"`
-		Key                string  `json:"key,omitempty"`
-		Line               float64 `json:"line,omitempty"`
-		Message            string  `json:"message,omitempty"`
+		InternalTags       []string `json:"internalTags,omitempty"`
+		IssueStatus        string   `json:"issueStatus,omitempty"`
+		Key                string   `json:"key,omitempty"`
+		Line               float64  `json:"line,omitempty"`
+		Message            string   `json:"message,omitempty"`
 		MessageFormattings []struct {
 			End   float64 `json:"end,omitempty"`
 			Start float64 `json:"start,omitempty"`
