@@ -6,6 +6,7 @@ package editions
 type ActivateGracePeriodRequest struct{}
 
 // SetLicenseRequest Set the license for enabling features of commercial editions. Require 'Administer System' permission.
+// Deprecated: this action has been deprecated since version 2025.6
 type SetLicenseRequest struct {
 	License string `form:"license"` //
 }

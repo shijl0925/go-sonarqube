@@ -90,6 +90,7 @@ type SearchRequest struct {
 	Inheritance                  string `url:"inheritance,omitempty"`                  // Comma-separated list of values of inheritance for a rule within a quality profile. Used only if the parameter 'activation' is set.
 	IsTemplate                   string `url:"is_template,omitempty"`                  // Filter template rules
 	Languages                    string `url:"languages,omitempty"`                    // Comma-separated list of languages
+	OwaspMobileTop102024         string `url:"owaspMobileTop10-2024,omitempty"`        // Since 2025.4;Comma-separated list of OWASP Mobile Top 10 2024 lowercase categories.
 	OwaspTop10                   string `url:"owaspTop10,omitempty"`                   // Since 7.3;Comma-separated list of OWASP Top 10 2017 lowercase categories.
 	OwaspTop102021               string `url:"owaspTop10-2021,omitempty"`              // Since 9.4;Comma-separated list of OWASP Top 10 2021 lowercase categories.
 	PrioritizedRule              string `url:"prioritizedRule,omitempty"`              // Since 10.6;Filter on prioritized rules. Ignored if the parameter 'qprofile' is not set.

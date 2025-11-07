@@ -260,6 +260,11 @@ func (s *Issues) Reindex(ctx context.Context, r issues.ReindexRequest) (*http.Re
 // Since 3.6
 // Changelog:
 //
+//	2025.5: Response field 'internalTags' has been added
+//	2025.5: Facet 'fromSonarQubeUpdate' has been added
+//	2025.5: Param 'fromSonarQubeUpdate' has been added
+//	2025.3: Facet 'owaspMobileTop10-2024' has been added
+//	2025.3: Param 'owaspMobileTop10-2024' has been added
 //	10.8: The response fields 'severity' and 'type' are not deprecated anymore..
 //	10.8: The fields 'severity' and 'type' are not deprecated anymore.
 //	10.8: The parameters 'severities' and 'types' are not deprecated anymore.

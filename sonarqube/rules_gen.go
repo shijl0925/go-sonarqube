@@ -71,7 +71,7 @@ func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (
 // Changelog:
 //
 //	2025.1: The facet 'active_impactSeverities' has been added.
-//	2025.1: The deprecated field 'htmlDesc' is not returned anymore, even if specified in the 'f' parameter.
+//	2025.1: The deprecated field 'htmlDesc' is not returned anymore, even if specified in the 'fields' parameter.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'impactSeverities' of 'facets' have been added
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added
 //	10.8: Parameter 'severities' now supports values: 'INFO','BLOCKER'
@@ -79,12 +79,12 @@ func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (
 //	10.8: The parameters 'severities','types and 'active_severities' are not deprecated anymore.
 //	10.8: The values 'severity' and 'types' for the 'facets' parameter are not deprecated anymore.
 //	10.8: The fields 'type' and 'severity' in the response are not deprecated anymore.
-//	10.8: The value 'severity' for the 'f' parameter is not deprecated anymore.
+//	10.8: The value 'severity' for the 'fields' parameter is not deprecated anymore.
 //	10.6: Parameter 'prioritizedRule has been added
 //	10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response
 //	10.2: The fields 'type' and 'severity' are deprecated in the response. Use 'impacts' instead.
-//	10.2: The field 'cleanCodeAttribute' has been added to the 'f' parameter.
-//	10.2: The value 'severity' for the 'f' parameter has been deprecated.
+//	10.2: The field 'cleanCodeAttribute' has been added to the 'fields' parameter.
+//	10.2: The value 'severity' for the 'fields' parameter has been deprecated.
 //	10.2: The values 'cleanCodeAttributeCategories', 'impactSoftwareQualities' and 'impactSeverities' have been added to the 'facets' parameter.
 //	10.2: The values 'severity' and 'types' for the 'facets' parameter have been deprecated. Use 'impactSeverities' and 'impactSoftwareQualities' instead.
 //	10.2: Parameters 'severities', 'types', and 'active_severities' are now deprecated. Use 'impactSoftwareQualities' and 'impactSeverities' instead.
@@ -96,22 +96,22 @@ func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (
 //	10.0: The deprecated field 'debtOverloaded' has been removed, use 'remFnOverloaded' instead.
 //	10.0: The field 'defaultDebtRemFnType' has been deprecated, use 'defaultRemFnType' instead
 //	10.0: The field 'debtRemFnType' has been deprecated, use 'remFnType' instead
-//	10.0: The value 'debtRemFn' for the 'f' parameter has been deprecated, use 'remFn' instead
-//	10.0: The value 'defaultDebtRemFn' for the 'f' parameter has been deprecated, use 'defaultRemFn' instead
+//	10.0: The value 'debtRemFn' for the 'fields' parameter has been deprecated, use 'remFn' instead
+//	10.0: The value 'defaultDebtRemFn' for the 'fields' parameter has been deprecated, use 'defaultRemFn' instead
 //	10.0: The value 'sansTop25' for the parameter 'facets' has been deprecated
 //	10.0: Parameter 'sansTop25' is deprecated
-//	9.8: response fields 'total', 's', 'ps' have been deprecated, please use 'paging' object instead
+//	9.8: response fields 'total', 's', 'pageSize' have been deprecated, please use 'paging' object instead
 //	9.8: The field 'paging' has been added to the response
 //	9.6: 'descriptionSections' can optionally embed a context field
-//	9.6: The field 'educationPrinciples' has been added to the 'f' parameter
+//	9.6: The field 'educationPrinciples' has been added to the 'fields' parameter
 //	9.5: The field 'htmlDesc' has been deprecated, use 'descriptionSections' instead
 //	9.5: The field 'descriptionSections' has been added to the payload
-//	9.5: The field 'descriptionSections' has been added to the 'f' parameter
-//	7.5: The field 'updatedAt' has been added to the 'f' parameter
+//	9.5: The field 'descriptionSections' has been added to the 'fields' parameter
+//	7.5: The field 'updatedAt' has been added to the 'fields' parameter
 //	7.2: The field 'isExternal' has been added to the response
-//	7.2: The field 'includeExternal' has been added to the 'f' parameter
+//	7.2: The field 'includeExternal' has been added to the 'fields' parameter
 //	7.1: The field 'scope' has been added to the response
-//	7.1: The field 'scope' has been added to the 'f' parameter
+//	7.1: The field 'scope' has been added to the 'fields' parameter
 //	5.5: The field 'effortToFixDescription' has been deprecated, use 'gapDescription' instead
 //	5.5: The field 'debtRemFnCoeff' has been deprecated, use 'remFnGapMultiplier' instead
 //	5.5: The field 'defaultDebtRemFnCoeff' has been deprecated, use 'defaultRemFnGapMultiplier' instead
@@ -156,7 +156,7 @@ func (s *Rules) SearchAll(ctx context.Context, r rules.SearchRequest) (*rules.Se
 // Since 4.2
 // Changelog:
 //
-//	2025.1: The deprecated field 'htmlDesc' is not returned anymore, even if specified in the 'f' parameter.
+//	2025.1: The deprecated field 'htmlDesc' is not returned anymore, even if specified in the 'fields' parameter.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.
 //	10.8: The field 'severity' and 'type' in the response  are not deprecated anymore.
 //	10.2: Add 'impacts', 'cleanCodeAttribute', 'cleanCodeAttributeCategory' fields to the response

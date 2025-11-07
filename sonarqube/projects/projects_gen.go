@@ -125,6 +125,7 @@ type SearchResponse struct {
 		LastAnalysisDate string `json:"lastAnalysisDate,omitempty"`
 		Managed          bool   `json:"managed,omitempty"`
 		Name             string `json:"name,omitempty"`
+		ProjectUuid      string `json:"projectUuid,omitempty"`
 		Qualifier        string `json:"qualifier,omitempty"`
 		Revision         string `json:"revision,omitempty"`
 		Visibility       string `json:"visibility,omitempty"`
@@ -144,6 +145,7 @@ type SearchResponseAll struct {
 		LastAnalysisDate string `json:"lastAnalysisDate,omitempty"`
 		Managed          bool   `json:"managed,omitempty"`
 		Name             string `json:"name,omitempty"`
+		ProjectUuid      string `json:"projectUuid,omitempty"`
 		Qualifier        string `json:"qualifier,omitempty"`
 		Revision         string `json:"revision,omitempty"`
 		Visibility       string `json:"visibility,omitempty"`
