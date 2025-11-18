@@ -514,6 +514,7 @@ type SearchRequest struct {
 	IssueStatuses                string `url:"issueStatuses,omitempty"`                // Since 10.4;
 	Issues                       string `url:"issues,omitempty"`                       // Comma-separated list of issue keys
 	Languages                    string `url:"languages,omitempty"`                    // Comma-separated list of languages. Available since 4.4
+	LinkedTicketStatus           string `url:"linkedTicketStatus,omitempty"`           // Has linked JIRA work item
 	OnComponentOnly              string `url:"onComponentOnly,omitempty"`              // Return only issues at a component's level, not on its descendants (modules, directories, files, etc). This parameter is only considered when componentKeys is set.
 	OwaspAsvs40                  string `url:"owaspAsvs-4.0,omitempty"`                // Since 9.7;Comma-separated list of OWASP ASVS v4.0 categories.
 	OwaspAsvsLevel               string `url:"owaspAsvsLevel,omitempty"`               // Since 9.7;Level of OWASP ASVS categories.
@@ -598,6 +599,7 @@ type SearchResponse struct {
 		IssueStatus        string   `json:"issueStatus,omitempty"`
 		Key                string   `json:"key,omitempty"`
 		Line               float64  `json:"line,omitempty"`
+		LinkedTicketStatus string   `json:"linkedTicketStatus,omitempty"`
 		Message            string   `json:"message,omitempty"`
 		MessageFormattings []struct {
 			End   float64 `json:"end,omitempty"`
@@ -699,6 +701,7 @@ type SearchResponseAll struct {
 		IssueStatus        string   `json:"issueStatus,omitempty"`
 		Key                string   `json:"key,omitempty"`
 		Line               float64  `json:"line,omitempty"`
+		LinkedTicketStatus string   `json:"linkedTicketStatus,omitempty"`
 		Message            string   `json:"message,omitempty"`
 		MessageFormattings []struct {
 			End   float64 `json:"end,omitempty"`
