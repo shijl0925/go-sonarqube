@@ -260,6 +260,7 @@ func (s *Issues) Reindex(ctx context.Context, r issues.ReindexRequest) (*http.Re
 // Since 3.6
 // Changelog:
 //
+//	2025.6: Facet 'linkedTicketStatus' has been added
 //	2025.5: Response field 'internalTags' has been added
 //	2025.5: Facet 'fromSonarQubeUpdate' has been added
 //	2025.5: Param 'fromSonarQubeUpdate' has been added
