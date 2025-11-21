@@ -136,6 +136,7 @@ func (s *Projects) LicenseUsage(ctx context.Context, r projects.LicenseUsageRequ
 // Since 6.3
 // Changelog:
 //
+//	2025.6: Response includes 'projectUuid' field.
 //	10.2: Response includes 'managed' field.
 //	9.1: The parameter 'analyzedBefore' and the field 'lastAnalysisDate' of the returned projects take into account the analysis of all branches and pull requests, not only the main branch.
 func (s *Projects) Search(ctx context.Context, r projects.SearchRequest, p paging.Params) (*projects.SearchResponse, *http.Response, error) {
