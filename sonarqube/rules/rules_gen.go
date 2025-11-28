@@ -81,6 +81,7 @@ type SearchRequest struct {
 	Asc                          string `url:"asc,omitempty"`                          // Ascending sort
 	AvailableSince               string `url:"available_since,omitempty"`              // Filters rules added since date. Format is yyyy-MM-dd
 	CleanCodeAttributeCategories string `url:"cleanCodeAttributeCategories,omitempty"` // Since 10.2;Comma-separated list of Clean Code Attribute Categories
+	ComplianceStandards          string `url:"complianceStandards,omitempty"`          // Since 2025.6;Comma-separated list of compliance standards
 	Cwe                          string `url:"cwe,omitempty"`                          // Comma-separated list of CWE identifiers. Use 'unknown' to select rules not associated to any CWE.
 	F                            string `url:"f,omitempty"`                            // Comma-separated list of additional fields to be returned in the response. All the fields are returned by default, except actives.
 	Facets                       string `url:"facets,omitempty"`                       // Comma-separated list of the facets to be computed. No facet is computed by default.

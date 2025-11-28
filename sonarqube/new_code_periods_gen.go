@@ -11,7 +11,7 @@ import (
 
 type NewCodePeriods service
 
-// List - Lists the <a href="https://sonar-documentations-preview.netlify.app/sonarqube-server/latest/project-administration/setting-up-clean-as-you-code/#setting-a-new-code-definition" target="_blank" rel="noopener noreferrer">new code definition</a> for all branches in a project.
+// List - Lists the <a href="https://sonar-documentations-preview.netlify.app/sonarqube-server/latest/project-administration/configuring-new-code-calculation#setting-specific-new-code-definition-for-project" target="_blank" rel="noopener noreferrer">new code definition</a> for all branches in a project.
 // Requires the permission to browse the project
 // Since 8.0
 func (s *NewCodePeriods) List(ctx context.Context, r new_code_periods.ListRequest) (*new_code_periods.ListResponse, *http.Response, error) {
@@ -26,7 +26,7 @@ func (s *NewCodePeriods) List(ctx context.Context, r new_code_periods.ListReques
 	return v, resp, nil
 }
 
-// Set - Updates the <a href="https://sonar-documentations-preview.netlify.app/sonarqube-server/latest/project-administration/setting-up-clean-as-you-code/#setting-a-new-code-definition" target="_blank" rel="noopener noreferrer">new code definition</a> on different levels:
+// Set - Updates the <a href="https://sonar-documentations-preview.netlify.app/sonarqube-server/latest/project-administration/configuring-new-code-calculation#setting-specific-new-code-definition-for-project" target="_blank" rel="noopener noreferrer">new code definition</a> on different levels:
 //
 //  * Not providing a project key and a branch key will update the default value at global level. Existing projects or branches having a specific new code definition will not be impacted
 //  * Project key must be provided to update the value for a project
@@ -47,7 +47,7 @@ func (s *NewCodePeriods) Set(ctx context.Context, r new_code_periods.SetRequest)
 	return resp, nil
 }
 
-// Show - Shows the <a href="https://sonar-documentations-preview.netlify.app/sonarqube-server/latest/project-administration/setting-up-clean-as-you-code/#setting-a-new-code-definition" target="_blank" rel="noopener noreferrer">new code definition</a>.
+// Show - Shows the <a href="https://sonar-documentations-preview.netlify.app/sonarqube-server/latest/project-administration/configuring-new-code-calculation#setting-specific-new-code-definition-for-project" target="_blank" rel="noopener noreferrer">new code definition</a>.
 // If the component requested doesn't exist or if no new code definition is set for it, a value is inherited from the project or from the global setting.Requires one of the following permissions if a component is specified:
 //  * 'Administer' rights on the specified component
 //  * 'Execute analysis' rights on the specified component
@@ -65,7 +65,7 @@ func (s *NewCodePeriods) Show(ctx context.Context, r new_code_periods.ShowReques
 	return v, resp, nil
 }
 
-// Unset - Unsets the <a href="https://sonar-documentations-preview.netlify.app/sonarqube-server/latest/project-administration/setting-up-clean-as-you-code/#setting-a-new-code-definition" target="_blank" rel="noopener noreferrer">new code definition</a> for a branch, project or global. It requires the inherited New Code Definition to be compatible with the Clean as You Code methodology, and one of the following permissions:
+// Unset - Unsets the <a href="https://sonar-documentations-preview.netlify.app/sonarqube-server/latest/project-administration/configuring-new-code-calculation#setting-specific-new-code-definition-for-project" target="_blank" rel="noopener noreferrer">new code definition</a> for a branch, project or global. It requires the inherited New Code Definition to be compatible with the Clean as You Code methodology, and one of the following permissions:
 //  * 'Administer System' to change the global setting
 //  * 'Administer' rights for a specified component
 //

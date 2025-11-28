@@ -70,6 +70,8 @@ func (s *Rules) Repositories(ctx context.Context, r rules.RepositoriesRequest) (
 // Since 4.4
 // Changelog:
 //
+//	2025.6: The facet 'complianceStandards' was added.
+//	2025.6: The parameter 'complianceStandards' was added.
 //	2025.1: The facet 'active_impactSeverities' has been added.
 //	2025.1: The deprecated field 'htmlDesc' is not returned anymore, even if specified in the 'fields' parameter.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'impactSeverities' of 'facets' have been added
