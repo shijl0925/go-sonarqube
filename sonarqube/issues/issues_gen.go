@@ -499,6 +499,7 @@ type SearchRequest struct {
 	Casa                         string `url:"casa,omitempty"`                         // Since 10.7;Comma-separated list of CASA categories.
 	CleanCodeAttributeCategories string `url:"cleanCodeAttributeCategories,omitempty"` // Since 10.2;Comma-separated list of Clean Code Attribute Categories
 	CodeVariants                 string `url:"codeVariants,omitempty"`                 // Since 10.1;Comma-separated list of code variants.
+	ComplianceStandards          string `url:"complianceStandards,omitempty"`          // Since 2025.6;Comma-separated list of compliance standards
 	Components                   string `url:"components,omitempty"`                   // Comma-separated list of component keys. Retrieve issues associated to a specific list of components (and all its descendants). A component can be a portfolio, project, module, directory or file.
 	CreatedAfter                 string `url:"createdAfter,omitempty"`                 // To retrieve issues created after the given date (inclusive). <br>Either a date (use 'timeZone' attribute or it will default to server timezone) or datetime can be provided. <br>If this parameter is set, createdInLast must not be set
 	CreatedAt                    string `url:"createdAt,omitempty"`                    // Datetime to retrieve issues created during a specific analysis
