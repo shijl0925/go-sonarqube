@@ -13,7 +13,7 @@ func main() {
 	baseUrl := "https://next.sonarqube.com/sonarqube"
 	client := sonarqube.NewClient(baseUrl, "", "", nil)
 	req := duplications.ShowRequest{
-		Key: "sonar-scanner-azdo-sc:src/common/sonarqube-v5/helpers/api.ts",
+		Key: "sonar-scanner-azdo-sc:src/common/latest/helpers/api.ts",
 	}
 	res, resp, err := client.Duplications.Show(ctx, req)
 
