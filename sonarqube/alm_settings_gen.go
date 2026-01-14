@@ -138,6 +138,7 @@ func (s *AlmSettings) DeleteBinding(ctx context.Context, r alm_settings.DeleteBi
 // Since 8.1
 // Changelog:
 //
+//	2025.6: GitHub, GitLab and Azure bindings now contain a repositoryUrl field with the URL to the repository
 //	2025.1: Azure binding now contains a inlineAnnotationsEnabled flag for inline annotations feature
 //	10.1: Permission needed changed from 'Administer' to 'Browse'
 //	8.7: Azure binding now contains a monorepo flag for monorepo feature in Enterprise Edition and above

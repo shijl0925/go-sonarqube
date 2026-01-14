@@ -16,6 +16,7 @@ type ChangeStatusRequest struct {
 type SearchRequest struct {
 	Branch              string `url:"branch,omitempty"`              // Branch key. Not available in the community edition.
 	Casa                string `url:"casa,omitempty"`                // Since 10.7;Comma-separated list of CASA categories.
+	ComplianceStandards string `url:"complianceStandards,omitempty"` // Since 2025.6;Comma-separated list of compliance standards
 	Cwe                 string `url:"cwe,omitempty"`                 // Since 8.8;Comma-separated list of CWE numbers
 	Files               string `url:"files,omitempty"`               // Since 9.0;Comma-separated list of files. Returns only hotspots found in those files
 	Hotspots            string `url:"hotspots,omitempty"`            // Comma-separated list of Security Hotspot keys. This parameter is required unless project is provided.

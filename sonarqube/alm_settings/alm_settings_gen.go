@@ -74,6 +74,7 @@ type GetBindingResponse struct {
 	Key                   string `json:"key,omitempty"`
 	Monorepo              bool   `json:"monorepo,omitempty"`
 	Repository            string `json:"repository,omitempty"`
+	RepositoryUrl         string `json:"repositoryUrl,omitempty"`
 	SummaryCommentEnabled bool   `json:"summaryCommentEnabled,omitempty"`
 	Url                   string `json:"url,omitempty"`
 }
