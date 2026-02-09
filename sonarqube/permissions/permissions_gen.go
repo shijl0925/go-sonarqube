@@ -1,5 +1,7 @@
 package permissions
 
+import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
+
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
 
 // AddGroupRequest Add a permission to a group.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> The group name must be provided. <br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>
@@ -128,6 +130,32 @@ type SearchTemplatesRequest struct {
 
 // SearchTemplatesResponse is the response for SearchTemplatesRequest
 type SearchTemplatesResponse struct {
+	DefaultTemplates []struct {
+		Qualifier  string `json:"qualifier,omitempty"`
+		TemplateId string `json:"templateId,omitempty"`
+	} `json:"defaultTemplates,omitempty"`
+	PermissionTemplates []struct {
+		CreatedAt   string `json:"createdAt,omitempty"`
+		Description string `json:"description,omitempty"`
+		Id          string `json:"id,omitempty"`
+		Name        string `json:"name,omitempty"`
+		Permissions []struct {
+			GroupsCount        float64 `json:"groupsCount,omitempty"`
+			Key                string  `json:"key,omitempty"`
+			UsersCount         float64 `json:"usersCount,omitempty"`
+			WithProjectCreator bool    `json:"withProjectCreator,omitempty"`
+		} `json:"permissions,omitempty"`
+		UpdatedAt string `json:"updatedAt,omitempty"`
+	} `json:"permissionTemplates,omitempty"`
+}
+
+// GetPaging extracts the paging from SearchTemplatesResponse
+func (r *SearchTemplatesResponse) GetPaging() *paging.Paging {
+	return &paging.Paging{}
+}
+
+// SearchTemplatesResponseAll is the collection for SearchTemplatesRequest
+type SearchTemplatesResponseAll struct {
 	DefaultTemplates []struct {
 		Qualifier  string `json:"qualifier,omitempty"`
 		TemplateId string `json:"templateId,omitempty"`

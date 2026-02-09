@@ -3,6 +3,7 @@ package sonarqube
 import (
 	"context"
 	"fmt"
+	"github.com/shijl0925/go-sonarqube/sonarqube/paging"
 	"github.com/shijl0925/go-sonarqube/sonarqube/permissions"
 	"net/http"
 )
@@ -253,16 +254,40 @@ func (s *Permissions) RemoveUserFromTemplate(ctx context.Context, r permissions.
 // SearchTemplates - List permission templates.
 // Requires the following permission: 'Administer System'.
 // Since 5.2
-func (s *Permissions) SearchTemplates(ctx context.Context, r permissions.SearchTemplatesRequest) (*permissions.SearchTemplatesResponse, *http.Response, error) {
+// Changelog:
+//
+//	2026.2: Add optional pagination support to search_templates API.
+func (s *Permissions) SearchTemplates(ctx context.Context, r permissions.SearchTemplatesRequest, p paging.Params) (*permissions.SearchTemplatesResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/search_templates", s.path)
 	v := new(permissions.SearchTemplatesResponse)
 
-	resp, err := s.client.Call(ctx, "GET", u, v, r)
+	resp, err := s.client.Call(ctx, "GET", u, v, r, p)
 	if err != nil {
 		return nil, resp, err
 	}
 
 	return v, resp, nil
+}
+
+func (s *Permissions) SearchTemplatesAll(ctx context.Context, r permissions.SearchTemplatesRequest) (*permissions.SearchTemplatesResponseAll, error) {
+	p := paging.Params{
+		P:  1,
+		Ps: 100,
+	}
+	response := &permissions.SearchTemplatesResponseAll{}
+	for {
+		res, _, err := s.SearchTemplates(ctx, r, p)
+		if err != nil {
+			return nil, fmt.Errorf("error during call to permissions.SearchTemplates: %+v", err)
+		}
+		response.DefaultTemplates = append(response.DefaultTemplates, res.DefaultTemplates...)
+		response.PermissionTemplates = append(response.PermissionTemplates, res.PermissionTemplates...)
+		if res.GetPaging().End() {
+			break
+		}
+		p.P++
+	}
+	return response, nil
 }
 
 // SetDefaultTemplate - Set a permission template as default.
