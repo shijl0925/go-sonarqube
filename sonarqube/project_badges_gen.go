@@ -63,6 +63,7 @@ func (s *ProjectBadges) QualityGate(ctx context.Context, r project_badges.Qualit
 // RenewToken - Creates new token replacing any existing token for project or application badge access for private projects and applications.
 // This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.
 // Requires 'Administer' permission on the specified project or application.
+// If the 'sonar.forceAuthentication' setting is enabled, then a token is required for public projects as well.
 // Since 9.2
 // Changelog:
 //
@@ -81,6 +82,7 @@ func (s *ProjectBadges) RenewToken(ctx context.Context, r project_badges.RenewTo
 // Token - Retrieve a token to use for project or application badge access for private projects or applications.
 // This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.
 // Requires 'Browse' permission on the specified project or application.
+// If the 'sonar.forceAuthentication' setting is enabled, then a token is required for public projects as well.
 // Since 9.2
 // Changelog:
 //

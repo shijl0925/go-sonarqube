@@ -5,7 +5,7 @@ package project_badges
 // AiCodeAssuranceRequest Generate a badge for project's AI assurance as an SVG.<br/>Requires 'Browse' permission on the specified project.
 type AiCodeAssuranceRequest struct {
 	Project string `url:"project"`         // Project or application key
-	Token   string `url:"token,omitempty"` // Project badge token
+	Token   string `url:"token,omitempty"` // Project badge token. Required for private projects or if the 'sonar.forceAuthentication' setting is enabled.
 }
 
 // AiCodeAssuranceResponse is the response for AiCodeAssuranceRequest
@@ -16,7 +16,7 @@ type MeasureRequest struct {
 	Branch  string `url:"branch,omitempty"` // Branch key
 	Metric  string `url:"metric"`           // Metric key
 	Project string `url:"project"`          // Project or application key
-	Token   string `url:"token,omitempty"`  // Project badge token
+	Token   string `url:"token,omitempty"`  // Project badge token. Required for private projects or if the 'sonar.forceAuthentication' setting is enabled.
 }
 
 // MeasureResponse is the response for MeasureRequest
@@ -26,18 +26,18 @@ type MeasureResponse string
 type QualityGateRequest struct {
 	Branch  string `url:"branch,omitempty"` // Branch key
 	Project string `url:"project"`          // Project or application key
-	Token   string `url:"token,omitempty"`  // Project badge token
+	Token   string `url:"token,omitempty"`  // Project badge token. Required for private projects or if the 'sonar.forceAuthentication' setting is enabled.
 }
 
 // QualityGateResponse is the response for QualityGateRequest
 type QualityGateResponse string
 
-// RenewTokenRequest Creates new token replacing any existing token for project or application badge access for private projects and applications.<br/>This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.<br/>Requires 'Administer' permission on the specified project or application.
+// RenewTokenRequest Creates new token replacing any existing token for project or application badge access for private projects and applications.<br/>This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.<br/>Requires 'Administer' permission on the specified project or application.<br/>If the 'sonar.forceAuthentication' setting is enabled, then a token is required for public projects as well.
 type RenewTokenRequest struct {
 	Project string `form:"project"` // Project or application key
 }
 
-// TokenRequest Retrieve a token to use for project or application badge access for private projects or applications.<br/>This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.<br/>Requires 'Browse' permission on the specified project or application.
+// TokenRequest Retrieve a token to use for project or application badge access for private projects or applications.<br/>This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.<br/>Requires 'Browse' permission on the specified project or application.<br/>If the 'sonar.forceAuthentication' setting is enabled, then a token is required for public projects as well.
 type TokenRequest struct {
 	Project string `url:"project"` // Project or application key
 }
