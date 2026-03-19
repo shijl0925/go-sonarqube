@@ -179,6 +179,21 @@ type SearchResponse struct {
 	} `json:"results,omitempty"`
 }
 
+// End returns true when the last page of results has been reached.
+func (r *SearchResponse) End() bool {
+	return r.Paging.PageIndex*r.Paging.PageSize >= r.Paging.Total
+}
+
+// SearchResponseAll is the collection for SearchRequest
+type SearchResponseAll struct {
+	Results []struct {
+		AiCodeAssurance string `json:"aiCodeAssurance,omitempty"`
+		Key             string `json:"key,omitempty"`
+		Name            string `json:"name,omitempty"`
+		Selected        bool   `json:"selected,omitempty"`
+	} `json:"results,omitempty"`
+}
+
 // SearchGroupsRequest List the groups that are allowed to edit a Quality Gate.<br>Requires one of the following permissions:<ul>  <li>'Administer Quality Gates'</li>  <li>Edit right on the specified quality gate</li></ul>
 type SearchGroupsRequest struct {
 	GateName string `url:"gateName"`           // Quality Gate name

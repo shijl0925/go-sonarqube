@@ -11,6 +11,7 @@ import (
 	"net/url"
 	"reflect"
 	"strings"
+	"time"
 )
 
 const (
@@ -18,6 +19,47 @@ const (
 	privateToken
 	Anonymous
 )
+
+// ClientOption is a functional option for configuring a Client.
+type ClientOption func(*Client)
+
+// WithBasicAuth configures the client to use HTTP Basic authentication.
+func WithBasicAuth(username, password string) ClientOption {
+	return func(c *Client) {
+		c.username = username
+		c.password = password
+		if username != "" && password != "" {
+			c.authType = basicAuth
+		}
+	}
+}
+
+// WithToken configures the client to authenticate using a SonarQube token.
+func WithToken(token string) ClientOption {
+	return func(c *Client) {
+		c.token = token
+		if token != "" {
+			c.authType = privateToken
+		}
+	}
+}
+
+// WithHTTPClient sets a custom *http.Client for the SonarQube client.
+func WithHTTPClient(httpClient *http.Client) ClientOption {
+	return func(c *Client) {
+		if httpClient != nil {
+			c.client = httpClient
+		}
+	}
+}
+
+// WithTimeout sets a request timeout on the underlying http.Client.
+// This option has no effect if WithHTTPClient is also used.
+func WithTimeout(timeout time.Duration) ClientOption {
+	return func(c *Client) {
+		c.client.Timeout = timeout
+	}
+}
 
 type Client struct {
 	client              *http.Client
@@ -75,26 +117,7 @@ type service struct {
 	path   string
 }
 
-func NewClient(sonarURL string, username string, password string, client *http.Client) *Client {
-	if client == nil {
-		client = &http.Client{}
-	}
-
-	var authType int
-	if len(username) != 0 && len(password) != 0 {
-		authType = basicAuth
-	} else {
-		authType = Anonymous
-	}
-
-	c := &Client{
-		client:   client,
-		username: username,
-		password: password,
-		authType: authType,
-	}
-
-	c.host = sonarURL
+func initServices(c *Client) {
 	c.AlmIntegrations = &AlmIntegrations{client: c, path: "api/alm_integrations"}
 	c.AlmSettings = &AlmSettings{client: c, path: "api/alm_settings"}
 	c.AnalysisCache = &AnalysisCache{client: c, path: "api/analysis_cache"}
@@ -137,25 +160,47 @@ func NewClient(sonarURL string, username string, password string, client *http.C
 	c.Views = &Views{client: c, path: "api/views"}
 	c.Webhooks = &Webhooks{client: c, path: "api/webhooks"}
 	c.Webservices = &Webservices{client: c, path: "api/webservices"}
-
-	return c
 }
 
-func NewClientByToken(sonarURL string, token string, client *http.Client) *Client {
-	c := NewClient(sonarURL, "", "", client)
-	c.token = token
-
-	var authType int
-	if len(token) != 0 {
-		authType = privateToken
-	} else {
-		authType = Anonymous
+// New creates a new SonarQube client for the given base URL, applying any
+// provided options. Use WithBasicAuth or WithToken to configure authentication.
+func New(sonarURL string, opts ...ClientOption) *Client {
+	c := &Client{
+		client:   &http.Client{},
+		host:     sonarURL,
+		authType: Anonymous,
 	}
-	c.authType = authType
+	for _, opt := range opts {
+		opt(c)
+	}
+	initServices(c)
 	return c
 }
 
-// 封装认证处理
+// NewClient creates a new SonarQube client using username/password authentication.
+// Deprecated: Use New with WithBasicAuth instead.
+func NewClient(sonarURL string, username string, password string, client *http.Client) *Client {
+	opts := []ClientOption{}
+	if client != nil {
+		opts = append(opts, WithHTTPClient(client))
+	}
+	if username != "" && password != "" {
+		opts = append(opts, WithBasicAuth(username, password))
+	}
+	return New(sonarURL, opts...)
+}
+
+// NewClientByToken creates a new SonarQube client using token authentication.
+// Deprecated: Use New with WithToken instead.
+func NewClientByToken(sonarURL string, token string, client *http.Client) *Client {
+	opts := []ClientOption{WithToken(token)}
+	if client != nil {
+		opts = append(opts, WithHTTPClient(client))
+	}
+	return New(sonarURL, opts...)
+}
+
+// handleAuth applies the configured authentication to the request.
 func (c *Client) handleAuth(req *http.Request) {
 	switch c.authType {
 	case basicAuth:
@@ -163,7 +208,7 @@ func (c *Client) handleAuth(req *http.Request) {
 	case privateToken:
 		req.SetBasicAuth(c.token, "")
 	default:
-		// do nothing
+		// anonymous – no authentication header
 	}
 }
 
@@ -173,10 +218,8 @@ func (c *Client) NewRequest(ctx context.Context, method, url string, body io.Rea
 		return nil, err
 	}
 
-	// 认证处理
 	c.handleAuth(req)
 
-	// 设置通用请求头
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Set("Accept", "application/json")
 

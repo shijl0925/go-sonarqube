@@ -331,6 +331,25 @@ func (s *Qualitygates) Search(ctx context.Context, r qualitygates.SearchRequest)
 	return v, resp, nil
 }
 
+func (s *Qualitygates) SearchAll(ctx context.Context, r qualitygates.SearchRequest) (*qualitygates.SearchResponseAll, error) {
+	page := 1
+	r.PageSize = "100"
+	response := &qualitygates.SearchResponseAll{}
+	for {
+		r.Page = fmt.Sprintf("%d", page)
+		res, _, err := s.Search(ctx, r)
+		if err != nil {
+			return nil, fmt.Errorf("error during call to qualitygates.Search: %+v", err)
+		}
+		response.Results = append(response.Results, res.Results...)
+		if res.End() {
+			break
+		}
+		page++
+	}
+	return response, nil
+}
+
 // SearchGroups - List the groups that are allowed to edit a Quality Gate.
 // Requires one of the following permissions:
 //    * 'Administer Quality Gates'

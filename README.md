@@ -23,28 +23,45 @@ go get github.com/shijl0925/go-sonarqube
 
 ## Usage
 
-Use `sonarqube.NewClient` to create a new client. It needs a SonarQube baseUrl and username / password or token, and optionally accepts
-an existing `*http.Client`.
+Use `sonarqube.New` to create a new client with functional options. It needs a SonarQube base URL and
+authentication configured via options such as `WithBasicAuth` or `WithToken`.
 
 After creating the client, create a new request from one of the endpoint-specific packages, i.e.
 `projects.SearchRequest` from `github.com/shijl0925/go-sonarqube/sonarqube/projects`. If an endpoint supports paging,
-you need to supply `ppaging.Params` as well, though in that case it might be easier to use the `All` variant of the
+you need to supply `paging.Params` as well, though in that case it might be easier to use the `All` variant of the
 function. The example below, for instance, uses `client.Projects.SearchAll(req)` instead of `client.Projects.Search(req, paging)`.
 
-The page size for automatic paging is currently set to `100`, but might be configurable later.
+The page size for automatic paging is currently set to `100`.
 
 ```go
 package main
+
 import (
 	"context"
 	"fmt"
 	"log"
+	"time"
+
+	"github.com/shijl0925/go-sonarqube/sonarqube"
+	"github.com/shijl0925/go-sonarqube/sonarqube/projects"
 )
 
 func main() {
     ctx := context.Background()
     baseUrl := "https://next.sonarqube.com/sonarqube"
-    client := sonarqube.NewClient(baseUrl, "", "", nil)
+
+    // Create an anonymous client
+    client := sonarqube.New(baseUrl)
+
+    // Or authenticate with a token
+    client = sonarqube.New(baseUrl, sonarqube.WithToken("my-token"))
+
+    // Or use basic auth with a custom timeout
+    client = sonarqube.New(baseUrl,
+        sonarqube.WithBasicAuth("admin", "password"),
+        sonarqube.WithTimeout(30*time.Second),
+    )
+
     req := projects.SearchRequest{}
 
     res, err := client.Projects.SearchAll(ctx, req)
@@ -55,3 +72,14 @@ func main() {
     fmt.Printf("%+v\n", res)
 }
 ```
+
+### Client Options
+
+| Option | Description |
+|--------|-------------|
+| `WithBasicAuth(username, password)` | Authenticate with username and password |
+| `WithToken(token)` | Authenticate with a SonarQube user or project token |
+| `WithHTTPClient(httpClient)` | Use a custom `*http.Client` |
+| `WithTimeout(duration)` | Set a timeout on the underlying HTTP client |
+
+> **Note:** `NewClient` and `NewClientByToken` are still available for backwards compatibility.
