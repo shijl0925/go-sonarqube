@@ -37,7 +37,7 @@ type CreateResponse struct {
 type CreateConditionRequest struct {
 	Error    string `form:"error"`        // Condition error threshold
 	GateName string `form:"gateName"`     // Name of the quality gate
-	Metric   string `form:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>alert_status</li><li>new_security_hotspots</li><li>security_hotspots</li></ul>
+	Metric   string `form:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>security_hotspots</li><li>alert_status</li><li>new_security_hotspots</li></ul>
 	Op       string `form:"op,omitempty"` // Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul>
 }
 
@@ -179,6 +179,21 @@ type SearchResponse struct {
 	} `json:"results,omitempty"`
 }
 
+// End returns true when the last page of results has been reached.
+func (r *SearchResponse) End() bool {
+	return r.Paging.PageIndex*r.Paging.PageSize >= r.Paging.Total
+}
+
+// SearchResponseAll is the collection for SearchRequest
+type SearchResponseAll struct {
+	Results []struct {
+		AiCodeAssurance string `json:"aiCodeAssurance,omitempty"`
+		Key             string `json:"key,omitempty"`
+		Name            string `json:"name,omitempty"`
+		Selected        bool   `json:"selected,omitempty"`
+	} `json:"results,omitempty"`
+}
+
 // SearchGroupsRequest List the groups that are allowed to edit a Quality Gate.<br>Requires one of the following permissions:<ul>  <li>'Administer Quality Gates'</li>  <li>Edit right on the specified quality gate</li></ul>
 type SearchGroupsRequest struct {
 	GateName string `url:"gateName"`           // Quality Gate name
@@ -288,6 +303,6 @@ type ShowResponse struct {
 type UpdateConditionRequest struct {
 	Error  string `form:"error"`        // Condition error threshold
 	Id     string `form:"id"`           // Condition ID
-	Metric string `form:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>alert_status</li><li>new_security_hotspots</li><li>security_hotspots</li></ul>
+	Metric string `form:"metric"`       // Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>security_hotspots</li><li>alert_status</li><li>new_security_hotspots</li></ul>
 	Op     string `form:"op,omitempty"` // Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul>
 }

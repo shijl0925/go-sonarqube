@@ -18,7 +18,7 @@ type DbMigrationStatusResponse struct {
 	State     string `json:"state,omitempty"`
 }
 
-// HealthRequest Provide health status of SonarQube.<p>Although global health is calculated based on both application and search nodes, detailed information is returned only for application nodes.</p><p>  <ul> <li>GREEN: SonarQube is fully operational</li> <li>YELLOW: SonarQube is usable, but it needs attention in order to be fully operational</li> <li>RED: SonarQube is not operational</li> </ul></p><br>Requires the 'Administer System' permission or system passcode (see WEB_SYSTEM_PASS_CODE in sonar.properties).<br>When SonarQube is in safe mode (waiting or running a database upgrade), only the authentication with a system passcode is supported.
+// HealthRequest Provide health status of SonarQube.<p>Although global health is calculated based on both application and search nodes, detailed information is returned only for application nodes.</p><p>  <ul> <li>GREEN: SonarQube is fully operational</li> <li>YELLOW: SonarQube is usable, but it needs attention in order to be fully operational</li> <li>RED: SonarQube is not operational</li> </ul></p><br>Requires the 'Administer System' permission or system passcode (see sonar.web.systemPasscode in sonar.properties).<br>When SonarQube is in safe mode (waiting or running a database upgrade), only the authentication with a system passcode is supported.
 type HealthRequest struct{}
 
 // HealthResponse is the response for HealthRequest

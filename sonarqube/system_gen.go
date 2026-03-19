@@ -55,7 +55,7 @@ func (s *System) DbMigrationStatus(ctx context.Context, r system.DbMigrationStat
 //   * YELLOW: SonarQube is usable, but it needs attention in order to be fully operational
 //   * RED: SonarQube is not operational
 //  </p>
-// Requires the 'Administer System' permission or system passcode (see WEB_SYSTEM_PASS_CODE in sonar.properties).
+// Requires the 'Administer System' permission or system passcode (see sonar.web.systemPasscode in sonar.properties).
 // When SonarQube is in safe mode (waiting or running a database upgrade), only the authentication with a system passcode is supported.
 // Since 6.6
 func (s *System) Health(ctx context.Context, r system.HealthRequest) (*system.HealthResponse, *http.Response, error) {
