@@ -55,7 +55,7 @@ func (s *System) DbMigrationStatus(ctx context.Context, r system.DbMigrationStat
 //   * YELLOW: SonarQube is usable, but it needs attention in order to be fully operational
 //   * RED: SonarQube is not operational
 //  </p>
-// Requires the 'Administer System' permission or system passcode (see WEB_SYSTEM_PASS_CODE in sonar.properties).
+// Requires the 'Administer System' permission or system passcode (see sonar.web.systemPasscode in sonar.properties).
 // When SonarQube is in safe mode (waiting or running a database upgrade), only the authentication with a system passcode is supported.
 // Since 6.6
 func (s *System) Health(ctx context.Context, r system.HealthRequest) (*system.HealthResponse, *http.Response, error) {
@@ -187,6 +187,7 @@ func (s *System) Status(ctx context.Context, r system.StatusRequest) (*system.St
 // Since 5.2
 // Changelog:
 //
+//	2026.2: The field 'documentationUrl' is added to each upgrade entry to point to the target version's documentation
 //	10.5: The field 'ltsVersion' is deprecated from the response
 //	10.5: The field 'ltaVersion' is added to indicate the Long-Term Active Version
 //	10.5: The field 'installedVersionActive' is added to indicate if the installed version is an active version

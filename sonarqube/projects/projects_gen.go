@@ -113,7 +113,8 @@ Requires 'Administer System' permission
 type SearchRequest struct {
 	AnalyzedBefore    string `url:"analyzedBefore,omitempty"`    // Since 6.6;Filter the projects for which the last analysis of all branches are older than the given date (exclusive).<br> Either a date (server timezone) or datetime can be provided.
 	OnProvisionedOnly string `url:"onProvisionedOnly,omitempty"` // Since 6.6;Filter the projects that are provisioned
-	Projects          string `url:"projects,omitempty"`          // Since 6.6;Comma-separated list of project keys
+	ProjectKeys       string `url:"projectKeys,omitempty"`       // Since 2026.3;Comma-separated list of project keys (case insensitive)
+	Projects          string `url:"projects,omitempty"`          // Since 6.6;Deprecated since 2026.3;Comma-separated list of project keys. Deprecated, use projectKeys instead
 	Q                 string `url:"q,omitempty"`                 // Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that contain the supplied string</li></ul>
 	Qualifiers        string `url:"qualifiers,omitempty"`        // Comma-separated list of component qualifiers. Filter the results with the specified qualifiers
 }

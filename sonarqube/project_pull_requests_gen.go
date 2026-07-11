@@ -33,6 +33,7 @@ func (s *ProjectPullRequests) Delete(ctx context.Context, r project_pull_request
 // Since 7.1
 // Changelog:
 //
+//	2026.6: Response field 'pullRequestId' has been added
 //	9.8: Response fields: 'bugs', 'vulnerabilities', 'codeSmells' has been dropped.
 //	8.4: Response fields: 'bugs', 'vulnerabilities', 'codeSmells' are deprecated.
 func (s *ProjectPullRequests) List(ctx context.Context, r project_pull_requests.ListRequest) (*project_pull_requests.ListResponse, *http.Response, error) {
