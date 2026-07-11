@@ -15,8 +15,10 @@ type Hotspots service
 // ChangeStatus - Change the status of a Security Hotpot.
 // Requires the 'Administer Security Hotspot' permission.
 // Since 8.1
+// Deprecated since 2026.4
 // Changelog:
 //
+//	2026.4: Hotspots are deprecated and replaced by security issues (software quality) and vulnerabilities (type). Please use the API of security issues / vulnerabilities instead.
 //	2025.1: The following 'resolution' values are not deprecated anymore: FIXED, SAFE, ACKNOWLEDGED
 //	2025.1: The following 'status' values are not deprecated anymore: TO_REVIEW, REVIEWED
 //	10.1: Endpoint visibility change from internal to public
@@ -36,8 +38,10 @@ func (s *Hotspots) ChangeStatus(ctx context.Context, r hotspots.ChangeStatusRequ
 // For applications, it also requires 'Browse' permission on its child projects.
 // When issue indexing is in progress returns 503 service unavailable HTTP code.
 // Since 8.1
+// Deprecated since 2026.4
 // Changelog:
 //
+//	2026.4: Hotspots are deprecated and replaced by security issues (software quality) and vulnerabilities (type). Please use the API of security issues / vulnerabilities instead.
 //	2025.6: Param 'complianceStandards' has been added
 //	10.7: Added parameter 'stig-ASD_V5R3' and 'casa'
 //	10.2: Parameter 'projectKey' renamed to 'project'
@@ -82,8 +86,10 @@ func (s *Hotspots) SearchAll(ctx context.Context, r hotspots.SearchRequest) (*ho
 
 // Show - Provides the details of a Security Hotspot.
 // Since 8.1
+// Deprecated since 2026.4
 // Changelog:
 //
+//	2026.4: Hotspots are deprecated and replaced by security issues (software quality) and vulnerabilities (type). Please use the API of security issues / vulnerabilities instead.
 //	10.1: Add the 'codeVariants' response field
 //	9.8: Add message formatting to issue and locations response
 //	9.7: Hotspot flows in the response may contain a description and a type

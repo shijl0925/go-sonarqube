@@ -5,6 +5,7 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 // AUTOMATICALLY GENERATED, DO NOT EDIT BY HAND!
 
 // ChangeStatusRequest Change the status of a Security Hotpot.<br/>Requires the 'Administer Security Hotspot' permission.
+// Deprecated: this action has been deprecated since version 2026.4
 type ChangeStatusRequest struct {
 	Comment    string `form:"comment,omitempty"`    // Comment text.
 	Hotspot    string `form:"hotspot"`              // Key of the Security Hotspot
@@ -13,6 +14,7 @@ type ChangeStatusRequest struct {
 }
 
 // SearchRequest Search for Security Hotpots. <br>Requires the 'Browse' permission on the specified project(s). <br>For applications, it also requires 'Browse' permission on its child projects. <br>When issue indexing is in progress returns 503 service unavailable HTTP code.
+// Deprecated: this action has been deprecated since version 2026.4
 type SearchRequest struct {
 	Branch              string `url:"branch,omitempty"`              // Branch key. Not available in the community edition.
 	Casa                string `url:"casa,omitempty"`                // Since 10.7;Comma-separated list of CASA categories.
@@ -100,6 +102,7 @@ type SearchResponseAll struct {
 }
 
 // ShowRequest Provides the details of a Security Hotspot.
+// Deprecated: this action has been deprecated since version 2026.4
 type ShowRequest struct {
 	Hotspot string `url:"hotspot"` // Key of the Security Hotspot
 }

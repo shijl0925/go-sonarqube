@@ -16,11 +16,12 @@ type ListRequest struct {
 // ListResponse is the response for ListRequest
 type ListResponse struct {
 	PullRequests []struct {
-		AnalysisDate string `json:"analysisDate,omitempty"`
-		Base         string `json:"base,omitempty"`
-		Branch       string `json:"branch,omitempty"`
-		Key          string `json:"key,omitempty"`
-		Status       struct {
+		AnalysisDate  string `json:"analysisDate,omitempty"`
+		Base          string `json:"base,omitempty"`
+		Branch        string `json:"branch,omitempty"`
+		Key           string `json:"key,omitempty"`
+		PullRequestId string `json:"pullRequestId,omitempty"`
+		Status        struct {
 			QualityGateStatus string `json:"qualityGateStatus,omitempty"`
 		} `json:"status,omitempty"`
 		Target string `json:"target,omitempty"`

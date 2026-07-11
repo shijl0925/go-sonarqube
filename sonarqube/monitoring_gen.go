@@ -15,6 +15,9 @@ type Monitoring service
 // Support content type 'text/plain' (default) and 'application/openmetrics-text'.
 // This endpoint can be accessed using a Bearer token, which needs to be defined in sonar.properties with the 'sonar.web.systemPasscode' key.
 // Since 9.3
+// Changelog:
+//
+//	2026.3: Added 'sonarqube_elasticsearch_read_only_indices_total' and 'sonarqube_elasticsearch_disk_usage_percent' metrics
 func (s *Monitoring) Metrics(ctx context.Context, r monitoring.MetricsRequest) (*monitoring.MetricsResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/metrics", s.path)
 	v := new(monitoring.MetricsResponse)
