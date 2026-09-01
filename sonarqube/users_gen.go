@@ -133,6 +133,7 @@ func (s *Users) GroupsAll(ctx context.Context, r users.GroupsRequest) (*users.Gr
 //     * 'externalProvider'
 //     * 'groups'
 //     * 'lastConnectionDate'
+//     * 'scmAccounts'
 //     * 'sonarLintLastConnectionDate'
 //     * 'tokensCount'
 // Field 'lastConnectionDate' is only updated every hour, so it may not be accurate, for instance when a user authenticates many times in less than one hour.
@@ -140,6 +141,7 @@ func (s *Users) GroupsAll(ctx context.Context, r users.GroupsRequest) (*users.Gr
 // Deprecated since 10.4
 // Changelog:
 //
+//	26.9: Field 'scmAccounts' is only returned when user has Administer System permission or for the logged-in user
 //	10.4: Deprecated. Use GET api/v2/users-management/users instead
 //	10.3: New optional parameters externalIdentity to find a user by its IdP login
 //	10.1: New optional parameters slLastConnectedAfter and slLastConnectedBefore to filter users by SonarLint last connection date. Only available with Administer System permission.

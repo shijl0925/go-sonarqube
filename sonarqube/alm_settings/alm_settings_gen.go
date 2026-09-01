@@ -121,6 +121,7 @@ type SetAzureBindingRequest struct {
 }
 
 // SetBitbucketBindingRequest Bind a Bitbucket instance to a project.<br/>If the project was already bound to a previous Bitbucket instance, the binding will be updated to the new one.Requires the 'Administer' permission on the project
+// Deprecated: this action has been deprecated since version 2026.5
 type SetBitbucketBindingRequest struct {
 	AlmSetting string `form:"almSetting"` // Bitbucket Server setting key
 	Monorepo   string `form:"monorepo"`   // Since 8.7;Is this project part of a monorepo
@@ -130,6 +131,7 @@ type SetBitbucketBindingRequest struct {
 }
 
 // SetBitbucketcloudBindingRequest Bind a Bitbucket Cloud setting to a project.<br/>If the project was already bound to a different Bitbucket Cloud setting, the binding will be updated to the new one.Requires the 'Administer' permission on the project
+// Deprecated: this action has been deprecated since version 2026.5
 type SetBitbucketcloudBindingRequest struct {
 	AlmSetting string `form:"almSetting"` // Bitbucket Cloud setting key
 	Monorepo   string `form:"monorepo"`   // Since 8.8;Is this project part of a monorepo
@@ -147,6 +149,7 @@ type SetGithubBindingRequest struct {
 }
 
 // SetGitlabBindingRequest Bind a GitLab instance to a project.<br/>If the project was already bound to a previous Gitlab instance, the binding will be updated to the new one.Requires the 'Administer' permission on the project
+// Deprecated: this action has been deprecated since version 2026.5
 type SetGitlabBindingRequest struct {
 	AlmSetting string `form:"almSetting"` // GitLab setting key
 	Monorepo   string `form:"monorepo"`   // Since 8.7;Is this project part of a monorepo

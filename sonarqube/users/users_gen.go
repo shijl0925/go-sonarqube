@@ -95,7 +95,7 @@ type GroupsResponseAll struct {
 	} `json:"groups,omitempty"`
 }
 
-// SearchRequest Get a list of users. By default, only active users are returned.<br/>The following fields are only returned when user has Administer System permission or for logged-in in user :<ul>   <li>'email'</li>   <li>'externalIdentity'</li>   <li>'externalProvider'</li>   <li>'groups'</li>   <li>'lastConnectionDate'</li>   <li>'sonarLintLastConnectionDate'</li>   <li>'tokensCount'</li></ul>Field 'lastConnectionDate' is only updated every hour, so it may not be accurate, for instance when a user authenticates many times in less than one hour.
+// SearchRequest Get a list of users. By default, only active users are returned.<br/>The following fields are only returned when user has Administer System permission or for logged-in in user :<ul>   <li>'email'</li>   <li>'externalIdentity'</li>   <li>'externalProvider'</li>   <li>'groups'</li>   <li>'lastConnectionDate'</li>   <li>'scmAccounts'</li>   <li>'sonarLintLastConnectionDate'</li>   <li>'tokensCount'</li></ul>Field 'lastConnectionDate' is only updated every hour, so it may not be accurate, for instance when a user authenticates many times in less than one hour.
 // Deprecated: this action has been deprecated since version 10.4
 type SearchRequest struct {
 	Deactivated      string `url:"deactivated,omitempty"`      // Since 9.7;Return deactivated users instead of active users

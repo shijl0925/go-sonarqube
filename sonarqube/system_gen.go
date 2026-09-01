@@ -187,6 +187,7 @@ func (s *System) Status(ctx context.Context, r system.StatusRequest) (*system.St
 // Since 5.2
 // Changelog:
 //
+//	2026.5: The field 'lta' is added to each upgrade entry to indicate whether it belongs to a Long-Term Active line
 //	2026.2: The field 'documentationUrl' is added to each upgrade entry to point to the target version's documentation
 //	10.5: The field 'ltsVersion' is deprecated from the response
 //	10.5: The field 'ltaVersion' is added to indicate the Long-Term Active Version
