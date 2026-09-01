@@ -138,6 +138,7 @@ func (s *AlmSettings) DeleteBinding(ctx context.Context, r alm_settings.DeleteBi
 // Since 8.1
 // Changelog:
 //
+//	2026.5: GitHub and GitLab bindings now contain a slug field with the repository's full name or path
 //	2025.6: GitHub, GitLab and Azure bindings now contain a repositoryUrl field with the URL to the repository
 //	2025.1: Azure binding now contains a inlineAnnotationsEnabled flag for inline annotations feature
 //	10.1: Permission needed changed from 'Administer' to 'Browse'
@@ -215,6 +216,10 @@ func (s *AlmSettings) SetAzureBinding(ctx context.Context, r alm_settings.SetAzu
 // SetBitbucketBinding - Bind a Bitbucket instance to a project.
 // If the project was already bound to a previous Bitbucket instance, the binding will be updated to the new one.Requires the 'Administer' permission on the project
 // Since 8.1
+// Deprecated since 2026.5
+// Changelog:
+//
+//	2026.5: This endpoint is deprecated, please use POST api/v2/dop-translation/bound-projects instead
 func (s *AlmSettings) SetBitbucketBinding(ctx context.Context, r alm_settings.SetBitbucketBindingRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_bitbucket_binding", s.path)
 
@@ -229,6 +234,10 @@ func (s *AlmSettings) SetBitbucketBinding(ctx context.Context, r alm_settings.Se
 // SetBitbucketcloudBinding - Bind a Bitbucket Cloud setting to a project.
 // If the project was already bound to a different Bitbucket Cloud setting, the binding will be updated to the new one.Requires the 'Administer' permission on the project
 // Since 8.7
+// Deprecated since 2026.5
+// Changelog:
+//
+//	2026.5: This endpoint is deprecated, please use POST api/v2/dop-translation/bound-projects instead
 func (s *AlmSettings) SetBitbucketcloudBinding(ctx context.Context, r alm_settings.SetBitbucketcloudBindingRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_bitbucketcloud_binding", s.path)
 
@@ -260,8 +269,10 @@ func (s *AlmSettings) SetGithubBinding(ctx context.Context, r alm_settings.SetGi
 // SetGitlabBinding - Bind a GitLab instance to a project.
 // If the project was already bound to a previous Gitlab instance, the binding will be updated to the new one.Requires the 'Administer' permission on the project
 // Since 8.1
+// Deprecated since 2026.5
 // Changelog:
 //
+//	2026.5: This endpoint is deprecated, please use POST api/v2/dop-translation/bound-projects instead
 //	8.2: Parameter 'repository' was added
 func (s *AlmSettings) SetGitlabBinding(ctx context.Context, r alm_settings.SetGitlabBindingRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_gitlab_binding", s.path)

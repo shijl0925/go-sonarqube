@@ -488,6 +488,7 @@ type UpgradesResponse struct {
 		Description      string `json:"description,omitempty"`
 		DocumentationUrl string `json:"documentationUrl,omitempty"`
 		DownloadUrl      string `json:"downloadUrl,omitempty"`
+		Lta              bool   `json:"lta,omitempty"`
 		Plugins          struct {
 			Incompatible []struct {
 				Category         string `json:"category,omitempty"`
