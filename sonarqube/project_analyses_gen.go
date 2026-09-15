@@ -72,6 +72,7 @@ func (s *ProjectAnalyses) DeleteEvent(ctx context.Context, r project_analyses.De
 // Since 6.3
 // Changelog:
 //
+//	2026.5: Add response field 'relativePathFromScmRoot'
 //	10.3: Add response field 'qualityProfile' for events related to quality profile changes
 //	9.0: Add response field 'detectedCI'
 //	7.5: Add QualityGate information on Applications
