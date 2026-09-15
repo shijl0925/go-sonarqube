@@ -70,7 +70,7 @@ type DeliveriesResponseAll struct {
 	} `json:"deliveries,omitempty"`
 }
 
-// DeliveryRequest Get a webhook delivery by its id.<br/>Require 'Administer System' permission.<br/>Note that additional information are returned by api/webhooks/delivery.
+// DeliveryRequest Get a webhook delivery by its id.<br/>Require 'Administer' permission on the related project.
 type DeliveryRequest struct {
 	DeliveryId string `url:"deliveryId"` // Id of delivery
 }

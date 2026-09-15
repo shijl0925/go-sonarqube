@@ -57,6 +57,7 @@ type SearchResponse struct {
 		Key                         string `json:"key,omitempty"`
 		ManualNewCodePeriodBaseline bool   `json:"manualNewCodePeriodBaseline,omitempty"`
 		ProjectVersion              string `json:"projectVersion,omitempty"`
+		RelativePathFromScmRoot     string `json:"relativePathFromScmRoot,omitempty"`
 		Revision                    string `json:"revision,omitempty"`
 		DetectedCI                  string `json:"detectedCI,omitempty"`
 	} `json:"analyses,omitempty"`
@@ -86,6 +87,7 @@ type SearchResponseAll struct {
 		Key                         string `json:"key,omitempty"`
 		ManualNewCodePeriodBaseline bool   `json:"manualNewCodePeriodBaseline,omitempty"`
 		ProjectVersion              string `json:"projectVersion,omitempty"`
+		RelativePathFromScmRoot     string `json:"relativePathFromScmRoot,omitempty"`
 		Revision                    string `json:"revision,omitempty"`
 		DetectedCI                  string `json:"detectedCI,omitempty"`
 	} `json:"analyses,omitempty"`

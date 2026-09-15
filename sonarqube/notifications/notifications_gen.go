@@ -12,7 +12,8 @@ type AddRequest struct {
 
 // ListRequest List notifications of the authenticated user.<br>Requires one of the following permissions:<ul>  <li>Authentication if no login is provided</li>  <li>System administration if a login is provided</li></ul>
 type ListRequest struct {
-	Login string `url:"login,omitempty"` // Since 6.4;User login
+	Filter string `url:"filter,omitempty"` // Since 2026.5;Category of notification types to return.
+	Login  string `url:"login,omitempty"`  // Since 6.4;User login
 }
 
 // ListResponse is the response for ListRequest
