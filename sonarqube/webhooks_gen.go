@@ -85,8 +85,7 @@ func (s *Webhooks) DeliveriesAll(ctx context.Context, r webhooks.DeliveriesReque
 }
 
 // Delivery - Get a webhook delivery by its id.
-// Require 'Administer System' permission.
-// Note that additional information are returned by api/webhooks/delivery.
+// Require 'Administer' permission on the related project.
 // Since 6.2
 func (s *Webhooks) Delivery(ctx context.Context, r webhooks.DeliveryRequest) (*webhooks.DeliveryResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/delivery", s.path)

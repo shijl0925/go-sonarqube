@@ -41,6 +41,7 @@ func (s *Hotspots) ChangeStatus(ctx context.Context, r hotspots.ChangeStatusRequ
 // Deprecated since 2026.4
 // Changelog:
 //
+//	2026.5: Parameter 'projectKey' is removed. Use 'project' instead.
 //	2026.4: Hotspots are deprecated and replaced by security issues (software quality) and vulnerabilities (type). Please use the API of security issues / vulnerabilities instead.
 //	2025.6: Param 'complianceStandards' has been added
 //	10.7: Added parameter 'stig-ASD_V5R3' and 'casa'

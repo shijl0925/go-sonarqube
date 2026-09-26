@@ -159,6 +159,7 @@ func (s *Rules) SearchAll(ctx context.Context, r rules.SearchRequest) (*rules.Se
 // Since 4.2
 // Changelog:
 //
+//	2026.5: The 'contextKey' parameter has been added.
 //	2026.2: Description-related fields in the response are obfuscated for anonymous users.
 //	2025.1: The deprecated field 'htmlDesc' is not returned anymore, even if specified in the 'fields' parameter.
 //	10.8: Possible values 'INFO' and 'BLOCKER' for response field 'severity' of 'impacts' have been added.

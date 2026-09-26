@@ -105,6 +105,7 @@ func (s *Views) Applications(ctx context.Context, r views.ApplicationsRequest) (
 // Since 1.0
 // Changelog:
 //
+//	2026.6: Parameter 'key' no longer accepts ':' as it is reserved for portfolio references
 //	9.3: This web service can't create applications. Use 'applications/create' instead
 //	9.3: Parameter 'parent' added to create sub-portfolios
 //	7.4: Add support of the new permission 'Create Portfolios' permission

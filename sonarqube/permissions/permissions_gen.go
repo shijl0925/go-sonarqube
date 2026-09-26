@@ -7,7 +7,7 @@ import paging "github.com/shijl0925/go-sonarqube/sonarqube/paging"
 // AddGroupRequest Add a permission to a group.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> The group name must be provided. <br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>
 type AddGroupRequest struct {
 	GroupName  string `form:"groupName"`            // Group name or 'anyone' (case insensitive)
-	Permission string `form:"permission"`           // The permission you would like to grant to the group.<ul><li>Possible values for global permissions: admin, gateadmin, profileadmin, provisioning, scan, applicationcreator, portfoliocreator</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, architectureadmin, scan, user</li></ul>
+	Permission string `form:"permission"`           // The permission you would like to grant to the group.<ul><li>Possible values for global permissions: admin, gateadmin, profileadmin, architectureadmin, provisioning, scan, applicationcreator, portfoliocreator</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, architectureadmin, scan, user</li></ul>
 	ProjectId  string `form:"projectId,omitempty"`  // Project id
 	ProjectKey string `form:"projectKey,omitempty"` // Project key
 }
@@ -30,7 +30,7 @@ type AddProjectCreatorToTemplateRequest struct {
 // AddUserRequest Add permission to a user.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>
 type AddUserRequest struct {
 	Login      string `form:"login"`                // User login
-	Permission string `form:"permission"`           // The permission you would like to grant to the user<ul><li>Possible values for global permissions: admin, gateadmin, profileadmin, provisioning, scan, applicationcreator, portfoliocreator</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, architectureadmin, scan, user</li></ul>
+	Permission string `form:"permission"`           // The permission you would like to grant to the user<ul><li>Possible values for global permissions: admin, gateadmin, profileadmin, architectureadmin, provisioning, scan, applicationcreator, portfoliocreator</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, architectureadmin, scan, user</li></ul>
 	ProjectId  string `form:"projectId,omitempty"`  // Project id
 	ProjectKey string `form:"projectKey,omitempty"` // Project key
 }
@@ -90,7 +90,7 @@ type DeleteTemplateRequest struct {
 // RemoveGroupRequest Remove a permission from a group.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> The group name must be provided.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>
 type RemoveGroupRequest struct {
 	GroupName  string `form:"groupName"`            // Group name or 'anyone' (case insensitive)
-	Permission string `form:"permission"`           // The permission you would like to revoke from the group.<ul><li>Possible values for global permissions: admin, gateadmin, profileadmin, provisioning, scan, applicationcreator, portfoliocreator</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, architectureadmin, scan, user</li></ul>
+	Permission string `form:"permission"`           // The permission you would like to revoke from the group.<ul><li>Possible values for global permissions: admin, gateadmin, profileadmin, architectureadmin, provisioning, scan, applicationcreator, portfoliocreator</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, architectureadmin, scan, user</li></ul>
 	ProjectId  string `form:"projectId,omitempty"`  // Project id
 	ProjectKey string `form:"projectKey,omitempty"` // Project key
 }
@@ -113,7 +113,7 @@ type RemoveProjectCreatorFromTemplateRequest struct {
 // RemoveUserRequest Remove permission from a user.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>
 type RemoveUserRequest struct {
 	Login      string `form:"login"`                // User login
-	Permission string `form:"permission"`           // The permission you would like to revoke from the user.<ul><li>Possible values for global permissions: admin, gateadmin, profileadmin, provisioning, scan, applicationcreator, portfoliocreator</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, architectureadmin, scan, user</li></ul>
+	Permission string `form:"permission"`           // The permission you would like to revoke from the user.<ul><li>Possible values for global permissions: admin, gateadmin, profileadmin, architectureadmin, provisioning, scan, applicationcreator, portfoliocreator</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, architectureadmin, scan, user</li></ul>
 	ProjectId  string `form:"projectId,omitempty"`  // Project id
 	ProjectKey string `form:"projectKey,omitempty"` // Project key
 }
