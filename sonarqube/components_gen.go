@@ -76,6 +76,7 @@ func (s *Components) Show(ctx context.Context, r components.ShowRequest) (*compo
 // Since 5.4
 // Changelog:
 //
+//	2026.5: Response field 'refQualifier' has been added.
 //	10.1: The use of module keys in parameter 'component' is removed
 //	10.1: The use of 'BRC' as value for parameter 'qualifiers' is removed
 //	7.6: The use of 'BRC' as value for parameter 'qualifiers' is deprecated

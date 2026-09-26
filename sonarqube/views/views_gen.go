@@ -51,7 +51,7 @@ type ApplicationsResponse struct {
 // CreateRequest Create a new portfolio.<br/>Requires 'Administer System' permission or 'Create Portfolios' permission,
 type CreateRequest struct {
 	Description string `form:"description,omitempty"` // Description for the new portfolio, can be left blank
-	Key         string `form:"key,omitempty"`         // Key for the new portfolio. A suitable key will be generated if not provided
+	Key         string `form:"key,omitempty"`         // Key for the new portfolio. Allowed characters are alphanumeric, '-', '_' and '.', with at least one non-digit. A suitable key will be generated if not provided
 	Name        string `form:"name"`                  // Name for the new portfolio
 	Parent      string `form:"parent,omitempty"`      // Key of the parent portfolio, when creating a sub portfolio
 	Visibility  string `form:"visibility,omitempty"`  // Since 2.0;Whether the created portfolio or application should be visible to everyone, or only specific user/groups.<br/>Only applies to root portfolios. If no visibility is specified, the default visibility will be used.

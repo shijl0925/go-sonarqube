@@ -31,6 +31,7 @@ func (s *AlmSettings) CountBinding(ctx context.Context, r alm_settings.CountBind
 // Since 8.1
 // Changelog:
 //
+//	2026.5: Parameter 'url' is now rejected with a 400 response when it is not a valid absolute HTTP(S) URL
 //	8.6: Parameter 'URL' was added
 func (s *AlmSettings) CreateAzure(ctx context.Context, r alm_settings.CreateAzureRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/create_azure", s.path)
@@ -139,6 +140,7 @@ func (s *AlmSettings) DeleteBinding(ctx context.Context, r alm_settings.DeleteBi
 // Changelog:
 //
 //	2026.5: GitHub and GitLab bindings now contain a slug field with the repository's full name or path
+//	2026.5: Bitbucket Cloud and Bitbucket Server bindings now contain a repositoryUrl field with the URL to the repository
 //	2025.6: GitHub, GitLab and Azure bindings now contain a repositoryUrl field with the URL to the repository
 //	2025.1: Azure binding now contains a inlineAnnotationsEnabled flag for inline annotations feature
 //	10.1: Permission needed changed from 'Administer' to 'Browse'
@@ -199,8 +201,10 @@ func (s *AlmSettings) ListDefinitions(ctx context.Context, r alm_settings.ListDe
 // SetAzureBinding - Bind a Azure DevOps instance to a project.
 // If the project was already bound to a previous Azure DevOps instance, the binding will be updated to the new one.Requires the 'Administer' permission on the project
 // Since 8.1
+// Deprecated since 2026.5
 // Changelog:
 //
+//	2026.5: This endpoint is deprecated, please use POST api/v2/dop-translation/bound-projects instead. Parameters 'projectName' and 'repositoryName' are now rejected with a 400 response when they contain any of the Azure DevOps reserved characters: \ / : < > | ? *
 //	2025.1: Add inline annotations parameter
 func (s *AlmSettings) SetAzureBinding(ctx context.Context, r alm_settings.SetAzureBindingRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_azure_binding", s.path)
@@ -252,8 +256,10 @@ func (s *AlmSettings) SetBitbucketcloudBinding(ctx context.Context, r alm_settin
 // SetGithubBinding - Bind a GitHub instance to a project.
 // If the project was already bound to a previous GitHub instance, the binding will be updated to the new one.Requires the 'Administer' permission on the project
 // Since 8.1
+// Deprecated since 2026.5
 // Changelog:
 //
+//	2026.5: This endpoint is deprecated, please use POST api/v2/dop-translation/bound-projects instead
 //	8.3: Add 'summaryCommentEnabled' param to enable/disable of putting analysis summary in a conversation tab of GitHub
 func (s *AlmSettings) SetGithubBinding(ctx context.Context, r alm_settings.SetGithubBindingRequest) (*http.Response, error) {
 	u := fmt.Sprintf("%s/set_github_binding", s.path)
@@ -290,6 +296,7 @@ func (s *AlmSettings) SetGitlabBinding(ctx context.Context, r alm_settings.SetGi
 // Since 8.1
 // Changelog:
 //
+//	2026.5: Parameter 'url' is now rejected with a 400 response when its value changes and is not a valid absolute HTTP(S) URL
 //	8.7: Parameter 'personalAccessToken' is no longer required
 //	8.6: Parameter 'URL' was added
 func (s *AlmSettings) UpdateAzure(ctx context.Context, r alm_settings.UpdateAzureRequest) (*http.Response, error) {

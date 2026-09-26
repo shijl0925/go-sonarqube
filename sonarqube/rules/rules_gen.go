@@ -281,8 +281,9 @@ type SearchResponseAll struct {
 
 // ShowRequest Get detailed information about a rule<br>
 type ShowRequest struct {
-	Actives string `url:"actives,omitempty"` // Show rule's activations for all profiles ("active rules")
-	Key     string `url:"key"`               // Rule key
+	Actives    string `url:"actives,omitempty"`    // Show rule's activations for all profiles ("active rules")
+	ContextKey string `url:"contextKey,omitempty"` // Since 2026.5;Return only the description sections matching the given rule-description context key, along with sections that have no context. When not set, all description sections are returned.
+	Key        string `url:"key"`                  // Rule key
 }
 
 // ShowResponse is the response for ShowRequest
