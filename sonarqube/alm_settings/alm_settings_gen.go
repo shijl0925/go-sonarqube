@@ -17,7 +17,7 @@ type CountBindingResponse struct {
 type CreateAzureRequest struct {
 	Key                 string `form:"key"`                 // Unique key of the Azure Devops instance setting
 	PersonalAccessToken string `form:"personalAccessToken"` // Azure Devops personal access token
-	Url                 string `form:"url"`                 // Azure API URL
+	Url                 string `form:"url"`                 // Azure API URL. Must be a valid absolute HTTP(S) URL, e.g. https://dev.azure.com/myorg
 }
 
 // CreateBitbucketRequest Create Bitbucket instance Setting. <br/>Requires the 'Administer System' permission
@@ -111,13 +111,14 @@ type ListDefinitionsResponse struct {
 }
 
 // SetAzureBindingRequest Bind a Azure DevOps instance to a project.<br/>If the project was already bound to a previous Azure DevOps instance, the binding will be updated to the new one.Requires the 'Administer' permission on the project
+// Deprecated: this action has been deprecated since version 2026.5
 type SetAzureBindingRequest struct {
 	AlmSetting               string `form:"almSetting"`                         // Azure DevOps setting key
 	InlineAnnotationsEnabled string `form:"inlineAnnotationsEnabled,omitempty"` // Since 2025.1;Enable inline annotations during Pull Request decoration for this project
 	Monorepo                 string `form:"monorepo"`                           // Since 8.7;Is this project part of a monorepo
 	Project                  string `form:"project"`                            // SonarQube project key
-	ProjectName              string `form:"projectName"`                        // Since 8.6;Azure project name
-	RepositoryName           string `form:"repositoryName"`                     // Since 8.6;Azure repository name
+	ProjectName              string `form:"projectName"`                        // Since 8.6;Azure project name. Must not contain any of the Azure DevOps reserved characters: \ / : < > | ? *
+	RepositoryName           string `form:"repositoryName"`                     // Since 8.6;Azure repository name. Must not contain any of the Azure DevOps reserved characters: \ / : < > | ? *
 }
 
 // SetBitbucketBindingRequest Bind a Bitbucket instance to a project.<br/>If the project was already bound to a previous Bitbucket instance, the binding will be updated to the new one.Requires the 'Administer' permission on the project
@@ -140,6 +141,7 @@ type SetBitbucketcloudBindingRequest struct {
 }
 
 // SetGithubBindingRequest Bind a GitHub instance to a project.<br/>If the project was already bound to a previous GitHub instance, the binding will be updated to the new one.Requires the 'Administer' permission on the project
+// Deprecated: this action has been deprecated since version 2026.5
 type SetGithubBindingRequest struct {
 	AlmSetting            string `form:"almSetting"`                      // GitHub setting key
 	Monorepo              string `form:"monorepo"`                        // Since 8.7;Is this project part of a monorepo
@@ -162,7 +164,7 @@ type UpdateAzureRequest struct {
 	Key                 string `form:"key"`                           // Unique key of the Azure instance setting
 	NewKey              string `form:"newKey,omitempty"`              // Optional new value for an unique key of the Azure Devops instance setting
 	PersonalAccessToken string `form:"personalAccessToken,omitempty"` // Azure Devops personal access token
-	Url                 string `form:"url"`                           // Azure API URL
+	Url                 string `form:"url"`                           // Azure API URL. Must be a valid absolute HTTP(S) URL, e.g. https://dev.azure.com/myorg. The format is only enforced when the value differs from the currently stored URL, so existing pre-validation settings can still be updated without fixing the URL first.
 }
 
 // UpdateBitbucketRequest Update Bitbucket instance Setting. <br/>Requires the 'Administer System' permission

@@ -162,14 +162,17 @@ func (s *System) Restart(ctx context.Context, r system.RestartRequest) (*http.Re
 }
 
 // Status - Get state information about SonarQube.<p>status: the running status
-//   * STARTING: SonarQube Web Server is up and serving some Web Services (eg. api/system/status) but initialization is still ongoing
-//   * UP: SonarQube instance is up and running
+//   * STARTING: SonarQube Web Server is up and serving some Web Services (eg. api/system/status) but initialization is still ongoing, or Elasticsearch cluster health is not GREEN or YELLOW
+//   * UP: SonarQube instance is up and running and Elasticsearch cluster health is GREEN or YELLOW
 //   * DOWN: SonarQube instance is up but not running because migration has failed (refer to WS /api/system/migrate_db for details) or some other reason (check logs).
 //   * RESTARTING: SonarQube instance is still up but a restart has been requested (refer to WS /api/system/restart for details).
 //   * DB_MIGRATION_NEEDED: database migration is required. DB migration can be started using WS /api/system/migrate_db.
 //   * DB_MIGRATION_RUNNING: DB migration is running (refer to WS /api/system/migrate_db for details)
 //  </p>
 // Since 5.2
+// Changelog:
+//
+//	2026.6: Status UP requires Elasticsearch cluster to be healthy While Elasticsearch is unreachable, the status is STARTING.
 func (s *System) Status(ctx context.Context, r system.StatusRequest) (*system.StatusResponse, *http.Response, error) {
 	u := fmt.Sprintf("%s/status", s.path)
 	v := new(system.StatusResponse)
