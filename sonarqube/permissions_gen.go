@@ -22,6 +22,7 @@ type Permissions service
 // Since 5.2
 // Changelog:
 //
+//	2026.6: Parameter 'groupName' no longer accepts 'Anyone', which is not a recognized group name anymore.
 //	10.0: Parameter 'groupId' is removed. Use 'groupName' instead.
 //	8.4: Parameter 'groupId' is deprecated. Format changes from integer to string. Use 'groupName' instead.
 func (s *Permissions) AddGroup(ctx context.Context, r permissions.AddGroupRequest) (*http.Response, error) {
@@ -41,6 +42,7 @@ func (s *Permissions) AddGroup(ctx context.Context, r permissions.AddGroupReques
 // Since 5.2
 // Changelog:
 //
+//	2026.6: Parameter 'groupName' no longer accepts 'Anyone', which is not a recognized group name anymore.
 //	10.0: Parameter 'groupId' is removed. Use 'groupName' instead.
 //	8.4: Parameter 'groupId' is deprecated. Format changes from integer to string. Use 'groupName' instead.
 func (s *Permissions) AddGroupToTemplate(ctx context.Context, r permissions.AddGroupToTemplateRequest) (*http.Response, error) {
@@ -173,6 +175,7 @@ func (s *Permissions) DeleteTemplate(ctx context.Context, r permissions.DeleteTe
 // Since 5.2
 // Changelog:
 //
+//	2026.6: Parameter 'groupName' no longer accepts 'Anyone', which is not a recognized group name anymore.
 //	10.0: Parameter 'groupId' is removed. Use 'groupName' instead.
 //	8.4: Parameter 'groupId' is deprecated. Format changes from integer to string. Use 'groupName' instead.
 func (s *Permissions) RemoveGroup(ctx context.Context, r permissions.RemoveGroupRequest) (*http.Response, error) {
@@ -192,6 +195,7 @@ func (s *Permissions) RemoveGroup(ctx context.Context, r permissions.RemoveGroup
 // Since 5.2
 // Changelog:
 //
+//	2026.6: Parameter 'groupName' no longer accepts 'Anyone', which is not a recognized group name anymore.
 //	10.0: Parameter 'groupId' is removed. Use 'groupName' instead.
 //	8.4: Parameter 'groupId' is deprecated. Format changes from integer to string. Use 'groupName' instead.
 func (s *Permissions) RemoveGroupFromTemplate(ctx context.Context, r permissions.RemoveGroupFromTemplateRequest) (*http.Response, error) {
