@@ -23,7 +23,7 @@ type SearchRequest struct {
 	Files               string `url:"files,omitempty"`               // Since 9.0;Comma-separated list of files. Returns only hotspots found in those files
 	Hotspots            string `url:"hotspots,omitempty"`            // Comma-separated list of Security Hotspot keys. This parameter is required unless project is provided.
 	InNewCodePeriod     string `url:"inNewCodePeriod,omitempty"`     // Since 9.5;If 'inNewCodePeriod' is provided, only Security Hotspots created in the new code period are returned.
-	OnlyMine            string `url:"onlyMine,omitempty"`            // If 'projectKey' is provided, returns only Security Hotspots assigned to the current user
+	OnlyMine            string `url:"onlyMine,omitempty"`            // If 'project' is provided, returns only Security Hotspots assigned to the current user
 	OwaspAsvs40         string `url:"owaspAsvs-4.0,omitempty"`       // Since 9.7;Comma-separated list of OWASP ASVS v4.0 categories or rules.
 	OwaspAsvsLevel      string `url:"owaspAsvsLevel,omitempty"`      // Since 9.7;Filters hotspots with lower or equal OWASP ASVS level to the parameter value. Should be used in combination with the 'owaspAsvs-4.0' parameter.
 	OwaspTop10          string `url:"owaspTop10,omitempty"`          // Since 8.6;Comma-separated list of OWASP 2017 Top 10 lowercase categories.
