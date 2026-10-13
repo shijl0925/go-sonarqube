@@ -67,6 +67,7 @@ func (s *Plugins) Install(ctx context.Context, r plugins.InstallRequest) (*http.
 // Since 5.2
 // Changelog:
 //
+//	2026.6: The fields 'staticResourceFolder' and 'staticResources' are added. Both are omitted for a plugin that ships no static resource
 //	10.4: The response field 'requiredForLanguages' is added for plugins that support it
 //	9.8: The 'documentationPath' field is deprecated
 //	9.7: Authentication check added

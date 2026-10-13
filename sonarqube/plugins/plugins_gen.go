@@ -60,8 +60,14 @@ type InstalledResponse struct {
 		OrganizationUrl      string   `json:"organizationUrl,omitempty"`
 		RequiredForLanguages []string `json:"requiredForLanguages,omitempty"`
 		SonarLintSupported   bool     `json:"sonarLintSupported,omitempty"`
-		UpdatedAt            float64  `json:"updatedAt,omitempty"`
-		Version              string   `json:"version,omitempty"`
+		StaticResourceFolder string   `json:"staticResourceFolder,omitempty"`
+		StaticResources      []struct {
+			Hash string  `json:"hash,omitempty"`
+			Path string  `json:"path,omitempty"`
+			Size float64 `json:"size,omitempty"`
+		} `json:"staticResources,omitempty"`
+		UpdatedAt float64 `json:"updatedAt,omitempty"`
+		Version   string  `json:"version,omitempty"`
 	} `json:"plugins,omitempty"`
 }
 
